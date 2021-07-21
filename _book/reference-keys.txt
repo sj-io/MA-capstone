@@ -7,3 +7,8 @@ example-one
 example-two
 final-words
 service-requests-since-2016
+dataset-service-requests-since-2016
+requests-by-year
+active-cases
+request-type
+resolution-code

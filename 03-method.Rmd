@@ -2,7 +2,7 @@
 
 We describe our methods in this chapter.
 
-## Service Requests Since 2016
+## Dataset: Service Requests Since 2016
 
 Memphis housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta).
 
@@ -29,3 +29,137 @@ Service_Requests_since_2016 <-
 ```
 
 This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows.
+
+Despite the large number of records, only a handful are relevant to this paper. This is because the dataset contains **all** requests to 311, not just those related to code enforcement. Additionally, many columns contain duplicate or unhelpful information. For instance, there are 23 columns related to location and under the column `LAST_UPDATED_BY`, every single entry was the number "460101".
+
+The dataset was simplified by filtering for code enforcement data and narrowing the number of columns.
+
+```{r CE}
+CE <- Service_Requests_since_2016 %>%
+  filter(DEPARTMENT == "Code Enforcement") %>%
+  select(
+    INCIDENT_NUMBER, #' unique key; service request (sr) number
+    PARCEL_ID, #' parcel ID
+    ADDRESS1, #' just the street name & number (alt: use FULL_ADDRESS)
+    REQUEST_TYPE, #' category for the request
+    CE_CATEGORY, #' category for CE action
+    RESOLUTION_CODE:RESOLUTION_SUMMARY, #' categorizes & explains how the request resolved
+    REQUEST_STATUS, #' is the request open or closed?
+    REPORTED_DATE, #' date the request was reported
+    LAST_MODIFIED_DATE, #' date the request was last modified
+    OWNER_NAME, #' the assigned CE inspector
+    location1 #' geocoordinates
+  )
+```
+
+The output is 13 columns and 154,844 rows, significantly easier to work with. We're ready to begin looking at the data.
+
+## Requests by Year
+
+First, how many requests were created each year? We can filter the `REPORTED_DATE` column to find out.
+
+`CE16 <- CE %>% filter(REPORTED_DATE >= "2016-01-01", REPORTED_DATE < "2017-01-01")`
+
+```{r eval=FALSE, include=FALSE}
+CE16 <- CE %>% filter(REPORTED_DATE >= "2016-01-01", REPORTED_DATE < "2017-01-01")
+CE17 <- CE %>% filter(REPORTED_DATE >= "2017-01-01", REPORTED_DATE < "2018-01-01")
+CE18 <- CE %>% filter(REPORTED_DATE >= "2018-01-01", REPORTED_DATE < "2019-01-01")
+CE19 <- CE %>% filter(REPORTED_DATE >= "2019-01-01", REPORTED_DATE < "2020-01-01")
+CE20 <- CE %>% filter(REPORTED_DATE >= "2020-01-01", REPORTED_DATE < "2021-01-01")
+CE21 <- CE %>% filter(REPORTED_DATE >= "2021-01-01", REPORTED_DATE < "2022-01-01")
+```
+
+Below are the number of requests for each year between 2016 and 2021.
+
+| Reported Date           | Number of Requests |
+|-------------------------|--------------------|
+| 2016                    | 30,361             |
+| 2017                    | 26,196             |
+| 2018                    | 26,846             |
+| 2019                    | 27,559             |
+| 2020                    | 26,194             |
+| 2021 (as of 07/19/2021) | 17,688             |
+
+The number of requests has not changed much over the years.
+
+### Active Cases
+
+How many cases are still active from each year? We can find out using the `REQUEST_STATUS` column, filtering out cases marked "Closed" or "Resolved.
+
+`CE16 %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))`
+
+```{r active, eval=FALSE, include=FALSE}
+CE16 %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
+CE17 %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
+CE18 %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
+CE19 %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
+CE20 %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
+CE21 %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
+CE %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
+```
+
+| Year          | Active Cases |
+|---------------|--------------|
+| 2016          | 136          |
+| 2017          | 111          |
+| 2018          | 532          |
+| 2019          | 956          |
+| 2020          | 1,098        |
+| 2021          | 5,630        |
+| **All Years** | **8,463**    |
+
+There are still 779 active cases from 2018 or earlier.
+
+## Request Type
+
+When a request is entered into 311, it must also be categorized. There are 14 categories for code enforcement data, including 3 categories related to COVID violations which were added in 2020.
+
+The following code was used to find the most common requests for each year:
+
+`CE16 %>% count(REQUEST_TYPE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)`
+
+```{r reqtype, eval=FALSE, include=FALSE}
+CE %>% count(REQUEST_TYPE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE16 %>% count(REQUEST_TYPE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE17 %>% count(REQUEST_TYPE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE18 %>% count(REQUEST_TYPE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE19 %>% count(REQUEST_TYPE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE20 %>% count(REQUEST_TYPE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE21 %>% count(REQUEST_TYPE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+```
+
+For each year, the vast majority of requests fell into one of five categories, listed below.
+
++---------------------------------+---------+---------+---------+---------+---------+---------+-------------+---------+
+| Request Type                    | 2016    | 2017    | 2018    | 2019    | 2020    | 2021    | All         | Years   |
++================================:+=========+=========+=========+=========+=========+=========+============:+=========+
+| Code Miscellaneous              | 28%     | 32%     | 32%     | 31%     | 25%     | 25%     | **45,028**  | **29%** |
++---------------------------------+---------+---------+---------+---------+---------+---------+-------------+---------+
+| Vehicle Violation               | 22%     | 26%     | 28%     | 26%     | 30%     | 35%     | **42,249**  | **27%** |
++---------------------------------+---------+---------+---------+---------+---------+---------+-------------+---------+
+| Weeds Occupied                  | 20%     | 18%     | 17%     | 19%     | 14%     | 11%     | **26,161**  | **17%** |
++---------------------------------+---------+---------+---------+---------+---------+---------+-------------+---------+
+| Junky Yard                      | 18%     | 13%     | 11%     | 12%     | 12%     | 15%     | **21,283**  | **14%** |
++---------------------------------+---------+---------+---------+---------+---------+---------+-------------+---------+
+| Substandard, Derelict Structure | 9%      | 8%      | 10%     | 10%     | 7%      | 9%      | **13,778**  | **9%**  |
++---------------------------------+---------+---------+---------+---------+---------+---------+-------------+---------+
+| **Sum**                         | **97%** | **97%** | **98%** | **98%** | **88%** | **95%** | **148,499** | **96%** |
++---------------------------------+---------+---------+---------+---------+---------+---------+-------------+---------+
+
+From 2016 to 2019, more requests were sorted into "Miscellaneous" than any other category (surpassed by vehicle violations in 2020 and 2021).
+
+<!--# omg can I just outright say that is horrible data management? -->
+
+## Resolution Code
+
+<!--# Should I filter to just Misc & Derelict cases at this point? -->
+
+```{r rescode, eval=FALSE, include=FALSE}
+CE %>% count(RESOLUTION_CODE) %>% arrange(desc(n)) %>% mutate(pct = round(n/sum(n)*100))
+CE16 %>% count(RESOLUTION_CODE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE17 %>% count(RESOLUTION_CODE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE18 %>% count(RESOLUTION_CODE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE19 %>% count(RESOLUTION_CODE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE20 %>% count(RESOLUTION_CODE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+CE21 %>% count(RESOLUTION_CODE) %>% arrange(desc(n)) %>% mutate(pct = n/sum(n)*100)
+```
