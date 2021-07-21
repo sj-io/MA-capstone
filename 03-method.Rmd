@@ -1,3 +1,31 @@
 # Methods
 
 We describe our methods in this chapter.
+
+## Service Requests Since 2016
+
+Memphis housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta).
+
+```{r getdata, include=FALSE}
+library(tidyverse)
+library(vroom)
+Service_Requests_since_2016 <-
+  vroom(
+    "_data/Service_Requests_since_2016.csv",
+    col_types = cols(
+      ADDRESS2 = "c",
+      ADDRESS3 = "c",
+      COLLECTION_DAY = "c",
+      CLOSE_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      CREATION_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      FOLLOWUP_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      INCIDENT_RESOLVED_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      LAST_MODIFIED_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      LAST_UPDATE_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      NEXT_OPEN_TASK_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      REPORTED_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")
+    )
+  )
+```
+
+This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows.
