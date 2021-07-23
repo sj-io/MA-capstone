@@ -1,10 +1,6 @@
-# Methods
+# Data: Service Requests Since 2016
 
-We describe our methods in this chapter.
-
-## Dataset: Service Requests Since 2016
-
-Memphis housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta).
+Memphis housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta). This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows. R/RStudio was used to view and analyze the dataset.
 
 ```{r getdata, include=FALSE}
 library(tidyverse)
@@ -28,20 +24,24 @@ Service_Requests_since_2016 <-
   )
 ```
 
-This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows.
+Each row of the dataset contains all information for a single request, meaning there are not multiple rows for individual cases (except for duplicates).
 
-Despite the large number of records, only a handful are relevant to this paper. This is because the dataset contains **all** requests to 311, not just those related to code enforcement. Additionally, many columns contain duplicate or unhelpful information. For instance, there are 23 columns related to location and under the column `LAST_UPDATED_BY`, every single entry was the number "460101".
+Despite the large number of records, only a portion are relevant to this paper. This is because the dataset contains **all** requests to 311, not just those related to code enforcement. Additionally, many columns contain duplicate or unhelpful information. For instance, there are 23 columns related to location and under the column `LAST_UPDATED_BY`, every single entry is just the number "460101".
 
-The dataset was simplified by filtering for code enforcement data and narrowing the number of columns.
+The dataset can be simplified by filtering for code enforcement data and narrowing the number of columns.
+
+**NOTE**: A list of all column names is available on the Data Hub site linked above, or in R/RStudio enter `colnames(Service_Requests_since_2016)`.
+
+<!--# (After numerous attempts, I found selecting a few important columns is easier than choosing which columns are unimportant) should I write more about the dataset columns? i.e. how did I determine importance, which columns are important? REQUEST_STATUS entries-->
 
 ```{r CE}
 CE <- Service_Requests_since_2016 %>%
   filter(DEPARTMENT == "Code Enforcement") %>%
   select(
-    INCIDENT_NUMBER, #' unique key; service request (sr) number
+    INCIDENT_NUMBER, #' unique key; AKA service request (sr) number
     PARCEL_ID, #' parcel ID
-    ADDRESS1, #' just the street name & number (alt: use FULL_ADDRESS)
-    REQUEST_TYPE, #' category for the request
+    ADDRESS1, #' the street name & number (alt: use FULL_ADDRESS)
+    REQUEST_TYPE, #' request category
     CE_CATEGORY, #' category for CE action
     RESOLUTION_CODE:RESOLUTION_SUMMARY, #' categorizes & explains how the request resolved
     REQUEST_STATUS, #' is the request open or closed?
@@ -52,13 +52,93 @@ CE <- Service_Requests_since_2016 %>%
   )
 ```
 
-The output is 13 columns and 154,844 rows, significantly easier to work with. We're ready to begin looking at the data.
+The output is 13 columns and 154,844 rows, significantly easier to work with.
+
+We're ready to begin looking at the data, but before analyzing, let's find rows/columns that are missing values or contain duplicate information.
+
+## NA Values
+
+First I determined how many NA values were in each column.
+
+```{r NA}
+colSums(is.na(CE))
+```
+
+There are no rows with zero information, but there are some with no *usable* information. I filtered out 20 rows where there is no location, resolution, or written update and placed them in a separate table to double check that I was not omitting useful information.
+
+```{r}
+CENA <-
+  CE %>% filter(across(
+    c(PARCEL_ID,
+      ADDRESS1,
+      RESOLUTION_CODE,
+      RESOLUTION_SUMMARY),
+    ~ is.na(.x)
+  ))
+```
+
+All of these entries are over six months old and most have similar date/times, indicating they were likely duplicates or created in error. After ensuring these rows did not contain viable information, I created a new table omitting them.
+
+```{r}
+CENOTNA <- CE %>% filter(if_any(
+  c(PARCEL_ID,
+    ADDRESS1,
+    RESOLUTION_CODE,
+    RESOLUTION_SUMMARY),
+  ~ !is.na(.x)
+))
+```
+
+The remaining rows may still have NA values in these columns, but there is at least some other data that may be useful. (**NOTE**: to create a table with no NA values in all selected columns, change `if_any()` to `if_all()` or `across()`)
+
+The remaining NA values fall into two categories: those with no location information, and those missing data from code enforcement.
+
+### NA Resolution Code & Resolution Summary
+
+First I created a new table to view rows missing a `RESOLUTION_CODE` and a `RESOLUTION_SUMMARY`.
+
+```{r}
+NARCS <- CENOTNA %>% filter(across(c(RESOLUTION_CODE, RESOLUTION_SUMMARY), ~ is.na(.x)))
+```
+
+There are 491 rows missing both of these values. I noticed most of the entries were recent, so I filtered the column multiple times by `REPORTED_DATE`.
+
+``` {.R}
+NARCS %>% filter(REPORTED_DATE >= "2021-06-19")
+NARCS %>% filter(REPORTED_DATE >= "2021-04-19")
+NARCS %>% filter(REPORTED_DATE >= "2021-02-19")
+NARCS %>% filter(REPORTED_DATE >= "2020-07-19")
+```
+
+Of rows missing both a `RESOLUTION_CODE` and a `RESOLUTION_SUMMARY`, most were created within the past month (368 of 491; 75%), three months (446; 91%), six months (464; 95%), or the past year (476; 97%). It looks like most of these requests are still being worked and thus too recent to have a resolution; let's compare with data on `REQUEST_STATUS`.
+
+```{r}
+NARCS %>% count(REQUEST_STATUS) %>% arrange(desc(n))
+```
+
+Only 8 rows are listed as closed or resolved (and one entry is clearly a duplicate). It was not immediately clear why these requests were closed with no resolution code, so I manually searched for each address in the `CE` dataset. All addresses had at least one other violation. In two instances, a case was closed less than three minutes after it was created and another request was created at a later date and resolved with more information. In the remaining instances, another violation with more information closed at the same time, indicating the inspector closed multiple entries at once.
+
+```{r}
+NARCS1 <- NARCS %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
+```
+
+<!--# it became clear at this point that I needed to search for duplicates -->
+
+## Duplicates
+
+Searching for duplicates is hard.
+
+There appear to be many rows that have the same information, with a unique `INCIDENT_NUMBER`. This could indicate a request that was accidentally entered into the system twice.
+
+<!--# filter for rows with all matching data except INCIDENT_NO -->
 
 ## Requests by Year
 
 First, how many requests were created each year? We can filter the `REPORTED_DATE` column to find out.
 
-`CE16 <- CE %>% filter(REPORTED_DATE >= "2016-01-01", REPORTED_DATE < "2017-01-01")`
+``` {.R}
+CE16 <- CE %>% filter(REPORTED_DATE >= "2016-01-01", REPORTED_DATE < "2017-01-01")
+```
 
 ```{r eval=FALSE, include=FALSE}
 CE16 <- CE %>% filter(REPORTED_DATE >= "2016-01-01", REPORTED_DATE < "2017-01-01")

@@ -12,3 +12,7 @@ requests-by-year
 active-cases
 request-type
 resolution-code
+na-values
+data-service-requests-since-2016
+na-resolution-code-resolution-summary
+duplicates
