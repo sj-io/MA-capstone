@@ -16,3 +16,6 @@ na-values
 data-service-requests-since-2016
 na-resolution-code-resolution-summary
 duplicates
+problems-with-the-dataset
+data-cleaning
+duplicates-errors

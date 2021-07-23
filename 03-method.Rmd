@@ -62,7 +62,7 @@ There are many problems with the `DATE` columns. In the original dataset there a
 
 According to the Data Hub website, `REPORTED_DATE` is when a user submits a service requests; the `CREATION_DATE` is an auto-generated date which usually lags a couple hours behind. `NEXT_OPEN_TASK_DATE` is also listed as the same date as `REPORTED_DATE`. This column is not explained on Data Hub, but it is surely related to an inspector's `NUMBER_OF_TASKS`, another column in the original dataset which is also not explained and I did not include here.
 
-`FOLLOWUP_DATE` is confusing and used inconsistently. Sometimes the field is NA, other times it is set for 1900-01-01. For some entries it is obvious from other fields of an update that is not listed.
+`FOLLOWUP_DATE` is confusing and used inconsistently. Sometimes the field has a legitimate date, others times it is NA, and in other cases it is set for 1900-01-01. Sometimes the `RESOLUTION_SUMMARY` will make it obvious that a followup was conducted, but no follow-up date is listed.
 
 Then there's `LAST_MODIFIED_DATE` and `LAST_UPDATE_DATE`, which initial appear to mean the same thing. However, `LAST_UPDATE_DATE` is an auto generated field that seemingly has nothing to do with the case (tens of thousands of cases were last updated on 2021-06-26 at 05:00:04). `LAST_MODIFIED_DATE` is a user generated field that seems to be the last true human interaction with a case. If a case is closed, the `LAST_MODIFIED_DATE` will *usually* be the same as the `CLOSE_DATE` (it may lag behind a few hours, or more rarely a couple days).
 
@@ -74,15 +74,19 @@ Sometimes there are **multiple values that mean the same thing**, like closed an
 
 [^method-2]: INSUF (Insufficient information) is also used for wrong address cases.
 
+Another field with this problem is `REQUEST_TYPE`. From 2016 to present, 29% of all requests were simply listed as "Code Miscellaneous".
+
 Some problems are caused by a **lack of updates** on behalf of inspectors. A file may never be closed in the system, even though the inspector is finished looking at the case. There are 779 active cases created in 2018 or earlier (at least 2.5 years old) and it is unclear if some are in a lengthy legal battle or were simply never updated.
 
-There are many many **duplicated entries**. It's hard to determine exactly how many, because the duplicates will have unique values under `INCIDENT_NUMBER` and slightly different date/times. For this reason it is hard to filter out without accidentally omitting multiple legitimate entries under the same property. Also, any entries that were created in error are kept in the system. This leads to inspectors frequently entering "see sr\#xxxxxx" in the `RESOLUTION_SUMMARY`, referring to a different `INCIDENT_NUMBER` that contains the correct file.
+There are many many **duplicated entries**. It's hard to determine exactly how many, because the duplicates will have unique values under `INCIDENT_NUMBER` and slightly different date/times. For this reason it is hard to filter out without accidentally omitting multiple legitimate entries under the same property. Also, any entries that were created in error are kept in the system. This leads to inspectors frequently entering "see sr\#xxxxxx" in the `RESOLUTION_SUMMARY`, referring to a different `INCIDENT_NUMBER` that contains the correct file.[^method-3] There is also a code specifically for duplicate entries that already have an active file, JA (Justified, Active already file), which has been used 6,588 times, though other codes are known to be used for this same problem.
 
-**Other problems are more major.** It appears that SeeClickFix (SCF), a program used to allow users to create requests, can cause the **wrong address** to be entered into the system. There is no warning given for this error. When I attempted to sort addresses with the most violations, the top address does not actually exist in the city of Memphis. The inspectors know this and they seem to be able to view the correct address in SCF, and sometimes (but not often) they will manually write this address in the `RESOLUTION_SUMMARY`. It is unclear how many addresses have this problem, but it does affect multiple addresses.
+[^method-3]: There are 6,391 instances of a `RESOLUTION_SUMMARY` mentioning "sr", and nearly all of these rows are likely to be duplicates.
+
+**Other problems are more major.** It appears that SeeClickFix (SCF), a program used to allow users to create requests, can cause the **wrong address** to be entered into the system. There is no warning given for this error. When I attempted to sort addresses with the most violations, the top address does not actually exist in the city of Memphis. The inspectors know this and they seem to be able to view the correct address in SCF, and sometimes (but not often) they will manually write this address in the `RESOLUTION_SUMMARY`. It is unclear how many addresses have this problem, but it does affect multiple addresses. As a researcher, I feel nervous conducting research on data with such obvious errors.
 
 Each row is meant to hold all information for a single case. There is also only one column for inspectors to manually enter notes: `RESOLUTION_SUMMARY`. This column has become a **catch-all** for legitimate information, though it is also NA in 23% of rows. In many other cases there is little elaboration, or the `RESOLUTION_CODE_MEANING` is simply repeated. Despite having eight different date columns, it is very common for dates to be entered here with the notes. Because this field is typed, typos are not-uncommon---tenant is spelled "tennant" 51 times, with many other variations such as "tenenat", "tenet", "teneant" and "tenent". Other times a tenant is referred to as a "resident". These variances make it difficult to find all instances of keywords.
 
-There are also obvious **privacy issues** included in the field, such as the full name and phone numbers of individuals.
+Lastly, there are also obvious **privacy issues** included in the field, such as the full name and phone numbers of individuals.
 
 ## Data Cleaning
 
@@ -170,13 +174,13 @@ At 1490 Hugenot St, there are 117 requests, but this property appears to have th
 
 When we look closer at *who* is making complaints to code enforcement, it at first seems a few people are creating an astounding number of requests. Again, SCF stands for SeeClickFix, an app to create requests.
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 CE %>% count(CREATED_BY_USER) %>% arrange(desc(n))
 ```
 
 However, filtering by HELEN.ANDERSON then "tenant" under `RESOLUTION_SUMMARY` shows multiple instances where someone not named "Helen Anderson" is mentioned as the contact person across a wide variety of addresses.
 
----
+------------------------------------------------------------------------
 
 ```{r}
 test <- CE %>% 
@@ -188,7 +192,7 @@ There appear to be many rows that have the same information, with a unique `INCI
 
 <!--# filter for rows with all matching data except INCIDENT_NO -->
 
----
+------------------------------------------------------------------------
 
 ## Requests by Year
 
