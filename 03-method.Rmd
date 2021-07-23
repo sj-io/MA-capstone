@@ -28,11 +28,9 @@ Each row of the dataset contains all information for a single request, meaning t
 
 Despite the large number of records, only a portion are relevant to this paper. This is because the dataset contains **all** requests to 311, not just those related to code enforcement. Additionally, many columns contain duplicate or unhelpful information. For instance, there are 23 columns related to location and under the column `LAST_UPDATED_BY`, every single entry is just the number "460101".
 
-The dataset can be simplified by filtering for code enforcement data and narrowing the number of columns.
+The dataset can be simplified by filtering for code enforcement data and narrowing the number of columns. In the next section I more thoroughly explain why I chose these columns.
 
 **NOTE**: A list of all column names is available on the Data Hub site linked above, or in R/RStudio enter `colnames(Service_Requests_since_2016)`.
-
-<!--# (After numerous attempts, I found selecting a few important columns is easier than choosing which columns are unimportant) should I write more about the dataset columns? i.e. how did I determine importance, which columns are important? REQUEST_STATUS entries-->
 
 ```{r CE}
 CE <- Service_Requests_since_2016 %>%
@@ -54,9 +52,41 @@ CE <- Service_Requests_since_2016 %>%
 
 The output is 13 columns and 154,844 rows, significantly easier to work with.
 
-We're ready to begin looking at the data, but before analyzing, let's find rows/columns that are missing values or contain duplicate information.
+## Problems with the dataset
 
-## NA Values
+We're ready to begin looking at the data, but before analyzing you should know that **there are significant problems with this dataset**. Though data cleaning is a normal part of research, it feels necessary to explain just how messy this dataset is, and why it's a problem for housing researchers. As someone who enjoys working with and parsing data, this might be the most frustrating dataset I've ever worked with.
+
+Some problems are minor and easily fixed, such as a missing `PARCEL_ID` that can be supplanted with `ADDRESS1`. Other problems are minor and annoying. The field `ADDRESS1` is not meant to contain information like "APT 1", yet "APT" appears 142 times. Sometimes an address will be entered as 123 MAIN and 123 MAIN ST. Sometimes a range of numbers is entered, like 120-123 MAIN ST. Sometimes two or more addresses are entered into the field. With time, these variations can be tidied.
+
+There are many problems with the `DATE` columns. In the original dataset there are eight date columns; I have included two: `REPORTED_DATE` and `LAST_MODIFIED_DATE`. I'll briefly explain why I have omitted the others.
+
+According to the Data Hub website, `REPORTED_DATE` is when a user submits a service requests; the `CREATION_DATE` is an auto-generated date which usually lags a couple hours behind. `NEXT_OPEN_TASK_DATE` is also listed as the same date as `REPORTED_DATE`. This column is not explained on Data Hub, but it is surely related to an inspector's `NUMBER_OF_TASKS`, another column in the original dataset which is also not explained and I did not include here.
+
+`FOLLOWUP_DATE` is confusing and used inconsistently. Sometimes the field is NA, other times it is set for 1900-01-01. For some entries it is obvious from other fields of an update that is not listed.
+
+Then there's `LAST_MODIFIED_DATE` and `LAST_UPDATE_DATE`, which initial appear to mean the same thing. However, `LAST_UPDATE_DATE` is an auto generated field that seemingly has nothing to do with the case (tens of thousands of cases were last updated on 2021-06-26 at 05:00:04). `LAST_MODIFIED_DATE` is a user generated field that seems to be the last true human interaction with a case. If a case is closed, the `LAST_MODIFIED_DATE` will *usually* be the same as the `CLOSE_DATE` (it may lag behind a few hours, or more rarely a couple days).
+
+`CLOSE_DATE` and `INCIDENT_RESOLVED_DATE` are duplicate values, though `INCIDENT_RESOLVED_DATE` is not always used. This hints to a larger issue: **inconsistent and vague data entry methods**.
+
+Sometimes there are **multiple values that mean the same thing**, like closed and resolved[^method-1]. The `RESOLUTION_CODE` field in particular has a handful of codes are used for a large umbrella of meanings. For instance, 23% of rows have the code "NJ" for Not Justified. This may mean an inspector has visited the property and did not see a problem, or there was a wrong address[^method-2], or there was a problem and it's been fixed, or there was a problem but it wasn't related to code enforcement; but in most cases there is no further explanation given. There are similar problems for codes tagged CVOM (COMP. V.O. - Miscellaneous, 9% of all cases), CVOID (Closed Void, 4% cases), CO (Closed Other, 3%), and Other (1%). Together, these codes make up [40%]{.ul} of all code enforcement cases.
+
+[^method-1]: Resolved has only been used 72 times, which begs the question of whether it needs to exist at all.
+
+[^method-2]: INSUF (Insufficient information) is also used for wrong address cases.
+
+Some problems are caused by a **lack of updates** on behalf of inspectors. A file may never be closed in the system, even though the inspector is finished looking at the case. There are 779 active cases created in 2018 or earlier (at least 2.5 years old) and it is unclear if some are in a lengthy legal battle or were simply never updated.
+
+There are many many **duplicated entries**. It's hard to determine exactly how many, because the duplicates will have unique values under `INCIDENT_NUMBER` and slightly different date/times. For this reason it is hard to filter out without accidentally omitting multiple legitimate entries under the same property. Also, any entries that were created in error are kept in the system. This leads to inspectors frequently entering "see sr\#xxxxxx" in the `RESOLUTION_SUMMARY`, referring to a different `INCIDENT_NUMBER` that contains the correct file.
+
+**Other problems are more major.** It appears that SeeClickFix (SCF), a program used to allow users to create requests, can cause the **wrong address** to be entered into the system. There is no warning given for this error. When I attempted to sort addresses with the most violations, the top address does not actually exist in the city of Memphis. The inspectors know this and they seem to be able to view the correct address in SCF, and sometimes (but not often) they will manually write this address in the `RESOLUTION_SUMMARY`. It is unclear how many addresses have this problem, but it does affect multiple addresses.
+
+Each row is meant to hold all information for a single case. There is also only one column for inspectors to manually enter notes: `RESOLUTION_SUMMARY`. This column has become a **catch-all** for legitimate information, though it is also NA in 23% of rows. In many other cases there is little elaboration, or the `RESOLUTION_CODE_MEANING` is simply repeated. Despite having eight different date columns, it is very common for dates to be entered here with the notes. Because this field is typed, typos are not-uncommon---tenant is spelled "tennant" 51 times, with many other variations such as "tenenat", "tenet", "teneant" and "tenent". Other times a tenant is referred to as a "resident". These variances make it difficult to find all instances of keywords.
+
+There are also obvious **privacy issues** included in the field, such as the full name and phone numbers of individuals.
+
+## Data Cleaning
+
+Are we going to keep complaining or try to salvage something from this dataset?
 
 First I determined how many NA values were in each column.
 
@@ -122,15 +152,43 @@ Only 8 rows are listed as closed or resolved (and one entry is clearly a duplica
 NARCS1 <- NARCS %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
 ```
 
-<!--# it became clear at this point that I needed to search for duplicates -->
+<!--# it became clear at this point that I needed to search for duplicates before NA -->
 
-## Duplicates
+## Duplicates & Errors
 
-Searching for duplicates is hard.
+Searching for duplicates is made difficult by the large number of errors in the dataset. This is made clear when we begin searching for addresses with the most service requests.
+
+```{r}
+CENOTNA %>% count(ADDRESS1) %>% arrange(desc(n))
+```
+
+There are 194 entries listed under the address 746 Chapel St, an address that does not seem to exist (there is a Chapel [Rd]{.ul}, but no 746). Reviewing the `RESOLUTION_SUMMARY` reveals the address to be a catch all of errors. Sometimes a different address or a business name is written in the `RESOLUTION_SUMMARY`, indicating the results we are seeing is not the same as what was originally entered, yet code inspectors may be able to view the correct address. It is likely best to remove this address from any analysis involving location.
+
+As for 45 S Idlewild, this is a valid location (an apartment complex) with 117 service requests. A closer look shows three people made 20 requests on February 1, 2019. However, it is not clear if we should trust the information seen in `CREATED_BY_USER`.
+
+At 1490 Hugenot St, there are 117 requests, but this property appears to have the same problem as 746 Chapel. This is revealed by certain entries in the `RESOLUTION_SUMMARY` including "The correct address is xxx Summer Ave." and "INSUFFICIENT INFORMATION WRONG ADDRESS SUBMITTED BY SEECLICKFIX" (SeeClickFix, or SCF, is listed as the request creator for all but five entries at this address).
+
+When we look closer at *who* is making complaints to code enforcement, it at first seems a few people are creating an astounding number of requests. Again, SCF stands for SeeClickFix, an app to create requests.
+
+```{r}
+CE %>% count(CREATED_BY_USER) %>% arrange(desc(n))
+```
+
+However, filtering by HELEN.ANDERSON then "tenant" under `RESOLUTION_SUMMARY` shows multiple instances where someone not named "Helen Anderson" is mentioned as the contact person across a wide variety of addresses.
+
+---
+
+```{r}
+test <- CE %>% 
+  group_by(ADDRESS1) %>% 
+  summarise(across(c(REQUEST_TYPE, RESOLUTION_SUMMARY), ~ length(unique(.x))))
+```
 
 There appear to be many rows that have the same information, with a unique `INCIDENT_NUMBER`. This could indicate a request that was accidentally entered into the system twice.
 
 <!--# filter for rows with all matching data except INCIDENT_NO -->
+
+---
 
 ## Requests by Year
 
