@@ -1,0 +1,33 @@
+# Discussion
+
+How can so much data say so little? To what end is this great quantity of data if no one can read it? How are we supposed to create a strategic code enforcement if we can't understand the data we already have?
+
+I do not feel comfortable plotting this data because of the large number of errors. It is too easy to misrepresent this data. I do not feel comfortable summarizing this data and drawing conclusions. A map can hide the problem; viewers cannot read all the error messages behind the data. We should not be looking at maps to find where the problems are when [our data is the problem]{.ul}.
+
+Instead we should stop, process what we have, find common problems and patterns, and implement improvements. We should be conscious of specific problems faced in the private rental market.
+
+We should do this because our code enforcement's largest hurdle is [the **same problem** it faced twenty years ago]{.ul}. Memphis still lacks the ability to efficiently monitor properties and "analyze overall patterns, and hold inspectors accountable for outcomes. At the root of the problem is an outdated computer and data management system. Enforcement decisions remain at the level of individual inspectors: the effectiveness of individual decisions are largely invisible in the absense of systematic analysis and evaluation. Individual inspectors may have sufficient knowledge to understand what is going on with particular properties, and may have an experiential grasp of patterns of property ownership that enables them to know who among property owners is least responsible, for example. If they are hard working and retain a belief that their actions can make a difference, individual inspectors may achieve a reasonable rate of compliance with some violators. But individual efforts, no matter how well intentioned, are by definition *not strategic*." [@betts2001, 44]
+
+We have tricked ourselves into thinking that by helping a lot of nonprofits view this data easier, we are being strategic. But we are waiting for the nonprofits to approach us, and making the data so complicated that they need someone to help them read it.
+
+But **the data itself is the problem**. The lack of reporting is the problem.
+
+# Fixing the Problem
+
+Below I will outline my suggestions.
+
+There's only one column with substance, and even it is lacking.
+
+This dataset only recently passed 449 downloads, even though it's been available for years. <!--# I bet half of those downloads are myself and Austin Harrison. -->
+
+The dataset is lacking obvious information. Rather than 23 columns describing location, it would be appreciated to have info on the actual property. Is there a residential structure? Is it occupied? By owner or tenant? This is basic missing information. Look at how the census organizes housing data.
+
+We can't see the original complaint, only the REQUEST_TYPE and usually we can only see the most recent update, unless the inspector writes multiple updates in the RESOLUTION_SUMMARY.
+
+We can't fix housing neglect if we can't understand the extent of neglect. We won't ever be able to truly understand the extent of neglect until tenants who experience it do not fear eviction. In interviews with multiple professionals who are involved with housing, all mentioned that tenants do not report maintenance problems to code enforcement due to fear of retaliation. They do not believe the system will protect them.
+
+"It's too easy for a landlord to find another excuse to evict," said Sharon Hyde, head of Green and Healthy Homes Initiative's Memphis location.
+
+## Example one
+
+## Example two
