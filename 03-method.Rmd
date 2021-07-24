@@ -90,6 +90,8 @@ Lastly, there are also obvious **privacy issues** included in the field, such as
 
 ## Data Cleaning
 
+<!--# should I begin w/ tidying location data? -->
+
 Are we going to keep complaining or try to salvage something from this dataset?
 
 First I determined how many NA values were in each column.
@@ -158,7 +160,7 @@ NARCS1 <- NARCS %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
 
 <!--# it became clear at this point that I needed to search for duplicates before NA -->
 
-## Duplicates & Errors
+### Duplicates & Errors
 
 Searching for duplicates is made difficult by the large number of errors in the dataset. This is made clear when we begin searching for addresses with the most service requests.
 
@@ -194,7 +196,9 @@ There appear to be many rows that have the same information, with a unique `INCI
 
 ------------------------------------------------------------------------
 
-## Requests by Year
+## Analysis
+
+### Requests by Year
 
 First, how many requests were created each year? We can filter the `REPORTED_DATE` column to find out.
 
@@ -252,7 +256,7 @@ CE %>% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))
 
 There are still 779 active cases from 2018 or earlier.
 
-## Request Type
+### Request Type
 
 When a request is entered into 311, it must also be categorized. There are 14 categories for code enforcement data, including 3 categories related to COVID violations which were added in 2020.
 
@@ -292,7 +296,7 @@ From 2016 to 2019, more requests were sorted into "Miscellaneous" than any other
 
 <!--# omg can I just outright say that is horrible data management? -->
 
-## Resolution Code
+### Resolution Code
 
 <!--# Should I filter to just Misc & Derelict cases at this point? -->
 

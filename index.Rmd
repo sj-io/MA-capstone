@@ -10,6 +10,6 @@ link-citations: yes
 description: "This is the capstone for my master's degree."
 ---
 
-# About the Author
+# About the Author {.unnumbered}
 
 test

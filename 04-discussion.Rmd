@@ -8,6 +8,8 @@ Instead we should stop, process what we have, find common problems and patterns,
 
 We should do this because our code enforcement's largest hurdle is [the **same problem** it faced twenty years ago]{.ul}. Memphis still lacks the ability to efficiently monitor properties and "analyze overall patterns, and hold inspectors accountable for outcomes. At the root of the problem is an outdated computer and data management system. Enforcement decisions remain at the level of individual inspectors: the effectiveness of individual decisions are largely invisible in the absense of systematic analysis and evaluation. Individual inspectors may have sufficient knowledge to understand what is going on with particular properties, and may have an experiential grasp of patterns of property ownership that enables them to know who among property owners is least responsible, for example. If they are hard working and retain a belief that their actions can make a difference, individual inspectors may achieve a reasonable rate of compliance with some violators. But individual efforts, no matter how well intentioned, are by definition *not strategic*." [@betts2001, 44]
 
+> At the root of the problem is an outdated computer and data management system.
+
 We have tricked ourselves into thinking that by helping a lot of nonprofits view this data easier, we are being strategic. But we are waiting for the nonprofits to approach us, and making the data so complicated that they need someone to help them read it.
 
 But **the data itself is the problem**. The lack of reporting is the problem.
@@ -28,6 +30,16 @@ We can't fix housing neglect if we can't understand the extent of neglect. We wo
 
 "It's too easy for a landlord to find another excuse to evict," said Sharon Hyde, head of Green and Healthy Homes Initiative's Memphis location.
 
-## Example one
+## Obstacles
 
-## Example two
+Location data: A parcel can be linked with multiple addresses; an address can be linked with multiple parcels. Example: Parcel "060148 00135" (47 addresses) and "109 MAIN ST" (10 parcels).
+
+-   NYC uses a BuildingID <!--# check mem par data to make sure we don't already have that -->
+
+## Suggestions for Code Enforcement
+
+1.  Simplify `RESOLUTION_CODE` and expand to address housing needs.
+
+    1.  CREATE A CODE FOR DUPLICATES. (Already used by other cities like [Cincinnati](https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6))
+
+2.  
