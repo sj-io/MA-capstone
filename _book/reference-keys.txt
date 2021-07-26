@@ -25,3 +25,6 @@ american-housing-survey
 selected-housing-deficiencies
 housing-problems
 external-building-conditions
+housing-and-health
+data-memphis-housing-quality
+summary
