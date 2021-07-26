@@ -4,10 +4,10 @@ Here is a review of existing methods.
 
 ## Healthy Housing
 
-This section is on the importance of healthy housing
+The link between housing and health is extensive and well documented.
 
 ## Code Enforcement
 
-Over the past twenty years, there have been at least two expansive reports offering critiques and criticisms of Memphis's code enforcement. While each report aimed to improve code enforcement, the reasonings differed---one sought to address crime and safety, the other public health. Both reports also included at least one contributor from the University of Memphis's City and Regional Planning Department.
+The earliest known housing codes date back to the Code of Hammurabi, written in stone c. 1750 BC [@hammurabi codes 228-233]. The text, known for it's "eye for an eye" policies, holds builders directly responsible for the homes they build---meaning if a building was not constructed properly and it fell and killed its owner, the builder would be put to death.
 
-
+Over the past twenty years, there have been at least two expansive reports offering critiques and criticisms of Memphis's code enforcement. While each report aimed to improve code enforcement, the reasoning differed---one sought to address crime and safety, the other public health. Both reports also included at least one contributor from the University of Memphis's City and Regional Planning Department.

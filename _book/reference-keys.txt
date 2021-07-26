@@ -16,3 +16,7 @@ example-one
 example-two
 final-words
 analysis
+healthy-housing
+code-enforcement
+obstacles
+suggestions-for-code-enforcement
