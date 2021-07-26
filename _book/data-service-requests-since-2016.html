@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data: Service Requests Since 2016 | Memphis Code Enforcement</title>
+  <title>Chapter 4 Data: Service Requests Since 2016 | Memphis Code Enforcement</title>
   <meta name="description" content="This is the capstone for my master’s degree." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data: Service Requests Since 2016 | Memphis Code Enforcement" />
+  <meta property="og:title" content="Chapter 4 Data: Service Requests Since 2016 | Memphis Code Enforcement" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data: Service Requests Since 2016 | Memphis Code Enforcement" />
+  <meta name="twitter:title" content="Chapter 4 Data: Service Requests Since 2016 | Memphis Code Enforcement" />
   
   <meta name="twitter:description" content="This is the capstone for my master’s degree." />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Sarah Johnson" />
 
 
-<meta name="date" content="2021-07-23" />
+<meta name="date" content="2021-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="literature.html"/>
+<link rel="prev" href="code-enforcement.html"/>
 <link rel="next" href="discussion.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -120,6 +120,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -139,29 +161,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About the Author</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a></li>
-<li class="chapter" data-level="3" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html"><i class="fa fa-check"></i><b>3</b> Data: Service Requests Since 2016</a>
+<li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#problems-with-the-dataset"><i class="fa fa-check"></i><b>3.1</b> Problems with the dataset</a></li>
-<li class="chapter" data-level="3.2" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#data-cleaning"><i class="fa fa-check"></i><b>3.2</b> Data Cleaning</a>
+<li class="chapter" data-level="2.1" data-path="literature.html"><a href="literature.html#housing-and-health"><i class="fa fa-check"></i><b>2.1</b> Housing and Health</a></li>
+<li class="chapter" data-level="2.2" data-path="literature.html"><a href="literature.html#memphis-health-and-housing-quality"><i class="fa fa-check"></i><b>2.2</b> Memphis Health and Housing Quality</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#na-resolution-code-resolution-summary"><i class="fa fa-check"></i><b>3.2.1</b> NA Resolution Code &amp; Resolution Summary</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#duplicates-errors"><i class="fa fa-check"></i><b>3.2.2</b> Duplicates &amp; Errors</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#analysis"><i class="fa fa-check"></i><b>3.3</b> Analysis</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#requests-by-year"><i class="fa fa-check"></i><b>3.3.1</b> Requests by Year</a></li>
-<li class="chapter" data-level="3.3.2" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#active-cases"><i class="fa fa-check"></i><b>3.3.2</b> Active Cases</a></li>
-<li class="chapter" data-level="3.3.3" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#request-type"><i class="fa fa-check"></i><b>3.3.3</b> Request Type</a></li>
-<li class="chapter" data-level="3.3.4" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#resolution-code"><i class="fa fa-check"></i><b>3.3.4</b> Resolution Code</a></li>
+<li class="chapter" data-level="2.2.1" data-path="literature.html"><a href="literature.html#selected-housing-deficiencies"><i class="fa fa-check"></i><b>2.2.1</b> Selected Housing Deficiencies</a></li>
+<li class="chapter" data-level="2.2.2" data-path="literature.html"><a href="literature.html#housing-problems"><i class="fa fa-check"></i><b>2.2.2</b> Housing Problems</a></li>
+<li class="chapter" data-level="2.2.3" data-path="literature.html"><a href="literature.html#external-building-conditions"><i class="fa fa-check"></i><b>2.2.3</b> External Building Conditions</a></li>
+<li class="chapter" data-level="2.2.4" data-path="literature.html"><a href="literature.html#summary"><i class="fa fa-check"></i><b>2.2.4</b> Summary</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a>
+<li class="chapter" data-level="3" data-path="code-enforcement.html"><a href="code-enforcement.html"><i class="fa fa-check"></i><b>3</b> Code Enforcement</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
-<li class="chapter" data-level="4.2" data-path="discussion.html"><a href="discussion.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+<li class="chapter" data-level="3.1" data-path="code-enforcement.html"><a href="code-enforcement.html#reports"><i class="fa fa-check"></i><b>3.1</b> Reports</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="code-enforcement.html"><a href="code-enforcement.html#findings"><i class="fa fa-check"></i><b>3.1.1</b> Findings</a></li>
+<li class="chapter" data-level="3.1.2" data-path="code-enforcement.html"><a href="code-enforcement.html#recommendations"><i class="fa fa-check"></i><b>3.1.2</b> Recommendations</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html"><i class="fa fa-check"></i><b>4</b> Data: Service Requests Since 2016</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#problems-with-the-dataset"><i class="fa fa-check"></i><b>4.1</b> Problems with the dataset</a></li>
+<li class="chapter" data-level="4.2" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#data-cleaning"><i class="fa fa-check"></i><b>4.2</b> Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#na-resolution-code-resolution-summary"><i class="fa fa-check"></i><b>4.2.1</b> NA Resolution Code &amp; Resolution Summary</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#duplicates-errors"><i class="fa fa-check"></i><b>4.2.2</b> Duplicates &amp; Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#analysis"><i class="fa fa-check"></i><b>4.3</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#requests-by-year"><i class="fa fa-check"></i><b>4.3.1</b> Requests by Year</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#active-cases"><i class="fa fa-check"></i><b>4.3.2</b> Active Cases</a></li>
+<li class="chapter" data-level="4.3.3" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#request-type"><i class="fa fa-check"></i><b>4.3.3</b> Request Type</a></li>
+<li class="chapter" data-level="4.3.4" data-path="data-service-requests-since-2016.html"><a href="data-service-requests-since-2016.html#resolution-code"><i class="fa fa-check"></i><b>4.3.4</b> Resolution Code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a></li>
+<li class="chapter" data-level="6" data-path="fixing-the-problem.html"><a href="fixing-the-problem.html"><i class="fa fa-check"></i><b>6</b> Fixing the Problem</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="fixing-the-problem.html"><a href="fixing-the-problem.html#obstacles"><i class="fa fa-check"></i><b>6.1</b> Obstacles</a></li>
+<li class="chapter" data-level="6.2" data-path="fixing-the-problem.html"><a href="fixing-the-problem.html#suggestions-for-code-enforcement"><i class="fa fa-check"></i><b>6.2</b> Suggestions for Code Enforcement</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -183,9 +224,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-service-requests-since-2016" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Data: Service Requests Since 2016</h1>
-<p>Memphis housing code enforcement data from 2016-present is available through <a href="https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta">Memphis Data Hub</a>. This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows. R/RStudio was used to view and analyze the dataset.</p>
+<div id="data-service-requests-since-2016" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Data: Service Requests Since 2016</h1>
+<p>Memphians are able to report problems to code enforcement by calling 311 or submitting a request through an app called <a href="https://seeclickfix.com/">SeeClickFix</a>, used in hundreds of towns across the nation.</p>
+<p>Housing code enforcement data from 2016-present is available through <a href="https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta">Memphis Data Hub</a>. This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows. R/RStudio was used to view and analyze the dataset.</p>
 <p>Each row of the dataset contains all information for a single request, meaning there are not multiple rows for individual cases (except for duplicates).</p>
 <p>Despite the large number of records, only a portion are relevant to this paper. This is because the dataset contains <strong>all</strong> requests to 311, not just those related to code enforcement. Additionally, many columns contain duplicate or unhelpful information. For instance, there are 23 columns related to location and under the column <code>LAST_UPDATED_BY</code>, every single entry is just the number “460101.”</p>
 <p>The dataset can be simplified by filtering for code enforcement data and narrowing the number of columns. In the next section I more thoroughly explain why I chose these columns.</p>
@@ -206,8 +248,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-14"><a href="data-service-requests-since-2016.html#cb1-14" aria-hidden="true" tabindex="-1"></a>    location1 <span class="co">#&#39; geocoordinates</span></span>
 <span id="cb1-15"><a href="data-service-requests-since-2016.html#cb1-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>The output is 13 columns and 154,844 rows, significantly easier to work with.</p>
-<div id="problems-with-the-dataset" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Problems with the dataset</h2>
+<div id="problems-with-the-dataset" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Problems with the dataset</h2>
 <p>We’re ready to begin looking at the data, but before analyzing you should know that <strong>there are significant problems with this dataset</strong>. Though data cleaning is a normal part of research, it feels necessary to explain just how messy this dataset is, and why it’s a problem for housing researchers. As someone who enjoys working with and parsing data, this might be the most frustrating dataset I’ve ever worked with.</p>
 <p>Some problems are minor and easily fixed, such as a missing <code>PARCEL_ID</code> that can be supplanted with <code>ADDRESS1</code>. Other problems are minor and annoying. The field <code>ADDRESS1</code> is not meant to contain information like “APT 1,” yet “APT” appears 142 times. Sometimes an address will be entered as 123 MAIN and 123 MAIN ST. Sometimes a range of numbers is entered, like 120-123 MAIN ST. Sometimes two or more addresses are entered into the field. With time, these variations can be tidied.</p>
 <p>There are many problems with the <code>DATE</code> columns. In the original dataset there are eight date columns; I have included two: <code>REPORTED_DATE</code> and <code>LAST_MODIFIED_DATE</code>. I’ll briefly explain why I have omitted the others.</p>
@@ -215,16 +257,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>FOLLOWUP_DATE</code> is confusing and used inconsistently. Sometimes the field has a legitimate date, others times it is NA, and in other cases it is set for 1900-01-01. Sometimes the <code>RESOLUTION_SUMMARY</code> will make it obvious that a followup was conducted, but no follow-up date is listed.</p>
 <p>Then there’s <code>LAST_MODIFIED_DATE</code> and <code>LAST_UPDATE_DATE</code>, which initial appear to mean the same thing. However, <code>LAST_UPDATE_DATE</code> is an auto generated field that seemingly has nothing to do with the case (tens of thousands of cases were last updated on 2021-06-26 at 05:00:04). <code>LAST_MODIFIED_DATE</code> is a user generated field that seems to be the last true human interaction with a case. If a case is closed, the <code>LAST_MODIFIED_DATE</code> will <em>usually</em> be the same as the <code>CLOSE_DATE</code> (it may lag behind a few hours, or more rarely a couple days).</p>
 <p><code>CLOSE_DATE</code> and <code>INCIDENT_RESOLVED_DATE</code> are duplicate values, though <code>INCIDENT_RESOLVED_DATE</code> is not always used. This hints to a larger issue: <strong>inconsistent and vague data entry methods</strong>.</p>
-<p>Sometimes there are <strong>multiple values that mean the same thing</strong>, like closed and resolved<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The <code>RESOLUTION_CODE</code> field in particular has a handful of codes are used for a large umbrella of meanings. For instance, 23% of rows have the code “NJ” for Not Justified. This may mean an inspector has visited the property and did not see a problem, or there was a wrong address<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, or there was a problem and it’s been fixed, or there was a problem but it wasn’t related to code enforcement; but in most cases there is no further explanation given. There are similar problems for codes tagged CVOM (COMP. V.O. - Miscellaneous, 9% of all cases), CVOID (Closed Void, 4% cases), CO (Closed Other, 3%), and Other (1%). Together, these codes make up <u>40%</u> of all code enforcement cases.</p>
+<p>Sometimes there are <strong>multiple values that mean the same thing</strong>, like closed and resolved<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. The <code>RESOLUTION_CODE</code> field in particular has a handful of codes are used for a large umbrella of meanings. For instance, 23% of rows have the code “NJ” for Not Justified. This may mean an inspector has visited the property and did not see a problem, or there was a wrong address<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>, or there was a problem and it’s been fixed, or there was a problem but it wasn’t related to code enforcement; but in most cases there is no further explanation given. There are similar problems for codes tagged CVOM (COMP. V.O. - Miscellaneous, 9% of all cases), CVOID (Closed Void, 4% cases), CO (Closed Other, 3%), and Other (1%). Together, these codes make up <u>40%</u> of all code enforcement cases.</p>
 <p>Another field with this problem is <code>REQUEST_TYPE</code>. From 2016 to present, 29% of all requests were simply listed as “Code Miscellaneous.”</p>
 <p>Some problems are caused by a <strong>lack of updates</strong> on behalf of inspectors. A file may never be closed in the system, even though the inspector is finished looking at the case. There are 779 active cases created in 2018 or earlier (at least 2.5 years old) and it is unclear if some are in a lengthy legal battle or were simply never updated.</p>
-<p>There are many many <strong>duplicated entries</strong>. It’s hard to determine exactly how many, because the duplicates will have unique values under <code>INCIDENT_NUMBER</code> and slightly different date/times. For this reason it is hard to filter out without accidentally omitting multiple legitimate entries under the same property. Also, any entries that were created in error are kept in the system. This leads to inspectors frequently entering “see sr#xxxxxx” in the <code>RESOLUTION_SUMMARY</code>, referring to a different <code>INCIDENT_NUMBER</code> that contains the correct file.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> There is also a code specifically for duplicate entries that already have an active file, JA (Justified, Active already file), which has been used 6,588 times, though other codes are known to be used for this same problem.</p>
+<p>There are many many <strong>duplicated entries</strong>. It’s hard to determine exactly how many, because the duplicates will have unique values under <code>INCIDENT_NUMBER</code> and slightly different date/times. For this reason it is hard to filter out without accidentally omitting multiple legitimate entries under the same property. Also, any entries that were created in error are kept in the system. This leads to inspectors frequently entering “see sr#xxxxxx” in the <code>RESOLUTION_SUMMARY</code>, referring to a different <code>INCIDENT_NUMBER</code> that contains the correct file.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> There is also a code specifically for duplicate entries that already have an active file, JA (Justified, Active already file), which has been used 6,588 times, though other codes are known to be used for this same problem.</p>
 <p><strong>Other problems are more major.</strong> It appears that SeeClickFix (SCF), a program used to allow users to create requests, can cause the <strong>wrong address</strong> to be entered into the system. There is no warning given for this error. When I attempted to sort addresses with the most violations, the top address does not actually exist in the city of Memphis. The inspectors know this and they seem to be able to view the correct address in SCF, and sometimes (but not often) they will manually write this address in the <code>RESOLUTION_SUMMARY</code>. It is unclear how many addresses have this problem, but it does affect multiple addresses. As a researcher, I feel nervous conducting research on data with such obvious errors.</p>
 <p>Each row is meant to hold all information for a single case. There is also only one column for inspectors to manually enter notes: <code>RESOLUTION_SUMMARY</code>. This column has become a <strong>catch-all</strong> for legitimate information, though it is also NA in 23% of rows. In many other cases there is little elaboration, or the <code>RESOLUTION_CODE_MEANING</code> is simply repeated. Despite having eight different date columns, it is very common for dates to be entered here with the notes. Because this field is typed, typos are not-uncommon—tenant is spelled “tennant” 51 times, with many other variations such as “tenenat,” “tenet,” “teneant” and “tenent.” Other times a tenant is referred to as a “resident.” These variances make it difficult to find all instances of keywords.</p>
 <p>Lastly, there are also obvious <strong>privacy issues</strong> included in the field, such as the full name and phone numbers of individuals.</p>
 </div>
-<div id="data-cleaning" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Data Cleaning</h2>
+<div id="data-cleaning" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Data Cleaning</h2>
+<!--# should I begin w/ tidying location data? -->
 <p>Are we going to keep complaining or try to salvage something from this dataset?</p>
 <p>First I determined how many NA values were in each column.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-service-requests-since-2016.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(CE))</span></code></pre></div>
@@ -257,8 +300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-7"><a href="data-service-requests-since-2016.html#cb5-7" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
 <p>The remaining rows may still have NA values in these columns, but there is at least some other data that may be useful. (<strong>NOTE</strong>: to create a table with no NA values in all selected columns, change <code>if_any()</code> to <code>if_all()</code> or <code>across()</code>)</p>
 <p>The remaining NA values fall into two categories: those with no location information, and those missing data from code enforcement.</p>
-<div id="na-resolution-code-resolution-summary" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> NA Resolution Code &amp; Resolution Summary</h3>
+<div id="na-resolution-code-resolution-summary" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> NA Resolution Code &amp; Resolution Summary</h3>
 <p>First I created a new table to view rows missing a <code>RESOLUTION_CODE</code> and a <code>RESOLUTION_SUMMARY</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-service-requests-since-2016.html#cb6-1" aria-hidden="true" tabindex="-1"></a>NARCS <span class="ot">&lt;-</span> CENOTNA <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">across</span>(<span class="fu">c</span>(RESOLUTION_CODE, RESOLUTION_SUMMARY), <span class="sc">~</span> <span class="fu">is.na</span>(.x)))</span></code></pre></div>
 <p>There are 491 rows missing both of these values. I noticed most of the entries were recent, so I filtered the column multiple times by <code>REPORTED_DATE</code>.</p>
@@ -280,8 +323,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-service-requests-since-2016.html#cb10-1" aria-hidden="true" tabindex="-1"></a>NARCS1 <span class="ot">&lt;-</span> NARCS <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(REQUEST_STATUS, <span class="st">&quot;Closed|Resolved&quot;</span>))</span></code></pre></div>
 <!--# it became clear at this point that I needed to search for duplicates before NA -->
 </div>
-<div id="duplicates-errors" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Duplicates &amp; Errors</h3>
+<div id="duplicates-errors" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Duplicates &amp; Errors</h3>
 <p>Searching for duplicates is made difficult by the large number of errors in the dataset. This is made clear when we begin searching for addresses with the most service requests.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-service-requests-since-2016.html#cb11-1" aria-hidden="true" tabindex="-1"></a>CENOTNA <span class="sc">%&gt;%</span> <span class="fu">count</span>(ADDRESS1) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 73,772 x 2
@@ -312,10 +355,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="analysis" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Analysis</h2>
-<div id="requests-by-year" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Requests by Year</h3>
+<div id="analysis" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Analysis</h2>
+<div id="requests-by-year" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Requests by Year</h3>
 <p>First, how many requests were created each year? We can filter the <code>REPORTED_DATE</code> column to find out.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="data-service-requests-since-2016.html#cb14-1" aria-hidden="true" tabindex="-1"></a>CE16 <span class="ot">&lt;-</span> CE <span class="sc">%&gt;%</span> <span class="fu">filter</span>(REPORTED_DATE <span class="sc">&gt;=</span> <span class="st">&quot;2016-01-01&quot;</span>, REPORTED_DATE <span class="sc">&lt;</span> <span class="st">&quot;2017-01-01&quot;</span>)</span></code></pre></div>
 <p>Below are the number of requests for each year between 2016 and 2021.</p>
@@ -355,8 +398,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>The number of requests has not changed much over the years.</p>
 </div>
-<div id="active-cases" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Active Cases</h3>
+<div id="active-cases" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Active Cases</h3>
 <p>How many cases are still active from each year? We can find out using the <code>REQUEST_STATUS</code> column, filtering out cases marked “Closed” or "Resolved.</p>
 <p><code>CE16 %&gt;% filter(!str_detect(REQUEST_STATUS, "Closed|Resolved"))</code></p>
 <table>
@@ -399,8 +442,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>There are still 779 active cases from 2018 or earlier.</p>
 </div>
-<div id="request-type" class="section level3" number="3.3.3">
-<h3><span class="header-section-number">3.3.3</span> Request Type</h3>
+<div id="request-type" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Request Type</h3>
 <p>When a request is entered into 311, it must also be categorized. There are 14 categories for code enforcement data, including 3 categories related to COVID violations which were added in 2020.</p>
 <p>The following code was used to find the most common requests for each year:</p>
 <p><code>CE16 %&gt;% count(REQUEST_TYPE) %&gt;% arrange(desc(n)) %&gt;% mutate(pct = n/sum(n)*100)</code></p>
@@ -491,8 +534,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>From 2016 to 2019, more requests were sorted into “Miscellaneous” than any other category (surpassed by vehicle violations in 2020 and 2021).</p>
 <!--# omg can I just outright say that is horrible data management? -->
 </div>
-<div id="resolution-code" class="section level3" number="3.3.4">
-<h3><span class="header-section-number">3.3.4</span> Resolution Code</h3>
+<div id="resolution-code" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Resolution Code</h3>
 <!--# Should I filter to just Misc & Derelict cases at this point? -->
 
 </div>
@@ -500,10 +543,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Resolved has only been used 72 times, which begs the question of whether it needs to exist at all.<a href="data-service-requests-since-2016.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>INSUF (Insufficient information) is also used for wrong address cases.<a href="data-service-requests-since-2016.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>There are 6,391 instances of a <code>RESOLUTION_SUMMARY</code> mentioning “sr,” and nearly all of these rows are likely to be duplicates.<a href="data-service-requests-since-2016.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<ol start="3">
+<li id="fn3"><p>Resolved has only been used 72 times, which begs the question of whether it needs to exist at all.<a href="data-service-requests-since-2016.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>INSUF (Insufficient information) is also used for wrong address cases.<a href="data-service-requests-since-2016.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>There are 6,391 instances of a <code>RESOLUTION_SUMMARY</code> mentioning “sr,” and nearly all of these rows are likely to be duplicates.<a href="data-service-requests-since-2016.html#fnref5" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -511,7 +554,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="literature.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="code-enforcement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="discussion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

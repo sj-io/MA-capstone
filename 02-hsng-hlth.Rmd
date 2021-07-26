@@ -1,8 +1,6 @@
-# Literature
+# Housing and Health
 
-## Housing and Health
-
-The link between housing and health is extensive and well documented. Occupants of a home are exposed to biologic, chemical, and physical agents that can affect their health and safety [@cdc2006 63] . For instance, paint containing lead is known to cause childhood lead poisoning, which lead to the a ban on lead-based paint for residential use in 1978 [@cdc2020].
+The link between housing and health is extensive and well documented. Occupants of a home are exposed to biologic, chemical, and physical agents that can affect their health and safety [@cdc2006 63]. For instance, paint containing lead is known to cause childhood lead poisoning, which lead to the a ban on lead-based paint for residential use in 1978 [@cdc2020].
 
 Asthma, a respiratory disease which causes episodes of wheezing, breathlessness, chest tightness, and coughing, has been linked to exposure to mold or dampness and pests including dust mites, cockroaches, and rodents [@cdc2006 63].
 
@@ -128,4 +126,4 @@ Renters in single-unit homes were significantly more likely to experience extern
 
 ### Summary
 
-Renter-occupied unis in Memphis are more likely than owner-occupied units to experience housing issues, and by wider margins. Of the 19 housing quality issues discussed in the three tables above, only three problems were more likely to be experienced by owner-occupied units, and only by a margin of 0.4 percentage points for each problem. Meanwhile, there were 15 problems more common in renter-occupied units, 13 of which had a margin greater than 0.4 percentage points.
+Renter-occupied units in Memphis are more likely than owner-occupied units to experience housing issues, and by wider margins. Of the 19 housing quality issues discussed in the three tables above, only three problems were more likely to be experienced by owner-occupied units, and only by a margin of 0.4 percentage points for each problem. Meanwhile, there were 15 problems more common in renter-occupied units, 13 of which had a margin greater than 0.4 percentage points.

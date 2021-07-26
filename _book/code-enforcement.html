@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Code Enforcement | Memphis Code Enforcement</title>
+  <meta name="description" content="This is the capstone for my master’s degree." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Code Enforcement | Memphis Code Enforcement" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the capstone for my master’s degree." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Code Enforcement | Memphis Code Enforcement" />
+  
+  <meta name="twitter:description" content="This is the capstone for my master’s degree." />
+  
+
+<meta name="author" content="Sarah Johnson" />
+
+
+<meta name="date" content="2021-07-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="housing-and-health.html"/>
+<link rel="next" href="discussion.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Memphis CE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="housing-and-health.html"><a href="housing-and-health.html"><i class="fa fa-check"></i><b>2</b> Housing and Health</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="housing-and-health.html"><a href="housing-and-health.html#memphis-health-and-housing-quality"><i class="fa fa-check"></i><b>2.1</b> Memphis Health and Housing Quality</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="housing-and-health.html"><a href="housing-and-health.html#selected-housing-deficiencies"><i class="fa fa-check"></i><b>2.1.1</b> Selected Housing Deficiencies</a></li>
+<li class="chapter" data-level="2.1.2" data-path="housing-and-health.html"><a href="housing-and-health.html#housing-problems"><i class="fa fa-check"></i><b>2.1.2</b> Housing Problems</a></li>
+<li class="chapter" data-level="2.1.3" data-path="housing-and-health.html"><a href="housing-and-health.html#external-building-conditions"><i class="fa fa-check"></i><b>2.1.3</b> External Building Conditions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="housing-and-health.html"><a href="housing-and-health.html#summary"><i class="fa fa-check"></i><b>2.1.4</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="code-enforcement.html"><a href="code-enforcement.html"><i class="fa fa-check"></i><b>3</b> Code Enforcement</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="code-enforcement.html"><a href="code-enforcement.html#reports"><i class="fa fa-check"></i><b>3.1</b> Reports</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="code-enforcement.html"><a href="code-enforcement.html#findings"><i class="fa fa-check"></i><b>3.1.1</b> Findings</a></li>
+<li class="chapter" data-level="3.1.2" data-path="code-enforcement.html"><a href="code-enforcement.html#recommendations"><i class="fa fa-check"></i><b>3.1.2</b> Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="code-enforcement.html"><a href="code-enforcement.html#data-service-requests-since-2016"><i class="fa fa-check"></i><b>3.2</b> Data: Service Requests Since 2016</a></li>
+<li class="chapter" data-level="3.3" data-path="code-enforcement.html"><a href="code-enforcement.html#problems-with-the-dataset"><i class="fa fa-check"></i><b>3.3</b> Problems with the dataset</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="code-enforcement.html"><a href="code-enforcement.html#duplicates-errors"><i class="fa fa-check"></i><b>3.3.1</b> Duplicates &amp; Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="code-enforcement.html"><a href="code-enforcement.html#analysis"><i class="fa fa-check"></i><b>3.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="code-enforcement.html"><a href="code-enforcement.html#active-cases"><i class="fa fa-check"></i><b>3.4.1</b> Active Cases</a></li>
+<li class="chapter" data-level="3.4.2" data-path="code-enforcement.html"><a href="code-enforcement.html#request-type"><i class="fa fa-check"></i><b>3.4.2</b> Request Type</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
+<li class="chapter" data-level="5" data-path="recommendations-1.html"><a href="recommendations-1.html"><i class="fa fa-check"></i><b>5</b> Recommendations</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Memphis Code Enforcement</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="code-enforcement" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Code Enforcement</h1>
+<div id="reports" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Reports</h2>
+<p>Over the past twenty years, there have been at least two expansive reports offering critiques and criticisms of Memphis code enforcement. While each report aimed to improve code enforcement, the reasons differed—one sought to address crime and safety, the other public health.</p>
+<p>The first report, released in April 2001, was distributed by the Memphis Shelby Crime Commission and written by Phyllis Betts, then a professor of sociology at University of Memphis <span class="citation">(<a href="#ref-betts2001" role="doc-biblioref">Betts 2001</a>)</span>. Input was provided by two other University of Memphis faculty: Betts’s husband, the late Richard Janikowski, former chair of the Department of Criminology and Criminal Justice and ‘father’ of Memphis’s Blue CRUSH policing <span class="citation">(<a href="#ref-poe2021" role="doc-biblioref">Poe 2021</a>)</span>; and Susan Roakes, former professor of City and Regional Planning.</p>
+<p>The report was built on the “broken windows” criminology theory: in deteriorated or declining neighborhoods, physical neglect of “problem properties” attracts and aggravates criminal activity. Researchers interviewed inspectors and individuals involved with environmental court, used code enforcement data from 1992-1999, accessed the Shelby County Tax Assessor’s database, and conducted visual surveys for selected properties as part of a case study of the Binghamton neighborhood.</p>
+<p>The second report, published in 2018, was produced by The Urban Institute <span class="citation">(<a href="#ref-stacy2018" role="doc-biblioref">Stacy, Schilling, and Barlow 2018</a>)</span>. While the 2001 report focused on property neglect and safety, this report centered on the link between the physical condition of homes and neighborhoods and public health. Planning for the report began shortly after the election of Mayor Jim Strickland in 2016, whose campaign had emphasized blight control <span class="citation">(<a href="#ref-baker2018" role="doc-biblioref">Baker 2018</a>)</span>. Researchers collaborated with and interviewed members of the newly formed <a href="http://memphisfightsblight.com/blight-elimination-steering-team/">Blight Elimination Steering Team</a>, a coordinated effort between public, private, and nonprofit agencies to address blight, and the <a href="https://www.greenandhealthyhomes.org/location/memphis-tn/">Green and Healthy Homes Initiative</a>, a partnership formed between local health care providers and housing and community development organizations to address public health issues related to housing quality.</p>
+<p>The report accessed and analyzed data through the <a href="http://memphisfightsblight.com/programs/mph/">Memphis Property Hub</a>, which offers parcel-level property information, particularly related to blighted, vacant, and foreclosed homes. Code enforcement data from 1999-2017 was used, effectively picking up where the last report ended. Additional data related to public health, safety, and courts were provided by the Shelby County Healthy Department, the Center for Applied Earth Science and Engineering Research department at the University of Memphis, and the Shelby County Environmental Court, respectively.</p>
+<div id="findings" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Findings</h3>
+<p>In a visual survey of the Binghamton neighborhood, <span class="citation"><a href="#ref-betts2001" role="doc-biblioref">Betts</a> (<a href="#ref-betts2001" role="doc-biblioref">2001</a>)</span> found that only about 1 in 5 code violations were reported.</p>
+<p>Both reports found the vast majority of code enforcement reports were related to nonstructural issues. <span class="citation"><a href="#ref-betts2001" role="doc-biblioref">Betts</a> (<a href="#ref-betts2001" role="doc-biblioref">2001</a>)</span> reported three out of four properties were cited for non-structural problems such as weeds, junk, and inoperable or abandoned vehicles. It appears this percentage has actually increased overtime; <span class="citation"><a href="#ref-stacy2018" role="doc-biblioref">Stacy, Schilling, and Barlow</a> (<a href="#ref-stacy2018" role="doc-biblioref">2018</a>)</span> stated 81% of all requests concerned the yard or property, rather than the house.</p>
+<p><span class="citation"><a href="#ref-stacy2018" role="doc-biblioref">Stacy, Schilling, and Barlow</a> (<a href="#ref-stacy2018" role="doc-biblioref">2018</a>)</span> found service requests were concentrated in areas with single-family homes, and though about half of all requests were for multifamily units, most of these (70 percent) were for duplexes rather than apartment complexes. <span class="citation"><a href="#ref-betts2001" role="doc-biblioref">Betts</a> (<a href="#ref-betts2001" role="doc-biblioref">2001</a>)</span> also found that large multifamily units flew under the radar; at least half of multifamily properties in Binghamton had violations in multiple units, yet code enforcement recorded only eight violations out of 1200 apartment units.</p>
+<p>It appears the number of service requests has increased overtime. In 1998, code enforcement received about 10,000 complaints <span class="citation">(<a href="#ref-betts2001" role="doc-biblioref">Betts 2001, 93</a>)</span>, while the Urban Institute reported 53,226 in 2016 <span class="citation">(<a href="#ref-stacy2018" role="doc-biblioref">Stacy, Schilling, and Barlow 2018, 51</a>)</span>. However, this number does not match open data (discussed later in this paper) which reported 30,361 requests in 2016, not excluding duplicates. Nevertheless, it does appear that more requests are being made.</p>
+<p>Cases also appear significantly more likely to be taken to court. In 1998, a mere 71 cases from code enforcement were heard by the environmental court <span class="citation">(<a href="#ref-betts2001" role="doc-biblioref">Betts 2001, 49</a>)</span>. In November 2017 alone, 1,095 cases went to environmental court, though the Urban report does not specifically state if all cases were from code enforcement <span class="citation">(<a href="#ref-stacy2018" role="doc-biblioref">Stacy, Schilling, and Barlow 2018, 51</a>)</span>. However, the majority of cases were for single-family homes (64%), and most were vacant.</p>
+</div>
+<div id="recommendations" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Recommendations</h3>
+<p>Both reports recommend fundamentally changing Memphis code enforcement from a reactive process (responding to citizen reports) to a proactive, strategic system.</p>
+<p><span class="citation"><a href="#ref-stacy2018" role="doc-biblioref">Stacy, Schilling, and Barlow</a> (<a href="#ref-stacy2018" role="doc-biblioref">2018</a>)</span> suggests that code enforcement prioritize health-related violations and interior health and safety issues, cemented through the agency’s policies and procedures manual. The authors recommend proactive inspections of problem multifamily properties and under-served neighborhoods, and identification of under-reported violations. Multiple technology improvements are recommended, including automatic prioritization of health-related violations and synchronizing of data systems with the Shelby County Department of Health and the environmental court, among others. Also acknowledged is the need to update current landlord/tenant laws to protect tenants from homelessness.</p>
+<!--# add a lot more -->
+</div>
+</div>
+<div id="data-service-requests-since-2016" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Data: Service Requests Since 2016</h2>
+<p>Memphians are able to report problems to code enforcement by calling 311 or submitting a request through an app called <a href="https://seeclickfix.com/">SeeClickFix</a>, used in hundreds of towns across the nation.</p>
+<p>Housing code enforcement data from 2016-present is available through <a href="https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta">Memphis Data Hub</a>. This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows. R/RStudio was used to view and analyze the dataset.</p>
+<p>Each row of the dataset contains all information for a single request, meaning there are not multiple rows for individual cases (except for duplicates).</p>
+<p>Despite the large number of records, only a portion are relevant to this paper. This is because the dataset contains <strong>all</strong> requests to 311, not just those related to code enforcement. Additionally, many columns contain duplicate or unhelpful information. For instance, there are 23 columns related to location and under the column <code>LAST_UPDATED_BY</code>, every single entry is just the number “460101.”</p>
+<p>The dataset can be simplified by filtering for code enforcement data and narrowing the number of columns. In the next section I more thoroughly explain why I chose these columns.</p>
+<p><strong>NOTE</strong>: A list of all column names is available on the Data Hub site linked above, or in R/RStudio enter <code>colnames(Service_Requests_since_2016)</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="code-enforcement.html#cb1-1" aria-hidden="true" tabindex="-1"></a>CE <span class="ot">&lt;-</span> Service_Requests_since_2016 <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="code-enforcement.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DEPARTMENT <span class="sc">==</span> <span class="st">&quot;Code Enforcement&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="code-enforcement.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb1-4"><a href="code-enforcement.html#cb1-4" aria-hidden="true" tabindex="-1"></a>    INCIDENT_NUMBER, <span class="co">#&#39; service request (sr) number</span></span>
+<span id="cb1-5"><a href="code-enforcement.html#cb1-5" aria-hidden="true" tabindex="-1"></a>    PARCEL_ID, <span class="co">#&#39; parcel ID</span></span>
+<span id="cb1-6"><a href="code-enforcement.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    ADDRESS1, <span class="co">#&#39; the street name &amp; number</span></span>
+<span id="cb1-7"><a href="code-enforcement.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    REQUEST_TYPE, <span class="co">#&#39; request category</span></span>
+<span id="cb1-8"><a href="code-enforcement.html#cb1-8" aria-hidden="true" tabindex="-1"></a>    CE_CATEGORY, <span class="co">#&#39; category for CE action</span></span>
+<span id="cb1-9"><a href="code-enforcement.html#cb1-9" aria-hidden="true" tabindex="-1"></a>    RESOLUTION_CODE<span class="sc">:</span>RESOLUTION_SUMMARY, <span class="co">#&#39; how the request resolved</span></span>
+<span id="cb1-10"><a href="code-enforcement.html#cb1-10" aria-hidden="true" tabindex="-1"></a>    REQUEST_STATUS, <span class="co">#&#39; open or closed?</span></span>
+<span id="cb1-11"><a href="code-enforcement.html#cb1-11" aria-hidden="true" tabindex="-1"></a>    REPORTED_DATE, </span>
+<span id="cb1-12"><a href="code-enforcement.html#cb1-12" aria-hidden="true" tabindex="-1"></a>    LAST_MODIFIED_DATE, </span>
+<span id="cb1-13"><a href="code-enforcement.html#cb1-13" aria-hidden="true" tabindex="-1"></a>    OWNER_NAME, <span class="co">#&#39; assigned code inspector</span></span>
+<span id="cb1-14"><a href="code-enforcement.html#cb1-14" aria-hidden="true" tabindex="-1"></a>    CREATED_BY_USER,</span>
+<span id="cb1-15"><a href="code-enforcement.html#cb1-15" aria-hidden="true" tabindex="-1"></a>    location1 <span class="co">#&#39; geocoordinates</span></span>
+<span id="cb1-16"><a href="code-enforcement.html#cb1-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>The output is 14 columns and 154,844 rows, significantly easier to work with.</p>
+</div>
+<div id="problems-with-the-dataset" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Problems with the dataset</h2>
+<p>We’re ready to begin looking at the data, but before analyzing you should know that there are significant problems with this dataset, including inconsistent and vague data entry, hard-to-filter duplicates, an error causing the wrong address to appear, and more. As such, I was not able to quickly process and analyze this data.</p>
+<p>Throughout the dataset, there are <strong>multiple values that mean the same thing</strong>, like closed and resolved<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. The <code>RESOLUTION_CODE</code> field in particular has a handful of codes used for an umbrella of meanings. For instance, 23% of rows are resolved as “NJ” for Not Justified. This may mean an inspector has visited the property and did not see a problem, or there was a wrong address<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>, or there was a problem and it’s been fixed, or there was a problem but it wasn’t related to code enforcement; but in most cases there is no further explanation given. There are similar problems for codes tagged CVOM (COMP. V.O. - Miscellaneous, 9% of all cases), CVOID (Closed Void, 4% cases), CO (Closed Other, 3%), and Other (1%). Together, these codes make up <u>40%</u> of all code enforcement cases.</p>
+<p>Another field with this problem is <code>REQUEST_TYPE</code>. From 2016 to present, 29% of all requests were simply listed as “Code Miscellaneous.”</p>
+<p>Some problems are caused by a <strong>lack of updates</strong> on behalf of inspectors. A file may never be closed in the system, even though the inspector is finished looking at the case. There are 779 active cases created in 2018 or earlier (at least 2.5 years old) and it is unclear if some are in a lengthy legal battle or were simply never updated.</p>
+<p>There are many many <strong>duplicated entries</strong>. It’s hard to determine exactly how many, because the duplicates will have unique values under <code>INCIDENT_NUMBER</code> and slightly different date/times. For this reason it is hard to filter out without accidentally omitting multiple legitimate entries under the same property. Also, any entries that were created in error are kept in the system. This leads to inspectors frequently entering “see sr#xxxxxx” in the <code>RESOLUTION_SUMMARY</code>, referring to a different <code>INCIDENT_NUMBER</code> that contains the correct file.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> There is also a code specifically for duplicate entries that already have an active file, JA (Justified, Active already file), which has been used 6,588 times, though other codes are known to be used for this same problem.</p>
+<p><strong>Other problems are more major.</strong> It appears that SeeClickFix (SCF), a program used to allow users to create requests, can cause the <strong>wrong address</strong> to be entered into the system. There is no warning given for this error. When I attempted to sort addresses with the most violations, the top address does not actually exist in the city of Memphis. The inspectors know this and they seem to be able to view the correct address in SCF, and sometimes (but not often) they will manually write this address in the <code>RESOLUTION_SUMMARY</code>. It is unclear how many addresses have this problem, but it does affect multiple addresses. As a researcher, I feel nervous conducting research on data with such obvious errors.</p>
+<p>Each row is meant to hold all information for a single case. There is also only one column for inspectors to manually enter notes: <code>RESOLUTION_SUMMARY</code>. This column has become a <strong>catch-all</strong> for legitimate information, though it is also NA in 23% of rows. In many other cases there is little elaboration, or the <code>RESOLUTION_CODE_MEANING</code> is simply repeated. Despite having eight different date columns, it is very common for dates to be entered here with the notes. Because this field is typed, typos are not-uncommon—tenant is spelled “tennant” 51 times, with many other variations such as “tenenat,” “tenet,” “teneant” and “tenent.” Other times a tenant is referred to as a “resident.” These variances make it difficult to find all instances of keywords.</p>
+<p>Lastly, there are also obvious <strong>privacy issues</strong> included in the field, such as the full name and phone numbers of individuals.</p>
+<div id="duplicates-errors" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Duplicates &amp; Errors</h3>
+<p>Searching for duplicates is made difficult by the large number of errors in the dataset. This is made clear when we begin searching for addresses with the most service requests.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="code-enforcement.html#cb2-1" aria-hidden="true" tabindex="-1"></a>CE <span class="sc">%&gt;%</span> <span class="fu">count</span>(ADDRESS1) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
+<pre><code>## # A tibble: 73,772 x 2
+##    ADDRESS1               n
+##    &lt;chr&gt;              &lt;int&gt;
+##  1 &lt;NA&gt;                 547
+##  2 746 CHAPEL ST        194
+##  3 45 S IDLEWILD ST     117
+##  4 1490 HUGENOT ST       88
+##  5 3923 JACKSON AVE      76
+##  6 102 PLAINVIEW ST      73
+##  7 400 S HIGHLAND ST     72
+##  8 1081 COURT AVE APT    71
+##  9 3373 STEVE RD         50
+## 10 810 WASHINGTON AVE    46
+## # … with 73,762 more rows</code></pre>
+<p>There are 194 entries listed under the address 746 Chapel St, an address that does not seem to exist in Memphis (there is a Chapel <u>Rd</u>, but no 746). Reviewing the <code>RESOLUTION_SUMMARY</code> reveals the address to be a catch all of errors. Sometimes a different address or a business name is written in the <code>RESOLUTION_SUMMARY</code>, indicating the results we are seeing is not the same as what was originally entered, yet code inspectors may be able to view the correct address. It is likely best to remove this address from any analysis involving location.</p>
+<p>At 1490 Hugenot St, there are 117 requests, but this property appears to have the same problem as 746 Chapel. This is revealed by certain entries in the <code>RESOLUTION_SUMMARY</code> including “The correct address is xxx Summer Ave.” and “INSUFFICIENT INFORMATION WRONG ADDRESS SUBMITTED BY SEECLICKFIX” (SeeClickFix, or SCF, is listed as the request creator for all but five entries at this address).</p>
+<p>As for 45 S Idlewild, this is a valid location (an apartment complex) with 117 service requests. A closer look shows three people made 20 requests on February 1, 2019. Yet as discussed below, it is not clear if we should trust the information seen in <code>CREATED_BY_USER</code>.</p>
+<p>When we look closer at <em>who</em> is making complaints to code enforcement, it at first seems a few people are creating an astounding number of requests.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="code-enforcement.html#cb4-1" aria-hidden="true" tabindex="-1"></a>CE <span class="sc">%&gt;%</span> <span class="fu">count</span>(CREATED_BY_USER) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
+<pre><code>## # A tibble: 314 x 2
+##    CREATED_BY_USER        n
+##    &lt;chr&gt;              &lt;int&gt;
+##  1 SCF                31585
+##  2 HELEN.ANDERSON      6039
+##  3 CAROLYN.FRANKLIN    5244
+##  4 CHRISTINA.MCENTYRE  4708
+##  5 ANGELA.HUMPHREY     4508
+##  6 KRISTEN.PREWITT     3916
+##  7 JOSE.VALENTIN       3664
+##  8 LOVEETA.ROGERS      3619
+##  9 NADINE.SMITH        3517
+## 10 TAMMIKO.MOORE       2915
+## # … with 304 more rows</code></pre>
+<p>However, filtering by HELEN.ANDERSON then “tenant” under <code>RESOLUTION_SUMMARY</code> shows multiple instances where someone not named “Helen Anderson” is mentioned as the contact person across a wide variety of addresses.</p>
+</div>
+</div>
+<div id="analysis" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Analysis</h2>
+<p>Below is the number of requests for each year between 2016 and 2021, not excluding duplicates.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Reported Date</th>
+<th>Number of Requests</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2016</td>
+<td>30,361</td>
+</tr>
+<tr class="even">
+<td>2017</td>
+<td>26,196</td>
+</tr>
+<tr class="odd">
+<td>2018</td>
+<td>26,846</td>
+</tr>
+<tr class="even">
+<td>2019</td>
+<td>27,559</td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td>26,194</td>
+</tr>
+<tr class="even">
+<td>2021 (as of 07/19/2021)</td>
+<td>17,688</td>
+</tr>
+</tbody>
+</table>
+<p>The number of requests has not changed much over the years.</p>
+<div id="active-cases" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Active Cases</h3>
+<p>Below is the number of cases still active from each year.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Year</th>
+<th>Active Cases</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2016</td>
+<td>136</td>
+</tr>
+<tr class="even">
+<td>2017</td>
+<td>111</td>
+</tr>
+<tr class="odd">
+<td>2018</td>
+<td>532</td>
+</tr>
+<tr class="even">
+<td>2019</td>
+<td>956</td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td>1,098</td>
+</tr>
+<tr class="even">
+<td>2021</td>
+<td>5,630</td>
+</tr>
+<tr class="odd">
+<td><strong>All Years</strong></td>
+<td><strong>8,463</strong></td>
+</tr>
+</tbody>
+</table>
+<p>There are still 779 active cases from 2018 or earlier.</p>
+</div>
+<div id="request-type" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Request Type</h3>
+<p>When a request is entered into 311, it must also be categorized. There are 14 categories for code enforcement data, including 3 categories related to COVID violations which were added in 2020.</p>
+<p>For each year, the vast majority of requests fell into one of five categories, listed below.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Request Type</th>
+<th>2016</th>
+<th>2017</th>
+<th>2018</th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+<th align="right">All</th>
+<th>Years</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">Code Miscellaneous</td>
+<td>28%</td>
+<td>32%</td>
+<td>32%</td>
+<td>31%</td>
+<td>25%</td>
+<td>25%</td>
+<td align="right"><strong>45,028</strong></td>
+<td><strong>29%</strong></td>
+</tr>
+<tr class="even">
+<td align="right">Vehicle Violation</td>
+<td>22%</td>
+<td>26%</td>
+<td>28%</td>
+<td>26%</td>
+<td>30%</td>
+<td>35%</td>
+<td align="right"><strong>42,249</strong></td>
+<td><strong>27%</strong></td>
+</tr>
+<tr class="odd">
+<td align="right">Weeds Occupied</td>
+<td>20%</td>
+<td>18%</td>
+<td>17%</td>
+<td>19%</td>
+<td>14%</td>
+<td>11%</td>
+<td align="right"><strong>26,161</strong></td>
+<td><strong>17%</strong></td>
+</tr>
+<tr class="even">
+<td align="right">Junky Yard</td>
+<td>18%</td>
+<td>13%</td>
+<td>11%</td>
+<td>12%</td>
+<td>12%</td>
+<td>15%</td>
+<td align="right"><strong>21,283</strong></td>
+<td><strong>14%</strong></td>
+</tr>
+<tr class="odd">
+<td align="right">Substandard, Derelict Structure</td>
+<td>9%</td>
+<td>8%</td>
+<td>10%</td>
+<td>10%</td>
+<td>7%</td>
+<td>9%</td>
+<td align="right"><strong>13,778</strong></td>
+<td><strong>9%</strong></td>
+</tr>
+<tr class="even">
+<td align="right"><strong>Sum</strong></td>
+<td><strong>97%</strong></td>
+<td><strong>97%</strong></td>
+<td><strong>98%</strong></td>
+<td><strong>98%</strong></td>
+<td><strong>88%</strong></td>
+<td><strong>95%</strong></td>
+<td align="right"><strong>148,499</strong></td>
+<td><strong>96%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>From 2016 to 2019, more requests were sorted into “Miscellaneous” than any other category (surpassed by vehicle violations in 2020 and 2021).</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-baker2018" class="csl-entry">
+Baker, Jackson. 2018. <span>“The First 1000 Days of Jim Strickland.”</span> <em>Memphis Magazine</em>, September. <a href="https://memphismagazine.com/api/content/65e8dd62-aae1-11e8-9153-120e7ad5cf50/">https://memphismagazine.com/api/content/65e8dd62-aae1-11e8-9153-120e7ad5cf50/</a>.
+</div>
+<div id="ref-betts2001" class="csl-entry">
+Betts, Phyllis. 2001. <span>“Best Practice Number Ten: Fixing Broken Windows <span><span></span></span> Strategies to Strengthen Housing Code Enforcement and Related Approaches to Community-Based Crime Prevention in Memphis.”</span> <a href="https://www.pdffiller.com/20879259-BestPracticeNumber10Fixing_Broken_Windowspdf-Best-Practice-Number-Ten-Center-For-Community-Building-and-cbana-memphis-">https://www.pdffiller.com/20879259-BestPracticeNumber10Fixing_Broken_Windowspdf-Best-Practice-Number-Ten-Center-For-Community-Building-and-cbana-memphis-</a>.
+</div>
+<div id="ref-poe2021" class="csl-entry">
+Poe, Ryan. 2021. <span>“Richard Janikowski, ’Father’ of Memphis’ Blue CRUSH Model of Policing, Dies at 69.”</span> <em>The Commercial Appeal</em>, March. <a href="https://www.commercialappeal.com/story/news/local/2021/03/24/richard-janikowski-father-memphis-blue-crush-model-policing-dies-age-69/6966107002/">https://www.commercialappeal.com/story/news/local/2021/03/24/richard-janikowski-father-memphis-blue-crush-model-policing-dies-age-69/6966107002/</a>.
+</div>
+<div id="ref-stacy2018" class="csl-entry">
+Stacy, Christina Plerhoples, Joseph Schilling, and Steve Barlow. 2018. <span>“Strategic Housing Code Enforcement and Public Health.”</span> <a href="https://www.urban.org/research/publication/strategic-housing-code-enforcement-and-public-health">https://www.urban.org/research/publication/strategic-housing-code-enforcement-and-public-health</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>Resolved has only been used 72 times, which begs the question of whether it needs to exist at all.<a href="code-enforcement.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>INSUF (Insufficient information) is also used for wrong address cases.<a href="code-enforcement.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>There are 6,391 instances of a <code>RESOLUTION_SUMMARY</code> mentioning “sr,” and nearly all of these rows are likely to be duplicates.<a href="code-enforcement.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>SCF stands for SeeClickFix, an app to create service requests.<a href="code-enforcement.html#fnref6" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="housing-and-health.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="discussion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MA-capstone.pdf", "MA-capstone.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
