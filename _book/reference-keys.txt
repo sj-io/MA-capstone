@@ -20,3 +20,8 @@ healthy-housing
 code-enforcement
 obstacles
 suggestions-for-code-enforcement
+memphis
+american-housing-survey
+selected-housing-deficiencies
+housing-problems
+external-building-conditions
