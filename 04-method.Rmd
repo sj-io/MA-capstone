@@ -1,6 +1,8 @@
 # Data: Service Requests Since 2016
 
-Memphis housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta). This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows. R/RStudio was used to view and analyze the dataset.
+Memphians are able to report problems to code enforcement by calling 311 or submitting a request through an app called [SeeClickFix](https://seeclickfix.com/), used in hundreds of towns across the nation.
+
+Housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta). This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows. R/RStudio was used to view and analyze the dataset.
 
 ```{r getdata, include=FALSE}
 library(tidyverse)

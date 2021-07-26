@@ -1,0 +1,31 @@
+# Code Enforcement
+
+In Memphis, private renters experiencing maintenance neglect by their landlord are expected to report their problem to code enforcement. Over the past twenty years, there have been at least two expansive reports offering critiques and criticisms of Memphis code enforcement. While each report aimed to improve code enforcement, the reasonings differed---one sought to address crime and safety, the other public health.
+
+## Reports
+
+The first report, released in April 2001, was distributed by the Memphis Shelby Crime Commission and written by Phyllis Betts, then a professor of sociology at University of Memphis [@betts2001]. Input was provided by two other University of Memphis faculty: Betts's husband, the late Richard Janikowski, former chair of the Department of Criminology and Criminal Justice and 'father' of Memphis's Blue CRUSH policing [@poe2021]; and Susan Roakes, former professor of City and Regional Planning.
+
+The report was built on the "broken windows" criminology theory: in deteriorated or declining neighborhoods, physical neglect of "problem properties" attracts and aggravates criminal activity. Researchers interviewed inspectors and individuals involved with environmental court, used code enforcement data from 1992-1999, accessed the Shelby County Tax Assessor's database, and conducted visual surveys for selected properties as part of a case study of the Binghamton neighborhood.
+
+The second report, published in 2018, was produced by The Urban Institute [@stacy2018]. While the 2001 report focused on property neglect and safety, this report centered on the link between the physical condition of homes and neighborhoods and public health. Planning for the report began shortly after the election of Mayor Jim Strickland in 2016, whose campaign had emphasized blight control [@baker2018]. Researchers collaborated with and interviewed members of the newly formed [Blight Elimination Steering Team](http://memphisfightsblight.com/blight-elimination-steering-team/), a coordinated effort between public, private, and nonprofit agencies to address blight, and the [Green and Healthy Homes Initiative](https://www.greenandhealthyhomes.org/location/memphis-tn/), a partnership formed between local health care providers and housing and community development organizations to address public health issues related to housing quality.
+
+The report accessed and analyzed data through the [Memphis Property Hub](http://memphisfightsblight.com/programs/mph/), which offers parcel-level property information, particularly related to blighted, vacant, and foreclosed homes. Code enforcement data from 1999-2017 was used, effectively picking up where the last report ended. Additional data related to public health, safety, and courts were provided by the Shelby County Healthy Department, the Center for Applied Earth Science and Engineering Research department at the University of Memphis, and the Shelby County Environmental Court, respectively.
+
+### Findings
+
+In a visual survey of the Binghamton neighborhood, @betts2001 found that only about 1 in 5 code violations were reported.
+
+Both reports found the vast majority of code enforcement reports were related to nonstructural issues. @betts2001 reported three out of four properties were cited for non-structural problems such as weeds, junk, and inoperable or abandoned vehicles. It appears this percentage has actually increased overtime; @stacy2018 stated 81% of all requests concerned the yard or property, rather than the house.
+
+@stacy2018 found service requests were concentrated in areas with single-family homes, and though about half of all requests were for multifamily units, most of these (70 percent) were for duplexes rather than apartment complexes. @betts2001 also found that large multifamily units flew under the radar; at least half of multifamily properties in Binghamton had violations in multiple units, yet code enforcement recorded only eight violations out of 1200 apartment units.
+
+It appears the number of service requests has increased overtime. In 1998, code enforcement received about 10,000 complaints [@betts2001 93], while the Urban Institute reported 53,226 in 2016 [@stacy2018 51]. However, this number does not match open data (discussed later in this paper) which reported 30,361 requests in 2016, not excluding duplicates. Nevertheless, it does appear that more requests are being made.
+
+Cases also appear significantly more likely to be taken to court. In 1998, a mere 71 cases from code enforcement were heard by the environmental court [@betts2001 49]. In November 2017 alone, 1,095 cases went to environmental court, though the Urban report does not specifically state if all cases were from code enforcement [@stacy2018 51]. However, the majority of cases were for single-family homes (64%), and most were vacant.
+
+### Recommendations
+
+Both reports recommend fundamentally changing Memphis code enforcement from a reactive process (responding to citizen reports) to a proactive, strategic system.
+
+@stacy2018 suggests that code enforcement prioritize health-related violations and interior health and safety issues, cemented through the agency's policies and procedures manual. The authors recommend proactive inspections of problem multifamily properties and under-served neighborhoods, and identification of under-reported violations. Multiple technology improvements are recommended, including automatic prioritization of health-related violations and synchronizing of data systems with the Shelby County Department of Health and the environmental court, among others. Also acknowledged is the need to update current landlord/tenant laws to protect tenants from homelessness.
