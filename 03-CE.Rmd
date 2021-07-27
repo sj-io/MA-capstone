@@ -32,7 +32,7 @@ Both reports recommend fundamentally changing Memphis code enforcement from a re
 
 <!--# add a lot more -->
 
-## Data: Service Requests Since 2016
+## 311 Data
 
 Memphians are able to report problems to code enforcement by calling 311 or submitting a request through an app called [SeeClickFix](https://seeclickfix.com/), used in hundreds of towns across the nation.
 
@@ -89,7 +89,7 @@ CE <- Service_Requests_since_2016 %>%
 
 The output is 14 columns and 154,844 rows, significantly easier to work with.
 
-## Problems with the dataset
+### Problems with the dataset
 
 We're ready to begin looking at the data, but before analyzing you should know that there are significant problems with this dataset, including inconsistent and vague data entry, hard-to-filter duplicates, an error causing the wrong address to appear, and more. As such, I was not able to quickly process and analyze this data.
 
@@ -137,7 +137,7 @@ CE %>% count(CREATED_BY_USER) %>% arrange(desc(n))
 
 However, filtering by HELEN.ANDERSON then "tenant" under `RESOLUTION_SUMMARY` shows multiple instances where someone not named "Helen Anderson" is mentioned as the contact person across a wide variety of addresses.
 
-## Analysis
+### Analysis
 
 Below is the number of requests for each year between 2016 and 2021, not excluding duplicates.
 
@@ -152,7 +152,7 @@ Below is the number of requests for each year between 2016 and 2021, not excludi
 
 The number of requests has not changed much over the years.
 
-### Active Cases
+#### Active Cases
 
 Below is the number of cases still active from each year.
 
@@ -168,7 +168,7 @@ Below is the number of cases still active from each year.
 
 There are still 779 active cases from 2018 or earlier.
 
-### Request Type
+#### Request Type
 
 When a request is entered into 311, it must also be categorized. There are 14 categories for code enforcement data, including 3 categories related to COVID violations which were added in 2020.
 

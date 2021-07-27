@@ -1,6 +1,11 @@
 intro
 housing-and-health
-memphis-health-and-housing-quality
+known-links
+respiratory-health
+maintenance-in-the-private-rental-market
+memphis
+health
+housing-quality
 selected-housing-deficiencies
 housing-problems
 external-building-conditions
@@ -9,7 +14,7 @@ code-enforcement
 reports
 findings
 recommendations
-data-service-requests-since-2016
+data
 problems-with-the-dataset
 duplicates-errors
 analysis

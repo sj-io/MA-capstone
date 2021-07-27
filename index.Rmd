@@ -12,4 +12,4 @@ description: "This is the capstone for my master's degree."
 
 # About the Author {.unnumbered}
 
-test
+Sarah Johnson is completing her master's in City and Regional Planning from the University of Memphis (expected graduation August 2021).
