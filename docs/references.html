@@ -24,7 +24,7 @@
 <meta name="author" content="Sarah Johnson" />
 
 
-<meta name="date" content="2021-07-26" />
+<meta name="date" content="2021-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +34,7 @@
 <link rel="prev" href="discussion.html"/>
 
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -53,6 +53,14 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -156,7 +164,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Memphis CE</a></li>
+<li><a href="./">Memphis Housing</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About the Author</a></li>
@@ -167,34 +175,38 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.1.1" data-path="housing-and-health.html"><a href="housing-and-health.html#respiratory-health"><i class="fa fa-check"></i><b>2.1.1</b> Respiratory Health</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="housing-and-health.html"><a href="housing-and-health.html#maintenance-in-the-private-rental-market"><i class="fa fa-check"></i><b>2.2</b> Maintenance in the Private Rental Market</a></li>
-<li class="chapter" data-level="2.3" data-path="housing-and-health.html"><a href="housing-and-health.html#memphis"><i class="fa fa-check"></i><b>2.3</b> Memphis</a>
+<li class="chapter" data-level="2.2" data-path="housing-and-health.html"><a href="housing-and-health.html#healthy-homes"><i class="fa fa-check"></i><b>2.2</b> Healthy Homes</a></li>
+<li class="chapter" data-level="2.3" data-path="housing-and-health.html"><a href="housing-and-health.html#maintenance-in-the-private-rental-market"><i class="fa fa-check"></i><b>2.3</b> Maintenance in the Private Rental Market</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="memphis.html"><a href="memphis.html"><i class="fa fa-check"></i><b>3</b> Memphis</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="housing-and-health.html"><a href="housing-and-health.html#health"><i class="fa fa-check"></i><b>2.3.1</b> Health</a></li>
-<li class="chapter" data-level="2.3.2" data-path="housing-and-health.html"><a href="housing-and-health.html#housing-quality"><i class="fa fa-check"></i><b>2.3.2</b> Housing Quality</a></li>
-<li class="chapter" data-level="2.3.3" data-path="housing-and-health.html"><a href="housing-and-health.html#selected-housing-deficiencies"><i class="fa fa-check"></i><b>2.3.3</b> Selected Housing Deficiencies</a></li>
-<li class="chapter" data-level="2.3.4" data-path="housing-and-health.html"><a href="housing-and-health.html#housing-problems"><i class="fa fa-check"></i><b>2.3.4</b> Housing Problems</a></li>
-<li class="chapter" data-level="2.3.5" data-path="housing-and-health.html"><a href="housing-and-health.html#external-building-conditions"><i class="fa fa-check"></i><b>2.3.5</b> External Building Conditions</a></li>
-<li class="chapter" data-level="2.3.6" data-path="housing-and-health.html"><a href="housing-and-health.html#summary"><i class="fa fa-check"></i><b>2.3.6</b> Summary</a></li>
+<li class="chapter" data-level="3.1" data-path="memphis.html"><a href="memphis.html#health"><i class="fa fa-check"></i><b>3.1</b> Health</a></li>
+<li class="chapter" data-level="3.2" data-path="memphis.html"><a href="memphis.html#housing"><i class="fa fa-check"></i><b>3.2</b> Housing</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="memphis.html"><a href="memphis.html#median-year-built"><i class="fa fa-check"></i><b>3.2.1</b> Median Year Built</a></li>
+<li class="chapter" data-level="3.2.2" data-path="memphis.html"><a href="memphis.html#selected-housing-deficiencies"><i class="fa fa-check"></i><b>3.2.2</b> Selected Housing Deficiencies</a></li>
+<li class="chapter" data-level="3.2.3" data-path="memphis.html"><a href="memphis.html#housing-problems"><i class="fa fa-check"></i><b>3.2.3</b> Housing Problems</a></li>
+<li class="chapter" data-level="3.2.4" data-path="memphis.html"><a href="memphis.html#external-building-conditions"><i class="fa fa-check"></i><b>3.2.4</b> External Building Conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="memphis.html"><a href="memphis.html#summary"><i class="fa fa-check"></i><b>3.3</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="code-enforcement.html"><a href="code-enforcement.html"><i class="fa fa-check"></i><b>4</b> Code Enforcement</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="code-enforcement.html"><a href="code-enforcement.html#reports"><i class="fa fa-check"></i><b>4.1</b> Reports</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="code-enforcement.html"><a href="code-enforcement.html#findings"><i class="fa fa-check"></i><b>4.1.1</b> Findings</a></li>
+<li class="chapter" data-level="4.1.2" data-path="code-enforcement.html"><a href="code-enforcement.html#recommendations"><i class="fa fa-check"></i><b>4.1.2</b> Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="code-enforcement.html"><a href="code-enforcement.html#data"><i class="fa fa-check"></i><b>4.2</b> 311 Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="code-enforcement.html"><a href="code-enforcement.html#problems-with-the-dataset"><i class="fa fa-check"></i><b>4.2.1</b> Problems with the dataset</a></li>
+<li class="chapter" data-level="4.2.2" data-path="code-enforcement.html"><a href="code-enforcement.html#duplicates-errors"><i class="fa fa-check"></i><b>4.2.2</b> Duplicates &amp; Errors</a></li>
+<li class="chapter" data-level="4.2.3" data-path="code-enforcement.html"><a href="code-enforcement.html#analysis"><i class="fa fa-check"></i><b>4.2.3</b> Analysis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="code-enforcement.html"><a href="code-enforcement.html"><i class="fa fa-check"></i><b>3</b> Code Enforcement</a>
+<li class="chapter" data-level="5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="code-enforcement.html"><a href="code-enforcement.html#reports"><i class="fa fa-check"></i><b>3.1</b> Reports</a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="code-enforcement.html"><a href="code-enforcement.html#findings"><i class="fa fa-check"></i><b>3.1.1</b> Findings</a></li>
-<li class="chapter" data-level="3.1.2" data-path="code-enforcement.html"><a href="code-enforcement.html#recommendations"><i class="fa fa-check"></i><b>3.1.2</b> Recommendations</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="code-enforcement.html"><a href="code-enforcement.html#data"><i class="fa fa-check"></i><b>3.2</b> 311 Data</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="code-enforcement.html"><a href="code-enforcement.html#problems-with-the-dataset"><i class="fa fa-check"></i><b>3.2.1</b> Problems with the dataset</a></li>
-<li class="chapter" data-level="3.2.2" data-path="code-enforcement.html"><a href="code-enforcement.html#duplicates-errors"><i class="fa fa-check"></i><b>3.2.2</b> Duplicates &amp; Errors</a></li>
-<li class="chapter" data-level="3.2.3" data-path="code-enforcement.html"><a href="code-enforcement.html#analysis"><i class="fa fa-check"></i><b>3.2.3</b> Analysis</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#recommendations-1"><i class="fa fa-check"></i><b>4.1</b> Recommendations</a></li>
+<li class="chapter" data-level="5.1" data-path="discussion.html"><a href="discussion.html#recommendations-1"><i class="fa fa-check"></i><b>5.1</b> Recommendations</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -222,10 +234,13 @@ div.csl-indent {
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
-Asthma and Allergy Foundation of America. 2015. <span>“Asthma Capitals 2015.”</span> <a href="https://www.aafa.org/media/1607/asthma-capitals-report-2015-rankings.pdf">https://www.aafa.org/media/1607/asthma-capitals-report-2015-rankings.pdf</a>.
+AAFA. 2015. <span>“Asthma Capitals 2015.”</span> <a href="https://www.aafa.org/media/1607/asthma-capitals-report-2015-rankings.pdf">https://www.aafa.org/media/1607/asthma-capitals-report-2015-rankings.pdf</a>.
 </div>
 <div class="csl-entry">
 ———. 2021. <span>“Asthma Capitals 2021: The Most Challenging Places to Live in with Asthma.”</span> <a href="https://www.aafa.org/media/3040/aafa-2021-asthma-capitals-report.pdf">https://www.aafa.org/media/3040/aafa-2021-asthma-capitals-report.pdf</a>.
+</div>
+<div class="csl-entry">
+APHA. 1938. <span>“Basic Principles of Healthful Housing.”</span> <em>American Journal of Public Health and the Nations Health</em> 28 (3): 351–72. <a href="https://doi.org/10.2105/AJPH.28.3.351">https://doi.org/10.2105/AJPH.28.3.351</a>.
 </div>
 <div class="csl-entry">
 Baker, Jackson. 2018. <span>“The First 1000 Days of Jim Strickland.”</span> <em>Memphis Magazine</em>, September. <a href="https://memphismagazine.com/api/content/65e8dd62-aae1-11e8-9153-120e7ad5cf50/">https://memphismagazine.com/api/content/65e8dd62-aae1-11e8-9153-120e7ad5cf50/</a>.
@@ -244,6 +259,12 @@ Chisholm, Elinor, Philipa Howden-Chapman, and Geoff Fougere. 2018. <span>“Tena
 </div>
 <div class="csl-entry">
 Grineski, Sara E., and Alma Angelica Hernández. 2010. <span>“Landlords, Fear, and Children’s Respiratory Health: An Untold Story of Environmental Injustice in the Central City.”</span> <em>Local Environment</em> 15 (3): 199–216. <a href="https://doi.org/10.1080/13549830903575562">https://doi.org/10.1080/13549830903575562</a>.
+</div>
+<div class="csl-entry">
+HUD. n.d.a. <span>“Overview of the Healthy Home Rating System.”</span> <a href="https://www.hud.gov/sites/documents/OVERVIEW_HHRS.PDF">https://www.hud.gov/sites/documents/OVERVIEW_HHRS.PDF</a>.
+</div>
+<div class="csl-entry">
+———. n.d.b. <span>“The Effect of the Defect: Housing Hazards Identified in the Healthy Home Rating System.”</span> <a href="https://www.hud.gov/sites/documents/hhrschart.pdf">https://www.hud.gov/sites/documents/hhrschart.pdf</a>.
 </div>
 <div class="csl-entry">
 McLaine, Pat, Wendy Shields, Mark Farfel, J. Julian Chisolm, and Sherry Dixon. 2006. <span>“A Coordinated Relocation Strategy for Enhancing Case Management of Lead Poisoned Children: Outcomes and Costs.”</span> <em>Journal of Urban Health</em> 83 (1): 111–28. <a href="https://doi.org/10.1007/s11524-005-9011-8">https://doi.org/10.1007/s11524-005-9011-8</a>.

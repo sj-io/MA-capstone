@@ -1,11 +1,15 @@
+tab:medyrblt
+tab:unnamed-chunk-6
 intro
 housing-and-health
 known-links
 respiratory-health
+healthy-homes
 maintenance-in-the-private-rental-market
 memphis
 health
-housing-quality
+housing
+median-year-built
 selected-housing-deficiencies
 housing-problems
 external-building-conditions
@@ -22,7 +26,3 @@ active-cases
 request-type
 discussion
 recommendations-1
-healthy-homes
-tab:medyrblt
-tab:unnamed-chunk-6
-american-housing-survey
