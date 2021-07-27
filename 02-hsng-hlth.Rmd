@@ -28,7 +28,8 @@ HHRS <- vroom("_data/HH-hazards.csv")
 ```{r HHRS, echo=FALSE}
 library(DT)
 datatable(HHRS,
-          rownames = FALSE,
+          rownames = FALSE, 
+          caption = "The 29 Healthy Home Hazards",
           options = list(
             pageLength = 5,
             lengthMenu = c(5, 10, 15, 20, 25, 29)

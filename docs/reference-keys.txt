@@ -26,3 +26,8 @@ active-cases
 request-type
 discussion
 recommendations-1
+tab:tbl-medyrbltmem
+tab:tbl-medyrbltmsa
+housing-characteristics
+year-structure-built
+housing-quality
