@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Housing and Health | Memphis Code Enforcement</title>
+  <meta name="description" content="This is the capstone for my master’s degree." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Housing and Health | Memphis Code Enforcement" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the capstone for my master’s degree." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Housing and Health | Memphis Code Enforcement" />
+  
+  <meta name="twitter:description" content="This is the capstone for my master’s degree." />
+  
+
+<meta name="author" content="Sarah Johnson" />
+
+
+<meta name="date" content="2021-07-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="code-enforcement.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Memphis CE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="housing-and-health.html"><a href="housing-and-health.html"><i class="fa fa-check"></i><b>2</b> Housing and Health</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="housing-and-health.html"><a href="housing-and-health.html#memphis-health-and-housing-quality"><i class="fa fa-check"></i><b>2.1</b> Memphis Health and Housing Quality</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="housing-and-health.html"><a href="housing-and-health.html#selected-housing-deficiencies"><i class="fa fa-check"></i><b>2.1.1</b> Selected Housing Deficiencies</a></li>
+<li class="chapter" data-level="2.1.2" data-path="housing-and-health.html"><a href="housing-and-health.html#housing-problems"><i class="fa fa-check"></i><b>2.1.2</b> Housing Problems</a></li>
+<li class="chapter" data-level="2.1.3" data-path="housing-and-health.html"><a href="housing-and-health.html#external-building-conditions"><i class="fa fa-check"></i><b>2.1.3</b> External Building Conditions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="housing-and-health.html"><a href="housing-and-health.html#summary"><i class="fa fa-check"></i><b>2.1.4</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="code-enforcement.html"><a href="code-enforcement.html"><i class="fa fa-check"></i><b>3</b> Code Enforcement</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="code-enforcement.html"><a href="code-enforcement.html#reports"><i class="fa fa-check"></i><b>3.1</b> Reports</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="code-enforcement.html"><a href="code-enforcement.html#findings"><i class="fa fa-check"></i><b>3.1.1</b> Findings</a></li>
+<li class="chapter" data-level="3.1.2" data-path="code-enforcement.html"><a href="code-enforcement.html#recommendations"><i class="fa fa-check"></i><b>3.1.2</b> Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="code-enforcement.html"><a href="code-enforcement.html#data-service-requests-since-2016"><i class="fa fa-check"></i><b>3.2</b> Data: Service Requests Since 2016</a></li>
+<li class="chapter" data-level="3.3" data-path="code-enforcement.html"><a href="code-enforcement.html#problems-with-the-dataset"><i class="fa fa-check"></i><b>3.3</b> Problems with the dataset</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="code-enforcement.html"><a href="code-enforcement.html#duplicates-errors"><i class="fa fa-check"></i><b>3.3.1</b> Duplicates &amp; Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="code-enforcement.html"><a href="code-enforcement.html#analysis"><i class="fa fa-check"></i><b>3.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="code-enforcement.html"><a href="code-enforcement.html#active-cases"><i class="fa fa-check"></i><b>3.4.1</b> Active Cases</a></li>
+<li class="chapter" data-level="3.4.2" data-path="code-enforcement.html"><a href="code-enforcement.html#request-type"><i class="fa fa-check"></i><b>3.4.2</b> Request Type</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
+<li class="chapter" data-level="5" data-path="recommendations-1.html"><a href="recommendations-1.html"><i class="fa fa-check"></i><b>5</b> Recommendations</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Memphis Code Enforcement</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="housing-and-health" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Housing and Health</h1>
+<p>The link between housing and health is extensive and well documented. Occupants of a home are exposed to biologic, chemical, and physical agents that can affect their health and safety <span class="citation">(<a href="#ref-cdc2006" role="doc-biblioref">CDC and HUD 2006, 63</a>)</span>. For instance, paint containing lead is known to cause childhood lead poisoning, which lead to the a ban on lead-based paint for residential use in 1978 <span class="citation">(<a href="#ref-cdc2020" role="doc-biblioref">CDC 2020</a>)</span>.</p>
+<p>Asthma, a respiratory disease which causes episodes of wheezing, breathlessness, chest tightness, and coughing, has been linked to exposure to mold or dampness and pests including dust mites, cockroaches, and rodents <span class="citation">(<a href="#ref-cdc2006" role="doc-biblioref">CDC and HUD 2006, 63</a>)</span>.</p>
+<p>Reviewing the existing literature, <span class="citation"><a href="#ref-mendell2011" role="doc-biblioref">Mendell et al.</a> (<a href="#ref-mendell2011" role="doc-biblioref">2011</a>)</span> found dampness inside homes was linked to a wide range of respiratory or allergic health effects, including asthma. The authors concluded that prevention and remediation to reduce indoor dampness is urgently needed in a large proportion of the building stock, and such measures could significantly reduce the prevalence of respiratory and allergic disease. <span class="citation"><a href="#ref-rauh2002" role="doc-biblioref">Rauh, Chew, and Garfinkel</a> (<a href="#ref-rauh2002" role="doc-biblioref">2002</a>)</span> found that cockroach allergen levels are related to the degree of household disrepair, and similarly suggested that public health interventions in housing could reduce allergen exposure.</p>
+<!--# healthy homes program -->
+<p>Households can take certain steps to reduce health risks, such as decreasing allergens by removing pets from the home and frequent dusting and vacuuming. However, risks caused by larger structural issues can be difficult to implement, particularly for low-income households that rent, as tenants have little or no power to repair such problems. A study of low-income parents of children with asthma found landlords were directly involved in keeping homes in poor condition, even when asked by the tenant to fix the property, and a cycle of fear, poverty, and lack of power compounded to make tenants hesitant to report problems <span class="citation">(<a href="#ref-grineski2010" role="doc-biblioref">Grineski and Hernández 2010</a>)</span>. Relocating families can reduce health risks, but higher rents associated with safer housing can make it financially difficult or impossible for some families to move <span class="citation">(<a href="#ref-mclaine2006" role="doc-biblioref">McLaine et al. 2006</a>)</span>.</p>
+<p>Current regulation of private rental housing quality assumes that tenants will take action to report substandard housing, yet this is often not the case. To understand the disconnect between the law’s expectations and reality, <span class="citation"><a href="#ref-chisholm2018" role="doc-biblioref">Chisholm, Howden-Chapman, and Fougere</a> (<a href="#ref-chisholm2018" role="doc-biblioref">2018</a>)</span> collected existing qualitative literature to explore power dynamics in the landlord-tenant relationship. The research showed that, for the most part, tenants who “reported housing quality problems found it a stressful experience, with repairs taking a long time to be carried out, or not at all.” This experience often impacted future behavior, causing tenants to avoid reporting problems because they did not think it would be effective.</p>
+<p>In some cases, tenants would rather move out than work towards a resolution, leaving the issue open for future tenants. In other instances, tenants with low incomes were aware of the lack of alternative housing, causing them to remain silent. Fear of eviction prevented tenants from reporting problems, and this fear was not unfounded; in three of the 15 studies, tenants who reported housing problems were evicted or forced to move. Though laws against retaliatory action might exist, no-cause evictions allow landlords to still remove the tenant from the unit. <span class="citation"><a href="#ref-chisholm2018" role="doc-biblioref">Chisholm, Howden-Chapman, and Fougere</a> (<a href="#ref-chisholm2018" role="doc-biblioref">2018</a>)</span> concludes that tenants do not report housing quality problems because the regulation that relies on their reporting fails to protect many tenants.</p>
+<p>A wide range of solutions are put forward to improve tenant reporting. Ending no-cause evictions and expanding legal aid can encourage tenants who may have been scared to speak up. Increasing the supply of social or public housing can expand housing options to households most vulnerable to changes in rent. The authors also suggest authorities supervise a web-based reporting system for repair requests, establishing clear records, automated reminders to the landlords, and an opportunity for authorities to step in for unduly slow repairs.</p>
+<p>The remainder of this paper seeks to understand the quality of private rental housing in Memphis and systems to report maintenance problems, particularly in cases of landlord neglect.</p>
+<div id="memphis-health-and-housing-quality" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Memphis Health and Housing Quality</h2>
+<p>In 2015, Memphis was named the asthma capital of America by the Asthma and Allergy Foundation of America <span class="citation">(<a href="#ref-aafa2015" role="doc-biblioref">Asthma and Allergy Foundation of America 2015</a>)</span>, based on prevalence, risk factors, and medical factors. Recent efforts to reduce the prevalence and risk of asthma have been successful—Memphis’s rank has since decreased to 41st in 2021 <span class="citation">(<a href="#ref-aafa2021" role="doc-biblioref">Asthma and Allergy Foundation of America 2021</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> However, Memphis still ranks high in asthma-related mortality, placing 7th of 100 cities.</p>
+<p>A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis <span class="citation">(<a href="#ref-shin2018" role="doc-biblioref">Shin and Shaban-Nejad 2018</a>)</span>. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems, leading authors to conclude that effective health interventions should consider involving housing policies and procedures.</p>
+<p>Data on housing quality in the Memphis MSA is available through the <a href="https://www.census.gov/programs-surveys/ahs.html">American Housing Survey</a>.</p>
+<p>When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<div id="selected-housing-deficiencies" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Selected Housing Deficiencies</h3>
+<table style="width:100%;">
+<caption>Source: <a href="https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html">American Housing Survey</a> (2019). Estimates in thousands of housing units.</caption>
+<colgroup>
+<col width="52%" />
+<col width="10%" />
+<col width="11%" />
+<col width="3%" />
+<col width="9%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Rent</strong></th>
+<th></th>
+<th></th>
+<th><strong>Own</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Deficiency</strong></td>
+<td><strong>Est</strong></td>
+<td><strong>Pct</strong></td>
+<td></td>
+<td><strong>Est</strong></td>
+<td><strong>Pct</strong></td>
+</tr>
+<tr class="even">
+<td>Signs of cockroaches in last 12 months</td>
+<td>50.9</td>
+<td><strong>22.7%</strong></td>
+<td></td>
+<td>44.4</td>
+<td>15.3%</td>
+</tr>
+<tr class="odd">
+<td>Signs of mice or rats inside home in last 12 months</td>
+<td>24.4</td>
+<td>10.9%</td>
+<td></td>
+<td>32.6</td>
+<td><strong>11.3%</strong></td>
+</tr>
+<tr class="even">
+<td>Open cracks or holes (interior)</td>
+<td>14.4</td>
+<td><strong>6.4%</strong></td>
+<td></td>
+<td>12.1</td>
+<td>4.2%</td>
+</tr>
+<tr class="odd">
+<td>Rooms without electric outlets</td>
+<td>6.6</td>
+<td><strong>2.9%</strong></td>
+<td></td>
+<td>5.0</td>
+<td>1.7%</td>
+</tr>
+<tr class="even">
+<td>Broken plaster or peeling paint (interior)</td>
+<td>5.3</td>
+<td><strong>2.4%</strong></td>
+<td></td>
+<td>5.8</td>
+<td>2.0%</td>
+</tr>
+<tr class="odd">
+<td>Exposed wiring</td>
+<td>3.9</td>
+<td><strong>1.7%</strong></td>
+<td></td>
+<td>4.5</td>
+<td>1.6%</td>
+</tr>
+<tr class="even">
+<td>Total housing units</td>
+<td>224.0</td>
+<td>-</td>
+<td></td>
+<td>289.7</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Renter-occupied units experienced more housing deficiencies than owner-occupied units for all but one of the selected problems.</p>
+<p>Pests are prevalent in both owner and renter-occupied units. Renters saw more signs of cockroaches (by 7.4 percentage points), while owners were more likely to sight mice or rats (by 0.4 percentage points). These trends align with national data, where renters were 1.98 times more likely to see cockroaches and owners were 1.17 times more likely to report a rodent sighting <span class="citation">(<a href="#ref-sellner2021" role="doc-biblioref">Sellner and Wicht 2021</a>)</span>. Compared to national averages, housing units in the Memphis MSA saw slightly fewer rodents (11.1% vs 11.9%) and significantly more cockroaches (18.6% vs. 11.3%).</p>
+<p>Renters were moderately more likely to have open cracks or holes in the interior of their home and to have rooms without electrical outlets. They were also slightly more likely to have decaying interior walls and exposed wiring.</p>
+</div>
+<div id="housing-problems" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Housing Problems</h3>
+<p>The following table shows the number of units who experience selected housing problems. An estimate of “S” denotes a sample too small to meet publication standards or avoid disclosure of identifying information. The total column (“Tot”) is the number of housing units <em>capable</em> of experiencing each problem (rather than all housing units). For instance, the total number of units with heating problems only includes units with heating equipment who occupied their unit last winter (excluding units without heating equipment or those who did not occupy their unit last winter).</p>
+<table>
+<caption>Source: <a href="https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html">American Housing Survey</a> (2019). Estimates in thousands of housing units.</caption>
+<colgroup>
+<col width="44%" />
+<col width="8%" />
+<col width="9%" />
+<col width="9%" />
+<col width="3%" />
+<col width="8%" />
+<col width="8%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th><strong>Rent</strong></th>
+<th></th>
+<th></th>
+<th></th>
+<th><strong>Own</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Problem</strong></td>
+<td><strong>Est</strong></td>
+<td><strong>Tot</strong></td>
+<td><strong>Pct</strong></td>
+<td></td>
+<td><strong>Est</strong></td>
+<td><strong>Tot</strong></td>
+<td><strong>Pct</strong></td>
+</tr>
+<tr class="even">
+<td>No flush toilet working some time in last 3 months</td>
+<td>7.0</td>
+<td>224.0</td>
+<td><strong>3.1%</strong></td>
+<td></td>
+<td>S</td>
+<td>289.7</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>Uncomfortably cold for 24 hours or more</td>
+<td>12.3</td>
+<td>186.2</td>
+<td><strong>6.6%</strong></td>
+<td></td>
+<td>10.8</td>
+<td>278.8</td>
+<td>3.9%</td>
+</tr>
+<tr class="even">
+<td>Fuses or breakers blown in last 3 months</td>
+<td>14.1</td>
+<td>223.8</td>
+<td>6.3%</td>
+<td></td>
+<td>19.3</td>
+<td>289.7</td>
+<td><strong>6.7%</strong></td>
+</tr>
+<tr class="odd">
+<td>Water stoppage in last 3 months</td>
+<td>6.4</td>
+<td>223.8</td>
+<td><strong>2.9%</strong></td>
+<td></td>
+<td>3.2</td>
+<td>289.5</td>
+<td>1.1%</td>
+</tr>
+<tr class="even">
+<td>Water leakage from inside structure</td>
+<td>19.5</td>
+<td>224.0</td>
+<td><strong>8.7%</strong></td>
+<td></td>
+<td>20.7</td>
+<td>289.7</td>
+<td>7.1%</td>
+</tr>
+<tr class="odd">
+<td>Water leakage from outside structure</td>
+<td>18.9</td>
+<td>224.0</td>
+<td>8.4%</td>
+<td></td>
+<td>25.5</td>
+<td>289.7</td>
+<td><strong>8.8%</strong></td>
+</tr>
+<tr class="even">
+<td>Mold in last 12 months</td>
+<td>11.8</td>
+<td>224.0</td>
+<td><strong>5.3%</strong></td>
+<td></td>
+<td>5.8</td>
+<td>289.7</td>
+<td>2.0%</td>
+</tr>
+<tr class="odd">
+<td>Public sewer breakdown in last 3 months</td>
+<td>5.1</td>
+<td>217.9</td>
+<td><strong>2.3%</strong></td>
+<td></td>
+<td>S</td>
+<td>252.3</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Renter-occupied units were overall more likely to experience housing problems and breakdowns than owner-occupied units.</p>
+<p>The most common problem for renters and owners was water leakage during the past year. Owners were slightly more likely (by 0.4 percentage points) to experience leakage from outside the structure, such as from the roof, walls, closed windows, or doors. Renters were more likely (by 1.6 percentage points) to experience internal water leakage, such as from a leaky pipe, a broken water heater, or a backed up or overflown fixture. This is likely why renters were more likely to report mold growth within the past year (by 3.3 percentage points).</p>
+<p>Heating problems causing households to be uncomfortably cold for at least a day were more common for renter-occupied units (by 2.7 percentage points). Renters were also more likely to experience sanitation problems barely reported by owners. This includes having a public sewer breakdown or having no working toilets at some point in the last three months.</p>
+<p>Owners were slightly more likely to recently experience a blown fuse or breaker.</p>
+</div>
+<div id="external-building-conditions" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> External Building Conditions</h3>
+<p>The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, excluding multi-unit homes. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.</p>
+<table>
+<caption>Source: <a href="https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html">American Housing Survey</a> (2019). Estimates in thousands of housing units.</caption>
+<colgroup>
+<col width="54%" />
+<col width="10%" />
+<col width="11%" />
+<col width="3%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Rent</strong></th>
+<th></th>
+<th></th>
+<th><strong>Own</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>External Building Conditions</strong></td>
+<td><strong>Est</strong></td>
+<td><strong>Pct</strong></td>
+<td></td>
+<td><strong>Est</strong></td>
+<td><strong>Pct</strong></td>
+</tr>
+<tr class="even">
+<td>Bars on windows</td>
+<td>16.1</td>
+<td><strong>16.7%</strong></td>
+<td></td>
+<td>22.0</td>
+<td>7.7%</td>
+</tr>
+<tr class="odd">
+<td>Broken windows</td>
+<td>7.6</td>
+<td><strong>6.5%</strong></td>
+<td></td>
+<td>7.8</td>
+<td>2.7%</td>
+</tr>
+<tr class="even">
+<td>Missing roofing material</td>
+<td>7.0</td>
+<td><strong>6.0%</strong></td>
+<td></td>
+<td>15.5</td>
+<td>5.4%</td>
+</tr>
+<tr class="odd">
+<td>Hole in roof</td>
+<td>4.2</td>
+<td><strong>3.6%</strong></td>
+<td></td>
+<td>6.2</td>
+<td>2.2%</td>
+</tr>
+<tr class="even">
+<td>Missing bricks, siding, or other outside wall material</td>
+<td>3.9</td>
+<td>3.3%</td>
+<td></td>
+<td>9.4</td>
+<td>3.3%</td>
+</tr>
+<tr class="odd">
+<td>Total housing units (excludes multi-units)</td>
+<td>117.6</td>
+<td>-</td>
+<td></td>
+<td>286.9</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.</p>
+</div>
+<div id="summary" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Summary</h3>
+<p>Renter-occupied units in Memphis are more likely than owner-occupied units to experience housing issues, and by wider margins. Of the 19 housing quality issues discussed in the three tables above, only three problems were more likely to be experienced by owner-occupied units, and only by a margin of 0.4 percentage points for each problem. Meanwhile, there were 15 problems more common in renter-occupied units, 13 of which had a margin greater than 0.4 percentage points.</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-aafa2015" class="csl-entry">
+Asthma and Allergy Foundation of America. 2015. <span>“Asthma Capitals 2015.”</span> <a href="https://www.aafa.org/media/1607/asthma-capitals-report-2015-rankings.pdf">https://www.aafa.org/media/1607/asthma-capitals-report-2015-rankings.pdf</a>.
+</div>
+<div id="ref-aafa2021" class="csl-entry">
+———. 2021. <span>“Asthma Capitals 2021: The Most Challenging Places to Live in with Asthma.”</span> <a href="https://www.aafa.org/media/3040/aafa-2021-asthma-capitals-report.pdf">https://www.aafa.org/media/3040/aafa-2021-asthma-capitals-report.pdf</a>.
+</div>
+<div id="ref-cdc2020" class="csl-entry">
+CDC. 2020. <span>“Lead in Paint.”</span> <a href="https://www.cdc.gov/nceh/lead/prevention/sources/paint.htm">https://www.cdc.gov/nceh/lead/prevention/sources/paint.htm</a>.
+</div>
+<div id="ref-cdc2006" class="csl-entry">
+CDC, and HUD. 2006. <span>“Healthy Housing Reference Manual.”</span> Atlanta. <a href="https://www.cdc.gov/nceh/publications/books/housing/housing.htm">https://www.cdc.gov/nceh/publications/books/housing/housing.htm</a>.
+</div>
+<div id="ref-chisholm2018" class="csl-entry">
+Chisholm, Elinor, Philipa Howden-Chapman, and Geoff Fougere. 2018. <span>“Tenants<span>’</span> Responses to Substandard Housing: Hidden and Invisible Power and the Failure of Rental Housing Regulation.”</span> <em>Housing, Theory and Society</em> 37 (2): 139–61. <a href="https://doi.org/10.1080/14036096.2018.1538019">https://doi.org/10.1080/14036096.2018.1538019</a>.
+</div>
+<div id="ref-grineski2010" class="csl-entry">
+Grineski, Sara E., and Alma Angelica Hernández. 2010. <span>“Landlords, Fear, and Children’s Respiratory Health: An Untold Story of Environmental Injustice in the Central City.”</span> <em>Local Environment</em> 15 (3): 199–216. <a href="https://doi.org/10.1080/13549830903575562">https://doi.org/10.1080/13549830903575562</a>.
+</div>
+<div id="ref-mclaine2006" class="csl-entry">
+McLaine, Pat, Wendy Shields, Mark Farfel, J. Julian Chisolm, and Sherry Dixon. 2006. <span>“A Coordinated Relocation Strategy for Enhancing Case Management of Lead Poisoned Children: Outcomes and Costs.”</span> <em>Journal of Urban Health</em> 83 (1): 111–28. <a href="https://doi.org/10.1007/s11524-005-9011-8">https://doi.org/10.1007/s11524-005-9011-8</a>.
+</div>
+<div id="ref-mendell2011" class="csl-entry">
+Mendell, Mark J., Anna G. Mirer, Kerry Cheung, My Tong, and Jeroen Douwes. 2011. <span>“Respiratory and Allergic Health Effects of Dampness, Mold, and Dampness-Related Agents: A Review of the Epidemiologic Evidence.”</span> <em>Environmental Health Perspectives</em> 119 (6): 748–56. <a href="https://doi.org/10.1289/ehp.1002410">https://doi.org/10.1289/ehp.1002410</a>.
+</div>
+<div id="ref-rauh2002" class="csl-entry">
+Rauh, Virginia A, Ginger R Chew, and Robin S Garfinkel. 2002. <span>“Deteriorated Housing Contributes to High Cockroach Allergen Levels in Inner-City Households.”</span> <em>Environmental Health Perspectives</em> 110 (suppl 2): 323–27. <a href="https://doi.org/10.1289/ehp.02110s2323">https://doi.org/10.1289/ehp.02110s2323</a>.
+</div>
+<div id="ref-sellner2021" class="csl-entry">
+Sellner, Michael, and Jordan Wicht. 2021. <span>“How Many American Homes Have Pests?”</span> <a href="https://www.census.gov/library/stories/2021/04/how-many-american-homes-have-pests.html">https://www.census.gov/library/stories/2021/04/how-many-american-homes-have-pests.html</a>.
+</div>
+<div id="ref-shin2018" class="csl-entry">
+Shin, Eun Kyong, and Arash Shaban-Nejad. 2018. <span>“Urban Decay and Pediatric Asthma Prevalence in Memphis, Tennessee: Urban Data Integration for Efficient Population Health Surveillance.”</span> <em>IEEE Access</em> 6: 46281–89. <a href="https://doi.org/10.1109/ACCESS.2018.2866069">https://doi.org/10.1109/ACCESS.2018.2866069</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>The ranking method changed between 2015 and 2021, with fewer factors involved in a city’s overall ranking in 2021.<a href="housing-and-health.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>In the discussions below, “renters” refers to renter-occupied units, “owners” refers to owner-occupied units, and “Memphis” refers to the Memphis MSA.<a href="housing-and-health.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="code-enforcement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MA-capstone.pdf", "MA-capstone.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
