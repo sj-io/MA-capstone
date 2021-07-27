@@ -19,3 +19,5 @@ Do not put all information for one case on one row, overwriting old data. Instea
 Combine with assessor's database to simplify and repair location columns.
 
 Expand categories to include information on structures and tenure.
+
+Implement the HHRS into the data system. For occupied housing units, categorize hazards using the HHRS.

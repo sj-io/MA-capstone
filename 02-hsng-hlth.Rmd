@@ -63,9 +63,81 @@ In 2015, Memphis was named the asthma capital of America by the Asthma and Aller
 
 A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis [@shin2018]. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems, leading authors to conclude that effective health interventions should consider involving housing policies and procedures.
 
-### Housing Quality
+### Age of Housing Stock
 
-Data on housing quality in the Memphis MSA is available through the [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html).
+The age of a housing unit can be an indicator that repairs are needed. The below table shows the median age of occupied housing units in the city of Memphis, separated by tenure.
+
+```{r include=FALSE}
+library(tidyverse)
+library(tidycensus)
+
+yrs <-
+  lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
+v19 <- load_variables(2019, "acs5", cache = T)
+```
+
+```{r include=FALSE}
+yrblt5 <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place",
+    table = "B25037",
+    year = .x,
+    state = 47,
+    survey = "acs5",
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r include=FALSE}
+yrbltmsa <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "metropolitan statistical area/micropolitan statistical area",
+    table = "B25037",
+    year = .x,
+    survey = "acs5",
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r include=FALSE}
+yrbltmem5 <- yrblt5 %>% filter(NAME == "Memphis city, Tennessee") %>% 
+  left_join(v19, by = c("variable" = "name")) %>% 
+  separate(label, c("est", "tot", "tenure"), sep = "!!") %>% select(year, tenure, estimate) %>% separate(tenure, c("tenure", "occ"), sep = " ") %>% select(-occ)
+rntyr5 <- yrbltmem5 %>% filter(tenure == "Renter")
+ownyr5 <- yrbltmem5 %>% filter(tenure == "Owner")
+```
+
+```{r include=FALSE}
+yrbltmemmsa <- yrbltmsa %>% filter(NAME == "Memphis, TN-MS-AR Metro Area") %>% 
+  left_join(v19, by = c("variable" = "name")) %>% 
+  separate(label, c("est", "tot", "tenure"), sep = "!!") %>% select(year, tenure, estimate) %>% separate(tenure, c("tenure", "occ"), sep = " ") %>% select(-occ)
+rntyrmsa <- yrbltmemmsa %>% filter(tenure == "Renter")
+ownyrmsa <- yrbltmemmsa %>% filter(tenure == "Owner")
+```
+
+```{r medyrblt, echo=FALSE}
+knitr::kable(list(ownyr5, rntyr5), caption = 'City of Memphis: Median year built, occupied housing units')
+```
+
+The Memphis housing stock is aging. The median year built has not (or barely) budged over the past ten years for all occupied homes. The median age of owner-occupied homes is 55 years; for renter-occupied homes, 47 years. The median year built for both owner and renter occupied units is before the ban of lead-based paint in 1978, indicating many homes are at risk for lead poisoning if they have not been remediated.
+
+When we expand our scope from the city limits to the Memphis MSA, there is a noticeable shift in the data, as seen in the table below.
+
+```{r echo=FALSE}
+knitr::kable(list(ownyrmsa, rntyrmsa), caption = 'Memphis MSA: Median year built, occupied housing units')
+```
+
+In the MSA, the median age of renter-occupied homes is 43; for owner-occupied units, 36. This signifies that most new development in the MSA has been for owner-occupied homes outside city limits.
+
+### American Housing Survey
+
+Data on housing quality in the Memphis MSA is available through the 2019 [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html). As the median age for rental homes is seven years older than for owner-occupied homes in the MSA, we can expect renter-occupied homes to have more deficiencies and problems than owner-occupied homes.
 
 When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.[^hsng-hlth-2]
 
