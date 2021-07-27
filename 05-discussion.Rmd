@@ -10,7 +10,7 @@ We should do this because our code enforcement's largest hurdle is [the **same p
 
 > At the root of the problem is an outdated computer and data management system.
 
-# Recommendations
+## Recommendations
 
 Create a `RESOLUTION_CODE` for duplicates. (Already used by other cities like [Cincinnati](https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6))
 

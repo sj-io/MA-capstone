@@ -1,6 +1,10 @@
 # Housing and Health
 
+## Known Links
+
 The link between housing and health is extensive and well documented. Occupants of a home are exposed to biologic, chemical, and physical agents that can affect their health and safety [@cdc2006 63]. For instance, paint containing lead is known to cause childhood lead poisoning, which lead to the a ban on lead-based paint for residential use in 1978 [@cdc2020].
+
+### Respiratory Health
 
 Asthma, a respiratory disease which causes episodes of wheezing, breathlessness, chest tightness, and coughing, has been linked to exposure to mold or dampness and pests including dust mites, cockroaches, and rodents [@cdc2006 63].
 
@@ -8,7 +12,11 @@ Reviewing the existing literature, @mendell2011 found dampness inside homes was 
 
 <!--# healthy homes program -->
 
-Households can take certain steps to reduce health risks, such as decreasing allergens by removing pets from the home and frequent dusting and vacuuming. However, risks caused by larger structural issues can be difficult to implement, particularly for low-income households that rent, as tenants have little or no power to repair such problems. A study of low-income parents of children with asthma found landlords were directly involved in keeping homes in poor condition, even when asked by the tenant to fix the property, and a cycle of fear, poverty, and lack of power compounded to make tenants hesitant to report problems [@grineski2010]. Relocating families can reduce health risks, but higher rents associated with safer housing can make it financially difficult or impossible for some families to move [@mclaine2006].
+Households can take certain steps to reduce health risks, such as decreasing allergens by removing pets from the home and frequent dusting and vacuuming.
+
+## Maintenance in the Private Rental Market
+
+Health risks caused by larger structural issues can be difficult to implement, particularly for low-income households that rent, as tenants have little or no power to repair such problems. A study of low-income parents of children with asthma found landlords were directly involved in keeping homes in poor condition, even when asked by the tenant to fix the property, and a cycle of fear, poverty, and lack of power compounded to make tenants hesitant to report problems [@grineski2010]. Relocating families can reduce health risks, but higher rents associated with safer housing can make it financially difficult or impossible for some families to move [@mclaine2006].
 
 Current regulation of private rental housing quality assumes that tenants will take action to report substandard housing, yet this is often not the case. To understand the disconnect between the law's expectations and reality, @chisholm2018 collected existing qualitative literature to explore power dynamics in the landlord-tenant relationship. The research showed that, for the most part, tenants who "reported housing quality problems found it a stressful experience, with repairs taking a long time to be carried out, or not at all." This experience often impacted future behavior, causing tenants to avoid reporting problems because they did not think it would be effective.
 
@@ -18,13 +26,17 @@ A wide range of solutions are put forward to improve tenant reporting. Ending no
 
 The remainder of this paper seeks to understand the quality of private rental housing in Memphis and systems to report maintenance problems, particularly in cases of landlord neglect.
 
-## Memphis Health and Housing Quality
+## Memphis
+
+### Health
 
 In 2015, Memphis was named the asthma capital of America by the Asthma and Allergy Foundation of America [@aafa2015], based on prevalence, risk factors, and medical factors. Recent efforts to reduce the prevalence and risk of asthma have been successful---Memphis's rank has since decreased to 41st in 2021 [@aafa2021].[^hsng-hlth-1] However, Memphis still ranks high in asthma-related mortality, placing 7th of 100 cities.
 
 [^hsng-hlth-1]: The ranking method changed between 2015 and 2021, with fewer factors involved in a city's overall ranking in 2021.
 
 A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis [@shin2018]. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems, leading authors to conclude that effective health interventions should consider involving housing policies and procedures.
+
+### Housing Quality
 
 Data on housing quality in the Memphis MSA is available through the [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html).
 
@@ -54,7 +66,9 @@ When surveyed on the adequacy of their housing, 14.5% of renter-occupied units w
 | Total housing units                                 | 224.0    | \-        |   | 289.7   | \-        |
 +-----------------------------------------------------+----------+-----------+---+---------+-----------+
 
-: Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.
+: Selected Housing Deficiencies
+
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
 
 Renter-occupied units experienced more housing deficiencies than owner-occupied units for all but one of the selected problems.
 
@@ -88,7 +102,9 @@ The following table shows the number of units who experience selected housing pr
 | Public sewer breakdown in last 3 months            | 5.1     | 217.9    | **2.3%** |   | S       | 252.3   | \-       |
 +----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
 
-: Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.
+: Selected Housing Problems
+
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
 
 Renter-occupied units were overall more likely to experience housing problems and breakdowns than owner-occupied units.
 
@@ -120,7 +136,9 @@ The following table shows the number of units experiencing external building pro
 | Total housing units (excludes multi-units)             | 117.6    | \-        |   | 286.9   | \-      |
 +--------------------------------------------------------+----------+-----------+---+---------+---------+
 
-: Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.
+: External Building Conditions
+
+Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.
 
 Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.
 
