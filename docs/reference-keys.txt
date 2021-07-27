@@ -31,3 +31,5 @@ tab:tbl-medyrbltmsa
 housing-characteristics
 year-structure-built
 housing-quality
+tab:medyrbltmem-tbl
+tab:tbl-yrblt-diff
