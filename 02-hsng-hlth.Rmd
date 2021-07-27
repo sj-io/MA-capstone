@@ -1,5 +1,9 @@
 # Housing and Health
 
+> The connection between health and dwelling is one of the most important that exists.
+>
+> *Florence Nightingale*
+
 ## Known Links
 
 The link between housing and health is extensive and well documented. Occupants of a home are exposed to biologic, chemical, and physical agents that can affect their health and safety [@cdc2006 63]. For instance, paint containing lead is known to cause childhood lead poisoning, which lead to the a ban on lead-based paint for residential use in 1978 [@cdc2020].
@@ -10,9 +14,32 @@ Asthma, a respiratory disease which causes episodes of wheezing, breathlessness,
 
 Reviewing the existing literature, @mendell2011 found dampness inside homes was linked to a wide range of respiratory or allergic health effects, including asthma. The authors concluded that prevention and remediation to reduce indoor dampness is urgently needed in a large proportion of the building stock, and such measures could significantly reduce the prevalence of respiratory and allergic disease. @rauh2002 found that cockroach allergen levels are related to the degree of household disrepair, and similarly suggested that public health interventions in housing could reduce allergen exposure.
 
-<!--# healthy homes program -->
+## Healthy Homes
 
-Households can take certain steps to reduce health risks, such as decreasing allergens by removing pets from the home and frequent dusting and vacuuming.
+Recognizing that "health, home construction, and home maintenance are inseparable because of their overlapping goals," HUD and CDC joined together in 1999 to launch the Healthy Homes Initiative [@cdc2006 31, 34]. Many of the basic principles were originally laid out in 1938 by a Committee on the Hygiene of Housing, who provided guidance on the fundamental needs of humans as they relate to housing [@cdc2006 39; @apha1938]. The fundamental needs were originally divided into four categories: physiological needs (e.g. protection from elements), psychological needs (e.g. adequate privacy), protection against contagion (e.g. safe water supply), and protection against accidents (e.g. fire prevention).
+
+The modern Healthy Home Rating System (HHRS) is a list of 29 hazards, categorized in accordance with these needs [@HHRSover 2]. The below table lists all the hazards, along with a short description and which populations are most vulnerable to the specific hazard (adopted from [@HHRSlst]).
+
+```{r vroomHHRS, include=FALSE}
+library(vroom)
+HHRS <- vroom("_data/HH-hazards.csv")
+```
+
+```{r HHRS, echo=FALSE}
+library(DT)
+datatable(HHRS,
+          rownames = FALSE,
+          options = list(
+            pageLength = 5,
+            lengthMenu = c(5, 10, 15, 20, 25, 29)
+          ))
+```
+
+The HHRS provides a standardized way to identify and rate the risk of home health hazards. Once a hazard is identified, it is further rated according to severity and the effect it is having, or could have, on the occupants. The greater the risk or more serious the outcome, the higher the overall score. The system provides a way to compare risks associated with different types of hazards.
+
+According to @HHRSover, this system allows local housing and health departments to know which hazards are most serious to the occupants, allowing them to prioritize funding. It also lets local policy makers identify which areas of the community are in greatest need and what health impacts those communities are facing.
+
+<!--# Households can take certain steps to reduce health risks, such as decreasing allergens by removing pets from the home and frequent dusting and vacuuming.  -->
 
 ## Maintenance in the Private Rental Market
 
@@ -44,7 +71,7 @@ When surveyed on the adequacy of their housing, 14.5% of renter-occupied units w
 
 [^hsng-hlth-2]: In the discussions below, "renters" refers to renter-occupied units, "owners" refers to owner-occupied units, and "Memphis" refers to the Memphis MSA.
 
-### Selected Housing Deficiencies
+#### Selected Housing Deficiencies
 
 +-----------------------------------------------------+----------+-----------+---+---------+-----------+
 |                                                     | **Rent** |           |   | **Own** |           |
@@ -76,7 +103,7 @@ Pests are prevalent in both owner and renter-occupied units. Renters saw more si
 
 Renters were moderately more likely to have open cracks or holes in the interior of their home and to have rooms without electrical outlets. They were also slightly more likely to have decaying interior walls and exposed wiring.
 
-### Housing Problems
+#### Housing Problems
 
 The following table shows the number of units who experience selected housing problems. An estimate of "S" denotes a sample too small to meet publication standards or avoid disclosure of identifying information. The total column ("Tot") is the number of housing units *capable* of experiencing each problem (rather than all housing units). For instance, the total number of units with heating problems only includes units with heating equipment who occupied their unit last winter (excluding units without heating equipment or those who did not occupy their unit last winter).
 
@@ -114,7 +141,7 @@ Heating problems causing households to be uncomfortably cold for at least a day 
 
 Owners were slightly more likely to recently experience a blown fuse or breaker.
 
-### External Building Conditions
+#### External Building Conditions
 
 The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, excluding multi-unit homes. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.
 
@@ -142,6 +169,6 @@ Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases
 
 Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.
 
-### Summary
+#### Summary
 
 Renter-occupied units in Memphis are more likely than owner-occupied units to experience housing issues, and by wider margins. Of the 19 housing quality issues discussed in the three tables above, only three problems were more likely to be experienced by owner-occupied units, and only by a margin of 0.4 percentage points for each problem. Meanwhile, there were 15 problems more common in renter-occupied units, 13 of which had a margin greater than 0.4 percentage points.
