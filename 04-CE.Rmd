@@ -42,9 +42,8 @@ Housing code enforcement data from 2016-present is available through [Memphis Da
 
 ```{r getdata, include=FALSE}
 library(tidyverse)
-library(vroom)
 Service_Requests_since_2016 <-
-  vroom(
+  read_csv(
     "_data/Service_Requests_since_2016.csv",
     col_types = cols(
       ADDRESS2 = "c",
@@ -86,7 +85,7 @@ CE <- Service_Requests_since_2016 %>%
     OWNER_NAME, #' assigned code inspector
     CREATED_BY_USER,
     location1 #' geocoordinates
-  )
+  ) %>% mutate(RESOLUTION_SUMMARY = str_to_lower(RESOLUTION_SUMMARY))
 ```
 
 The output is 14 columns and 154,844 rows, significantly easier to work with.
@@ -186,3 +185,57 @@ For each year, the vast majority of requests fell into one of five categories, l
 |                         **Sum** | **97%** | **97%** | **98%** | **98%** | **88%** | **95%** | **148,499** | **96%** |
 
 From 2016 to 2019, more requests were sorted into "Miscellaneous" than any other category (surpassed by vehicle violations in 2020 and 2021).
+
+### Tidying the Dataset
+
+Goal: Not manually alter dataset; instead create a sorting method that anyone can run using the latest dataset.
+
+```{r}
+noinfo <- CE %>% 
+  filter(
+    str_detect(
+      RESOLUTION_SUMMARY, 
+      "^comp. v.o. - miscellaneous$|^resolved$|^closed void$|^in compliance$|^closed, other$|^uncooperative$|^cvom$|^closed$|^vom$"))
+```
+
+```{r}
+dupes <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "sr|refer to|see#|service request") |
+                       RESOLUTION_CODE == "JA")
+errors <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "wrong address|incorrect address|not a good address|insufficient information|no such address|not enough information|wrong ticket|unknown code|no attachment") |
+                       RESOLUTION_CODE == "INSUF")
+admin <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "please contact|wrong department|thank you for") |
+                       RESOLUTION_CODE == "BACK TO MCSC")
+
+#' RESOLUTION CODES
+SHELBY <- CE %>% filter(RESOLUTION_CODE == "SHELBY") #' County-owned property
+yard <- CE %>% filter(
+  str_detect(RESOLUTION_CODE, "CVOYC|VOYC") | 
+    str_detect(REQUEST_TYPE, "Yard|Weeds"))
+car <- CE %>% filter(
+  str_detect(RESOLUTION_CODE, "CVOAR|VOAR|CVOAT") | 
+    str_detect(REQUEST_TYPE, "Vehicle"))
+
+NJ <- CE %>% filter(RESOLUTION_CODE == "NJ") #' Not Justified
+NPA <- CE %>% filter(str_detect(RESOLUTION_CODE, "NPA")) #' NPA 
+legal <- CE %>% filter(str_detect(RESOLUTION_CODE, "HH|HD|CTCNT|SUMM|DISM|FM-7|FM12|NPF11|SC"))
+COVID <- CE %>% filter(str_detect(RESOLUTION_CODE, "COVID"))
+
+
+#' STRUCTURE RELATED
+bldg <- CE %>% filter(
+  str_detect(RESOLUTION_CODE, "CR|CVOBR|JW-RH|CVOBD|CD") | 
+    str_detect(RESOLUTION_SUMMARY, "roof|flooring|tenant|structural|windows|carpet"))
+
+tidy <-
+  CE %>% filter(
+    !str_detect(RESOLUTION_SUMMARY, "sr|wrong address|please contact|refer to|see#|see #|service request|incorrect address|not a good address|insufficient information|no such address|roof|flooring|tenant|not enough information|wrong department|structural|wrong ticket|thank you for|^comp. v.o. - miscellaneous$|^resolved$|^closed void$|^in compliance$|^closed, other$|^uncooperative$|^cvom$|unknown code|no attachment|windows|carpet|^closed$|^vom$"), 
+    !str_detect(RESOLUTION_CODE, "JA|CVOYC|NJ|CVOAR|NPA|SHELBY|VOYC|VOAR|CR|HH|HD|CTCNT|SUMM|CVOBR|CVOAT|DISM|JW-RH|FM-7|CVOBD|BACK TO MCSC|INSUF|FM12|NPF11|COVID|CD|SC"
+    ),
+    !str_detect(REQUEST_TYPE, "Yard|Weeds|Vehicle")
+  )
+
+t2 <- tidy %>% count(RESOLUTION_SUMMARY) %>% arrange(desc(n))
+t3 <- tidy %>% count(RESOLUTION_CODE) %>% arrange(desc(n))
+```
+
+sdfs
