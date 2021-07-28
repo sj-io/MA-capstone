@@ -190,36 +190,66 @@ From 2016 to 2019, more requests were sorted into "Miscellaneous" than any other
 
 Goal: Not manually alter dataset; instead create a sorting method that anyone can run using the latest dataset.
 
-```{r}
-noinfo <- CE %>% 
+```{r eval=FALSE, include=FALSE}
+dupes <- CE %>% 
+  filter(
+    str_detect(
+      RESOLUTION_SUMMARY, "sr|see#|service request|see #|duplicate") | 
+      RESOLUTION_CODE == "JA")
+
+errors <- CE %>% 
   filter(
     str_detect(
       RESOLUTION_SUMMARY, 
-      "^comp. v.o. - miscellaneous$|^resolved$|^closed void$|^in compliance$|^closed, other$|^uncooperative$|^cvom$|^closed$|^vom$"))
-```
+      "wrong address|incorrect address|not a good address|insufficient information|no such address|not enough information|wrong ticket|unknown code|no attachment"
+      ) | RESOLUTION_CODE == "INSUF")
 
-```{r}
-dupes <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "sr|refer to|see#|service request") |
-                       RESOLUTION_CODE == "JA")
-errors <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "wrong address|incorrect address|not a good address|insufficient information|no such address|not enough information|wrong ticket|unknown code|no attachment") |
-                       RESOLUTION_CODE == "INSUF")
-admin <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "please contact|wrong department|thank you for") |
-                       RESOLUTION_CODE == "BACK TO MCSC")
+uhh <- CE %>% 
+  filter(
+    str_detect(
+      RESOLUTION_SUMMARY, "901-"), !str_detect(RESOLUTION_SUMMARY, "please contact"))
 
-#' RESOLUTION CODES
-SHELBY <- CE %>% filter(RESOLUTION_CODE == "SHELBY") #' County-owned property
 yard <- CE %>% filter(
   str_detect(RESOLUTION_CODE, "CVOYC|VOYC") | 
     str_detect(REQUEST_TYPE, "Yard|Weeds"))
 car <- CE %>% filter(
   str_detect(RESOLUTION_CODE, "CVOAR|VOAR|CVOAT") | 
     str_detect(REQUEST_TYPE, "Vehicle"))
+SHELBY <- CE %>% 
+  filter(RESOLUTION_CODE == "SHELBY" | 
+  str_detect(RESOLUTION_SUMMARY, "shelby county"))
+COVID <- CE %>% filter(str_detect(RESOLUTION_CODE, "COVID"))
 
+tntmv <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "tenant"), str_detect(RESOLUTION_SUMMARY, "moved"))
+```
+
+```{r eval=FALSE, include=FALSE}
+noinfo <- CE %>% 
+  filter(
+    str_detect(
+      RESOLUTION_SUMMARY, 
+      "^comp. v.o. - miscellaneous$|^resolved$|^closed void$|^in compliance$|^closed, other$|^uncooperative$|^cvom$|^closed$|^vom$|^active npa case$|^dismissed$|^repaired$|^repairs made$|^administrative referral$|^jw-dm$|^jw-rh$|^case not justified$|^comp. v.o. bldg. repaired$|^not justified at the time of inspection$|^not justified$|^case dismissed$|^nj$|^closed, rehab$|^at the time of inspection the violation has been corrected$|^demolished by condemnation$|^violation has been corrected$|^close board and secure$|^not justified at time of inspection$|^not justified per inspection$|^corrected$|^incompliance$|^property rehabbed$|^rehabbed$"))
+
+tidy2 <- CE %>% filter(
+    !str_detect(
+      RESOLUTION_SUMMARY, "^repaired$|^repairs made$|^comp. v.o. - miscellaneous$|^resolved$|^closed void$|^in compliance$|^closed, other$|^uncooperative$|^cvom$|^closed$|^vom$|^active npa case$|^dismissed$|sr|see#|service request|see #|^administrative referral$|^jw-dm$|^jw-rh$|^case not justified$|^comp. v.o. bldg. repaired$|^not justified at the time of inspection$|^not justified$|^case dismissed$|^nj$|duplicate|^closed, rehab$|wrong address|incorrect address|not a good address|insufficient information|no such address|not enough information|wrong ticket|unknown code|no attachment|^at the time of inspection the violation has been corrected$|^demolished by condemnation$|^violation has been corrected$|^close board and secure$|^not justified at time of inspection$|^not justified per inspection$|^corrected$|^incompliance$|shelby county|^property rehabbed$|^rehabbed$"
+      ),
+    !str_detect(RESOLUTION_CODE, "CVOYC|VOYC|CVOAR|VOAR|CVOAT|SHELBY|COVID|JA|INSUF"
+    ),
+    !str_detect(REQUEST_TYPE, "Yard|Weeds|Vehicle")
+    )
+
+tt2 <- tidy2 %>% count(RESOLUTION_SUMMARY) %>% arrange(desc(n))
+tt3 <- tidy2 %>% count(RESOLUTION_CODE) %>% arrange(desc(n))
+```
+
+```{r eval=FALSE, include=FALSE}
+admin <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "please contact|wrong department|thank you for") | RESOLUTION_CODE == "BACK TO MCSC")
+
+#' RESOLUTION CODES
 NJ <- CE %>% filter(RESOLUTION_CODE == "NJ") #' Not Justified
 NPA <- CE %>% filter(str_detect(RESOLUTION_CODE, "NPA")) #' NPA 
 legal <- CE %>% filter(str_detect(RESOLUTION_CODE, "HH|HD|CTCNT|SUMM|DISM|FM-7|FM12|NPF11|SC"))
-COVID <- CE %>% filter(str_detect(RESOLUTION_CODE, "COVID"))
-
 
 #' STRUCTURE RELATED
 bldg <- CE %>% filter(
@@ -238,4 +268,17 @@ t2 <- tidy %>% count(RESOLUTION_SUMMARY) %>% arrange(desc(n))
 t3 <- tidy %>% count(RESOLUTION_CODE) %>% arrange(desc(n))
 ```
 
-sdfs
+We can see certain trends using keywords. Here are rows containing the word "tenant" and "moved" or "evict".
+
+```{r echo=FALSE}
+tntmv <- CE %>% 
+  filter(
+    str_detect(RESOLUTION_SUMMARY, "tenant"), 
+    str_detect(RESOLUTION_SUMMARY, " moved|evict")) %>% 
+  arrange(desc(LAST_MODIFIED_DATE)) %>% 
+  rename(sr = INCIDENT_NUMBER)
+
+library(DT)
+tntmv_tbl <- tntmv %>% select(sr, RESOLUTION_SUMMARY, everything())
+datatable(tntmv_tbl)
+```
