@@ -273,7 +273,7 @@ We can see certain trends using keywords. Here are rows containing the word "ten
 ```{r echo=FALSE}
 tntmv <- CE %>% 
   filter(
-    str_detect(RESOLUTION_SUMMARY, "tenant"), 
+    str_detect(RESOLUTION_SUMMARY, "tenant|tennant|tenenat|tenet|teneant|tenent"), 
     str_detect(RESOLUTION_SUMMARY, " moved|evict")) %>% 
   arrange(desc(LAST_MODIFIED_DATE)) %>% 
   rename(sr = INCIDENT_NUMBER)
@@ -282,3 +282,5 @@ library(DT)
 tntmv_tbl <- tntmv %>% select(sr, RESOLUTION_SUMMARY, everything())
 datatable(tntmv_tbl)
 ```
+
+SR: 4569338 "per: tenant jessica they moved due to respiratory problems from the mold/mildew like substance"
