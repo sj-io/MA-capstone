@@ -33,3 +33,6 @@ year-structure-built
 housing-quality
 tab:medyrbltmem-tbl
 tab:tbl-yrblt-diff
+tab:tbl-AHSselfdef
+tab:unnamed-chunk-5
+tab:unnamed-chunk-7

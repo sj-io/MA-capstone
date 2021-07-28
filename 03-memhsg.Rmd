@@ -13,7 +13,10 @@ A recent study comparing pediatric asthma data with property quality information
 ```{r tidycensus, include=FALSE}
 library(tidyverse)
 library(tidycensus)
+library(kableExtra)
+```
 
+```{r censusbasics, include=FALSE}
 yrs <- lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
 v19 <- load_variables(2019, "acs5", cache = T)
 ```
@@ -254,27 +257,56 @@ When surveyed on the adequacy of their housing, 14.5% of renter-occupied units w
 
 ### Selected Housing Deficiencies
 
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
-|                                                     | **Rent** |           |   | **Own** |           |
-+=====================================================+==========+===========+===+=========+===========+
-| **Deficiency**                                      | **Est**  | **Pct**   |   | **Est** | **Pct**   |
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
-| Signs of cockroaches in last 12 months              | 50.9     | **22.7%** |   | 44.4    | 15.3%     |
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
-| Signs of mice or rats inside home in last 12 months | 24.4     | 10.9%     |   | 32.6    | **11.3%** |
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
-| Open cracks or holes (interior)                     | 14.4     | **6.4%**  |   | 12.1    | 4.2%      |
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
-| Rooms without electric outlets                      | 6.6      | **2.9%**  |   | 5.0     | 1.7%      |
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
-| Broken plaster or peeling paint (interior)          | 5.3      | **2.4%**  |   | 5.8     | 2.0%      |
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
-| Exposed wiring                                      | 3.9      | **1.7%**  |   | 4.5     | 1.6%      |
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
-| Total housing units                                 | 224.0    | \-        |   | 289.7   | \-        |
-+-----------------------------------------------------+----------+-----------+---+---------+-----------+
+<!--# import AHS dataset -->
 
-: Selected Housing Deficiencies
+```{r AHSqual-all, include=FALSE}
+AHS_mem_hsgqual_all <- read_csv("_data/AHS-mem-hsgqual-all.csv")
+```
+
+```{r AHSselectcol, include=FALSE}
+AHSqual_all <- AHS_mem_hsgqual_all %>% 
+  select(tenure, char:estimate, total)
+```
+
+<!--# filter for selected deficiencies -->
+
+```{r AHS-selected-deficiencies, include=FALSE}
+AHSseldef <- AHSqual_all %>% 
+  filter(char == "Selected Deficiencies") %>% 
+  select(-c(char, subchar2:subchar5))
+```
+
+<!--# table -->
+
+```{r make-tbl-AHSseldef, include=FALSE}
+AHSseldef_tbl <- AHSseldef %>% 
+  mutate(pct = paste0(round(100*estimate/total,2), '%')) %>% 
+  select(-total) %>% 
+  pivot_wider(names_from = tenure, 
+              names_glue = "{tenure}_{.value}", 
+              values_from = c(estimate, pct)) %>% 
+  select(subchar, Renter_estimate, Renter_pct, 
+         Owner_estimate, Owner_pct, All_estimate, All_pct) %>% 
+  filter(!is.na(All_estimate)) %>% 
+  mutate(across(ends_with("pct"), ~na_if(., "NA%")))
+```
+
+```{r tbl-AHSselfdef, echo=FALSE}
+kable(
+  AHSseldef_tbl,
+  col.names = c("Deficiency",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "lcccccc", caption = "Selected Housing Deficiencies, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 1,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  ))
+```
 
 *Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
 
@@ -288,29 +320,84 @@ Renters were moderately more likely to have open cracks or holes in the interior
 
 The following table shows the number of units who experience selected housing problems. An estimate of "S" denotes a sample too small to meet publication standards or avoid disclosure of identifying information. The total column ("Tot") is the number of housing units *capable* of experiencing each problem (rather than all housing units). For instance, the total number of units with heating problems only includes units with heating equipment who occupied their unit last winter (excluding units without heating equipment or those who did not occupy their unit last winter).
 
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-|                                                    |         | **Rent** |          |   |         | **Own** |          |
-+====================================================+=========+==========+==========+===+=========+=========+==========+
-| **Problem**                                        | **Est** | **Tot**  | **Pct**  |   | **Est** | **Tot** | **Pct**  |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-| No flush toilet working some time in last 3 months | 7.0     | 224.0    | **3.1%** |   | S       | 289.7   | \-       |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-| Uncomfortably cold for 24 hours or more            | 12.3    | 186.2    | **6.6%** |   | 10.8    | 278.8   | 3.9%     |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-| Fuses or breakers blown in last 3 months           | 14.1    | 223.8    | 6.3%     |   | 19.3    | 289.7   | **6.7%** |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-| Water stoppage in last 3 months                    | 6.4     | 223.8    | **2.9%** |   | 3.2     | 289.5   | 1.1%     |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-| Water leakage from inside structure                | 19.5    | 224.0    | **8.7%** |   | 20.7    | 289.7   | 7.1%     |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-| Water leakage from outside structure               | 18.9    | 224.0    | 8.4%     |   | 25.5    | 289.7   | **8.8%** |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-| Mold in last 12 months                             | 11.8    | 224.0    | **5.3%** |   | 5.8     | 289.7   | 2.0%     |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
-| Public sewer breakdown in last 3 months            | 5.1     | 217.9    | **2.3%** |   | S       | 252.3   | \-       |
-+----------------------------------------------------+---------+----------+----------+---+---------+---------+----------+
+```{r eval=FALSE, include=FALSE}
+AHSmold <- AHSqual_all %>% 
+  filter(str_detect(char, "Mold|Water Leakage"), 
+         !is.na(estimate), is.na(subchar2)) %>% 
+  select(-c(subchar2:subchar5)) %>% rename(subchar2 = subchar)
+```
+
++----------------------------------------------------+----------+-------+---+----------+-------+
+|                                                    | Rent     |       |   | Own      |       |
++====================================================+:========:+:=====:+:=:+:========:+:=====:+
+| **Problem**                                        | **est.** | **%** |   | **est.** | **%** |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| No flush toilet working some time in last 3 months | 7.0      | 3.1%  |   | S        | \-    |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Uncomfortably cold for 24 hours or more            | 12.3     | 6.6%  |   | 10.8     | 3.9%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Fuses or breakers blown in last 3 months           | 14.1     | 6.3%  |   | 19.3     | 6.7%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water stoppage in last 3 months                    | 6.4      | 2.9%  |   | 3.2      | 1.1%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water leakage from inside structure                | 19.5     | 8.7%  |   | 20.7     | 7.1%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water leakage from outside structure               | 18.9     | 8.4%  |   | 25.5     | 8.8%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Mold in last 12 months                             | 11.8     | 5.3%  |   | 5.8      | 2.0%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Public sewer breakdown in last 3 months            | 5.1      | 2.3%  |   | S        | \-    |
++----------------------------------------------------+----------+-------+---+----------+-------+
 
 : Selected Housing Problems
+
+```{r eval=FALSE, include=FALSE}
+AHSprob <- AHSqual_all %>%
+  filter(
+    !str_detect(
+      char,
+      "Housing Adequacy|Selected Deficiencies|External Building Conditions|Mold|Water Leakage|Sewage Disposal"
+    ), !is.na(estimate),
+    !is.na(subchar2),
+    is.na(subchar3)
+  ) %>% 
+  select(-c(subchar, subchar3:subchar5)) %>% rbind(AHSmold) %>% 
+  mutate(pct = paste0(round(100 * estimate / total, 2), '%')) %>%
+  select(-total) %>%
+  pivot_wider(
+    names_from = tenure,
+    names_glue = "{tenure}_{.value}",
+    values_from = c(estimate, pct)
+  ) %>%
+  select(char,
+    subchar2,
+    Renter_estimate,
+    Renter_pct,
+    Owner_estimate,
+    Owner_pct,
+    All_estimate,
+    All_pct
+  ) %>%
+  filter(!is.na(All_estimate)) %>%
+  mutate(across(ends_with("pct"), ~ na_if(., "NA%")))
+```
+
+```{r eval=FALSE, include=FALSE}
+kable(
+  AHSprob,
+  col.names = c("Problem", " ",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "rlcccccc", caption = "Selected Housing Problems, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 2,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  )) %>% remove_column(1)
+```
 
 *Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
 
@@ -324,29 +411,41 @@ Owners were slightly more likely to recently experience a blown fuse or breaker.
 
 ### External Building Conditions
 
-The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, excluding multi-unit homes. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.
+The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, **excluding multi-unit homes**. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.
 
-+--------------------------------------------------------+----------+-----------+---+---------+---------+
-|                                                        | **Rent** |           |   | **Own** |         |
-+========================================================+==========+===========+===+=========+=========+
-| **External Building Conditions**                       | **Est**  | **Pct**   |   | **Est** | **Pct** |
-+--------------------------------------------------------+----------+-----------+---+---------+---------+
-| Bars on windows                                        | 16.1     | **16.7%** |   | 22.0    | 7.7%    |
-+--------------------------------------------------------+----------+-----------+---+---------+---------+
-| Broken windows                                         | 7.6      | **6.5%**  |   | 7.8     | 2.7%    |
-+--------------------------------------------------------+----------+-----------+---+---------+---------+
-| Missing roofing material                               | 7.0      | **6.0%**  |   | 15.5    | 5.4%    |
-+--------------------------------------------------------+----------+-----------+---+---------+---------+
-| Hole in roof                                           | 4.2      | **3.6%**  |   | 6.2     | 2.2%    |
-+--------------------------------------------------------+----------+-----------+---+---------+---------+
-| Missing bricks, siding, or other outside wall material | 3.9      | 3.3%      |   | 9.4     | 3.3%    |
-+--------------------------------------------------------+----------+-----------+---+---------+---------+
-| Total housing units (excludes multi-units)             | 117.6    | \-        |   | 286.9   | \-      |
-+--------------------------------------------------------+----------+-----------+---+---------+---------+
+```{r include=FALSE}
+AHSextbld <- AHSqual_all %>% 
+  filter(char == "External Building Conditions") %>% 
+  select(-c(char, subchar2:subchar5)) %>% 
+  mutate(pct = paste0(round(100*estimate/total,2), '%')) %>% 
+  select(-total) %>% 
+  pivot_wider(names_from = tenure, 
+              names_glue = "{tenure}_{.value}", 
+              values_from = c(estimate, pct)) %>% 
+  select(subchar, Renter_estimate, Renter_pct, 
+         Owner_estimate, Owner_pct, All_estimate, All_pct) %>% 
+  filter(!is.na(All_estimate)) %>% 
+  mutate(across(ends_with("pct"), ~na_if(., "NA%")))
+```
 
-: External Building Conditions
+```{r echo=FALSE}
+kable(
+  AHSextbld,
+  col.names = c("Condition",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "lcccccc", caption = "External Building Conditions, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 1,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  ))
+```
 
-Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
 
 Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.
 
