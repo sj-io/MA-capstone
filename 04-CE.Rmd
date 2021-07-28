@@ -136,7 +136,27 @@ When we look closer at *who* is making complaints to code enforcement, it at fir
 CE %>% count(CREATED_BY_USER) %>% arrange(desc(n))
 ```
 
-However, filtering by HELEN.ANDERSON then "tenant" under `RESOLUTION_SUMMARY` shows multiple instances where someone not named "Helen Anderson" is mentioned as the contact person across a wide variety of addresses.
+However, filtering by HELEN.ANDERSON then "tenant" under `RESOLUTION_SUMMARY` shows multiple instances where someone not named "Helen Anderson" is mentioned as the contact person across a wide variety of addresses. Further investigation found that some of the people listed as request creators are actually inspectors.
+
+### SeeClickFail?
+
+While browsing Memphis's [SeeClickFix](https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/map?lat=35.14896833842707&lng=-90.05163922905923&max_lat=35.15402992416014&max_lng=-90.04691720008852&min_lat=35.143906437842766&min_lng=-90.05635857582094&zoom=17) website, I came across a [service request](https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/10508076) from a tenant who has been without air conditioning since May.
+
+|                      |                                   |
+|----------------------|-----------------------------------|
+| ![](_img/ACreq1.png) | ![](_img/ACreq2.png){width="498"} |
+
+The tenant provided multiple photos (not all shown here) proving attempts to contact maintenance, which had been canceled or marked as completed though they were not resolved.
+
+|                      |                      |
+|----------------------|----------------------|
+| ![](_img/ACreq3.jpg) | ![](_img/ACreq5.jpg) |
+
+Almost immediately, the city closed the request, redirecting the tenant to call a phone number for the Mayor's Citizen Service Center. According to the [City of Memphis's website](https://www.memphistn.gov/government/mayor-jim-strickland/mayors-citizen-service-center-311/), **the Mayor's Citizen Service Center is 311**. So it appears 311 closed the request, telling the tenant to contact 311.
+
+![](_img/ACreq4.png)
+
+This was also a case where the incident address was filled in as the 746 Chapel Street, mentioned above as having the most service requests of any address. We can now see the default address is actually in Connecticut.
 
 ### Analysis
 
