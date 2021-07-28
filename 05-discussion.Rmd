@@ -12,7 +12,9 @@ We should do this because our code enforcement's largest hurdle is [the **same p
 
 ## Recommendations
 
-Create a `RESOLUTION_CODE` for duplicates. (Already used by other cities like [Cincinnati](https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6))
+Create a new `REQUEST_TYPE` for private rental/landlord neglect, replacing "Code Miscellaneous". This is fundamental to being able to track this data.
+
+Create a `RESOLUTION_CODE` for duplicates, replacing "JA" and similar. (Already used by other cities like [Cincinnati](https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6))
 
 Do not put all information for one case on one row, overwriting old data. Instead, allow each update its own row.
 
@@ -20,4 +22,4 @@ Combine with assessor's database to simplify and repair location columns.
 
 Expand categories to include information on structures and tenure.
 
-Implement the HHRS into the data system. For occupied housing units, categorize hazards using the HHRS.
+Implement the **HHRS** into the data system. For occupied housing units, categorize hazards using the HHRS.

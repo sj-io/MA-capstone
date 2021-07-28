@@ -279,8 +279,27 @@ tntmv <- CE %>%
   rename(sr = INCIDENT_NUMBER)
 
 library(DT)
-tntmv_tbl <- tntmv %>% select(sr, RESOLUTION_SUMMARY, everything())
+tntmv_tbl <- tntmv %>% select(sr, RESOLUTION_SUMMARY, ADDRESS1, REPORTED_DATE, everything())
 datatable(tntmv_tbl)
 ```
 
-SR: 4569338 "per: tenant jessica they moved due to respiratory problems from the mold/mildew like substance"
+In the above table, the vast majority of cases are filed under "Code Miscellaneous" (305 of 357 rows). Clearly there is opportunity for a new `REQUEST_TYPE` category to sort these cases.
+
+I would like to draw your attention to sr \#4569338:
+
+> per: tenant jessica they moved due to respiratory problems from the mold/mildew like substance
+
+This led me to searching the word "mold", shown in the table below.
+
+```{r echo=FALSE}
+mold <- CE %>% 
+  filter(
+    str_detect(RESOLUTION_SUMMARY, "mold")) %>% 
+  arrange(desc(LAST_MODIFIED_DATE)) %>% 
+  rename(sr = INCIDENT_NUMBER) 
+
+mold_tbl <- mold %>% select(sr, RESOLUTION_SUMMARY, ADDRESS1, REPORTED_DATE, everything())
+datatable(mold_tbl) 
+```
+
+This search shows that many cases involving tenants do not even mention the word tenant. Sometimes "occupant" or "resident" is used. Other times they are never mentioned; the summary may state a notice was sent to the owner, or make no mention of people at all. This makes it very hard to find information specifically about rental units. How are we to know the extent of the problem?
