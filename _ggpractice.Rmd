@@ -1,0 +1,50 @@
+```{r}
+tenhsgcost <- tenhsgcost_p %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "income", "burden"), sep = "!!") %>%
+  select(year, tenure:burden, estimate) %>% 
+  filter(!is.na(burden)) %>% 
+  group_by(year, tenure, income) %>% 
+  mutate(cntgrp = sum(estimate)) %>% 
+  mutate(pct = round(estimate/cntgrp*100, 2)) 
+```
+
+```{r}
+tenhsgcost3 <- rbind(tenhsgcost, tenhsgcost2) %>% 
+  arrange(year, tenure, income)
+
+tenhsgcost4 <- tenhsgcost3 %>% select(-c(estimate, cntgrp)) %>% 
+  pivot_wider(names_from = tenure, values_from = pct)
+```
+
+```{r}
+tenhsgcost2 <- tenhsgcost_p %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "income", "burden"), sep = "!!") %>%
+  select(year, tenure:burden, estimate) %>% 
+  filter(!is.na(income), is.na(burden)) %>% 
+  group_by(year, tenure) %>% 
+  mutate(cntgrp = sum(estimate)) %>% 
+  mutate(pct = round(estimate/cntgrp*100, 2))
+```
+
+```{r}
+tenhsgcost5 <- tenhsgcost
+tenhsgcost5$income <- 
+  factor(tenhsgcost5$income, 
+         levels = c("Less than $20,000:", "$20,000 to $34,999:", 
+                    "$35,000 to $49,999:", "$50,000 to $74,999:", "$75,000 or more:"
+                    )
+           )
+tenhsgcost5$burden <-
+  factor(tenhsgcost5$burden,
+         levels = c("Less than 20 percent", "20 to 29 percent", "30 percent or more"
+                    ))
+```
+
+```{r}
+tenhsgcost5 %>% 
+  ggplot(aes(x = burden, y = estimate, fill = tenure)) +
+  geom_col(position = "fill") + 
+  facet_grid(rows = vars(income), cols = vars(year))
+```
