@@ -109,6 +109,20 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -117,7 +131,7 @@
 
 \title{Memphis Code Enforcement}
 \author{Sarah Johnson}
-\date{2021-07-27}
+\date{2021-07-29}
 
 \begin{document}
 \maketitle
@@ -165,7 +179,7 @@ Reviewing the existing literature, \citet{mendell2011} found dampness inside hom
 
 Recognizing that ``health, home construction, and home maintenance are inseparable because of their overlapping goals,'' HUD and CDC joined together in 1999 to launch the Healthy Homes Initiative \citep[ 31, 34]{cdc2006}. Many of the basic principles were originally laid out in 1938 by a Committee on the Hygiene of Housing, who provided guidance on the fundamental needs of humans as they relate to housing \citetext{\citealp[ 39]{cdc2006}; \citealp{apha1938}}. The fundamental needs were originally divided into four categories: physiological needs (e.g.~protection from elements), psychological needs (e.g.~adequate privacy), protection against contagion (e.g.~safe water supply), and protection against accidents (e.g.~fire prevention).
 
-The modern Healthy Home Rating System (HHRS) is a list of 29 hazards, categorized in accordance with these needs \citep[ 2]{HHRSover}. The below table lists all the hazards, along with a short description and which populations are most vulnerable to the specific hazard (adopted from \citep{HHRSlst}).
+The modern Healthy Home Rating System (HHRS) is a list of 29 hazards, categorized in accordance with these needs \citep[ 2]{HHRSover}. The below table lists all the hazards, along with a short description and which populations are most vulnerable to the specific hazard (adopted from \citet{HHRSlst}).
 
 \includegraphics{MA-capstone_files/figure-latex/HHRS-1.pdf}
 
@@ -196,8 +210,10 @@ In 2015, Memphis was named the asthma capital of America by the Asthma and Aller
 
 A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis \citep{shin2018}. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems, leading authors to conclude that effective health interventions should consider involving housing policies and procedures.
 
-\hypertarget{housing}{%
-\section{Housing}\label{housing}}
+\hypertarget{housing-characteristics}{%
+\section{Housing Characteristics}\label{housing-characteristics}}
+
+According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47\%) are owner-occupied; 134,371 (53\%) are renter-occupied.
 
 \hypertarget{median-year-built}{%
 \subsection{Median Year Built}\label{median-year-built}}
@@ -205,62 +221,34 @@ A recent study comparing pediatric asthma data with property quality information
 The age of a housing unit can be an indicator that repairs are needed. The below table shows the median age of occupied housing units in the city of Memphis, separated by tenure.
 
 \begin{table}
-\caption{\label{tab:medyrblt}City of Memphis: Median year built, occupied housing units}
 
+\caption{\label{tab:tbl-medyrbltmem}Median year built of occupied housing units in City of Memphis}
 \centering
-\begin{tabular}[t]{l|l|r}
+\begin{tabular}[t]{l|c|c}
 \hline
-year & tenure & estimate\\
+Census Year & Owner-Occupied & Renter-Occupied\\
 \hline
-2009 & Owner & 1966\\
+2009 & 1966 & 1973\\
 \hline
-2010 & Owner & 1966\\
+2010 & 1966 & 1973\\
 \hline
-2011 & Owner & 1966\\
+2011 & 1966 & 1973\\
 \hline
-2012 & Owner & 1966\\
+2012 & 1966 & 1973\\
 \hline
-2013 & Owner & 1966\\
+2013 & 1966 & 1973\\
 \hline
-2014 & Owner & 1966\\
+2014 & 1966 & 1973\\
 \hline
-2015 & Owner & 1966\\
+2015 & 1966 & 1973\\
 \hline
-2016 & Owner & 1966\\
+2016 & 1966 & 1973\\
 \hline
-2017 & Owner & 1966\\
+2017 & 1966 & 1973\\
 \hline
-2018 & Owner & 1966\\
+2018 & 1966 & 1973\\
 \hline
-2019 & Owner & 1966\\
-\hline
-\end{tabular}
-\centering
-\begin{tabular}[t]{l|l|r}
-\hline
-year & tenure & estimate\\
-\hline
-2009 & Renter & 1973\\
-\hline
-2010 & Renter & 1973\\
-\hline
-2011 & Renter & 1973\\
-\hline
-2012 & Renter & 1973\\
-\hline
-2013 & Renter & 1973\\
-\hline
-2014 & Renter & 1973\\
-\hline
-2015 & Renter & 1973\\
-\hline
-2016 & Renter & 1973\\
-\hline
-2017 & Renter & 1973\\
-\hline
-2018 & Renter & 1973\\
-\hline
-2019 & Renter & 1974\\
+2019 & 1966 & 1974\\
 \hline
 \end{tabular}
 \end{table}
@@ -270,67 +258,94 @@ The Memphis housing stock is aging. The median year built has not (or barely) bu
 When we expand our scope from the city limits to the Memphis MSA, there is a noticeable shift in the data, as seen in the table below.
 
 \begin{table}
-\caption{\label{tab:unnamed-chunk-6}Memphis MSA: Median year built, occupied housing units}
 
+\caption{\label{tab:tbl-medyrbltmsa}Median year built of occupied housing units in Memphis MSA}
 \centering
-\begin{tabular}[t]{l|l|r}
+\begin{tabular}[t]{l|c|c}
 \hline
-year & tenure & estimate\\
+Census Year & Owner-Occupied & Renter-Occupied\\
 \hline
-2009 & Owner & 1980\\
+2009 & 1980 & 1976\\
 \hline
-2010 & Owner & 1982\\
+2010 & 1982 & 1977\\
 \hline
-2011 & Owner & 1982\\
+2011 & 1982 & 1977\\
 \hline
-2012 & Owner & 1983\\
+2012 & 1983 & 1978\\
 \hline
-2013 & Owner & 1983\\
+2013 & 1983 & 1978\\
 \hline
-2014 & Owner & 1983\\
+2014 & 1983 & 1978\\
 \hline
-2015 & Owner & 1983\\
+2015 & 1983 & 1978\\
 \hline
-2016 & Owner & 1984\\
+2016 & 1984 & 1978\\
 \hline
-2017 & Owner & 1984\\
+2017 & 1984 & 1978\\
 \hline
-2018 & Owner & 1984\\
+2018 & 1984 & 1978\\
 \hline
-2019 & Owner & 1985\\
-\hline
-\end{tabular}
-\centering
-\begin{tabular}[t]{l|l|r}
-\hline
-year & tenure & estimate\\
-\hline
-2009 & Renter & 1976\\
-\hline
-2010 & Renter & 1977\\
-\hline
-2011 & Renter & 1977\\
-\hline
-2012 & Renter & 1978\\
-\hline
-2013 & Renter & 1978\\
-\hline
-2014 & Renter & 1978\\
-\hline
-2015 & Renter & 1978\\
-\hline
-2016 & Renter & 1978\\
-\hline
-2017 & Renter & 1978\\
-\hline
-2018 & Renter & 1978\\
-\hline
-2019 & Renter & 1978\\
+2019 & 1985 & 1978\\
 \hline
 \end{tabular}
 \end{table}
 
-In the MSA, the median age of renter-occupied homes is 43; for owner-occupied units, 36. This signifies that most new development in the MSA has been for owner-occupied homes outside city limits.
+In the MSA, the median age of renter-occupied homes is 43; for owner-occupied units, 36. This signifies that most new development in the MSA has been for owner-occupied homes outside city limits. We can confirm this by looking at more detailed data available from the Census.
+
+\hypertarget{year-structure-built}{%
+\subsection{Year Structure Built}\label{year-structure-built}}
+
+The following graph shows the number of homes built each year in Memphis, separated by tenure.
+
+\includegraphics{MA-capstone_files/figure-latex/ggplotysb-1.pdf}
+
+More owner-occupied homes were built between 1950 to 1959 than any other period, with the stock gradually decreasing every decade since, plummeting after 2010. According to the data, there are \textbf{only 872 owner-occupied homes constructed since 2010}. It is now clear why the median year built for these homes has not budged in the past decade.
+
+The year renter-occupied homes were built peaked in the 1970s, eclipsing owner-occupied homes and outpacing it ever since (though still declining). Rental homes also sharply decrease after 2010, but not as severe. Of occupied rental homes, \textbf{4,404 were constructed since 2010}.
+
+Note that this dataset shows the year homes were built based on \textbf{current} tenure. It is possible for a home to originally have been owner-occupied and converted to a rental. We can investigate this by comparing 2015-2019 ACS data with 2005-2009 data and measuring the difference.
+
+\begin{table}
+
+\caption{\label{tab:tbl-yrblt-diff}Change in Occupied Units by Year Structure Built from 2009 to 2019 ACS}
+\centering
+\begin{tabular}[t]{l|c|c|c}
+\hline
+Year Structure Built & Owner & Renter & All Occupied Units\\
+\hline
+Built 1939 or earlier & -2796 & -848 & -3644\\
+\hline
+Built 1940 to 1949 & -2479 & 2111 & -368\\
+\hline
+Built 1950 to 1959 & -5452 & 4241 & -1211\\
+\hline
+Built 1960 to 1969 & -4411 & -179 & -4590\\
+\hline
+Built 1970 to 1979 & -4882 & 1654 & -3228\\
+\hline
+Built 1980 to 1989 & -3290 & 110 & -3180\\
+\hline
+Built 1990 to 1999 & -1876 & 2624 & 748\\
+\hline
+Built 2000 to 2009 & -281 & 2113 & 1832\\
+\hline
+\end{tabular}
+\end{table}
+
+There was an overall loss of 13,641 occupied housing units between 2009-2019 in the city of Memphis. Broken down by tenure, there was a loss of 25,467 owner-occupied units, and a gain of 11,826 renter occupied units. If we limit our scope to \textbf{``older'' units (built before 1990)}, there was a loss of 23,310 owner-occupied units, and a \textbf{gain of 7,089 renter-occupied units}.
+
+We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.\footnote{The gain of units from 1990 to 1999 is likely due to data error. Another explanation is that previously vacant units built during this time are now occupied. But this is unlikely given the loss in occupied units and an increase in vacant units from 2009-2019.} This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.
+
+Considering the Great Recession, this implies former homeowners are now renting. Households that formerly benefited from policies and programs geared toward homeowners now navigate a housing system that is decidedly anti-renter. They lost their opportunity to build generational wealth, and now their wealth is being extracted through rents. Additionally, homes being converted into rentals limits the availability of homes for purchase, and denies young people the opportunity to plant roots in the community.
+
+Below is a graph visualizing the above table.
+
+\includegraphics{MA-capstone_files/figure-latex/ggplotdec-1.pdf}
+
+Between the 2009 and 2019 ACS, there was a definite loss in occupied housing units built before 1939 and between 1960-1969. In every other decade, there was a loss of owner-occupied units and a gain in renter-occupied units. As we cannot travel back in time and build more rental units, we can assume that these were formerly owner-occupied units that have been converted to rental units.
+
+\hypertarget{housing-quality}{%
+\section{Housing Quality}\label{housing-quality}}
 
 Data on housing quality in the Memphis MSA is available through the 2019 \href{https://www.census.gov/programs-surveys/ahs.html}{American Housing Survey}. As the median age for rental homes is seven years older than for owner-occupied homes in the MSA, we can expect renter-occupied homes to have more deficiencies and problems than owner-occupied homes.
 
@@ -339,32 +354,32 @@ When surveyed on the adequacy of their housing, 14.5\% of renter-occupied units 
 \hypertarget{selected-housing-deficiencies}{%
 \subsection{Selected Housing Deficiencies}\label{selected-housing-deficiencies}}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.52}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.11}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.12}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.04}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.10}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.12}}@{}}
-\caption{Selected Housing Deficiencies}\tabularnewline
-\toprule
-& \textbf{Rent} & & & \textbf{Own} & \\
-\midrule
-\endfirsthead
-\toprule
-& \textbf{Rent} & & & \textbf{Own} & \\
-\midrule
-\endhead
-\textbf{Deficiency} & \textbf{Est} & \textbf{Pct} & & \textbf{Est} & \textbf{Pct} \\
-Signs of cockroaches in last 12 months & 50.9 & \textbf{22.7\%} & & 44.4 & 15.3\% \\
-Signs of mice or rats inside home in last 12 months & 24.4 & 10.9\% & & 32.6 & \textbf{11.3\%} \\
-Open cracks or holes (interior) & 14.4 & \textbf{6.4\%} & & 12.1 & 4.2\% \\
-Rooms without electric outlets & 6.6 & \textbf{2.9\%} & & 5.0 & 1.7\% \\
-Broken plaster or peeling paint (interior) & 5.3 & \textbf{2.4\%} & & 5.8 & 2.0\% \\
-Exposed wiring & 3.9 & \textbf{1.7\%} & & 4.5 & 1.6\% \\
-Total housing units & 224.0 & - & & 289.7 & - \\
-\bottomrule
-\end{longtable}
+\begin{table}
+
+\caption{\label{tab:tbl-AHSselfdef}Selected Housing Deficiencies, Memphis MSA}
+\centering
+\begin{tabular}[t]{l|c|c|c|c|c|c}
+\hline
+\multicolumn{1}{c|}{ } & \multicolumn{2}{c|}{Rent} & \multicolumn{2}{c|}{Own} & \multicolumn{2}{c}{All} \\
+\cline{2-3} \cline{4-5} \cline{6-7}
+Deficiency & est. & \% & est. & \% & est. & \%\\
+\hline
+Signs of mice or rats inside home in last 12 months & 24.4 & 10.89\% & 32.6 & 11.25\% & 56.9 & 11.08\%\\
+\hline
+Signs of cockroaches in last 12 months & 50.9 & 22.72\% & 44.4 & 15.33\% & 95.3 & 18.55\%\\
+\hline
+Holes in floors & NA & NA & NA & NA & 4.2 & 0.82\%\\
+\hline
+Open cracks or holes (interior) & 14.4 & 6.43\% & 12.1 & 4.18\% & 26.6 & 5.18\%\\
+\hline
+Broken plaster or peeling paint (interior) & 5.3 & 2.37\% & 5.8 & 2\% & 11.1 & 2.16\%\\
+\hline
+Exposed wiring & 3.9 & 1.74\% & 4.5 & 1.55\% & 8.4 & 1.64\%\\
+\hline
+Rooms without electric outlets & 6.6 & 2.95\% & 5.0 & 1.73\% & 11.6 & 2.26\%\\
+\hline
+\end{tabular}
+\end{table}
 
 \emph{Source: \href{https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html}{American Housing Survey} (2019). Estimates in thousands of housing units.}
 
@@ -380,32 +395,30 @@ Renters were moderately more likely to have open cracks or holes in the interior
 The following table shows the number of units who experience selected housing problems. An estimate of ``S'' denotes a sample too small to meet publication standards or avoid disclosure of identifying information. The total column (``Tot'') is the number of housing units \emph{capable} of experiencing each problem (rather than all housing units). For instance, the total number of units with heating problems only includes units with heating equipment who occupied their unit last winter (excluding units without heating equipment or those who did not occupy their unit last winter).
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.44}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.08}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.09}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.09}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.03}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.08}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.08}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.09}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.56}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.12}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.08}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.04}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.12}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.08}}@{}}
 \caption{Selected Housing Problems}\tabularnewline
 \toprule
-& & \textbf{Rent} & & & & \textbf{Own} & \\
+& Rent & & & Own & \\
 \midrule
 \endfirsthead
 \toprule
-& & \textbf{Rent} & & & & \textbf{Own} & \\
+& Rent & & & Own & \\
 \midrule
 \endhead
-\textbf{Problem} & \textbf{Est} & \textbf{Tot} & \textbf{Pct} & & \textbf{Est} & \textbf{Tot} & \textbf{Pct} \\
-No flush toilet working some time in last 3 months & 7.0 & 224.0 & \textbf{3.1\%} & & S & 289.7 & - \\
-Uncomfortably cold for 24 hours or more & 12.3 & 186.2 & \textbf{6.6\%} & & 10.8 & 278.8 & 3.9\% \\
-Fuses or breakers blown in last 3 months & 14.1 & 223.8 & 6.3\% & & 19.3 & 289.7 & \textbf{6.7\%} \\
-Water stoppage in last 3 months & 6.4 & 223.8 & \textbf{2.9\%} & & 3.2 & 289.5 & 1.1\% \\
-Water leakage from inside structure & 19.5 & 224.0 & \textbf{8.7\%} & & 20.7 & 289.7 & 7.1\% \\
-Water leakage from outside structure & 18.9 & 224.0 & 8.4\% & & 25.5 & 289.7 & \textbf{8.8\%} \\
-Mold in last 12 months & 11.8 & 224.0 & \textbf{5.3\%} & & 5.8 & 289.7 & 2.0\% \\
-Public sewer breakdown in last 3 months & 5.1 & 217.9 & \textbf{2.3\%} & & S & 252.3 & - \\
+\textbf{Problem} & \textbf{est.} & \textbf{\%} & & \textbf{est.} & \textbf{\%} \\
+No flush toilet working some time in last 3 months & 7.0 & 3.1\% & & S & - \\
+Uncomfortably cold for 24 hours or more & 12.3 & 6.6\% & & 10.8 & 3.9\% \\
+Fuses or breakers blown in last 3 months & 14.1 & 6.3\% & & 19.3 & 6.7\% \\
+Water stoppage in last 3 months & 6.4 & 2.9\% & & 3.2 & 1.1\% \\
+Water leakage from inside structure & 19.5 & 8.7\% & & 20.7 & 7.1\% \\
+Water leakage from outside structure & 18.9 & 8.4\% & & 25.5 & 8.8\% \\
+Mold in last 12 months & 11.8 & 5.3\% & & 5.8 & 2.0\% \\
+Public sewer breakdown in last 3 months & 5.1 & 2.3\% & & S & - \\
 \bottomrule
 \end{longtable}
 
@@ -422,35 +435,38 @@ Owners were slightly more likely to recently experience a blown fuse or breaker.
 \hypertarget{external-building-conditions}{%
 \subsection{External Building Conditions}\label{external-building-conditions}}
 
-The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, excluding multi-unit homes. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.
+The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, \textbf{excluding multi-unit homes}. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.55}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.11}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.12}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.04}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.10}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.10}}@{}}
-\caption{External Building Conditions}\tabularnewline
-\toprule
-& \textbf{Rent} & & & \textbf{Own} & \\
-\midrule
-\endfirsthead
-\toprule
-& \textbf{Rent} & & & \textbf{Own} & \\
-\midrule
-\endhead
-\textbf{External Building Conditions} & \textbf{Est} & \textbf{Pct} & & \textbf{Est} & \textbf{Pct} \\
-Bars on windows & 16.1 & \textbf{16.7\%} & & 22.0 & 7.7\% \\
-Broken windows & 7.6 & \textbf{6.5\%} & & 7.8 & 2.7\% \\
-Missing roofing material & 7.0 & \textbf{6.0\%} & & 15.5 & 5.4\% \\
-Hole in roof & 4.2 & \textbf{3.6\%} & & 6.2 & 2.2\% \\
-Missing bricks, siding, or other outside wall material & 3.9 & 3.3\% & & 9.4 & 3.3\% \\
-Total housing units (excludes multi-units) & 117.6 & - & & 286.9 & - \\
-\bottomrule
-\end{longtable}
+\begin{table}
 
-Source: \href{https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html}{American Housing Survey} (2019). Estimates in thousands of housing units.
+\caption{\label{tab:unnamed-chunk-7}External Building Conditions, Memphis MSA}
+\centering
+\begin{tabular}[t]{l|c|c|c|c|c|c}
+\hline
+\multicolumn{1}{c|}{ } & \multicolumn{2}{c|}{Rent} & \multicolumn{2}{c|}{Own} & \multicolumn{2}{c}{All} \\
+\cline{2-3} \cline{4-5} \cline{6-7}
+Condition & est. & \% & est. & \% & est. & \%\\
+\hline
+Sagging roof & NA & NA & NA & NA & 7.4 & 1.83\%\\
+\hline
+Missing roofing material & 7.0 & 5.95\% & 15.5 & 5.4\% & 22.5 & 5.56\%\\
+\hline
+Hole in roof & 4.2 & 3.57\% & 6.2 & 2.16\% & 10.5 & 2.6\%\\
+\hline
+Missing bricks, siding, or other outside wall material & 3.9 & 3.32\% & 9.4 & 3.28\% & 13.3 & 3.29\%\\
+\hline
+Sloping outside walls & NA & NA & 4.5 & 1.57\% & 6.1 & 1.51\%\\
+\hline
+Broken windows & 7.6 & 6.46\% & 7.8 & 2.72\% & 15.4 & 3.81\%\\
+\hline
+Bars on windows & 16.1 & 13.69\% & 22.0 & 7.67\% & 38.1 & 9.42\%\\
+\hline
+Foundation crumbling or has open crack or hole & NA & NA & 14.5 & 5.05\% & 18.1 & 4.47\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\emph{Source: \href{https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html}{American Housing Survey} (2019). Estimates in thousands of housing units.}
 
 Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3\% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.
 
@@ -527,7 +543,7 @@ The dataset can be simplified by filtering for code enforcement data and narrowi
 \NormalTok{    OWNER\_NAME, }\CommentTok{\#\textquotesingle{} assigned code inspector}
 \NormalTok{    CREATED\_BY\_USER,}
 \NormalTok{    location1 }\CommentTok{\#\textquotesingle{} geocoordinates}
-\NormalTok{  )}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{RESOLUTION\_SUMMARY =} \FunctionTok{str\_to\_lower}\NormalTok{(RESOLUTION\_SUMMARY))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -611,7 +627,38 @@ When we look closer at \emph{who} is making complaints to code enforcement, it a
 ## # ... with 304 more rows
 \end{verbatim}
 
-However, filtering by HELEN.ANDERSON then ``tenant'' under \texttt{RESOLUTION\_SUMMARY} shows multiple instances where someone not named ``Helen Anderson'' is mentioned as the contact person across a wide variety of addresses.
+However, filtering by HELEN.ANDERSON then ``tenant'' under \texttt{RESOLUTION\_SUMMARY} shows multiple instances where someone not named ``Helen Anderson'' is mentioned as the contact person across a wide variety of addresses. Further investigation found that some of the people listed as request creators are actually inspectors.
+
+\hypertarget{seeclickfail}{%
+\subsection{SeeClickFail?}\label{seeclickfail}}
+
+While browsing Memphis's \href{https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/map?lat=35.14896833842707\&lng=-90.05163922905923\&max_lat=35.15402992416014\&max_lng=-90.04691720008852\&min_lat=35.143906437842766\&min_lng=-90.05635857582094\&zoom=17}{SeeClickFix} website, I came across a \href{https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/10508076}{service request} from a tenant who has been without air conditioning since May.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+& \\
+\midrule
+\endhead
+\includegraphics{_img/ACreq1.png} & \includegraphics[width=5.1875in,height=\textheight]{_img/ACreq2.png} \\
+\bottomrule
+\end{longtable}
+
+The tenant provided multiple photos (not all shown here) proving attempts to contact maintenance, which had been canceled or marked as completed though they were not resolved.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+& \\
+\midrule
+\endhead
+\includegraphics{_img/ACreq3.jpg} & \includegraphics{_img/ACreq5.jpg} \\
+\bottomrule
+\end{longtable}
+
+Almost immediately, the city closed the request, redirecting the tenant to call a phone number for the Mayor's Citizen Service Center. According to the \href{https://www.memphistn.gov/government/mayor-jim-strickland/mayors-citizen-service-center-311/}{City of Memphis's website}, \textbf{the Mayor's Citizen Service Center is 311}. So it appears 311 closed the request, telling the tenant to contact 311.
+
+\includegraphics{_img/ACreq4.png}
+
+This was also a case where the incident address was filled in as the 746 Chapel Street, mentioned above as having the most service requests of any address. We can now see the default address is actually in Connecticut.
 
 \hypertarget{analysis}{%
 \subsection{Analysis}\label{analysis}}
@@ -679,6 +726,29 @@ Substandard, Derelict Structure & 9\% & 8\% & 10\% & 10\% & 7\% & 9\% & \textbf{
 
 From 2016 to 2019, more requests were sorted into ``Miscellaneous'' than any other category (surpassed by vehicle violations in 2020 and 2021).
 
+\hypertarget{tidying-the-dataset}{%
+\subsection{Tidying the Dataset}\label{tidying-the-dataset}}
+
+Goal: Not manually alter dataset; instead create a sorting method that anyone can run using the latest dataset.
+
+We can see certain trends using keywords. Here are rows containing the word ``tenant'' and ``moved'' or ``evict''.
+
+\includegraphics{MA-capstone_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+In the above table, the vast majority of cases are filed under ``Code Miscellaneous'' (305 of 357 rows). Clearly there is opportunity for a new \texttt{REQUEST\_TYPE} category to sort these cases.
+
+I would like to draw your attention to sr \#4569338:
+
+\begin{quote}
+per: tenant jessica they moved due to respiratory problems from the mold/mildew like substance
+\end{quote}
+
+This led me to searching the word ``mold'', shown in the table below.
+
+\includegraphics{MA-capstone_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+This search shows that many cases involving tenants do not even mention the word tenant. Sometimes ``occupant'' or ``resident'' is used. Other times they are never mentioned; the summary may state a notice was sent to the owner, or make no mention of people at all. This makes it very hard to find information specifically about rental units. How are we to know the extent of the problem?
+
 \hypertarget{discussion}{%
 \chapter{Discussion}\label{discussion}}
 
@@ -697,7 +767,9 @@ At the root of the problem is an outdated computer and data management system.
 \hypertarget{recommendations-1}{%
 \section{Recommendations}\label{recommendations-1}}
 
-Create a \texttt{RESOLUTION\_CODE} for duplicates. (Already used by other cities like \href{https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6}{Cincinnati})
+Create a new \texttt{REQUEST\_TYPE} for private rental/landlord neglect, replacing ``Code Miscellaneous''. This is fundamental to being able to track this data.
+
+Create a \texttt{RESOLUTION\_CODE} for duplicates, replacing ``JA'' and similar. (Already used by other cities like \href{https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6}{Cincinnati})
 
 Do not put all information for one case on one row, overwriting old data. Instead, allow each update its own row.
 
@@ -705,7 +777,7 @@ Combine with assessor's database to simplify and repair location columns.
 
 Expand categories to include information on structures and tenure.
 
-Implement the HHRS into the data system. For occupied housing units, categorize hazards using the HHRS.
+Implement the \textbf{HHRS} into the data system. For occupied housing units, categorize hazards using the HHRS.
 
   \bibliography{book.bib,packages.bib}
 

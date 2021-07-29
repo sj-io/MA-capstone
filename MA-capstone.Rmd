@@ -1,0 +1,905 @@
+---
+title: "Memphis Code Enforcement"
+author: "Sarah Johnson"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is the capstone for my master's degree."
+---
+
+# About the Author {.unnumbered}
+
+Sarah Johnson is completing her master's in City and Regional Planning from the University of Memphis (expected graduation August 2021).
+
+<!--chapter:end:index.Rmd-->
+
+# Introduction {#intro}
+
+In recent years, housing discourse has been dominated by high rates of cost burdenship and the need for affordable rental housing. Less discussed is the need for improved housing quality, particularly in the private rental sector. Housing quality and health have been extensively linked by the public health field, yet tenants who wish to improve their housing quality risk possible retaliation, including increased rents and eviction. Current regulations assume that tenants will take action to report substandard housing, ignoring the risk to a tenant's housing stability. As such, substandard housing is heavily under-reported to code enforcement, often not on their radar till the housing structure is in major disrepair. At this point, the home may be condemned, deemed blighted and demolished, further decreasing the supply of low-rent housing.
+
+This paper seeks to understand the extent of this problem in Memphis. The city has a large percentage of low-income renters, an aging housing stock, a high eviction rate, and high rates of asthma. Particular attention is given to code enforcement policies and data, and how the program has and has not changed over the past twenty years. I conclude with specific recommendations for how to improve code enforcement practices to target the needs of renters.
+
+<!--# not yet mentioned: landlords and profit -->
+
+<!--chapter:end:01-intro.Rmd-->
+
+# Housing and Health
+
+> The connection between health and dwelling is one of the most important that exists.
+>
+> *Florence Nightingale*
+
+## Known Links
+
+The link between housing and health is extensive and well documented. Occupants of a home are exposed to biologic, chemical, and physical agents that can affect their health and safety [@cdc2006 63]. For instance, paint containing lead is known to cause childhood lead poisoning, which lead to the a ban on lead-based paint for residential use in 1978 [@cdc2020].
+
+### Respiratory Health
+
+Asthma, a respiratory disease which causes episodes of wheezing, breathlessness, chest tightness, and coughing, has been linked to exposure to mold or dampness and pests including dust mites, cockroaches, and rodents [@cdc2006 63].
+
+Reviewing the existing literature, @mendell2011 found dampness inside homes was linked to a wide range of respiratory or allergic health effects, including asthma. The authors concluded that prevention and remediation to reduce indoor dampness is urgently needed in a large proportion of the building stock, and such measures could significantly reduce the prevalence of respiratory and allergic disease. @rauh2002 found that cockroach allergen levels are related to the degree of household disrepair, and similarly suggested that public health interventions in housing could reduce allergen exposure.
+
+## Healthy Homes
+
+Recognizing that "health, home construction, and home maintenance are inseparable because of their overlapping goals," HUD and CDC joined together in 1999 to launch the Healthy Homes Initiative [@cdc2006 31, 34]. Many of the basic principles were originally laid out in 1938 by a Committee on the Hygiene of Housing, who provided guidance on the fundamental needs of humans as they relate to housing [@cdc2006 39; @apha1938]. The fundamental needs were originally divided into four categories: physiological needs (e.g. protection from elements), psychological needs (e.g. adequate privacy), protection against contagion (e.g. safe water supply), and protection against accidents (e.g. fire prevention).
+
+The modern Healthy Home Rating System (HHRS) is a list of 29 hazards, categorized in accordance with these needs [@HHRSover 2]. The below table lists all the hazards, along with a short description and which populations are most vulnerable to the specific hazard (adopted from @HHRSlst).
+
+```{r vroomHHRS, include=FALSE}
+library(vroom)
+HHRS <- vroom("_data/HH-hazards.csv")
+```
+
+```{r HHRS, echo=FALSE}
+library(DT)
+datatable(HHRS,
+          rownames = FALSE, 
+          caption = "The 29 Healthy Home Hazards",
+          options = list(
+            pageLength = 5,
+            lengthMenu = c(5, 10, 15, 20, 25, 29)
+          ))
+```
+
+The HHRS provides a standardized way to identify and rate the risk of home health hazards. Once a hazard is identified, it is further rated according to severity and the effect it is having, or could have, on the occupants. The greater the risk or more serious the outcome, the higher the overall score. The system provides a way to compare risks associated with different types of hazards.
+
+According to @HHRSover, this system allows local housing and health departments to know which hazards are most serious to the occupants, allowing them to prioritize funding. It also lets local policy makers identify which areas of the community are in greatest need and what health impacts those communities are facing.
+
+<!--# Households can take certain steps to reduce health risks, such as decreasing allergens by removing pets from the home and frequent dusting and vacuuming.  -->
+
+## Maintenance in the Private Rental Market
+
+Health risks caused by larger structural issues can be difficult to implement, particularly for low-income households that rent, as tenants have little or no power to repair such problems. A study of low-income parents of children with asthma found landlords were directly involved in keeping homes in poor condition, even when asked by the tenant to fix the property, and a cycle of fear, poverty, and lack of power compounded to make tenants hesitant to report problems [@grineski2010]. Relocating families can reduce health risks, but higher rents associated with safer housing can make it financially difficult or impossible for some families to move [@mclaine2006].
+
+Current regulation of private rental housing quality assumes that tenants will take action to report substandard housing, yet this is often not the case. To understand the disconnect between the law's expectations and reality, @chisholm2018 collected existing qualitative literature to explore power dynamics in the landlord-tenant relationship. The research showed that, for the most part, tenants who "reported housing quality problems found it a stressful experience, with repairs taking a long time to be carried out, or not at all." This experience often impacted future behavior, causing tenants to avoid reporting problems because they did not think it would be effective.
+
+In some cases, tenants would rather move out than work towards a resolution, leaving the issue open for future tenants. In other instances, tenants with low incomes were aware of the lack of alternative housing, causing them to remain silent. Fear of eviction prevented tenants from reporting problems, and this fear was not unfounded; in three of the 15 studies, tenants who reported housing problems were evicted or forced to move. Though laws against retaliatory action might exist, no-cause evictions allow landlords to still remove the tenant from the unit. @chisholm2018 concludes that tenants do not report housing quality problems because the regulation that relies on their reporting fails to protect many tenants.
+
+A wide range of solutions are put forward to improve tenant reporting. Ending no-cause evictions and expanding legal aid can encourage tenants who may have been scared to speak up. Increasing the supply of social or public housing can expand housing options to households most vulnerable to changes in rent. The authors also suggest authorities supervise a web-based reporting system for repair requests, establishing clear records, automated reminders to the landlords, and an opportunity for authorities to step in for unduly slow repairs.
+
+The remainder of this paper seeks to understand the quality of private rental housing in Memphis and systems to report maintenance problems, particularly in cases of landlord neglect.
+
+<!--chapter:end:02-hsng-hlth.Rmd-->
+
+# Memphis
+
+## Health
+
+In 2015, Memphis was named the asthma capital of America by the Asthma and Allergy Foundation of America [@aafa2015], based on prevalence, risk factors, and medical factors. Recent efforts to reduce the prevalence and risk of asthma have been successful---Memphis's rank has since decreased to 41st in 2021 [@aafa2021].[^memhsg-1] However, Memphis still ranks high in asthma-related mortality, placing 7th of 100 cities.
+
+[^memhsg-1]: The ranking method changed between 2015 and 2021, with fewer factors involved in a city's overall ranking in 2021.
+
+A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis [@shin2018]. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems, leading authors to conclude that effective health interventions should consider involving housing policies and procedures.
+
+## Housing Characteristics
+
+```{r tidycensus, include=FALSE}
+library(tidyverse)
+library(tidycensus)
+library(kableExtra)
+```
+
+```{r censusbasics, include=FALSE}
+yrs <- lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
+v19 <- load_variables(2019, "acs5", cache = T)
+```
+
+According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47%) are owner-occupied; 134,371 (53%) are renter-occupied.
+
+### Median Year Built
+
+The age of a housing unit can be an indicator that repairs are needed. The below table shows the median age of occupied housing units in the city of Memphis, separated by tenure.
+
+<!--# get data for MEDIAN YEAR STRUCTURE BUILT BY TENURE -->
+
+```{r medyrblt_p, include=FALSE}
+medyrblt_p <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place", #' Memphis city, Tennessee
+    table = "B25037", #' MEDIAN YEAR STRUCTURE BUILT BY TENURE
+    year = .x, #' all years
+    state = 47, 
+    survey = "acs5",
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r medyrblt_msa, include=FALSE}
+medyrblt_msa <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "metropolitan statistical area/micropolitan statistical area",
+    table = "B25037", #' MEDIAN YEAR STRUCTURE BUILT BY TENURE
+    year = .x,
+    survey = "acs5",
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+<!--# filter & tidy -->
+
+```{r medyrblt_mem, include=FALSE}
+medyrblt_mem <- medyrblt_p %>% 
+  filter(NAME == "Memphis city, Tennessee") %>%
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure"), sep = "!!") %>%
+  select(year, tenure, estimate) %>% 
+  filter(tenure != "Total:") %>% 
+  pivot_wider(names_from = tenure, values_from = estimate)
+```
+
+```{r medyrblt_mmsa, include=FALSE}
+medyrblt_mmsa <- medyrblt_msa %>% 
+  filter(NAME == "Memphis, TN-MS-AR Metro Area") %>% 
+  left_join(v19, by = c("variable" = "name")) %>% 
+  separate(label, c("est", "tot", "tenure"), sep = "!!") %>% 
+  select(year, tenure, estimate) %>% 
+  filter(tenure != "Total:") %>% 
+  pivot_wider(names_from = tenure, values_from = estimate)
+```
+
+<!--# make tables -->
+
+```{r tbl-medyrbltmem, echo=FALSE}
+knitr::kable(
+  medyrblt_mem, 
+  col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
+  align = "lcc",
+  caption = 'Median year built of occupied housing units in City of Memphis'
+  )
+```
+
+The Memphis housing stock is aging. The median year built has not (or barely) budged over the past ten years for all occupied homes. The median age of owner-occupied homes is 55 years; for renter-occupied homes, 47 years. The median year built for both owner and renter occupied units is before the ban of lead-based paint in 1978, indicating many homes are at risk for lead poisoning if they have not been remediated.
+
+When we expand our scope from the city limits to the Memphis MSA, there is a noticeable shift in the data, as seen in the table below.
+
+```{r tbl-medyrbltmsa, echo=FALSE}
+knitr::kable(
+  medyrblt_mmsa, 
+  col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
+  align = "lcc",
+  caption = 'Median year built of occupied housing units in Memphis MSA'
+  )
+```
+
+In the MSA, the median age of renter-occupied homes is 43; for owner-occupied units, 36. This signifies that most new development in the MSA has been for owner-occupied homes outside city limits. We can confirm this by looking at more detailed data available from the Census.
+
+### Year Structure Built
+
+<!--# get 2019 data for TENURE BY YEAR STRUCTURE BUILT -->
+
+```{r yrblt-p, include=FALSE}
+yrblt_p <- get_acs(
+  geography = "place", #' Memphis city, Tennessee
+  table = "B25036", #' TENURE BY YEAR STRUCTURE BUILT
+  state = 47, 
+  survey = "acs5", 
+  cache_table = T
+  )
+```
+
+<!--# filter & tidy -->
+
+```{r yrblt-mem, include=FALSE}
+yrblt_mem <- yrblt_p %>% 
+  filter(GEOID == 4748000) %>% #' Memphis city, Tennessee
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "year"), sep = "!!") %>%
+  select(tenure, year, estimate) %>%
+  separate(tenure, c("tenure", "occ"), sep = " ") %>%
+  select(-occ) %>% 
+  filter(!is.na(year)) %>%
+  mutate(year = fct_collapse(year,
+    "Built 2010 to 2019" = c("Built 2010 to 2013", "Built 2014 or later"))) %>% 
+  group_by(tenure, year) %>% 
+  summarise(estimate = sum(estimate)) %>% 
+  mutate(datayr = 2019)
+```
+
+The following graph shows the number of homes built each year in Memphis, separated by tenure.
+
+<!--# graph -->
+
+```{r ggplotysb, echo=FALSE}
+yrblt_mem %>% 
+  mutate(estimate = ifelse(tenure == "Owner", -estimate, estimate)) %>% 
+  ggplot(aes(year, estimate, fill = tenure)) +
+  geom_bar(stat = "identity", width = 1) +
+  scale_y_continuous(labels = function(y) paste0(abs(y/1000), "K")) +
+  scale_x_discrete(labels = function(x) gsub("Built ", "", x)) +
+  coord_flip() +
+  theme_linedraw() +
+  labs(x = "",
+       y = "Estimate of housing units built",
+       fill = "Tenure",
+       title = "Year Structure Built by Tenure",
+       subtitle = "Memphis, Tennessee",
+       caption = "Data source: 2015-2019 American Community Survey")
+```
+
+More owner-occupied homes were built between 1950 to 1959 than any other period, with the stock gradually decreasing every decade since, plummeting after 2010. According to the data, there are **only 872 owner-occupied homes constructed since 2010**. It is now clear why the median year built for these homes has not budged in the past decade.
+
+The year renter-occupied homes were built peaked in the 1970s, eclipsing owner-occupied homes and outpacing it ever since (though still declining). Rental homes also sharply decrease after 2010, but not as severe. Of occupied rental homes, **4,404 were constructed since 2010**.
+
+Note that this dataset shows the year homes were built based on **current** tenure. It is possible for a home to originally have been owner-occupied and converted to a rental. We can investigate this by comparing 2015-2019 ACS data with 2005-2009 data and measuring the difference.
+
+<!--# get 2009 data (and proper variable names!) -->
+
+```{r include=FALSE}
+v09 <- load_variables(2009, "acs5", cache = T)
+yrblt09_p <- get_acs(
+   geography = "place",
+   table = "B25036", #' TENURE BY YEAR STRUCTURE BUILT
+   state = 47, 
+   survey = "acs5", 
+   year = 2009,
+   cache_table = T
+   )
+```
+
+<!--# tidy 2009 data & bind to 2019 data -->
+
+```{r include=FALSE}
+yrblt09_mem <- yrblt09_p %>%
+  filter(GEOID == 4748000) %>%
+  left_join(v09, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "year"), sep = "!!") %>%
+  select(tenure, year, estimate) %>%
+  separate(tenure, c("tenure", "occ"), sep = " ") %>%
+  select(-occ) %>%
+  filter(!is.na(year)) %>% 
+  mutate(year = fct_collapse(year,
+    "Built 2000 to 2009" = c("Built 2000 to 2004", "Built 2005 or later"))) %>% 
+  group_by(tenure, year) %>% 
+  summarise(estimate = sum(estimate)) %>% 
+  mutate(datayr = 2009)
+
+yrblt_decade <- rbind(yrblt09_mem, yrblt_mem)
+
+yrblt_diff <- yrblt_decade %>% 
+  group_by(tenure, year) %>% 
+  summarise(estimate = diff(estimate))
+```
+
+<!--# table -->
+
+```{r tbl-yrblt-diff, echo=FALSE}
+tblyrblt_diff <- yrblt_diff %>% 
+  pivot_wider(names_from = tenure, values_from = estimate) %>% 
+  mutate(change = Owner + Renter)
+
+knitr::kable(
+  tblyrblt_diff,
+  col.names = c("Year Structure Built", "Owner", "Renter", "All Occupied Units"),
+  align = "lccc",
+  caption = "Change in Occupied Units by Year Structure Built from 2009 to 2019 ACS")
+```
+
+There was an overall loss of 13,641 occupied housing units between 2009-2019 in the city of Memphis. Broken down by tenure, there was a loss of 25,467 owner-occupied units, and a gain of 11,826 renter occupied units. If we limit our scope to **"older" units (built before 1990)**, there was a loss of 23,310 owner-occupied units, and a **gain of 7,089 renter-occupied units**.
+
+We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.[^memhsg-2] This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.
+
+[^memhsg-2]: The gain of units from 1990 to 1999 is likely due to data error. Another explanation is that previously vacant units built during this time are now occupied. But this is unlikely given the loss in occupied units and an increase in vacant units from 2009-2019.
+
+Considering the Great Recession, this implies former homeowners are now renting. Households that formerly benefited from policies and programs geared toward homeowners now navigate a housing system that is decidedly anti-renter. They lost their opportunity to build generational wealth, and now their wealth is being extracted through rents. Additionally, homes being converted into rentals limits the availability of homes for purchase, and denies young people the opportunity to plant roots in the community.
+
+Below is a graph visualizing the above table.
+
+<!--# graph -->
+
+```{r ggplotdec, echo=FALSE}
+yrblt_diff %>% 
+     ggplot(aes(year, estimate, fill = tenure)) +
+     geom_col() +
+     scale_y_continuous(labels = function(y) paste0((y/1000), "K")) +
+     scale_x_discrete(labels = function(x) gsub("Built ", "", x)) +
+     coord_flip() + 
+     theme_linedraw() +
+     labs(x = "",
+          y = "Housing units gained/lost since 2009",
+          fill = "Tenure",
+          title = "Change in Occupied Housing Units by Year Built, 2009-2019",
+          subtitle = "Memphis, Tennessee",
+          caption = "Data source: 2005-2009 and 2015-2019 American Community Survey")
+```
+
+Between the 2009 and 2019 ACS, there was a definite loss in occupied housing units built before 1939 and between 1960-1969. In every other decade, there was a loss of owner-occupied units and a gain in renter-occupied units. As we cannot travel back in time and build more rental units, we can assume that these were formerly owner-occupied units that have been converted to rental units.
+
+## Housing Quality
+
+Data on housing quality in the Memphis MSA is available through the 2019 [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html). As the median age for rental homes is seven years older than for owner-occupied homes in the MSA, we can expect renter-occupied homes to have more deficiencies and problems than owner-occupied homes.
+
+When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.[^memhsg-3]
+
+[^memhsg-3]: In the discussions below, "renters" refers to renter-occupied units, "owners" refers to owner-occupied units, and "Memphis" refers to the Memphis MSA.
+
+### Selected Housing Deficiencies
+
+<!--# import AHS dataset -->
+
+```{r AHSqual-all, include=FALSE}
+AHS_mem_hsgqual_all <- read_csv("_data/AHS-mem-hsgqual-all.csv")
+```
+
+```{r AHSselectcol, include=FALSE}
+AHSqual_all <- AHS_mem_hsgqual_all %>% 
+  select(tenure, char:estimate, total)
+```
+
+<!--# filter for selected deficiencies -->
+
+```{r AHS-selected-deficiencies, include=FALSE}
+AHSseldef <- AHSqual_all %>% 
+  filter(char == "Selected Deficiencies") %>% 
+  select(-c(char, subchar2:subchar5))
+```
+
+<!--# table -->
+
+```{r make-tbl-AHSseldef, include=FALSE}
+AHSseldef_tbl <- AHSseldef %>% 
+  mutate(pct = paste0(round(100*estimate/total,2), '%')) %>% 
+  select(-total) %>% 
+  pivot_wider(names_from = tenure, 
+              names_glue = "{tenure}_{.value}", 
+              values_from = c(estimate, pct)) %>% 
+  select(subchar, Renter_estimate, Renter_pct, 
+         Owner_estimate, Owner_pct, All_estimate, All_pct) %>% 
+  filter(!is.na(All_estimate)) %>% 
+  mutate(across(ends_with("pct"), ~na_if(., "NA%")))
+```
+
+```{r tbl-AHSselfdef, echo=FALSE}
+kable(
+  AHSseldef_tbl,
+  col.names = c("Deficiency",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "lcccccc", caption = "Selected Housing Deficiencies, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 1,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  ))
+```
+
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
+
+Renter-occupied units experienced more housing deficiencies than owner-occupied units for all but one of the selected problems.
+
+Pests are prevalent in both owner and renter-occupied units. Renters saw more signs of cockroaches (by 7.4 percentage points), while owners were more likely to sight mice or rats (by 0.4 percentage points). These trends align with national data, where renters were 1.98 times more likely to see cockroaches and owners were 1.17 times more likely to report a rodent sighting [@sellner2021]. Compared to national averages, housing units in the Memphis MSA saw slightly fewer rodents (11.1% vs 11.9%) and significantly more cockroaches (18.6% vs. 11.3%).
+
+Renters were moderately more likely to have open cracks or holes in the interior of their home and to have rooms without electrical outlets. They were also slightly more likely to have decaying interior walls and exposed wiring.
+
+### Housing Problems
+
+The following table shows the number of units who experience selected housing problems. An estimate of "S" denotes a sample too small to meet publication standards or avoid disclosure of identifying information. The total column ("Tot") is the number of housing units *capable* of experiencing each problem (rather than all housing units). For instance, the total number of units with heating problems only includes units with heating equipment who occupied their unit last winter (excluding units without heating equipment or those who did not occupy their unit last winter).
+
+```{r eval=FALSE, include=FALSE}
+AHSmold <- AHSqual_all %>% 
+  filter(str_detect(char, "Mold|Water Leakage"), 
+         !is.na(estimate), is.na(subchar2)) %>% 
+  select(-c(subchar2:subchar5)) %>% rename(subchar2 = subchar)
+```
+
++----------------------------------------------------+----------+-------+---+----------+-------+
+|                                                    | Rent     |       |   | Own      |       |
++====================================================+:========:+:=====:+:=:+:========:+:=====:+
+| **Problem**                                        | **est.** | **%** |   | **est.** | **%** |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| No flush toilet working some time in last 3 months | 7.0      | 3.1%  |   | S        | \-    |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Uncomfortably cold for 24 hours or more            | 12.3     | 6.6%  |   | 10.8     | 3.9%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Fuses or breakers blown in last 3 months           | 14.1     | 6.3%  |   | 19.3     | 6.7%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water stoppage in last 3 months                    | 6.4      | 2.9%  |   | 3.2      | 1.1%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water leakage from inside structure                | 19.5     | 8.7%  |   | 20.7     | 7.1%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water leakage from outside structure               | 18.9     | 8.4%  |   | 25.5     | 8.8%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Mold in last 12 months                             | 11.8     | 5.3%  |   | 5.8      | 2.0%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Public sewer breakdown in last 3 months            | 5.1      | 2.3%  |   | S        | \-    |
++----------------------------------------------------+----------+-------+---+----------+-------+
+
+: Selected Housing Problems
+
+```{r eval=FALSE, include=FALSE}
+AHSprob <- AHSqual_all %>%
+  filter(
+    !str_detect(
+      char,
+      "Housing Adequacy|Selected Deficiencies|External Building Conditions|Mold|Water Leakage|Sewage Disposal"
+    ), !is.na(estimate),
+    !is.na(subchar2),
+    is.na(subchar3)
+  ) %>% 
+  select(-c(subchar, subchar3:subchar5)) %>% rbind(AHSmold) %>% 
+  mutate(pct = paste0(round(100 * estimate / total, 2), '%')) %>%
+  select(-total) %>%
+  pivot_wider(
+    names_from = tenure,
+    names_glue = "{tenure}_{.value}",
+    values_from = c(estimate, pct)
+  ) %>%
+  select(char,
+    subchar2,
+    Renter_estimate,
+    Renter_pct,
+    Owner_estimate,
+    Owner_pct,
+    All_estimate,
+    All_pct
+  ) %>%
+  filter(!is.na(All_estimate)) %>%
+  mutate(across(ends_with("pct"), ~ na_if(., "NA%")))
+```
+
+```{r eval=FALSE, include=FALSE}
+kable(
+  AHSprob,
+  col.names = c("Problem", " ",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "rlcccccc", caption = "Selected Housing Problems, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 2,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  )) %>% remove_column(1)
+```
+
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
+
+Renter-occupied units were overall more likely to experience housing problems and breakdowns than owner-occupied units.
+
+The most common problem for renters and owners was water leakage during the past year. Owners were slightly more likely (by 0.4 percentage points) to experience leakage from outside the structure, such as from the roof, walls, closed windows, or doors. Renters were more likely (by 1.6 percentage points) to experience internal water leakage, such as from a leaky pipe, a broken water heater, or a backed up or overflown fixture. This is likely why renters were more likely to report mold growth within the past year (by 3.3 percentage points).
+
+Heating problems causing households to be uncomfortably cold for at least a day were more common for renter-occupied units (by 2.7 percentage points). Renters were also more likely to experience sanitation problems barely reported by owners. This includes having a public sewer breakdown or having no working toilets at some point in the last three months.
+
+Owners were slightly more likely to recently experience a blown fuse or breaker.
+
+### External Building Conditions
+
+The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, **excluding multi-unit homes**. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.
+
+```{r include=FALSE}
+AHSextbld <- AHSqual_all %>% 
+  filter(char == "External Building Conditions") %>% 
+  select(-c(char, subchar2:subchar5)) %>% 
+  mutate(pct = paste0(round(100*estimate/total,2), '%')) %>% 
+  select(-total) %>% 
+  pivot_wider(names_from = tenure, 
+              names_glue = "{tenure}_{.value}", 
+              values_from = c(estimate, pct)) %>% 
+  select(subchar, Renter_estimate, Renter_pct, 
+         Owner_estimate, Owner_pct, All_estimate, All_pct) %>% 
+  filter(!is.na(All_estimate)) %>% 
+  mutate(across(ends_with("pct"), ~na_if(., "NA%")))
+```
+
+```{r echo=FALSE}
+kable(
+  AHSextbld,
+  col.names = c("Condition",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "lcccccc", caption = "External Building Conditions, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 1,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  ))
+```
+
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
+
+Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.
+
+## Summary
+
+Renter-occupied units in Memphis are more likely than owner-occupied units to experience housing issues, and by wider margins. Of the 19 housing quality issues discussed in the three tables above, only three problems were more likely to be experienced by owner-occupied units, and only by a margin of 0.4 percentage points for each problem. Meanwhile, there were 15 problems more common in renter-occupied units, 13 of which had a margin greater than 0.4 percentage points.
+
+<!--chapter:end:03-memhsg.Rmd-->
+
+# Code Enforcement
+
+<!--# According to Sharon Hyde, head of the Memphis branch of the Green and Healhty Homes Initiative, Code Enforcement has been trained to identify healthy home hazards, though it has been a few years. The system is currently being used by the Shelby County Department of Housing for their LEAD grant program, which is funded by HUD and requires a healthy home inspection for each project. -->
+
+## Reports
+
+Over the past twenty years, there have been at least two expansive reports offering critiques and criticisms of Memphis code enforcement. While each report aimed to improve code enforcement, the reasons differed---one sought to address crime and safety, the other public health.
+
+The first report, released in April 2001, was distributed by the Memphis Shelby Crime Commission and written by Phyllis Betts, then a professor of sociology at University of Memphis [@betts2001]. Input was provided by two other University of Memphis faculty: Betts's husband, the late Richard Janikowski, former chair of the Department of Criminology and Criminal Justice and 'father' of Memphis's Blue CRUSH policing [@poe2021]; and Susan Roakes, former professor of City and Regional Planning.
+
+The report was built on the "broken windows" criminology theory: in deteriorated or declining neighborhoods, physical neglect of "problem properties" attracts and aggravates criminal activity. Researchers interviewed inspectors and individuals involved with environmental court, used code enforcement data from 1992-1999, accessed the Shelby County Tax Assessor's database, and conducted visual surveys for selected properties as part of a case study of the Binghamton neighborhood.
+
+The second report, published in 2018, was produced by The Urban Institute [@stacy2018]. While the 2001 report focused on property neglect and safety, this report centered on the link between the physical condition of homes and neighborhoods and public health. Planning for the report began shortly after the election of Mayor Jim Strickland in 2016, whose campaign had emphasized blight control [@baker2018]. Researchers collaborated with and interviewed members of the newly formed [Blight Elimination Steering Team](http://memphisfightsblight.com/blight-elimination-steering-team/), a coordinated effort between public, private, and nonprofit agencies to address blight, and the [Green and Healthy Homes Initiative](https://www.greenandhealthyhomes.org/location/memphis-tn/), a partnership formed between local health care providers and housing and community development organizations to address public health issues related to housing quality.
+
+The report accessed and analyzed data through the [Memphis Property Hub](http://memphisfightsblight.com/programs/mph/), which offers parcel-level property information, particularly related to blighted, vacant, and foreclosed homes. Code enforcement data from 1999-2017 was used, effectively picking up where the last report ended. Additional data related to public health, safety, and courts were provided by the Shelby County Healthy Department, the Center for Applied Earth Science and Engineering Research department at the University of Memphis, and the Shelby County Environmental Court, respectively.
+
+### Findings
+
+In a visual survey of the Binghamton neighborhood, @betts2001 found that only about 1 in 5 code violations were reported.
+
+Both reports found the vast majority of code enforcement reports were related to nonstructural issues. @betts2001 reported three out of four properties were cited for non-structural problems such as weeds, junk, and inoperable or abandoned vehicles. It appears this percentage has actually increased overtime; @stacy2018 stated 81% of all requests concerned the yard or property, rather than the house.
+
+@stacy2018 found service requests were concentrated in areas with single-family homes, and though about half of all requests were for multifamily units, most of these (70 percent) were for duplexes rather than apartment complexes. @betts2001 also found that large multifamily units flew under the radar; at least half of multifamily properties in Binghamton had violations in multiple units, yet code enforcement recorded only eight violations out of 1200 apartment units.
+
+It appears the number of service requests has increased overtime. In 1998, code enforcement received about 10,000 complaints [@betts2001 93], while the Urban Institute reported 53,226 in 2016 [@stacy2018 51]. However, this number does not match open data (discussed later in this paper) which reported 30,361 requests in 2016, not excluding duplicates. Nevertheless, it does appear that more requests are being made.
+
+Cases also appear significantly more likely to be taken to court. In 1998, a mere 71 cases from code enforcement were heard by the environmental court [@betts2001 49]. In November 2017 alone, 1,095 cases went to environmental court, though the Urban report does not specifically state if all cases were from code enforcement [@stacy2018 51]. However, the majority of cases were for single-family homes (64%), and most were vacant.
+
+### Recommendations
+
+Both reports recommend fundamentally changing Memphis code enforcement from a reactive process (responding to citizen reports) to a proactive, strategic system.
+
+@stacy2018 suggests that code enforcement prioritize health-related violations and interior health and safety issues, cemented through the agency's policies and procedures manual. The authors recommend proactive inspections of problem multifamily properties and under-served neighborhoods, and identification of under-reported violations. Multiple technology improvements are recommended, including automatic prioritization of health-related violations and synchronizing of data systems with the Shelby County Department of Health and the environmental court, among others. Also acknowledged is the need to update current landlord/tenant laws to protect tenants from homelessness.
+
+<!--# add a lot more -->
+
+## 311 Data
+
+Memphians are able to report problems to code enforcement by calling 311 or submitting a request through an app called [SeeClickFix](https://seeclickfix.com/), used in hundreds of towns across the nation.
+
+Housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta). This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows. R/RStudio was used to view and analyze the dataset.
+
+```{r getdata, include=FALSE}
+library(tidyverse)
+Service_Requests_since_2016 <-
+  read_csv(
+    "_data/Service_Requests_since_2016.csv",
+    col_types = cols(
+      ADDRESS2 = "c",
+      ADDRESS3 = "c",
+      COLLECTION_DAY = "c",
+      CLOSE_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      CREATION_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      FOLLOWUP_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      INCIDENT_RESOLVED_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      LAST_MODIFIED_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      LAST_UPDATE_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      NEXT_OPEN_TASK_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p"),
+      REPORTED_DATE = col_datetime(format = "%m/%d/%Y %I:%M:%S %p")
+    )
+  )
+```
+
+Each row of the dataset contains all information for a single request, meaning there are not multiple rows for individual cases (except for duplicates).
+
+Despite the large number of records, only a portion are relevant to this paper. This is because the dataset contains **all** requests to 311, not just those related to code enforcement. Additionally, many columns contain duplicate or unhelpful information. For instance, there are 23 columns related to location and under the column `LAST_UPDATED_BY`, every single entry is just the number "460101".
+
+The dataset can be simplified by filtering for code enforcement data and narrowing the number of columns. In the next section I more thoroughly explain why I chose these columns.
+
+**NOTE**: A list of all column names is available on the Data Hub site linked above, or in R/RStudio enter `colnames(Service_Requests_since_2016)`.
+
+```{r CE}
+CE <- Service_Requests_since_2016 %>%
+  filter(DEPARTMENT == "Code Enforcement") %>%
+  select(
+    INCIDENT_NUMBER, #' service request (sr) number
+    PARCEL_ID, #' parcel ID
+    ADDRESS1, #' the street name & number
+    REQUEST_TYPE, #' request category
+    CE_CATEGORY, #' category for CE action
+    RESOLUTION_CODE:RESOLUTION_SUMMARY, #' how the request resolved
+    REQUEST_STATUS, #' open or closed?
+    REPORTED_DATE, 
+    LAST_MODIFIED_DATE, 
+    OWNER_NAME, #' assigned code inspector
+    CREATED_BY_USER,
+    location1 #' geocoordinates
+  ) %>% mutate(RESOLUTION_SUMMARY = str_to_lower(RESOLUTION_SUMMARY))
+```
+
+The output is 14 columns and 154,844 rows, significantly easier to work with.
+
+### Problems with the dataset
+
+We're ready to begin looking at the data, but before analyzing you should know that there are significant problems with this dataset, including inconsistent and vague data entry, hard-to-filter duplicates, an error causing the wrong address to appear, and more. As such, I was not able to quickly process and analyze this data.
+
+Throughout the dataset, there are **multiple values that mean the same thing**, like closed and resolved[^ce-1]. The `RESOLUTION_CODE` field in particular has a handful of codes used for an umbrella of meanings. For instance, 23% of rows are resolved as "NJ" for Not Justified. This may mean an inspector has visited the property and did not see a problem, or there was a wrong address[^ce-2], or there was a problem and it's been fixed, or there was a problem but it wasn't related to code enforcement; but in most cases there is no further explanation given. There are similar problems for codes tagged CVOM (COMP. V.O. - Miscellaneous, 9% of all cases), CVOID (Closed Void, 4% cases), CO (Closed Other, 3%), and Other (1%). Together, these codes make up [40%]{.ul} of all code enforcement cases.
+
+[^ce-1]: Resolved has only been used 72 times, which begs the question of whether it needs to exist at all.
+
+[^ce-2]: INSUF (Insufficient information) is also used for wrong address cases.
+
+Another field with this problem is `REQUEST_TYPE`. From 2016 to present, 29% of all requests were simply listed as "Code Miscellaneous".
+
+Some problems are caused by a **lack of updates** on behalf of inspectors. A file may never be closed in the system, even though the inspector is finished looking at the case. There are 779 active cases created in 2018 or earlier (at least 2.5 years old) and it is unclear if some are in a lengthy legal battle or were simply never updated.
+
+There are many many **duplicated entries**. It's hard to determine exactly how many, because the duplicates will have unique values under `INCIDENT_NUMBER` and slightly different date/times. For this reason it is hard to filter out without accidentally omitting multiple legitimate entries under the same property. Also, any entries that were created in error are kept in the system. This leads to inspectors frequently entering "see sr\#xxxxxx" in the `RESOLUTION_SUMMARY`, referring to a different `INCIDENT_NUMBER` that contains the correct file.[^ce-3] There is also a code specifically for duplicate entries that already have an active file, JA (Justified, Active already file), which has been used 6,588 times, though other codes are known to be used for this same problem.
+
+[^ce-3]: There are 6,391 instances of a `RESOLUTION_SUMMARY` mentioning "sr", and nearly all of these rows are likely to be duplicates.
+
+**Other problems are more major.** It appears that SeeClickFix (SCF), a program used to allow users to create requests, can cause the **wrong address** to be entered into the system. There is no warning given for this error. When I attempted to sort addresses with the most violations, the top address does not actually exist in the city of Memphis. The inspectors know this and they seem to be able to view the correct address in SCF, and sometimes (but not often) they will manually write this address in the `RESOLUTION_SUMMARY`. It is unclear how many addresses have this problem, but it does affect multiple addresses. As a researcher, I feel nervous conducting research on data with such obvious errors.
+
+Each row is meant to hold all information for a single case. There is also only one column for inspectors to manually enter notes: `RESOLUTION_SUMMARY`. This column has become a **catch-all** for legitimate information, though it is also NA in 23% of rows. In many other cases there is little elaboration, or the `RESOLUTION_CODE_MEANING` is simply repeated. Despite having eight different date columns, it is very common for dates to be entered here with the notes. Because this field is typed, typos are not-uncommon---tenant is spelled "tennant" 51 times, with many other variations such as "tenenat", "tenet", "teneant" and "tenent". Other times a tenant is referred to as a "resident". These variances make it difficult to find all instances of keywords.
+
+Lastly, there are also obvious **privacy issues** included in the field, such as the full name and phone numbers of individuals.
+
+### Duplicates & Errors
+
+Searching for duplicates is made difficult by the large number of errors in the dataset. This is made clear when we begin searching for addresses with the most service requests.
+
+```{r}
+CE %>% count(ADDRESS1) %>% arrange(desc(n))
+```
+
+There are 194 entries listed under the address 746 Chapel St, an address that does not seem to exist in Memphis (there is a Chapel [Rd]{.ul}, but no 746). Reviewing the `RESOLUTION_SUMMARY` reveals the address to be a catch all of errors. Sometimes a different address or a business name is written in the `RESOLUTION_SUMMARY`, indicating the results we are seeing is not the same as what was originally entered, yet code inspectors may be able to view the correct address. It is likely best to remove this address from any analysis involving location.
+
+At 1490 Hugenot St, there are 117 requests, but this property appears to have the same problem as 746 Chapel. This is revealed by certain entries in the `RESOLUTION_SUMMARY` including "The correct address is xxx Summer Ave." and "INSUFFICIENT INFORMATION WRONG ADDRESS SUBMITTED BY SEECLICKFIX" (SeeClickFix, or SCF, is listed as the request creator for all but five entries at this address).
+
+As for 45 S Idlewild, this is a valid location (an apartment complex) with 117 service requests. A closer look shows three people made 20 requests on February 1, 2019. Yet as discussed below, it is not clear if we should trust the information seen in `CREATED_BY_USER`.
+
+When we look closer at *who* is making complaints to code enforcement, it at first seems a few people are creating an astounding number of requests.[^ce-4]
+
+[^ce-4]: SCF stands for SeeClickFix, an app to create service requests.
+
+```{r}
+CE %>% count(CREATED_BY_USER) %>% arrange(desc(n))
+```
+
+However, filtering by HELEN.ANDERSON then "tenant" under `RESOLUTION_SUMMARY` shows multiple instances where someone not named "Helen Anderson" is mentioned as the contact person across a wide variety of addresses. Further investigation found that some of the people listed as request creators are actually inspectors.
+
+### SeeClickFail?
+
+While browsing Memphis's [SeeClickFix](https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/map?lat=35.14896833842707&lng=-90.05163922905923&max_lat=35.15402992416014&max_lng=-90.04691720008852&min_lat=35.143906437842766&min_lng=-90.05635857582094&zoom=17) website, I came across a [service request](https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/10508076) from a tenant who has been without air conditioning since May.
+
+|                      |                                   |
+|----------------------|-----------------------------------|
+| ![](_img/ACreq1.png) | ![](_img/ACreq2.png){width="498"} |
+
+The tenant provided multiple photos (not all shown here) proving attempts to contact maintenance, which had been canceled or marked as completed though they were not resolved.
+
+|                      |                      |
+|----------------------|----------------------|
+| ![](_img/ACreq3.jpg) | ![](_img/ACreq5.jpg) |
+
+Almost immediately, the city closed the request, redirecting the tenant to call a phone number for the Mayor's Citizen Service Center. According to the [City of Memphis's website](https://www.memphistn.gov/government/mayor-jim-strickland/mayors-citizen-service-center-311/), **the Mayor's Citizen Service Center is 311**. So it appears 311 closed the request, telling the tenant to contact 311.
+
+![](_img/ACreq4.png)
+
+This was also a case where the incident address was filled in as the 746 Chapel Street, mentioned above as having the most service requests of any address. We can now see the default address is actually in Connecticut.
+
+### Analysis
+
+Below is the number of requests for each year between 2016 and 2021, not excluding duplicates.
+
+| Reported Date           | Number of Requests |
+|-------------------------|--------------------|
+| 2016                    | 30,361             |
+| 2017                    | 26,196             |
+| 2018                    | 26,846             |
+| 2019                    | 27,559             |
+| 2020                    | 26,194             |
+| 2021 (as of 07/19/2021) | 17,688             |
+
+The number of requests has not changed much over the years.
+
+#### Active Cases
+
+Below is the number of cases still active from each year.
+
+| Year          | Active Cases |
+|---------------|--------------|
+| 2016          | 136          |
+| 2017          | 111          |
+| 2018          | 532          |
+| 2019          | 956          |
+| 2020          | 1,098        |
+| 2021          | 5,630        |
+| **All Years** | **8,463**    |
+
+There are still 779 active cases from 2018 or earlier.
+
+#### Request Type
+
+When a request is entered into 311, it must also be categorized. There are 14 categories for code enforcement data, including 3 categories related to COVID violations which were added in 2020.
+
+For each year, the vast majority of requests fell into one of five categories, listed below.
+
+|                    Request Type | 2016    | 2017    | 2018    | 2019    | 2020    | 2021    |         All | Years   |
+|--------------------------------:|---------|---------|---------|---------|---------|---------|------------:|---------|
+|              Code Miscellaneous | 28%     | 32%     | 32%     | 31%     | 25%     | 25%     |  **45,028** | **29%** |
+|               Vehicle Violation | 22%     | 26%     | 28%     | 26%     | 30%     | 35%     |  **42,249** | **27%** |
+|                  Weeds Occupied | 20%     | 18%     | 17%     | 19%     | 14%     | 11%     |  **26,161** | **17%** |
+|                      Junky Yard | 18%     | 13%     | 11%     | 12%     | 12%     | 15%     |  **21,283** | **14%** |
+| Substandard, Derelict Structure | 9%      | 8%      | 10%     | 10%     | 7%      | 9%      |  **13,778** | **9%**  |
+|                         **Sum** | **97%** | **97%** | **98%** | **98%** | **88%** | **95%** | **148,499** | **96%** |
+
+From 2016 to 2019, more requests were sorted into "Miscellaneous" than any other category (surpassed by vehicle violations in 2020 and 2021).
+
+### Tidying the Dataset
+
+Goal: Not manually alter dataset; instead create a sorting method that anyone can run using the latest dataset.
+
+```{r eval=FALSE, include=FALSE}
+dupes <- CE %>% 
+  filter(
+    str_detect(
+      RESOLUTION_SUMMARY, "sr|see#|service request|see #|duplicate") | 
+      RESOLUTION_CODE == "JA")
+
+errors <- CE %>% 
+  filter(
+    str_detect(
+      RESOLUTION_SUMMARY, 
+      "wrong address|incorrect address|not a good address|insufficient information|no such address|not enough information|wrong ticket|unknown code|no attachment"
+      ) | RESOLUTION_CODE == "INSUF")
+
+uhh <- CE %>% 
+  filter(
+    str_detect(
+      RESOLUTION_SUMMARY, "901-"), !str_detect(RESOLUTION_SUMMARY, "please contact"))
+
+yard <- CE %>% filter(
+  str_detect(RESOLUTION_CODE, "CVOYC|VOYC") | 
+    str_detect(REQUEST_TYPE, "Yard|Weeds"))
+car <- CE %>% filter(
+  str_detect(RESOLUTION_CODE, "CVOAR|VOAR|CVOAT") | 
+    str_detect(REQUEST_TYPE, "Vehicle"))
+SHELBY <- CE %>% 
+  filter(RESOLUTION_CODE == "SHELBY" | 
+  str_detect(RESOLUTION_SUMMARY, "shelby county"))
+COVID <- CE %>% filter(str_detect(RESOLUTION_CODE, "COVID"))
+
+tntmv <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "tenant"), str_detect(RESOLUTION_SUMMARY, "moved"))
+```
+
+```{r eval=FALSE, include=FALSE}
+noinfo <- CE %>% 
+  filter(
+    str_detect(
+      RESOLUTION_SUMMARY, 
+      "^comp. v.o. - miscellaneous$|^resolved$|^closed void$|^in compliance$|^closed, other$|^uncooperative$|^cvom$|^closed$|^vom$|^active npa case$|^dismissed$|^repaired$|^repairs made$|^administrative referral$|^jw-dm$|^jw-rh$|^case not justified$|^comp. v.o. bldg. repaired$|^not justified at the time of inspection$|^not justified$|^case dismissed$|^nj$|^closed, rehab$|^at the time of inspection the violation has been corrected$|^demolished by condemnation$|^violation has been corrected$|^close board and secure$|^not justified at time of inspection$|^not justified per inspection$|^corrected$|^incompliance$|^property rehabbed$|^rehabbed$"))
+
+tidy2 <- CE %>% filter(
+    !str_detect(
+      RESOLUTION_SUMMARY, "^repaired$|^repairs made$|^comp. v.o. - miscellaneous$|^resolved$|^closed void$|^in compliance$|^closed, other$|^uncooperative$|^cvom$|^closed$|^vom$|^active npa case$|^dismissed$|sr|see#|service request|see #|^administrative referral$|^jw-dm$|^jw-rh$|^case not justified$|^comp. v.o. bldg. repaired$|^not justified at the time of inspection$|^not justified$|^case dismissed$|^nj$|duplicate|^closed, rehab$|wrong address|incorrect address|not a good address|insufficient information|no such address|not enough information|wrong ticket|unknown code|no attachment|^at the time of inspection the violation has been corrected$|^demolished by condemnation$|^violation has been corrected$|^close board and secure$|^not justified at time of inspection$|^not justified per inspection$|^corrected$|^incompliance$|shelby county|^property rehabbed$|^rehabbed$"
+      ),
+    !str_detect(RESOLUTION_CODE, "CVOYC|VOYC|CVOAR|VOAR|CVOAT|SHELBY|COVID|JA|INSUF"
+    ),
+    !str_detect(REQUEST_TYPE, "Yard|Weeds|Vehicle")
+    )
+
+tt2 <- tidy2 %>% count(RESOLUTION_SUMMARY) %>% arrange(desc(n))
+tt3 <- tidy2 %>% count(RESOLUTION_CODE) %>% arrange(desc(n))
+```
+
+```{r eval=FALSE, include=FALSE}
+admin <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "please contact|wrong department|thank you for") | RESOLUTION_CODE == "BACK TO MCSC")
+
+#' RESOLUTION CODES
+NJ <- CE %>% filter(RESOLUTION_CODE == "NJ") #' Not Justified
+NPA <- CE %>% filter(str_detect(RESOLUTION_CODE, "NPA")) #' NPA 
+legal <- CE %>% filter(str_detect(RESOLUTION_CODE, "HH|HD|CTCNT|SUMM|DISM|FM-7|FM12|NPF11|SC"))
+
+#' STRUCTURE RELATED
+bldg <- CE %>% filter(
+  str_detect(RESOLUTION_CODE, "CR|CVOBR|JW-RH|CVOBD|CD") | 
+    str_detect(RESOLUTION_SUMMARY, "roof|flooring|tenant|structural|windows|carpet"))
+
+tidy <-
+  CE %>% filter(
+    !str_detect(RESOLUTION_SUMMARY, "sr|wrong address|please contact|refer to|see#|see #|service request|incorrect address|not a good address|insufficient information|no such address|roof|flooring|tenant|not enough information|wrong department|structural|wrong ticket|thank you for|^comp. v.o. - miscellaneous$|^resolved$|^closed void$|^in compliance$|^closed, other$|^uncooperative$|^cvom$|unknown code|no attachment|windows|carpet|^closed$|^vom$"), 
+    !str_detect(RESOLUTION_CODE, "JA|CVOYC|NJ|CVOAR|NPA|SHELBY|VOYC|VOAR|CR|HH|HD|CTCNT|SUMM|CVOBR|CVOAT|DISM|JW-RH|FM-7|CVOBD|BACK TO MCSC|INSUF|FM12|NPF11|COVID|CD|SC"
+    ),
+    !str_detect(REQUEST_TYPE, "Yard|Weeds|Vehicle")
+  )
+
+t2 <- tidy %>% count(RESOLUTION_SUMMARY) %>% arrange(desc(n))
+t3 <- tidy %>% count(RESOLUTION_CODE) %>% arrange(desc(n))
+```
+
+We can see certain trends using keywords. Here are rows containing the word "tenant" and "moved" or "evict".
+
+```{r echo=FALSE}
+tntmv <- CE %>% 
+  filter(
+    str_detect(RESOLUTION_SUMMARY, "tenant|tennant|tenenat|tenet|teneant|tenent"), 
+    str_detect(RESOLUTION_SUMMARY, " moved|evict")) %>% 
+  arrange(desc(LAST_MODIFIED_DATE)) %>% 
+  rename(sr = INCIDENT_NUMBER)
+
+library(DT)
+tntmv_tbl <- tntmv %>% select(sr, RESOLUTION_SUMMARY, ADDRESS1, REPORTED_DATE, everything())
+datatable(tntmv_tbl)
+```
+
+In the above table, the vast majority of cases are filed under "Code Miscellaneous" (305 of 357 rows). Clearly there is opportunity for a new `REQUEST_TYPE` category to sort these cases.
+
+I would like to draw your attention to sr \#4569338:
+
+> per: tenant jessica they moved due to respiratory problems from the mold/mildew like substance
+
+This led me to searching the word "mold", shown in the table below.
+
+```{r echo=FALSE}
+mold <- CE %>% 
+  filter(
+    str_detect(RESOLUTION_SUMMARY, "mold")) %>% 
+  arrange(desc(LAST_MODIFIED_DATE)) %>% 
+  rename(sr = INCIDENT_NUMBER) 
+
+mold_tbl <- mold %>% select(sr, RESOLUTION_SUMMARY, ADDRESS1, REPORTED_DATE, everything())
+datatable(mold_tbl) 
+```
+
+This search shows that many cases involving tenants do not even mention the word tenant. Sometimes "occupant" or "resident" is used. Other times they are never mentioned; the summary may state a notice was sent to the owner, or make no mention of people at all. This makes it very hard to find information specifically about rental units. How are we to know the extent of the problem?
+
+<!--chapter:end:04-CE.Rmd-->
+
+# Discussion
+
+Despite code enforcement being the only recourse for renters experiencing landlord neglect, code enforcement does not categorize or track this data. Instead, it is shuffled into a miscellaneous category with duplicates and errors. How can so much data say so little? How are we supposed to create a strategic code enforcement if it is difficult to understand the data we already have?
+
+I do not feel comfortable plotting this data because of the large number of errors, particularly with hard-to-sort duplicates, and incorrect addresses. It is too easy to misrepresent this data. I do not feel comfortable summarizing this data and drawing conclusions. A map can hide the problem; viewers cannot read all the error messages behind the data. [I'll try to clean this data as much as possible the next few days
+
+Instead we should stop, process what we have, find common problems and patterns, and implement improvements. We should be conscious of specific problems faced in the private rental market.
+
+We should do this because our code enforcement's largest hurdle is [the **same problem** it faced twenty years ago]{.ul}. Memphis still lacks the ability to efficiently monitor properties and "analyze overall patterns, and hold inspectors accountable for outcomes. At the root of the problem is an outdated computer and data management system. Enforcement decisions remain at the level of individual inspectors: the effectiveness of individual decisions are largely invisible in the absence of systematic analysis and evaluation. Individual inspectors may have sufficient knowledge to understand what is going on with particular properties, and may have an experiential grasp of patterns of property ownership that enables them to know who among property owners is least responsible, for example. If they are hard working and retain a belief that their actions can make a difference, individual inspectors may achieve a reasonable rate of compliance with some violators. But individual efforts, no matter how well intentioned, are by definition *not strategic*." [@betts2001, 44]
+
+> At the root of the problem is an outdated computer and data management system.
+
+## Recommendations
+
+Create a new `REQUEST_TYPE` for private rental/landlord neglect, replacing "Code Miscellaneous". This is fundamental to being able to track this data.
+
+Create a `RESOLUTION_CODE` for duplicates, replacing "JA" and similar. (Already used by other cities like [Cincinnati](https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6))
+
+Do not put all information for one case on one row, overwriting old data. Instead, allow each update its own row.
+
+Combine with assessor's database to simplify and repair location columns.
+
+Expand categories to include information on structures and tenure.
+
+Implement the **HHRS** into the data system. For occupied housing units, categorize hazards using the HHRS.
+
+<!--chapter:end:05-discussion.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:07-references.Rmd-->
+
