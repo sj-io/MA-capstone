@@ -2,15 +2,15 @@
 
 ## Housing
 
-The federal government began insuring home loans in the 1930s, and the *Underwriting Manual* was created to outline the rules on how to rate mortgage risk [@rothstein2017]. These manuals contained explicitly racist language, calling for lower ratings in neighborhoods with "inharmonious racial groups".
+The federal government began insuring home loans in the 1930s, and the *Underwriting Manual* was created to outline the rules on how to rate mortgage risk [@rothstein2017 65]. These manuals prioritized newly built suburban neighborhoods, discouraging banks from making any loans in urban areas. They contained explicitly racist language, calling for lower ratings in neighborhoods with "inharmonious racial groups" [@federalhousingadministration1938 §§ 935, 937, 951, and 982]. This language was dropped in 1947, though the manual continued to value properties based on "compatibility among the neighborhood occupants" [@rothstein2017 66, citing the 1952 *Manual*]. Color-coded maps were created for cities across the U.S. to illustrate mortgage ratings. Neighborhoods deemed the riskiest were shaded red, leading to the term "redlining."
 
-Memphis was no exception; below is a redlining map of Memphis from the 1930s.
+Memphis was no exception; below is a mortgage rating map from the 1930s.
 
 ![A color-coded map of Memphis created in the 1930s used by the federal government to rate mortgage risk. Original source: National Archives and Records Administration, accessed via [@bradley2019].](_img/memphis_redliningmap.jpg "Memphis Redlining Map")
 
-Referencing the above map, I created a digitized version using [geojson.io](https://geojson.io/).[^memhsg-1]
+Below is a digitized version of the above map.[^memhsg-1]
 
-[^memhsg-1]: I originally made this digitized map for a class in spring 2021. Today (July 30, 2021) I discovered the University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58) website, with a plethora of information concerning redlining. HOLC maps are available for public download as original scans and digitized versions (geoJSON or shapefiles) for over 100 cities in the U.S..
+[^memhsg-1]: I originally made this map using [geojson.io](https://geojson.io/) for a class in spring 2021. I have since discovered the University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58) website, which offers original scans and digitized versions (geoJSON or shapefiles) of redlining maps available for download for over 100 U.S. cities.
 
 ```{r libGeo, include=FALSE}
 library(rgdal)
@@ -34,9 +34,15 @@ leaflet(redPoly) %>%
               label = ~ paste0(Legend, " ", Rating))
 ```
 
-Overall, 69% of the city was deemed "hazardous" (red) or "definitely declining" (yellow), notably containing all of Downtown and the majority of North and South Memphis. Only 7% of the city received an A rating ("best", green), including the Central Gardens neighborhood, areas adjacent to Overton Park, Chickasaw Gardens, and East Memphis neighborhoods adjacent to golf courses. The remaining 24% of the city ("still desirable", blue) contains other Midtown neighborhoods and follows the Poplar Avenue corridor to the east. Railroads and large streets were typically the dividing line between positive and negative ratings.[^memhsg-2]
+<br>
+
+Overall, 69% of the city was deemed "hazardous" (red) or "definitely declining" (yellow), notably containing all of Downtown and the majority of North and South Memphis. Only 7% of the city received an A rating ("best", green), including the Central Gardens neighborhood, areas adjacent to Overton Park, Chickasaw Gardens, and East Memphis neighborhoods adjacent to golf courses. The remaining 24% of the city ("still desirable", blue) contains other Midtown neighborhoods and follows the Poplar Avenue corridor to the east.[^memhsg-2] Railroads and large streets were typically the dividing line between positive and negative ratings.
 
 [^memhsg-2]: Percentages sourced from [@nelson].
+
+In recent years, at least three major lawsuits have been settled concerning discriminatory lending in Memphis [@bradley2019; @uhlmann2020]. Excessive foreclosures following the 2008 subprime mortgage crisis led Memphis and Shelby County to file suit against Wells Fargo for targeting Black neighborhoods for predatory lending practices, which the bank settled for \$425 million in 2012 [@rothacker2012].
+
+Following the Great Recession, banks became selective of whom they targeted and approved for mortgages, often at the expensive of non-white residents. In 2016, BancorpSouth and First Tennessee Bank settled separate suits for \$10.6 million and \$1.9 million, respectively, against accusations of disproportionately denying loan applications to non-white borrowers and failing to build branches in non-white neighborhoods [@lane2016a and @lane2016].
 
 ## Health
 
