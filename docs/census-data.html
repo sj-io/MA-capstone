@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Census Data | Memphis Code Enforcement</title>
+  <meta name="description" content="This is the capstone for my master’s degree." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Census Data | Memphis Code Enforcement" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the capstone for my master’s degree." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Census Data | Memphis Code Enforcement" />
+  
+  <meta name="twitter:description" content="This is the capstone for my master’s degree." />
+  
+
+<meta name="author" content="Sarah Johnson" />
+
+
+<meta name="date" content="2021-07-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="code-enforcement.html"/>
+<link rel="next" href="discussion.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Memphis Housing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="housing-and-health.html"><a href="housing-and-health.html"><i class="fa fa-check"></i><b>2</b> Housing and Health</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="housing-and-health.html"><a href="housing-and-health.html#known-links"><i class="fa fa-check"></i><b>2.1</b> Known Links</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="housing-and-health.html"><a href="housing-and-health.html#respiratory-health"><i class="fa fa-check"></i><b>2.1.1</b> Respiratory Health</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="housing-and-health.html"><a href="housing-and-health.html#healthy-homes"><i class="fa fa-check"></i><b>2.2</b> Healthy Homes</a></li>
+<li class="chapter" data-level="2.3" data-path="housing-and-health.html"><a href="housing-and-health.html#maintenance-in-the-private-rental-market"><i class="fa fa-check"></i><b>2.3</b> Maintenance in the Private Rental Market</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="about-memphis.html"><a href="about-memphis.html"><i class="fa fa-check"></i><b>3</b> About Memphis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="about-memphis.html"><a href="about-memphis.html#housing"><i class="fa fa-check"></i><b>3.1</b> Housing</a></li>
+<li class="chapter" data-level="3.2" data-path="about-memphis.html"><a href="about-memphis.html#health"><i class="fa fa-check"></i><b>3.2</b> Health</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="code-enforcement.html"><a href="code-enforcement.html"><i class="fa fa-check"></i><b>4</b> Code Enforcement</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="code-enforcement.html"><a href="code-enforcement.html#reports"><i class="fa fa-check"></i><b>4.1</b> Reports</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="code-enforcement.html"><a href="code-enforcement.html#findings"><i class="fa fa-check"></i><b>4.1.1</b> Findings</a></li>
+<li class="chapter" data-level="4.1.2" data-path="code-enforcement.html"><a href="code-enforcement.html#recommendations"><i class="fa fa-check"></i><b>4.1.2</b> Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="code-enforcement.html"><a href="code-enforcement.html#data"><i class="fa fa-check"></i><b>4.2</b> 311 Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="code-enforcement.html"><a href="code-enforcement.html#problems-with-the-dataset"><i class="fa fa-check"></i><b>4.2.1</b> Problems with the dataset</a></li>
+<li class="chapter" data-level="4.2.2" data-path="code-enforcement.html"><a href="code-enforcement.html#duplicates-errors"><i class="fa fa-check"></i><b>4.2.2</b> Duplicates &amp; Errors</a></li>
+<li class="chapter" data-level="4.2.3" data-path="code-enforcement.html"><a href="code-enforcement.html#seeclickfail"><i class="fa fa-check"></i><b>4.2.3</b> SeeClickFail?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="code-enforcement.html"><a href="code-enforcement.html#analysis"><i class="fa fa-check"></i><b>4.2.4</b> Analysis</a></li>
+<li class="chapter" data-level="4.2.5" data-path="code-enforcement.html"><a href="code-enforcement.html#tidying-the-dataset"><i class="fa fa-check"></i><b>4.2.5</b> Tidying the Dataset</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="census-data.html"><a href="census-data.html"><i class="fa fa-check"></i><b>5</b> Census Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="census-data.html"><a href="census-data.html#housing-characteristics"><i class="fa fa-check"></i><b>5.1</b> Housing Characteristics</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="census-data.html"><a href="census-data.html#median-year-built"><i class="fa fa-check"></i><b>5.1.1</b> Median Year Built</a></li>
+<li class="chapter" data-level="5.1.2" data-path="census-data.html"><a href="census-data.html#year-structure-built"><i class="fa fa-check"></i><b>5.1.2</b> Year Structure Built</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="census-data.html"><a href="census-data.html#housing-quality"><i class="fa fa-check"></i><b>5.2</b> Housing Quality</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="census-data.html"><a href="census-data.html#selected-housing-deficiencies"><i class="fa fa-check"></i><b>5.2.1</b> Selected Housing Deficiencies</a></li>
+<li class="chapter" data-level="5.2.2" data-path="census-data.html"><a href="census-data.html#housing-problems"><i class="fa fa-check"></i><b>5.2.2</b> Housing Problems</a></li>
+<li class="chapter" data-level="5.2.3" data-path="census-data.html"><a href="census-data.html#external-building-conditions"><i class="fa fa-check"></i><b>5.2.3</b> External Building Conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="census-data.html"><a href="census-data.html#summary"><i class="fa fa-check"></i><b>5.3</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#recommendations-1"><i class="fa fa-check"></i><b>6.1</b> Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>7</b> Summary</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Memphis Code Enforcement</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="census-data" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Census Data</h1>
+<div id="housing-characteristics" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Housing Characteristics</h2>
+<p>According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47%) are owner-occupied; 134,371 (53%) are renter-occupied.</p>
+<div id="median-year-built" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Median Year Built</h3>
+<p>The age of a housing unit can be an indicator that repairs are needed. The below table shows the median age of occupied housing units in the city of Memphis, separated by tenure.</p>
+<!--# get data for MEDIAN YEAR STRUCTURE BUILT BY TENURE -->
+<!--# filter & tidy -->
+<!--# make tables -->
+<table>
+<caption>
+<span id="tab:tbl-medyrbltmem">Table 5.1: </span>Median year built of occupied housing units in City of Memphis
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Census Year
+</th>
+<th style="text-align:center;">
+Owner-Occupied
+</th>
+<th style="text-align:center;">
+Renter-Occupied
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2009
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2019
+</td>
+<td style="text-align:center;">
+1966
+</td>
+<td style="text-align:center;">
+1974
+</td>
+</tr>
+</tbody>
+</table>
+<p>The Memphis housing stock is aging. The median year built has not (or barely) budged over the past ten years for all occupied homes. The median age of owner-occupied homes is 55 years; for renter-occupied homes, 47 years. The median year built for both owner and renter occupied units is before the ban of lead-based paint in 1978, indicating many homes are at risk for lead poisoning if they have not been remediated.</p>
+<p>When we expand our scope from the city limits to the Memphis MSA, there is a noticeable shift in the data, as seen in the table below.</p>
+<table>
+<caption>
+<span id="tab:tbl-medyrbltmsa">Table 5.2: </span>Median year built of occupied housing units in Memphis MSA
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Census Year
+</th>
+<th style="text-align:center;">
+Owner-Occupied
+</th>
+<th style="text-align:center;">
+Renter-Occupied
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2009
+</td>
+<td style="text-align:center;">
+1980
+</td>
+<td style="text-align:center;">
+1976
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:center;">
+1982
+</td>
+<td style="text-align:center;">
+1977
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:center;">
+1982
+</td>
+<td style="text-align:center;">
+1977
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:center;">
+1983
+</td>
+<td style="text-align:center;">
+1978
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:center;">
+1983
+</td>
+<td style="text-align:center;">
+1978
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:center;">
+1983
+</td>
+<td style="text-align:center;">
+1978
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:center;">
+1983
+</td>
+<td style="text-align:center;">
+1978
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:center;">
+1984
+</td>
+<td style="text-align:center;">
+1978
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:center;">
+1984
+</td>
+<td style="text-align:center;">
+1978
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:center;">
+1984
+</td>
+<td style="text-align:center;">
+1978
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2019
+</td>
+<td style="text-align:center;">
+1985
+</td>
+<td style="text-align:center;">
+1978
+</td>
+</tr>
+</tbody>
+</table>
+<p>In the MSA, the median age of renter-occupied homes is 43; for owner-occupied units, 36. This signifies that most new development in the MSA has been for owner-occupied homes outside city limits. We can confirm this by looking at more detailed data available from the Census.</p>
+</div>
+<div id="year-structure-built" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Year Structure Built</h3>
+<!--# get 2019 data for TENURE BY YEAR STRUCTURE BUILT -->
+<!--# filter & tidy -->
+<p>The following graph shows the number of homes built each year in Memphis, separated by tenure.</p>
+<!--# graph -->
+<p><img src="MA-capstone_files/figure-html/ggplotysb-1.png" width="672" /></p>
+<p>More owner-occupied homes were built between 1950 to 1959 than any other period, with the stock gradually decreasing every decade since, plummeting after 2010. According to the data, there are <strong>only 872 owner-occupied homes constructed since 2010</strong>. It is now clear why the median year built for these homes has not budged in the past decade.</p>
+<p>The year renter-occupied homes were built peaked in the 1970s, eclipsing owner-occupied homes and outpacing it ever since (though still declining). Rental homes also sharply decrease after 2010, but not as severe. Of occupied rental homes, <strong>4,404 were constructed since 2010</strong>.</p>
+<p>Note that this dataset shows the year homes were built based on <strong>current</strong> tenure. It is possible for a home to originally have been owner-occupied and converted to a rental. We can investigate this by comparing 2015-2019 ACS data with 2005-2009 data and measuring the difference.</p>
+<!--# get 2009 data (and proper variable names!) -->
+<!--# tidy 2009 data & bind to 2019 data -->
+<!--# table -->
+<table>
+<caption>
+<span id="tab:tbl-yrblt-diff">Table 5.3: </span>Change in Occupied Units by Year Structure Built from 2009 to 2019 ACS
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Year Structure Built
+</th>
+<th style="text-align:center;">
+Owner
+</th>
+<th style="text-align:center;">
+Renter
+</th>
+<th style="text-align:center;">
+All Occupied Units
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Built 1939 or earlier
+</td>
+<td style="text-align:center;">
+-2796
+</td>
+<td style="text-align:center;">
+-848
+</td>
+<td style="text-align:center;">
+-3644
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Built 1940 to 1949
+</td>
+<td style="text-align:center;">
+-2479
+</td>
+<td style="text-align:center;">
+2111
+</td>
+<td style="text-align:center;">
+-368
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Built 1950 to 1959
+</td>
+<td style="text-align:center;">
+-5452
+</td>
+<td style="text-align:center;">
+4241
+</td>
+<td style="text-align:center;">
+-1211
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Built 1960 to 1969
+</td>
+<td style="text-align:center;">
+-4411
+</td>
+<td style="text-align:center;">
+-179
+</td>
+<td style="text-align:center;">
+-4590
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Built 1970 to 1979
+</td>
+<td style="text-align:center;">
+-4882
+</td>
+<td style="text-align:center;">
+1654
+</td>
+<td style="text-align:center;">
+-3228
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Built 1980 to 1989
+</td>
+<td style="text-align:center;">
+-3290
+</td>
+<td style="text-align:center;">
+110
+</td>
+<td style="text-align:center;">
+-3180
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Built 1990 to 1999
+</td>
+<td style="text-align:center;">
+-1876
+</td>
+<td style="text-align:center;">
+2624
+</td>
+<td style="text-align:center;">
+748
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Built 2000 to 2009
+</td>
+<td style="text-align:center;">
+-281
+</td>
+<td style="text-align:center;">
+2113
+</td>
+<td style="text-align:center;">
+1832
+</td>
+</tr>
+</tbody>
+</table>
+<p>There was an overall loss of 13,641 occupied housing units between 2009-2019 in the city of Memphis. Broken down by tenure, there was a loss of 25,467 owner-occupied units, and a gain of 11,826 renter occupied units. If we limit our scope to <strong>“older” units (built before 1990)</strong>, there was a loss of 23,310 owner-occupied units, and a <strong>gain of 7,089 renter-occupied units</strong>.</p>
+<p>We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.</p>
+<p>Considering the Great Recession, this implies former homeowners are now renting. Households that formerly benefited from policies and programs geared toward homeowners now navigate a housing system that is decidedly anti-renter. They lost their opportunity to build generational wealth, and now their wealth is being extracted through rents. Additionally, homes being converted into rentals limits the availability of homes for purchase, and denies young people the opportunity to plant roots in the community.</p>
+<p>Below is a graph visualizing the above table.</p>
+<!--# graph -->
+<p><img src="MA-capstone_files/figure-html/ggplotdec-1.png" width="672" /></p>
+<p>Between the 2009 and 2019 ACS, there was a definite loss in occupied housing units built before 1939 and between 1960-1969. In every other decade, there was a loss of owner-occupied units and a gain in renter-occupied units. As we cannot travel back in time and build more rental units, we can assume that these were formerly owner-occupied units that have been converted to rental units.</p>
+</div>
+</div>
+<div id="housing-quality" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Housing Quality</h2>
+<p>Data on housing quality in the Memphis MSA is available through the 2019 <a href="https://www.census.gov/programs-surveys/ahs.html">American Housing Survey</a>. As the median age for rental homes is seven years older than for owner-occupied homes in the MSA, we can expect renter-occupied homes to have more deficiencies and problems than owner-occupied homes.</p>
+<p>When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<div id="selected-housing-deficiencies" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Selected Housing Deficiencies</h3>
+<!--# import AHS dataset -->
+<!--# filter for selected deficiencies -->
+<!--# table -->
+<table>
+<caption>
+<span id="tab:tbl-AHSselfdef">Table 5.4: </span>Selected Housing Deficiencies, Memphis MSA
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Rent
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Own
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+All
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Deficiency
+</th>
+<th style="text-align:center;">
+est.
+</th>
+<th style="text-align:center;">
+%
+</th>
+<th style="text-align:center;">
+est.
+</th>
+<th style="text-align:center;">
+%
+</th>
+<th style="text-align:center;">
+est.
+</th>
+<th style="text-align:center;">
+%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Signs of mice or rats inside home in last 12 months
+</td>
+<td style="text-align:center;">
+24.4
+</td>
+<td style="text-align:center;">
+10.89%
+</td>
+<td style="text-align:center;">
+32.6
+</td>
+<td style="text-align:center;">
+11.25%
+</td>
+<td style="text-align:center;">
+56.9
+</td>
+<td style="text-align:center;">
+11.08%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Signs of cockroaches in last 12 months
+</td>
+<td style="text-align:center;">
+50.9
+</td>
+<td style="text-align:center;">
+22.72%
+</td>
+<td style="text-align:center;">
+44.4
+</td>
+<td style="text-align:center;">
+15.33%
+</td>
+<td style="text-align:center;">
+95.3
+</td>
+<td style="text-align:center;">
+18.55%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Holes in floors
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+4.2
+</td>
+<td style="text-align:center;">
+0.82%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Open cracks or holes (interior)
+</td>
+<td style="text-align:center;">
+14.4
+</td>
+<td style="text-align:center;">
+6.43%
+</td>
+<td style="text-align:center;">
+12.1
+</td>
+<td style="text-align:center;">
+4.18%
+</td>
+<td style="text-align:center;">
+26.6
+</td>
+<td style="text-align:center;">
+5.18%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Broken plaster or peeling paint (interior)
+</td>
+<td style="text-align:center;">
+5.3
+</td>
+<td style="text-align:center;">
+2.37%
+</td>
+<td style="text-align:center;">
+5.8
+</td>
+<td style="text-align:center;">
+2%
+</td>
+<td style="text-align:center;">
+11.1
+</td>
+<td style="text-align:center;">
+2.16%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Exposed wiring
+</td>
+<td style="text-align:center;">
+3.9
+</td>
+<td style="text-align:center;">
+1.74%
+</td>
+<td style="text-align:center;">
+4.5
+</td>
+<td style="text-align:center;">
+1.55%
+</td>
+<td style="text-align:center;">
+8.4
+</td>
+<td style="text-align:center;">
+1.64%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rooms without electric outlets
+</td>
+<td style="text-align:center;">
+6.6
+</td>
+<td style="text-align:center;">
+2.95%
+</td>
+<td style="text-align:center;">
+5.0
+</td>
+<td style="text-align:center;">
+1.73%
+</td>
+<td style="text-align:center;">
+11.6
+</td>
+<td style="text-align:center;">
+2.26%
+</td>
+</tr>
+</tbody>
+</table>
+<p><em>Source: <a href="https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html">American Housing Survey</a> (2019). Estimates in thousands of housing units.</em></p>
+<p>Renter-occupied units experienced more housing deficiencies than owner-occupied units for all but one of the selected problems.</p>
+<p>Pests are prevalent in both owner and renter-occupied units. Renters saw more signs of cockroaches (by 7.4 percentage points), while owners were more likely to sight mice or rats (by 0.4 percentage points). These trends align with national data, where renters were 1.98 times more likely to see cockroaches and owners were 1.17 times more likely to report a rodent sighting <span class="citation">(<a href="#ref-sellner2021" role="doc-biblioref">Sellner and Wicht 2021</a>)</span>. Compared to national averages, housing units in the Memphis MSA saw slightly fewer rodents (11.1% vs 11.9%) and significantly more cockroaches (18.6% vs. 11.3%).</p>
+<p>Renters were moderately more likely to have open cracks or holes in the interior of their home and to have rooms without electrical outlets. They were also slightly more likely to have decaying interior walls and exposed wiring.</p>
+</div>
+<div id="housing-problems" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Housing Problems</h3>
+<p>The following table shows the number of units who experience selected housing problems. An estimate of “S” denotes a sample too small to meet publication standards or avoid disclosure of identifying information. The total column (“Tot”) is the number of housing units <em>capable</em> of experiencing each problem (rather than all housing units). For instance, the total number of units with heating problems only includes units with heating equipment who occupied their unit last winter (excluding units without heating equipment or those who did not occupy their unit last winter).</p>
+<table>
+<caption>Selected Housing Problems</caption>
+<colgroup>
+<col width="55%" />
+<col width="11%" />
+<col width="8%" />
+<col width="4%" />
+<col width="11%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Rent</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">Own</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Problem</strong></td>
+<td align="center"><strong>est.</strong></td>
+<td align="center"><strong>%</strong></td>
+<td align="center"></td>
+<td align="center"><strong>est.</strong></td>
+<td align="center"><strong>%</strong></td>
+</tr>
+<tr class="even">
+<td>No flush toilet working some time in last 3 months</td>
+<td align="center">7.0</td>
+<td align="center">3.1%</td>
+<td align="center"></td>
+<td align="center">S</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td>Uncomfortably cold for 24 hours or more</td>
+<td align="center">12.3</td>
+<td align="center">6.6%</td>
+<td align="center"></td>
+<td align="center">10.8</td>
+<td align="center">3.9%</td>
+</tr>
+<tr class="even">
+<td>Fuses or breakers blown in last 3 months</td>
+<td align="center">14.1</td>
+<td align="center">6.3%</td>
+<td align="center"></td>
+<td align="center">19.3</td>
+<td align="center">6.7%</td>
+</tr>
+<tr class="odd">
+<td>Water stoppage in last 3 months</td>
+<td align="center">6.4</td>
+<td align="center">2.9%</td>
+<td align="center"></td>
+<td align="center">3.2</td>
+<td align="center">1.1%</td>
+</tr>
+<tr class="even">
+<td>Water leakage from inside structure</td>
+<td align="center">19.5</td>
+<td align="center">8.7%</td>
+<td align="center"></td>
+<td align="center">20.7</td>
+<td align="center">7.1%</td>
+</tr>
+<tr class="odd">
+<td>Water leakage from outside structure</td>
+<td align="center">18.9</td>
+<td align="center">8.4%</td>
+<td align="center"></td>
+<td align="center">25.5</td>
+<td align="center">8.8%</td>
+</tr>
+<tr class="even">
+<td>Mold in last 12 months</td>
+<td align="center">11.8</td>
+<td align="center">5.3%</td>
+<td align="center"></td>
+<td align="center">5.8</td>
+<td align="center">2.0%</td>
+</tr>
+<tr class="odd">
+<td>Public sewer breakdown in last 3 months</td>
+<td align="center">5.1</td>
+<td align="center">2.3%</td>
+<td align="center"></td>
+<td align="center">S</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+<p><em>Source: <a href="https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html">American Housing Survey</a> (2019). Estimates in thousands of housing units.</em></p>
+<p>Renter-occupied units were overall more likely to experience housing problems and breakdowns than owner-occupied units.</p>
+<p>The most common problem for renters and owners was water leakage during the past year. Owners were slightly more likely (by 0.4 percentage points) to experience leakage from outside the structure, such as from the roof, walls, closed windows, or doors. Renters were more likely (by 1.6 percentage points) to experience internal water leakage, such as from a leaky pipe, a broken water heater, or a backed up or overflown fixture. This is likely why renters were more likely to report mold growth within the past year (by 3.3 percentage points).</p>
+<p>Heating problems causing households to be uncomfortably cold for at least a day were more common for renter-occupied units (by 2.7 percentage points). Renters were also more likely to experience sanitation problems barely reported by owners. This includes having a public sewer breakdown or having no working toilets at some point in the last three months.</p>
+<p>Owners were slightly more likely to recently experience a blown fuse or breaker.</p>
+</div>
+<div id="external-building-conditions" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> External Building Conditions</h3>
+<p>The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, <strong>excluding multi-unit homes</strong>. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-14">Table 5.5: </span>External Building Conditions, Memphis MSA
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Rent
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Own
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+All
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Condition
+</th>
+<th style="text-align:center;">
+est.
+</th>
+<th style="text-align:center;">
+%
+</th>
+<th style="text-align:center;">
+est.
+</th>
+<th style="text-align:center;">
+%
+</th>
+<th style="text-align:center;">
+est.
+</th>
+<th style="text-align:center;">
+%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Sagging roof
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+7.4
+</td>
+<td style="text-align:center;">
+1.83%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Missing roofing material
+</td>
+<td style="text-align:center;">
+7.0
+</td>
+<td style="text-align:center;">
+5.95%
+</td>
+<td style="text-align:center;">
+15.5
+</td>
+<td style="text-align:center;">
+5.4%
+</td>
+<td style="text-align:center;">
+22.5
+</td>
+<td style="text-align:center;">
+5.56%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hole in roof
+</td>
+<td style="text-align:center;">
+4.2
+</td>
+<td style="text-align:center;">
+3.57%
+</td>
+<td style="text-align:center;">
+6.2
+</td>
+<td style="text-align:center;">
+2.16%
+</td>
+<td style="text-align:center;">
+10.5
+</td>
+<td style="text-align:center;">
+2.6%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Missing bricks, siding, or other outside wall material
+</td>
+<td style="text-align:center;">
+3.9
+</td>
+<td style="text-align:center;">
+3.32%
+</td>
+<td style="text-align:center;">
+9.4
+</td>
+<td style="text-align:center;">
+3.28%
+</td>
+<td style="text-align:center;">
+13.3
+</td>
+<td style="text-align:center;">
+3.29%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sloping outside walls
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+4.5
+</td>
+<td style="text-align:center;">
+1.57%
+</td>
+<td style="text-align:center;">
+6.1
+</td>
+<td style="text-align:center;">
+1.51%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Broken windows
+</td>
+<td style="text-align:center;">
+7.6
+</td>
+<td style="text-align:center;">
+6.46%
+</td>
+<td style="text-align:center;">
+7.8
+</td>
+<td style="text-align:center;">
+2.72%
+</td>
+<td style="text-align:center;">
+15.4
+</td>
+<td style="text-align:center;">
+3.81%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bars on windows
+</td>
+<td style="text-align:center;">
+16.1
+</td>
+<td style="text-align:center;">
+13.69%
+</td>
+<td style="text-align:center;">
+22.0
+</td>
+<td style="text-align:center;">
+7.67%
+</td>
+<td style="text-align:center;">
+38.1
+</td>
+<td style="text-align:center;">
+9.42%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Foundation crumbling or has open crack or hole
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+14.5
+</td>
+<td style="text-align:center;">
+5.05%
+</td>
+<td style="text-align:center;">
+18.1
+</td>
+<td style="text-align:center;">
+4.47%
+</td>
+</tr>
+</tbody>
+</table>
+<p><em>Source: <a href="https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html">American Housing Survey</a> (2019). Estimates in thousands of housing units.</em></p>
+<p>Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.</p>
+</div>
+</div>
+<div id="summary" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Summary</h2>
+<p>Renter-occupied units in Memphis are more likely than owner-occupied units to experience housing issues, and by wider margins. Of the 19 housing quality issues discussed in the three tables above, only three problems were more likely to be experienced by owner-occupied units, and only by a margin of 0.4 percentage points for each problem. Meanwhile, there were 15 problems more common in renter-occupied units, 13 of which had a margin greater than 0.4 percentage points.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-sellner2021" class="csl-entry">
+Sellner, Michael, and Jordan Wicht. 2021. <span>“How Many American Homes Have Pests?”</span> <a href="https://www.census.gov/library/stories/2021/04/how-many-american-homes-have-pests.html">https://www.census.gov/library/stories/2021/04/how-many-american-homes-have-pests.html</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="8">
+<li id="fn8"><p>The gain of units from 1990 to 1999 is likely due to data error. Another explanation is that previously vacant units built during this time are now occupied. But this is unlikely given the loss in occupied units and an increase in vacant units from 2009-2019.<a href="census-data.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>In the discussions below, “renters” refers to renter-occupied units, “owners” refers to owner-occupied units, and “Memphis” refers to the Memphis MSA.<a href="census-data.html#fnref9" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="code-enforcement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="discussion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MA-capstone.pdf", "MA-capstone.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Discussion | Memphis Code Enforcement</title>
+  <title>Chapter 6 Discussion | Memphis Code Enforcement</title>
   <meta name="description" content="This is the capstone for my master’s degree." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Discussion | Memphis Code Enforcement" />
+  <meta property="og:title" content="Chapter 6 Discussion | Memphis Code Enforcement" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Discussion | Memphis Code Enforcement" />
+  <meta name="twitter:title" content="Chapter 6 Discussion | Memphis Code Enforcement" />
   
   <meta name="twitter:description" content="This is the capstone for my master’s degree." />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Sarah Johnson" />
 
 
-<meta name="date" content="2021-07-29" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="code-enforcement.html"/>
+<link rel="prev" href="census-data.html"/>
 <link rel="next" href="summary-1.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
@@ -61,6 +61,13 @@
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -180,21 +187,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.2" data-path="housing-and-health.html"><a href="housing-and-health.html#healthy-homes"><i class="fa fa-check"></i><b>2.2</b> Healthy Homes</a></li>
 <li class="chapter" data-level="2.3" data-path="housing-and-health.html"><a href="housing-and-health.html#maintenance-in-the-private-rental-market"><i class="fa fa-check"></i><b>2.3</b> Maintenance in the Private Rental Market</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="memphis.html"><a href="memphis.html"><i class="fa fa-check"></i><b>3</b> Memphis</a>
+<li class="chapter" data-level="3" data-path="about-memphis.html"><a href="about-memphis.html"><i class="fa fa-check"></i><b>3</b> About Memphis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="memphis.html"><a href="memphis.html#health"><i class="fa fa-check"></i><b>3.1</b> Health</a></li>
-<li class="chapter" data-level="3.2" data-path="memphis.html"><a href="memphis.html#housing-characteristics"><i class="fa fa-check"></i><b>3.2</b> Housing Characteristics</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="memphis.html"><a href="memphis.html#median-year-built"><i class="fa fa-check"></i><b>3.2.1</b> Median Year Built</a></li>
-<li class="chapter" data-level="3.2.2" data-path="memphis.html"><a href="memphis.html#year-structure-built"><i class="fa fa-check"></i><b>3.2.2</b> Year Structure Built</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="memphis.html"><a href="memphis.html#housing-quality"><i class="fa fa-check"></i><b>3.3</b> Housing Quality</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="memphis.html"><a href="memphis.html#selected-housing-deficiencies"><i class="fa fa-check"></i><b>3.3.1</b> Selected Housing Deficiencies</a></li>
-<li class="chapter" data-level="3.3.2" data-path="memphis.html"><a href="memphis.html#housing-problems"><i class="fa fa-check"></i><b>3.3.2</b> Housing Problems</a></li>
-<li class="chapter" data-level="3.3.3" data-path="memphis.html"><a href="memphis.html#external-building-conditions"><i class="fa fa-check"></i><b>3.3.3</b> External Building Conditions</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="memphis.html"><a href="memphis.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+<li class="chapter" data-level="3.1" data-path="about-memphis.html"><a href="about-memphis.html#housing"><i class="fa fa-check"></i><b>3.1</b> Housing</a></li>
+<li class="chapter" data-level="3.2" data-path="about-memphis.html"><a href="about-memphis.html#health"><i class="fa fa-check"></i><b>3.2</b> Health</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="code-enforcement.html"><a href="code-enforcement.html"><i class="fa fa-check"></i><b>4</b> Code Enforcement</a>
 <ul>
@@ -212,11 +208,26 @@ div.csl-indent {
 <li class="chapter" data-level="4.2.5" data-path="code-enforcement.html"><a href="code-enforcement.html#tidying-the-dataset"><i class="fa fa-check"></i><b>4.2.5</b> Tidying the Dataset</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a>
+<li class="chapter" data-level="5" data-path="census-data.html"><a href="census-data.html"><i class="fa fa-check"></i><b>5</b> Census Data</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="discussion.html"><a href="discussion.html#recommendations-1"><i class="fa fa-check"></i><b>5.1</b> Recommendations</a></li>
+<li class="chapter" data-level="5.1" data-path="census-data.html"><a href="census-data.html#housing-characteristics"><i class="fa fa-check"></i><b>5.1</b> Housing Characteristics</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="census-data.html"><a href="census-data.html#median-year-built"><i class="fa fa-check"></i><b>5.1.1</b> Median Year Built</a></li>
+<li class="chapter" data-level="5.1.2" data-path="census-data.html"><a href="census-data.html#year-structure-built"><i class="fa fa-check"></i><b>5.1.2</b> Year Structure Built</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>6</b> Summary</a></li>
+<li class="chapter" data-level="5.2" data-path="census-data.html"><a href="census-data.html#housing-quality"><i class="fa fa-check"></i><b>5.2</b> Housing Quality</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="census-data.html"><a href="census-data.html#selected-housing-deficiencies"><i class="fa fa-check"></i><b>5.2.1</b> Selected Housing Deficiencies</a></li>
+<li class="chapter" data-level="5.2.2" data-path="census-data.html"><a href="census-data.html#housing-problems"><i class="fa fa-check"></i><b>5.2.2</b> Housing Problems</a></li>
+<li class="chapter" data-level="5.2.3" data-path="census-data.html"><a href="census-data.html#external-building-conditions"><i class="fa fa-check"></i><b>5.2.3</b> External Building Conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="census-data.html"><a href="census-data.html#summary"><i class="fa fa-check"></i><b>5.3</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discussion.html"><a href="discussion.html#recommendations-1"><i class="fa fa-check"></i><b>6.1</b> Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>7</b> Summary</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -238,8 +249,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="discussion" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Discussion</h1>
+<div id="discussion" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Discussion</h1>
 <p>Despite code enforcement being the only recourse for renters experiencing landlord neglect, code enforcement does not categorize or track this data. Instead, it is shuffled into a miscellaneous category with duplicates and errors. How can so much data say so little? How are we supposed to create a strategic code enforcement if it is difficult to understand the data we already have?</p>
 <p>I do not feel comfortable plotting this data because of the large number of errors, particularly with hard-to-sort duplicates, and incorrect addresses. It is too easy to misrepresent this data. I do not feel comfortable summarizing this data and drawing conclusions. A map can hide the problem; viewers cannot read all the error messages behind the data. [I’ll try to clean this data as much as possible the next few days</p>
 <p>Instead we should stop, process what we have, find common problems and patterns, and implement improvements. We should be conscious of specific problems faced in the private rental market.</p>
@@ -247,8 +258,8 @@ div.csl-indent {
 <blockquote>
 <p>At the root of the problem is an outdated computer and data management system.</p>
 </blockquote>
-<div id="recommendations-1" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Recommendations</h2>
+<div id="recommendations-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Recommendations</h2>
 <p>Create a new <code>REQUEST_TYPE</code> for private rental/landlord neglect, replacing “Code Miscellaneous.” This is fundamental to being able to track this data.</p>
 <p>Create a <code>RESOLUTION_CODE</code> for duplicates, replacing “JA” and similar. (Already used by other cities like <a href="https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6">Cincinnati</a>)</p>
 <p>Do not put all information for one case on one row, overwriting old data. Instead, allow each update its own row.</p>
@@ -269,7 +280,7 @@ Betts, Phyllis. 2001. <span>“Best Practice Number Ten: Fixing Broken Windows <
           </div>
         </div>
       </div>
-<a href="code-enforcement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="census-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="summary-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
