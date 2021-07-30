@@ -1,45 +1,5 @@
 # Census Data
 
-Below is a map of the City of Memphis, Shelby County, and the Memphis MSA.
-
-```{r boundaries, include=FALSE}
-library(rgdal)
-library(leaflet)
-MSA <- readOGR("_data/MSA.json")
-county <- readOGR("_data/shelbyco.geojson")
-memphis <- readOGR("_data/memphis.geojson")
-```
-
-```{r mapboundaries, echo=FALSE}
-leaflet() %>% 
-  addTiles() %>% 
-  addPolygons(data = MSA, 
-              stroke = T, 
-              weight = 1,
-              color = "#F2CF63", 
-              fillOpacity = 0.7,
-              label = "Memphis, TN-MS-AR Metro Area",
-              group = "MSA") %>% 
-  addPolygons(data = county, 
-              stroke = T, 
-              weight = 1,
-              color = "#6593A6", 
-              fillOpacity = 0.6,
-              label = "Shelby County",
-              group = "County") %>% 
-  addPolygons(data = memphis, 
-              stroke = T, 
-              weight = 1,
-              color = "#58595B", 
-              fillOpacity = 0.5,
-              label = "City of Memphis",
-              group = "City") %>%
-  addLayersControl(overlayGroups = c("City", "County", "MSA"),
-                   options = layersControlOptions(collapsed = FALSE))
-```
-
-***Data Sources**: City of Memphis ([Memphis Data Hub](https://data.memphistn.gov/dataset/Jurisdiction-Boundary-Memphis/b9uj-qyia)), Shelby County and Memphis MSA: ([CAESAR Geoportal](https://geoportal.memphis.edu/)); **Color Palette**: ([Adobe Color](https://color.adobe.com/yellow%20grey-color-theme-14069566))*
-
 ## Housing Characteristics
 
 ```{r tidycensus, include=FALSE}
