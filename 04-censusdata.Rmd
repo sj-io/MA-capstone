@@ -1,0 +1,446 @@
+# Census Data
+
+## Housing Characteristics
+
+```{r tidycensus, include=FALSE}
+library(tidyverse)
+library(tidycensus)
+library(kableExtra)
+```
+
+```{r censusbasics, include=FALSE}
+yrs <- lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
+v19 <- load_variables(2019, "acs5", cache = T)
+```
+
+According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47%) are owner-occupied; 134,371 (53%) are renter-occupied.
+
+### Median Year Built
+
+The age of a housing unit can be an indicator that repairs are needed. The below table shows the median age of occupied housing units in the city of Memphis, separated by tenure.
+
+<!--# get data for MEDIAN YEAR STRUCTURE BUILT BY TENURE -->
+
+```{r medyrblt_p, include=FALSE}
+medyrblt_p <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place", #' Memphis city, Tennessee
+    table = "B25037", #' MEDIAN YEAR STRUCTURE BUILT BY TENURE
+    year = .x, #' all years
+    state = 47, 
+    survey = "acs5",
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r medyrblt_msa, include=FALSE}
+medyrblt_msa <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "metropolitan statistical area/micropolitan statistical area",
+    table = "B25037", #' MEDIAN YEAR STRUCTURE BUILT BY TENURE
+    year = .x,
+    survey = "acs5",
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+<!--# filter & tidy -->
+
+```{r medyrblt_mem, include=FALSE}
+medyrblt_mem <- medyrblt_p %>% 
+  filter(NAME == "Memphis city, Tennessee") %>%
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure"), sep = "!!") %>%
+  select(year, tenure, estimate) %>% 
+  filter(tenure != "Total:") %>% 
+  pivot_wider(names_from = tenure, values_from = estimate)
+```
+
+```{r medyrblt_mmsa, include=FALSE}
+medyrblt_mmsa <- medyrblt_msa %>% 
+  filter(NAME == "Memphis, TN-MS-AR Metro Area") %>% 
+  left_join(v19, by = c("variable" = "name")) %>% 
+  separate(label, c("est", "tot", "tenure"), sep = "!!") %>% 
+  select(year, tenure, estimate) %>% 
+  filter(tenure != "Total:") %>% 
+  pivot_wider(names_from = tenure, values_from = estimate)
+```
+
+<!--# make tables -->
+
+```{r tbl-medyrbltmem, echo=FALSE}
+knitr::kable(
+  medyrblt_mem, 
+  col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
+  align = "lcc",
+  caption = 'Median year built of occupied housing units in City of Memphis'
+  )
+```
+
+The Memphis housing stock is aging. The median year built has not (or barely) budged over the past ten years for all occupied homes. The median age of owner-occupied homes is 55 years; for renter-occupied homes, 47 years. The median year built for both owner and renter occupied units is before the ban of lead-based paint in 1978, indicating many homes are at risk for lead poisoning if they have not been remediated.
+
+When we expand our scope from the city limits to the Memphis MSA, there is a noticeable shift in the data, as seen in the table below.
+
+```{r tbl-medyrbltmsa, echo=FALSE}
+knitr::kable(
+  medyrblt_mmsa, 
+  col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
+  align = "lcc",
+  caption = 'Median year built of occupied housing units in Memphis MSA'
+  )
+```
+
+In the MSA, the median age of renter-occupied homes is 43; for owner-occupied units, 36. This signifies that most new development in the MSA has been for owner-occupied homes outside city limits. We can confirm this by looking at more detailed data available from the Census.
+
+### Year Structure Built
+
+<!--# get 2019 data for TENURE BY YEAR STRUCTURE BUILT -->
+
+```{r yrblt-p, include=FALSE}
+yrblt_p <- get_acs(
+  geography = "place", #' Memphis city, Tennessee
+  table = "B25036", #' TENURE BY YEAR STRUCTURE BUILT
+  state = 47, 
+  survey = "acs5", 
+  cache_table = T
+  )
+```
+
+<!--# filter & tidy -->
+
+```{r yrblt-mem, include=FALSE}
+yrblt_mem <- yrblt_p %>% 
+  filter(GEOID == 4748000) %>% #' Memphis city, Tennessee
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "year"), sep = "!!") %>%
+  select(tenure, year, estimate) %>%
+  separate(tenure, c("tenure", "occ"), sep = " ") %>%
+  select(-occ) %>% 
+  filter(!is.na(year)) %>%
+  mutate(year = fct_collapse(year,
+    "Built 2010 to 2019" = c("Built 2010 to 2013", "Built 2014 or later"))) %>% 
+  group_by(tenure, year) %>% 
+  summarise(estimate = sum(estimate)) %>% 
+  mutate(datayr = 2019)
+```
+
+The following graph shows the number of homes built each year in Memphis, separated by tenure.
+
+<!--# graph -->
+
+```{r ggplotysb, echo=FALSE}
+yrblt_mem %>% 
+  mutate(estimate = ifelse(tenure == "Owner", -estimate, estimate)) %>% 
+  ggplot(aes(year, estimate, fill = tenure)) +
+  geom_bar(stat = "identity", width = 1) +
+  scale_y_continuous(labels = function(y) paste0(abs(y/1000), "K")) +
+  scale_x_discrete(labels = function(x) gsub("Built ", "", x)) +
+  coord_flip() +
+  theme_linedraw() +
+  labs(x = "",
+       y = "Estimate of housing units built",
+       fill = "Tenure",
+       title = "Year Structure Built by Tenure",
+       subtitle = "Memphis, Tennessee",
+       caption = "Data source: 2015-2019 American Community Survey")
+```
+
+More owner-occupied homes were built between 1950 to 1959 than any other period, with the stock gradually decreasing every decade since, plummeting after 2010. According to the data, there are **only 872 owner-occupied homes constructed since 2010**. It is now clear why the median year built for these homes has not budged in the past decade.
+
+The year renter-occupied homes were built peaked in the 1970s, eclipsing owner-occupied homes and outpacing it ever since (though still declining). Rental homes also sharply decrease after 2010, but not as severe. Of occupied rental homes, **4,404 were constructed since 2010**.
+
+Note that this dataset shows the year homes were built based on **current** tenure. It is possible for a home to originally have been owner-occupied and converted to a rental. We can investigate this by comparing 2015-2019 ACS data with 2005-2009 data and measuring the difference.
+
+<!--# get 2009 data (and proper variable names!) -->
+
+```{r include=FALSE}
+v09 <- load_variables(2009, "acs5", cache = T)
+yrblt09_p <- get_acs(
+   geography = "place",
+   table = "B25036", #' TENURE BY YEAR STRUCTURE BUILT
+   state = 47, 
+   survey = "acs5", 
+   year = 2009,
+   cache_table = T
+   )
+```
+
+<!--# tidy 2009 data & bind to 2019 data -->
+
+```{r include=FALSE}
+yrblt09_mem <- yrblt09_p %>%
+  filter(GEOID == 4748000) %>%
+  left_join(v09, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "year"), sep = "!!") %>%
+  select(tenure, year, estimate) %>%
+  separate(tenure, c("tenure", "occ"), sep = " ") %>%
+  select(-occ) %>%
+  filter(!is.na(year)) %>% 
+  mutate(year = fct_collapse(year,
+    "Built 2000 to 2009" = c("Built 2000 to 2004", "Built 2005 or later"))) %>% 
+  group_by(tenure, year) %>% 
+  summarise(estimate = sum(estimate)) %>% 
+  mutate(datayr = 2009)
+
+yrblt_decade <- rbind(yrblt09_mem, yrblt_mem)
+
+yrblt_diff <- yrblt_decade %>% 
+  group_by(tenure, year) %>% 
+  summarise(estimate = diff(estimate))
+```
+
+<!--# table -->
+
+```{r tbl-yrblt-diff, echo=FALSE}
+tblyrblt_diff <- yrblt_diff %>% 
+  pivot_wider(names_from = tenure, values_from = estimate) %>% 
+  mutate(change = Owner + Renter)
+
+knitr::kable(
+  tblyrblt_diff,
+  col.names = c("Year Structure Built", "Owner", "Renter", "All Occupied Units"),
+  align = "lccc",
+  caption = "Change in Occupied Units by Year Structure Built from 2009 to 2019 ACS")
+```
+
+There was an overall loss of 13,641 occupied housing units between 2009-2019 in the city of Memphis. Broken down by tenure, there was a loss of 25,467 owner-occupied units, and a gain of 11,826 renter occupied units. If we limit our scope to **"older" units (built before 1990)**, there was a loss of 23,310 owner-occupied units, and a **gain of 7,089 renter-occupied units**.
+
+We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.[^1] This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.
+
+[^1]: The gain of units from 1990 to 1999 is likely due to data error. Another explanation is that previously vacant units built during this time are now occupied. But this is unlikely given the loss in occupied units and an increase in vacant units from 2009-2019.
+
+Considering the Great Recession, this implies former homeowners are now renting. Households that formerly benefited from policies and programs geared toward homeowners now navigate a housing system that is decidedly anti-renter. They lost their opportunity to build generational wealth, and now their wealth is being extracted through rents. Additionally, homes being converted into rentals limits the availability of homes for purchase, and denies young people the opportunity to plant roots in the community.
+
+Below is a graph visualizing the above table.
+
+<!--# graph -->
+
+```{r ggplotdec, echo=FALSE}
+yrblt_diff %>% 
+     ggplot(aes(year, estimate, fill = tenure)) +
+     geom_col() +
+     scale_y_continuous(labels = function(y) paste0((y/1000), "K")) +
+     scale_x_discrete(labels = function(x) gsub("Built ", "", x)) +
+     coord_flip() + 
+     theme_linedraw() +
+     labs(x = "",
+          y = "Housing units gained/lost since 2009",
+          fill = "Tenure",
+          title = "Change in Occupied Housing Units by Year Built, 2009-2019",
+          subtitle = "Memphis, Tennessee",
+          caption = "Data source: 2005-2009 and 2015-2019 American Community Survey")
+```
+
+Between the 2009 and 2019 ACS, there was a definite loss in occupied housing units built before 1939 and between 1960-1969. In every other decade, there was a loss of owner-occupied units and a gain in renter-occupied units. As we cannot travel back in time and build more rental units, we can assume that these were formerly owner-occupied units that have been converted to rental units.
+
+## Housing Quality
+
+Data on housing quality in the Memphis MSA is available through the 2019 [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html). As the median age for rental homes is seven years older than for owner-occupied homes in the MSA, we can expect renter-occupied homes to have more deficiencies and problems than owner-occupied homes.
+
+When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.[^2]
+
+[^2]: In the discussions below, "renters" refers to renter-occupied units, "owners" refers to owner-occupied units, and "Memphis" refers to the Memphis MSA.
+
+### Selected Housing Deficiencies
+
+<!--# import AHS dataset -->
+
+```{r AHSqual-all, include=FALSE}
+AHS_mem_hsgqual_all <- read_csv("_data/AHS-mem-hsgqual-all.csv")
+```
+
+```{r AHSselectcol, include=FALSE}
+AHSqual_all <- AHS_mem_hsgqual_all %>% 
+  select(tenure, char:estimate, total)
+```
+
+<!--# filter for selected deficiencies -->
+
+```{r AHS-selected-deficiencies, include=FALSE}
+AHSseldef <- AHSqual_all %>% 
+  filter(char == "Selected Deficiencies") %>% 
+  select(-c(char, subchar2:subchar5))
+```
+
+<!--# table -->
+
+```{r make-tbl-AHSseldef, include=FALSE}
+AHSseldef_tbl <- AHSseldef %>% 
+  mutate(pct = paste0(round(100*estimate/total,2), '%')) %>% 
+  select(-total) %>% 
+  pivot_wider(names_from = tenure, 
+              names_glue = "{tenure}_{.value}", 
+              values_from = c(estimate, pct)) %>% 
+  select(subchar, Renter_estimate, Renter_pct, 
+         Owner_estimate, Owner_pct, All_estimate, All_pct) %>% 
+  filter(!is.na(All_estimate)) %>% 
+  mutate(across(ends_with("pct"), ~na_if(., "NA%")))
+```
+
+```{r tbl-AHSselfdef, echo=FALSE}
+kable(
+  AHSseldef_tbl,
+  col.names = c("Deficiency",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "lcccccc", caption = "Selected Housing Deficiencies, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 1,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  ))
+```
+
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
+
+Renter-occupied units experienced more housing deficiencies than owner-occupied units for all but one of the selected problems.
+
+Pests are prevalent in both owner and renter-occupied units. Renters saw more signs of cockroaches (by 7.4 percentage points), while owners were more likely to sight mice or rats (by 0.4 percentage points). These trends align with national data, where renters were 1.98 times more likely to see cockroaches and owners were 1.17 times more likely to report a rodent sighting [@sellner2021]. Compared to national averages, housing units in the Memphis MSA saw slightly fewer rodents (11.1% vs 11.9%) and significantly more cockroaches (18.6% vs. 11.3%).
+
+Renters were moderately more likely to have open cracks or holes in the interior of their home and to have rooms without electrical outlets. They were also slightly more likely to have decaying interior walls and exposed wiring.
+
+### Housing Problems
+
+The following table shows the number of units who experience selected housing problems. An estimate of "S" denotes a sample too small to meet publication standards or avoid disclosure of identifying information. The total column ("Tot") is the number of housing units *capable* of experiencing each problem (rather than all housing units). For instance, the total number of units with heating problems only includes units with heating equipment who occupied their unit last winter (excluding units without heating equipment or those who did not occupy their unit last winter).
+
+```{r eval=FALSE, include=FALSE}
+AHSmold <- AHSqual_all %>% 
+  filter(str_detect(char, "Mold|Water Leakage"), 
+         !is.na(estimate), is.na(subchar2)) %>% 
+  select(-c(subchar2:subchar5)) %>% rename(subchar2 = subchar)
+```
+
++----------------------------------------------------+----------+-------+---+----------+-------+
+|                                                    | Rent     |       |   | Own      |       |
++====================================================+:========:+:=====:+:=:+:========:+:=====:+
+| **Problem**                                        | **est.** | **%** |   | **est.** | **%** |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| No flush toilet working some time in last 3 months | 7.0      | 3.1%  |   | S        | \-    |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Uncomfortably cold for 24 hours or more            | 12.3     | 6.6%  |   | 10.8     | 3.9%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Fuses or breakers blown in last 3 months           | 14.1     | 6.3%  |   | 19.3     | 6.7%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water stoppage in last 3 months                    | 6.4      | 2.9%  |   | 3.2      | 1.1%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water leakage from inside structure                | 19.5     | 8.7%  |   | 20.7     | 7.1%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Water leakage from outside structure               | 18.9     | 8.4%  |   | 25.5     | 8.8%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Mold in last 12 months                             | 11.8     | 5.3%  |   | 5.8      | 2.0%  |
++----------------------------------------------------+----------+-------+---+----------+-------+
+| Public sewer breakdown in last 3 months            | 5.1      | 2.3%  |   | S        | \-    |
++----------------------------------------------------+----------+-------+---+----------+-------+
+
+: Selected Housing Problems
+
+```{r eval=FALSE, include=FALSE}
+AHSprob <- AHSqual_all %>%
+  filter(
+    !str_detect(
+      char,
+      "Housing Adequacy|Selected Deficiencies|External Building Conditions|Mold|Water Leakage|Sewage Disposal"
+    ), !is.na(estimate),
+    !is.na(subchar2),
+    is.na(subchar3)
+  ) %>% 
+  select(-c(subchar, subchar3:subchar5)) %>% rbind(AHSmold) %>% 
+  mutate(pct = paste0(round(100 * estimate / total, 2), '%')) %>%
+  select(-total) %>%
+  pivot_wider(
+    names_from = tenure,
+    names_glue = "{tenure}_{.value}",
+    values_from = c(estimate, pct)
+  ) %>%
+  select(char,
+    subchar2,
+    Renter_estimate,
+    Renter_pct,
+    Owner_estimate,
+    Owner_pct,
+    All_estimate,
+    All_pct
+  ) %>%
+  filter(!is.na(All_estimate)) %>%
+  mutate(across(ends_with("pct"), ~ na_if(., "NA%")))
+```
+
+```{r eval=FALSE, include=FALSE}
+kable(
+  AHSprob,
+  col.names = c("Problem", " ",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "rlcccccc", caption = "Selected Housing Problems, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 2,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  )) %>% remove_column(1)
+```
+
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
+
+Renter-occupied units were overall more likely to experience housing problems and breakdowns than owner-occupied units.
+
+The most common problem for renters and owners was water leakage during the past year. Owners were slightly more likely (by 0.4 percentage points) to experience leakage from outside the structure, such as from the roof, walls, closed windows, or doors. Renters were more likely (by 1.6 percentage points) to experience internal water leakage, such as from a leaky pipe, a broken water heater, or a backed up or overflown fixture. This is likely why renters were more likely to report mold growth within the past year (by 3.3 percentage points).
+
+Heating problems causing households to be uncomfortably cold for at least a day were more common for renter-occupied units (by 2.7 percentage points). Renters were also more likely to experience sanitation problems barely reported by owners. This includes having a public sewer breakdown or having no working toilets at some point in the last three months.
+
+Owners were slightly more likely to recently experience a blown fuse or breaker.
+
+### External Building Conditions
+
+The following table shows the number of units experiencing external building problems. This table is limited to single-unit homes, **excluding multi-unit homes**. Homes with more than one unit are significantly more likely to be renter-occupied. As such, approximately 106,400 rental units were excluded from this table.
+
+```{r include=FALSE}
+AHSextbld <- AHSqual_all %>% 
+  filter(char == "External Building Conditions") %>% 
+  select(-c(char, subchar2:subchar5)) %>% 
+  mutate(pct = paste0(round(100*estimate/total,2), '%')) %>% 
+  select(-total) %>% 
+  pivot_wider(names_from = tenure, 
+              names_glue = "{tenure}_{.value}", 
+              values_from = c(estimate, pct)) %>% 
+  select(subchar, Renter_estimate, Renter_pct, 
+         Owner_estimate, Owner_pct, All_estimate, All_pct) %>% 
+  filter(!is.na(All_estimate)) %>% 
+  mutate(across(ends_with("pct"), ~na_if(., "NA%")))
+```
+
+```{r echo=FALSE}
+kable(
+  AHSextbld,
+  col.names = c("Condition",
+                "est.", "%",
+                "est.", "%",
+                "est.", "%"),
+  align = "lcccccc", caption = "External Building Conditions, Memphis MSA"
+) %>%
+  add_header_above(c(
+    " " = 1,
+    "Rent" = 2,
+    "Own" = 2,
+    "All" = 2
+  ))
+```
+
+*Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
+
+Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.
+
+## Summary
+
+Renter-occupied units in Memphis are more likely than owner-occupied units to experience housing issues, and by wider margins. Of the 19 housing quality issues discussed in the three tables above, only three problems were more likely to be experienced by owner-occupied units, and only by a margin of 0.4 percentage points for each problem. Meanwhile, there were 15 problems more common in renter-occupied units, 13 of which had a margin greater than 0.4 percentage points.
