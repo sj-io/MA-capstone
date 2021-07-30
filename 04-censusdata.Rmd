@@ -21,7 +21,7 @@ The age of a housing unit can be an indicator that repairs are needed. The below
 
 <!--# get data for MEDIAN YEAR STRUCTURE BUILT BY TENURE -->
 
-```{r medyrblt_p, include=FALSE}
+```{r medyrblt_p, include=FALSE, cache=TRUE}
 medyrblt_p <- map_dfr(
   yrs,
   ~ get_acs(
@@ -36,7 +36,7 @@ medyrblt_p <- map_dfr(
 )
 ```
 
-```{r medyrblt_msa, include=FALSE}
+```{r medyrblt_msa, include=FALSE, cache=TRUE}
 medyrblt_msa <- map_dfr(
   yrs,
   ~ get_acs(
@@ -102,7 +102,7 @@ In the MSA, the median age of renter-occupied homes is 43; for owner-occupied un
 
 <!--# get 2019 data for TENURE BY YEAR STRUCTURE BUILT -->
 
-```{r yrblt-p, include=FALSE}
+```{r yrblt-p, include=FALSE, cache=TRUE}
 yrblt_p <- get_acs(
   geography = "place", #' Memphis city, Tennessee
   table = "B25036", #' TENURE BY YEAR STRUCTURE BUILT
@@ -159,7 +159,7 @@ Note that this dataset shows the year homes were built based on **current** tenu
 
 <!--# get 2009 data (and proper variable names!) -->
 
-```{r include=FALSE}
+```{r include=FALSE, cache=TRUE}
 v09 <- load_variables(2009, "acs5", cache = T)
 yrblt09_p <- get_acs(
    geography = "place",
@@ -211,9 +211,9 @@ knitr::kable(
 
 There was an overall loss of 13,641 occupied housing units between 2009-2019 in the city of Memphis. Broken down by tenure, there was a loss of 25,467 owner-occupied units, and a gain of 11,826 renter occupied units. If we limit our scope to **"older" units (built before 1990)**, there was a loss of 23,310 owner-occupied units, and a **gain of 7,089 renter-occupied units**.
 
-We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.[^1] This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.
+We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.[^censusdata-1] This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.
 
-[^1]: The gain of units from 1990 to 1999 is likely due to data error. Another explanation is that previously vacant units built during this time are now occupied. But this is unlikely given the loss in occupied units and an increase in vacant units from 2009-2019.
+[^censusdata-1]: The gain of units from 1990 to 1999 is likely due to data error. Another explanation is that previously vacant units built during this time are now occupied. But this is unlikely given the loss in occupied units and an increase in vacant units from 2009-2019.
 
 Considering the Great Recession, this implies former homeowners are now renting. Households that formerly benefited from policies and programs geared toward homeowners now navigate a housing system that is decidedly anti-renter. They lost their opportunity to build generational wealth, and now their wealth is being extracted through rents. Additionally, homes being converted into rentals limits the availability of homes for purchase, and denies young people the opportunity to plant roots in the community.
 
@@ -243,15 +243,15 @@ Between the 2009 and 2019 ACS, there was a definite loss in occupied housing uni
 
 Data on housing quality in the Memphis MSA is available through the 2019 [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html). As the median age for rental homes is seven years older than for owner-occupied homes in the MSA, we can expect renter-occupied homes to have more deficiencies and problems than owner-occupied homes.
 
-When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.[^2]
+When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.[^censusdata-2]
 
-[^2]: In the discussions below, "renters" refers to renter-occupied units, "owners" refers to owner-occupied units, and "Memphis" refers to the Memphis MSA.
+[^censusdata-2]: In the discussions below, "renters" refers to renter-occupied units, "owners" refers to owner-occupied units, and "Memphis" refers to the Memphis MSA.
 
 ### Selected Housing Deficiencies
 
 <!--# import AHS dataset -->
 
-```{r AHSqual-all, include=FALSE}
+```{r AHSqual-all, include=FALSE, cache=TRUE}
 AHS_mem_hsgqual_all <- read_csv("_data/AHS-mem-hsgqual-all.csv")
 ```
 

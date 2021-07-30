@@ -2,7 +2,7 @@
 
 ## Housing
 
-The federal government began insuring home loans in the 1930s, and the *Underwriting Manual* was created to outline the rules on how to rate mortgage risk [@rothstein2017 65]. These manuals prioritized newly built suburban neighborhoods, discouraging banks from making any loans in urban areas. They contained explicitly racist language, calling for lower ratings in neighborhoods with "inharmonious racial groups" [@federalhousingadministration1938 §§ 935, 937, 951, and 982]. This language was dropped in 1947, though the manual continued to value properties based on "compatibility among the neighborhood occupants" [@rothstein2017 66, citing the 1952 *Manual*]. Color-coded maps were created for cities across the U.S. to illustrate mortgage ratings. Neighborhoods deemed the riskiest were shaded red, leading to the term "redlining."
+The federal government began insuring home loans in the 1930s, and the *Underwriting Manual* was created to outline the rules on how to rate mortgage risk [@rothstein2017 65]. These manuals prioritized newly built suburban neighborhoods, discouraging banks from making any loans in urban areas. They contained explicitly racist language, calling for lower ratings in neighborhoods with "inharmonious racial groups" [@federalhousingadministration1938 §§ 935, 937, 951, 982]. This language was dropped in 1947, though the manual continued to value properties based on "compatibility among the neighborhood occupants" [@rothstein2017 66, citing the 1952 *Manual*]. Color-coded maps were created for cities across the U.S. to illustrate mortgage ratings. Neighborhoods deemed the riskiest were shaded red, leading to the term "redlining."
 
 Memphis was no exception; below is a mortgage rating map from the 1930s.
 
