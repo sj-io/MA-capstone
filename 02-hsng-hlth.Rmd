@@ -2,7 +2,7 @@
 
 > Evictions in Memphis are "a preview of what's to come in the U.S."
 >
-> [Washington Post](https://www.washingtonpost.com/nation/interactive/2021/eviction-moratorium-lifts/) subheadline, June 28, 2021
+> [@gowen2021]
 
 ## Covid-19 & Evictions
 
@@ -42,11 +42,7 @@ The day after the Washington Post article ran, June 29, 2021, a volunteer with t
 
 [^hsng-hlth-4]: I was invited to silently listen in while the calls were taking place.
 
-One worrying outcome is a simultaneous great need from citizens for housing assistance and a large pool of public funds available specifically for housing, but inefficient systems that deny the two should ever meet. Indeed, this is already a reality in other cities that have not been able to connect
-
-Once a tenant has been evicted, their options for new housing are limited. Eviction records are publicly available through county courts, and simply having an eviction on your record can deny you housing.
-
-turn ESP funds into housing vouchers?
+One worrying outcome is a simultaneous need from citizens for housing assistance and a large pool of public funds available specifically for housing, but inefficient systems that deny the two should ever meet. Shelby County's Eviction Settlement Program thrived when the CDC moratorium kept tenants in place and massive layoffs caused high unemployment, giving landlords no immediate choice of income except accepting the settlement. Now that the moratorium has been lifted and the economy is improving, landlords have more options. Ultimately, the program only guaranteed landlords could get paid, not that tenants could keep their housing.
 
 ## Housing Quality
 

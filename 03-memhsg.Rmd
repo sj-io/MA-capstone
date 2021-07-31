@@ -1,6 +1,8 @@
 # About Memphis
 
 > Shelby County was not selected because it is an outlier---rather because it is typical of many U.S. counties. Its population is concentrated in a major urban center (Memphis) and the cost of housing is not exorbitant. ..the Fair Market Rent cost for a two-bedroom apartment in 2020 is \$817 per month, placing Shelby County in the median of the distribution for U.S. counties. In addition, Shelby's 2019 average unemployment rate of 4% placed it in the middle of the distribution for counties across the United States...
+>
+> [@ahmed2021]
 
 Memphis is located on the bluffs of the Mississippi River in the southwest corner of Tennessee, adjacent to Mississippi and Arkansas. Below is a map of the city, Shelby County, and the MSA.
 
