@@ -1,72 +1,40 @@
 # Housing and Health
 
-> Evictions in Memphis are "a preview of what's to come in the U.S."
+> Shelter is one of the three fundamental needs of human existence. No housing program can be sound unless the shelter it provides is healthful.
 >
-> [@gowen2021]
+> C.-E. A. Winslow, Dr.P.H., *Chairman*,\
+> Allan A. Twichell, *Technical Secretary*,\
+> *Committee on the Hygiene of Housing (Mar., 1938)*
 
-## Covid-19 & Evictions
+## History
 
-When Covid-19 struck, health professionals of the world ordered everyone to go inside and stay there. The "stay there" part was important enough for the Center for Disease Control (CDC) to freeze all evictions due to nonpayment of rent, a power that few knew existed.[^hsng-hlth-1] Sudden, widespread illness and job loss threatened millions of American's ability to make rent. The moratorium was instituted not out of pity, but as a public health measure.
+The link between health and housing is long and well established.
 
-[^hsng-hlth-1]: *You're telling me we could've just told them to stop this whole time?*
+On January 20, 1852, Dr. John H. Griscom stood before an audience and spoke on the importance of clean air, a topic he believed "was not so much studied as it ought to be." The lecture was summarized on the front page of the New-York Daily Times the next day, concluding with Dr. Griscom's statement that "ventilation in houses should be attended to as one of the best means of preserving health." [@lectures1852]
 
-"Housing stability helps protect public health," the CDC wrote, "because homelessness increases the likelihood that people may move into close quarters," by staying in homeless shelters or doubling up with family, placing people at higher risk of getting and spreading COVID-19. Not having shelter also increases a person's risk of severe illness from Covid-19. [@cdc2020a]
+The idea must have caught on---two and a half years later, an article describing the poor conditions of a building in Buffalo declared, "we intended to speak on the ventilation, but we are sick of the subject" [@thebuff1854]. The home in question had recently been investigated by the local Board of Health based on rumors of high mortality among residents. The authors, after listing the horrid living conditions, concluded on a positive note that they were thankful to "have a Board of Health which we believe will do its duty...to reform this great abuse."
 
-The Covid-19 Delta variant, more contagious than smallpox [@anthes2021], has increased Shelby County's positivity rate from a low of 2.5% in mid-June to 14.6% a month later, the highest rate since January [@shelbycountyhealthdepartment]. While vaccines have proven effective against severe cases---unvaccinated people account for 97% of hospitalizations nationwide [@mandavilli2021]---just 37% of all Shelby County residents are fully vaccinated [@thenewyorktimes2020].[^hsng-hlth-2]
+Over the next half century, large population influx into urban areas led to widespread development of tenement housing. [@soifer2014 7] These homes offered little in the way of space, sanitation, light, or fresh air, a fact made well-known by Jacob Riis's 1890 book *How the Other Half Lives*. The conditions documented by Riis led New York City to adopt the first housing code in the United States.
 
-[^hsng-hlth-2]: Age 12+: 45%; Ages 18+: 48%; Ages 65+: 69%.
+Housing reformers continued to demand improved living conditions into the 20th century. Catherine Bauer's landmark 1934 book *Modern Housing* declared that for a home to be "modern", it must be allow for cross-ventilation and sunlight; adequate privacy, space, and sanitary facilities; adjacent play space for children; and "finally it will be available at a price which citizens of average income or less can afford." The home should be in a "complete neighborhood" and "built for efficient use over a period of years; therefore, it is not designed primarily for quick profits" [@wurster2020].
 
-The federal eviction moratorium is set to expire on Saturday, July 31, 2021, the same day this paper will be submitted. Six million families are still behind on rent, including 22% of all renters in Shelby County [@sgaier2021]. Despite the federal moratorium, eviction courts in Memphis have been open since June 15, after a U.S. District Judge sided with landlords who claimed the CDC moratorium overstepped the agency's powers [@bailey2021; @bailey2021a]. According to Princeton's Eviction Lab, the rate of new filings has increased Shelby County's moratorium was lifted, though the number of filings remains below historical averages [@evictionlab2021]. Compared to 31 other cities nationwide, Memphis ranks 7th in the number of filings during Covid, with 18,166 filings from March 15, 2020 to July 25, 2021.
+Bauer was later a primary author on the National Housing Act of 1937, which established public housing authorities and declared it U.S. policy to "remedy the unsafe and unsanitary housing conditions and the acute shortage of decent, safe, and sanitary dwellings for families of low-income, in rural or urban communities, that are injurious to the health, safety, and morals of the citizens of the nation" [@mccarty2019].
 
-The extent of eviction filings and renters in arrears is especially concerning considering that nearly \$50 billion in Emergency Rental Assistance funds has been made available by the federal government [@u.s.treasury2021]. Yet stringent requirements, complicated applications, and slow roll-out has meant only a small fraction of renters are getting the assistance they need [@deparle2021]. At the end of June 2021, two states including New York still had not sent out financial assistance to renters [@haag2021].
-
-Memphis, in comparison, was able to quickly assist renters and offer relief, though not without faults. The Eviction Settlement Program was established in fall of 2020 with \$2.25 million in funding.[^hsng-hlth-3] By December, the fund was depleted after assisting 1,220 households, with another 1,000 cases which could have been settled with extra funding. In early March of 2021, the ESP received an additional \$28 million in funding, and expanded their program to include utility assistance.
-
-[^hsng-hlth-3]: The following information related to the Eviction Settlement Program was collected from multiple Zoom interviews and meetings with Cindy Ettingoff, chief executive officer of Memphis Area Legal Services, in February and March 2021.
-
-To serve as many people as possible, Memphis Area Legal Services (MALS) offered large lump settlements to landlords who own apartment complexes where dozens of people have fallen behind on rent. The program is structured to provide funds directly to the landlord, meaning even if a renter is approved for the program, the landlord can deny the settlement offer and continue with eviction proceedings.
-
-"I had a hard time wrapping my mind around this," said Cindy Ettingoff, chief executive officer of MALS, "but it is true, particularly initially (pre-Covid), that landlords built into the cost of doing business the cost of flipping tenants, going to court, and filing fees, so initially it wasn't as big of a deal to them because that was just part of doing business. They could get someone out and get someone else in."
-
-Ettingoff emphasized that she is not anti-landlord, and is particularly sympathetic to small landlords, such as those who purchased a duplex or quadplex with retirement money. The goal for the ESP has been to benefit both landlords and tenants, a rare economic win for both parties.
-
-The ESP has dispersed over \$10 million of the \$28 million in federal assistance. Yet as the economy recovers, more landlords may opt to move on rather than broker a deal, as highlighted in a recent Washington Post feature on evictions in Memphis [@gowen2021]. The story centered around a family who had fallen behind on rent in September, was served an eviction notice, received \$1,500 in rental assistance in December and got caught up on rent, only for the landlord to continue with eviction proceedings in June. Tennessee allows landlords large leeway in serving evictions notices; if a tenant's yearly lease has expired, a landlord does not need a cause, only 30-days notice that the tenant has to move out (see [Tenn. Code Ann. § 66-28-512](http://law.justia.com/codes/tennessee/2010/title-66/chapter-28/part-5/66-28-512)). Even if tenants are current on rent, a landlord can order a tenant out by the end of the month.
-
-If the tenant has not moved after 30 days, they can be served with a summons to appear in court for an eviction hearing. Legal Services Corporation conducted a yearlong study of eviction outcomes in Shelby County for FY 2020 and found 80% of cases resulted in a favorable landlord outcome, 18.7% in a neutral or negotiated outcome, and only **1.3%** end in a favorable tenant outcome, where the tenant is allowed to remain in the home [@ahmed2021].
-
-![Source: [Legal Services Corporation](https://www.lsc.gov/press-release/new-nationwide-lsc-eviction-study-examines-variations-local-laws-and-highlights) (2021)](_img/LSC-shelby-evict.png)
-
-<br>
-
-The day after the Washington Post article ran, June 29, 2021, a volunteer with the Memphis Tenants Union was managing their renter assistance hotline.[^hsng-hlth-4] The volunteer called three tenants who had reached out for help. Of the two who answered, both had applied for the ESP and been approved. Yet in each instance, the landlords denied the settlement and continued with eviction proceedings.
-
-[^hsng-hlth-4]: I was invited to silently listen in while the calls were taking place.
-
-One worrying outcome is a simultaneous need from citizens for housing assistance and a large pool of public funds available specifically for housing, but inefficient systems that deny the two should ever meet. Shelby County's Eviction Settlement Program thrived when the CDC moratorium kept tenants in place and massive layoffs caused high unemployment, giving landlords no immediate choice of income except accepting the settlement. Now that the moratorium has been lifted and the economy is improving, landlords have more options. Ultimately, the program only guaranteed landlords could get paid, not that tenants could keep their housing.
-
-## Housing Quality
-
-Housing and health is extensive and well documented. Occupants of a home are exposed to biologic, chemical, and physical agents that can affect their health and safety [@cdc2006 63]. For instance, paint containing lead is known to cause childhood lead poisoning, which lead to the a ban on lead-based paint for residential use in 1978 [@cdc2020].
-
-### Respiratory Health
-
-Asthma, a respiratory disease which causes episodes of wheezing, breathlessness, chest tightness, and coughing, has been linked to exposure to mold or dampness and pests including dust mites, cockroaches, and rodents [@cdc2006 63].
-
-Reviewing the existing literature, @mendell2011 found dampness inside homes was linked to a wide range of respiratory or allergic health effects, including asthma. The authors concluded that prevention and remediation to reduce indoor dampness is urgently needed in a large proportion of the building stock, and such measures could significantly reduce the prevalence of respiratory and allergic disease. @rauh2002 found that cockroach allergen levels are related to the degree of household disrepair, and similarly suggested that public health interventions in housing could reduce allergen exposure.
+The following year, the *Basic Principles of Healthful Housing* was published in the American Journal of Public Health, outlining 30 principles "believed to be fundamental minima required for the promotion of physical, mental, and social health," whether the housing be high or low cost, urban or rural [@apha1938]. The fundamental needs were originally divided into four categories: physiological needs (e.g. protection from elements), psychological needs (e.g. adequate privacy), protection against contagion (e.g. safe water supply), and protection against accidents (e.g. fire prevention).
 
 ## Healthy Homes
 
-Recognizing that "health, home construction, and home maintenance are inseparable because of their overlapping goals," HUD and CDC joined together in 1999 to launch the Healthy Homes Initiative [@cdc2006 31, 34]. Many of the basic principles were originally laid out in 1938 by a Committee on the Hygiene of Housing, who provided guidance on the fundamental needs of humans as they relate to housing [@cdc2006 39; @apha1938]. The fundamental needs were originally divided into four categories: physiological needs (e.g. protection from elements), psychological needs (e.g. adequate privacy), protection against contagion (e.g. safe water supply), and protection against accidents (e.g. fire prevention).
+Six decades after *Healthful Housing* was published, the manual found renewed relevance in 1999. Recognizing that "health, home construction, and home maintenance are inseparable because of their overlapping goals," HUD and CDC joined together to launch the Healthy Homes Initiative [@cdc2006 31, 34]. Many of the basic principles originally laid out in the 1938 manual were used to create the Healthy Home Rating System (HHRS)
 
-The modern Healthy Home Rating System (HHRS) is a list of 29 hazards, categorized in accordance with these needs [@HHRSover 2]. The below table lists all the hazards, along with a short description and which populations are most vulnerable to the specific hazard (adopted from @HHRSlst).
+The below table lists all 29 hazards of the modern HHRS, along with a short description and which populations are most vulnerable to the specific hazard (adopted from @HHRSlst ).
 
-```{r vroomHHRS, include=FALSE}
-library(vroom)
-HHRS <- vroom("_data/HH-hazards.csv")
+```{r HHRSdata, include=FALSE}
+library(tidyverse)
+library(DT)
+HHRS <- read_csv("_data/HH-hazards.csv")
 ```
 
-```{r HHRS, echo=FALSE}
-library(DT)
+```{r HHRStbl, echo=FALSE}
 datatable(HHRS,
           rownames = FALSE, 
           caption = "The 29 Healthy Home Hazards",
@@ -76,11 +44,19 @@ datatable(HHRS,
           ))
 ```
 
+<br>
+
 The HHRS provides a standardized way to identify and rate the risk of home health hazards. Once a hazard is identified, it is further rated according to severity and the effect it is having, or could have, on the occupants. The greater the risk or more serious the outcome, the higher the overall score. The system provides a way to compare risks associated with different types of hazards.
 
-According to @HHRSover, this system allows local housing and health departments to know which hazards are most serious to the occupants, allowing them to prioritize funding. It also lets local policy makers identify which areas of the community are in greatest need and what health impacts those communities are facing.
+According to @HHRSover, this system lets local housing and health departments to know which hazards are most serious to the occupants, allowing them to prioritize funding. It also lets local policy makers identify which areas of the community are in greatest need and what health impacts those communities are facing.
 
-<!--# Households can take certain steps to reduce health risks, such as decreasing allergens by removing pets from the home and frequent dusting and vacuuming.  -->
+## Specific Health Concerns
+
+The field of public health has dominated academic literature related to the impact of housing quality on residents. The more time a person spends indoors, the more exposed they are to biological, chemical, and physical agents that can affect their health and safety [@cdc2006 63]. Research and findings in the field can lead to national legislation to protect the public health. For instance, the effects of lead-based paint were found to be so severe that all lead-based paint was banned for residential use in 1978 [@cdc2020].
+
+In recent decades, extensive research has been conducted on the relationship between asthma and housing quality. Asthma, a respiratory disease which causes episodes of wheezing, breathlessness, chest tightness, and coughing, has been linked to exposure to mold or dampness and pests including dust mites, cockroaches, and rodents [@cdc2006 63].
+
+Reviewing the existing literature, @mendell2011 found dampness inside homes was linked to a wide range of respiratory or allergic health effects, including asthma. The authors concluded that prevention and remediation to reduce indoor dampness is urgently needed in a large proportion of the building stock, and such measures could significantly reduce the prevalence of respiratory and allergic disease. @rauh2002 found that cockroach allergen levels are related to the degree of household disrepair, and similarly suggested that public health interventions in housing could reduce allergen exposure.
 
 ## Maintenance in the Private Rental Market
 
@@ -90,6 +66,4 @@ Current regulation of private rental housing quality assumes that tenants will t
 
 In some cases, tenants would rather move out than work towards a resolution, leaving the issue open for future tenants. In other instances, tenants with low incomes were aware of the lack of alternative housing, causing them to remain silent. Fear of eviction prevented tenants from reporting problems, and this fear was not unfounded; in three of the 15 studies, tenants who reported housing problems were evicted or forced to move. Though laws against retaliatory action might exist, no-cause evictions allow landlords to still remove the tenant from the unit. @chisholm2018 concludes that tenants do not report housing quality problems because the regulation that relies on their reporting fails to protect many tenants.
 
-A wide range of solutions are put forward to improve tenant reporting. Ending no-cause evictions and expanding legal aid can encourage tenants who may have been scared to speak up. Increasing the supply of social or public housing can expand housing options to households most vulnerable to changes in rent. The authors also suggest authorities supervise a web-based reporting system for repair requests, establishing clear records, automated reminders to the landlords, and an opportunity for authorities to step in for unduly slow repairs.
-
-The remainder of this paper seeks to understand the quality of private rental housing in Memphis and systems to report maintenance problems, particularly in cases of landlord neglect.
+The authors propose a wide range of solutions to improve tenant reporting. Ending no-cause evictions and expanding legal aid can encourage tenants who may be scared to speak up. Increasing the supply of social or public housing can expand housing options to households most vulnerable to changes in rent. The authors also suggest authorities supervise a web-based reporting system for repair requests, establishing clear records, automated reminders to the landlords, and an opportunity for authorities to step in for unduly slow repairs.

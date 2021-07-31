@@ -38,3 +38,5 @@ recommendations-1
 summary-1
 covid-19-evictions
 housing-quality-1
+history
+specific-health-concerns
