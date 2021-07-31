@@ -209,7 +209,7 @@ knitr::kable(
   caption = "Change in Occupied Units by Year Structure Built from 2009 to 2019 ACS")
 ```
 
-There was an overall loss of 13,641 occupied housing units between 2009-2019 in the city of Memphis. Broken down by tenure, there was a loss of 25,467 owner-occupied units, and a gain of 11,826 renter occupied units. If we limit our scope to **"older" units (built before 1990)**, there was a loss of 23,310 owner-occupied units, and a **gain of 7,089 renter-occupied units**.
+There was an overall loss of 13,641 occupied housing units between 2009-2019 in the city of Memphis. Broken down by tenure, there was a loss of 25,467 owner-occupied units, and a gain of 11,826 renter occupied units. If we limit our scope to **"older" units (built before 1990)**, there was a **loss of 23,310 owner-occupied units**, and a **gain of 7,089 renter-occupied units**.
 
 We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.[^censusdata-1] This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.
 
