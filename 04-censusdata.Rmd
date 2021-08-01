@@ -1,11 +1,55 @@
 # Census Data
 
+Memphis is located on the bluffs of the Mississippi River in the southwest corner of Tennessee, adjacent to Mississippi and Arkansas. As such, the Memphis MSA includes counties in three states.
+
+```{r mappkgs, include=FALSE}
+library(rgdal)
+library(leaflet)
+```
+
+```{r include=FALSE}
+MSA <- readOGR("_data/MSA.json")
+county <- readOGR("_data/shelbyco.geojson")
+memphis <- readOGR("_data/memphis.geojson")
+```
+
+```{r mapboundaries, echo=FALSE}
+leaflet() %>% 
+  addTiles() %>% 
+  addPolygons(data = MSA, 
+              stroke = T, 
+              weight = 1,
+              color = "#F2CF63", 
+              fillOpacity = 0.7,
+              label = "Memphis, TN-MS-AR Metro Area",
+              group = "MSA") %>% 
+  addPolygons(data = county, 
+              stroke = T, 
+              weight = 1,
+              color = "#6593A6", 
+              fillOpacity = 0.6,
+              label = "Shelby County",
+              group = "County") %>% 
+  addPolygons(data = memphis, 
+              stroke = T, 
+              weight = 1,
+              color = "#58595B", 
+              fillOpacity = 0.5,
+              label = "City of Memphis",
+              group = "City") %>%
+  addLayersControl(overlayGroups = c("City", "County", "MSA"),
+                   options = layersControlOptions(collapsed = FALSE))
+```
+
+Boundaries for Memphis were downloaded from [Memphis Data Hub](https://data.memphistn.gov/dataset/Jurisdiction-Boundary-Memphis/b9uj-qyia));), and for Shelby County and Memphis MSA from [CAESAR Geoportal](https://geoportal.memphis.edu/))).
+
 ## Housing Characteristics
+
+According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47%) are owner-occupied; 134,371 (53%) are renter-occupied.
 
 ```{r tidycensus, include=FALSE}
 library(tidyverse)
 library(tidycensus)
-library(kableExtra)
 ```
 
 ```{r censusbasics, include=FALSE}
@@ -13,8 +57,6 @@ yrs <- lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
 yr <- lst(2009, 2019)
 v19 <- load_variables(2019, "acs5", cache = T)
 ```
-
-According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47%) are owner-occupied; 134,371 (53%) are renter-occupied.
 
 ### Median Year Built
 
@@ -76,6 +118,7 @@ medyrblt_mmsa <- medyrblt_msa %>%
 <!--# make tables -->
 
 ```{r tbl-medyrbltmem, echo=FALSE}
+library(kableExtra)
 knitr::kable(
   medyrblt_mem, 
   col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
