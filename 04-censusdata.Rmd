@@ -50,6 +50,7 @@ According to the 2015-2019 American Community Survey, there are 251,732 occupied
 ```{r tidycensus, include=FALSE}
 library(tidyverse)
 library(tidycensus)
+library(kableExtra)
 ```
 
 ```{r censusbasics, include=FALSE}
@@ -118,7 +119,6 @@ medyrblt_mmsa <- medyrblt_msa %>%
 <!--# make tables -->
 
 ```{r tbl-medyrbltmem, echo=FALSE}
-library(kableExtra)
 knitr::kable(
   medyrblt_mem, 
   col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
