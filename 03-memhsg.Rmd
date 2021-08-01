@@ -1,52 +1,26 @@
 # About Memphis
 
-> Shelby County was not selected because it is an outlier---rather because it is typical of many U.S. counties. Its population is concentrated in a major urban center (Memphis) and the cost of housing is not exorbitant. ..the Fair Market Rent cost for a two-bedroom apartment in 2020 is \$817 per month, placing Shelby County in the median of the distribution for U.S. counties. In addition, Shelby's 2019 average unemployment rate of 4% placed it in the middle of the distribution for counties across the United States...
->
-> [@ahmed2021]
+Earlier this year, Legal Services Corporation released a report following a year-long study of the eviction process in Memphis and Shelby County. The area was selected because it is not an outlier---"rather because it is typical of many U.S. counties," with a population concentrated in a major urban center and a "not exorbitant" cost of housing [@ahmed2021].
 
-Memphis is located on the bluffs of the Mississippi River in the southwest corner of Tennessee, adjacent to Mississippi and Arkansas. Below is a map of the city, Shelby County, and the MSA.
+Multiple factors make Memphis ideal for monitoring maintenance in the private rental market. The housing stock in the central city is old; the median year built for owner and renter-occupied homes is before 1978. Not only will these homes require additional maintenance, but homes built before this time likely used lead-based paint. Unless the property has been remediated, the paint can create lead dust in the home, a particular hazard for young children [@cdc2020].
 
-```{r boundaries, include=FALSE}
-library(rgdal)
-library(leaflet)
-MSA <- readOGR("_data/MSA.json")
-county <- readOGR("_data/shelbyco.geojson")
-memphis <- readOGR("_data/memphis.geojson")
-```
+Mortgage lending discrimination has disproportionately denied non-white residents the ability to purchase homes or build wealth---not just as a part of redlining practices, but also in recent years before and after the Great Recession. The fallout of the recession caused high foreclosure rates, transitioning Memphis from majority homeowner to majority renter city. In the following decade, Memphis tenants saw rents outpace incomes, leading to increased cost burdenship.
 
-```{r mapboundaries, echo=FALSE}
-leaflet() %>% 
-  addTiles() %>% 
-  addPolygons(data = MSA, 
-              stroke = T, 
-              weight = 1,
-              color = "#F2CF63", 
-              fillOpacity = 0.7,
-              label = "Memphis, TN-MS-AR Metro Area",
-              group = "MSA") %>% 
-  addPolygons(data = county, 
-              stroke = T, 
-              weight = 1,
-              color = "#6593A6", 
-              fillOpacity = 0.6,
-              label = "Shelby County",
-              group = "County") %>% 
-  addPolygons(data = memphis, 
-              stroke = T, 
-              weight = 1,
-              color = "#58595B", 
-              fillOpacity = 0.5,
-              label = "City of Memphis",
-              group = "City") %>%
-  addLayersControl(overlayGroups = c("City", "County", "MSA"),
-                   options = layersControlOptions(collapsed = FALSE))
-```
+Existing in a decidedly pro-landlord state has limited the protections of Memphis tenants. This influences the decisions of renters, who must weigh decisions like reporting their landlord to code enforcement at the expense of retaliation/eviction. This can lead tenants to under-reporting problems, which is something that should be looked for and measured by housing researchers.
 
-::: {style="color: gray"}
-**Map Boundaries**: City of Memphis: ([Memphis Data Hub](https://data.memphistn.gov/dataset/Jurisdiction-Boundary-Memphis/b9uj-qyia)); Shelby County and Memphis MSA: ([CAESAR Geoportal](https://geoportal.memphis.edu/))
-:::
+Recent changes to Memphis's comprehensive plan also make the city an interesting case study. In other places across America, stringent zoning laws have limited the supply of housing, and discourse over affordable housing policies has been narrowly focused on changing or repealing these zoning laws. In 2019, Memphis adopted the comprehensive plan known as "Memphis 3.0," which relaxed zoning codes to encouraged mixed use development and increased density in the city [@memphis30]. This change allows researchers to study the effects of relaxed zoning and consider other factors influencing affordable housing that are less discussed.
 
-## Housing
+Lastly, code enforcement data is easily accessed from [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta), where it is updated daily.
+
+## Health
+
+In 2015, Memphis was named the asthma capital of America by the Asthma and Allergy Foundation of America [@aafa2015], based on prevalence, risk factors, and medical factors. Recent efforts to reduce the prevalence and risk of asthma have been successful---Memphis's rank has since decreased to 41st in 2021 [@aafa2021].[^memhsg-1] However, Memphis still ranks high in asthma-related mortality, placing 7th of 100 cities. A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis [@shin2018]. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems.
+
+[^memhsg-1]: The ranking method changed between 2015 and 2021, with fewer factors involved in a city's overall ranking in 2021.
+
+## Mortgage Discrimination
+
+### Historical
 
 The federal government began insuring home loans in the 1930s, and the *Underwriting Manual* was created to outline the rules on how to rate mortgage risk [@rothstein2017 65]. These manuals prioritized newly built suburban neighborhoods, discouraging banks from making any loans in urban areas. They contained explicitly racist language, calling for lower ratings in neighborhoods with "inharmonious racial groups" [@federalhousingadministration1938 §§ 935, 937, 951, 982]. This language was dropped in 1947, though the manual continued to value properties based on "compatibility among the neighborhood occupants" [@rothstein2017 66, citing the 1952 *Manual*].
 
@@ -54,9 +28,9 @@ Color-coded maps were created for cities across the U.S. to illustrate mortgage 
 
 ![A color-coded map of Memphis created in the 1930s used by the federal government to rate mortgage risk. Original source: National Archives and Records Administration, accessed via [@bradley2019].](_img/memphis_redliningmap.jpg "Memphis Redlining Map")
 
-A digitized version of the above map is available below.[^memhsg-1]
+A digitized version of the above map is available below.[^memhsg-2]
 
-[^memhsg-1]: I originally made this map using [geojson.io](https://geojson.io/) for a class in spring 2021. I have since discovered the University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58) website, which offers original scans and digitized versions (geoJSON or shapefiles) of redlining maps available for download for over 100 U.S. cities.
+[^memhsg-2]: I originally made this map using [geojson.io](https://geojson.io/) for a class in spring 2021. I have since discovered the University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58) website, which offers original scans and digitized versions (geoJSON or shapefiles) of redlining maps available for download for over 100 U.S. cities.
 
 ```{r redlineData, include=FALSE}
 redData <- "_data/redlining.geojson"
@@ -77,18 +51,60 @@ leaflet(redPoly) %>%
 
 <br>
 
-Overall, 69% of the city was deemed "hazardous" (red) or "definitely declining" (yellow), notably including all of Downtown and the majority of North and South Memphis. Only 7% of the city received an A rating ("best", green), including the Central Gardens neighborhood, areas adjacent to Overton Park, Chickasaw Gardens, and East Memphis neighborhoods adjacent to golf courses. The remaining 24% of the city ("still desirable", blue) contains other Midtown neighborhoods and follows the Poplar Avenue corridor to the east.[^memhsg-2] Railroads and large streets were typically the dividing line between positive and negative ratings.
+Overall, 69% of the city was deemed "hazardous" (red) or "definitely declining" (yellow), notably including all of Downtown and the majority of North and South Memphis. Only 7% of the city received an A rating ("best", green), including the Central Gardens neighborhood, areas adjacent to Overton Park, Chickasaw Gardens, and East Memphis neighborhoods adjacent to golf courses. The remaining 24% of the city ("still desirable", blue) contains other Midtown neighborhoods and follows the Poplar Avenue corridor to the east.[^memhsg-3] Railroads and large streets were typically the dividing line between positive and negative ratings.
 
-[^memhsg-2]: Percentages sourced from [@nelson].
+[^memhsg-3]: Percentages sourced from [@nelson].
+
+### Modern Discrimination
 
 In recent years, at least three major lawsuits have been settled concerning discriminatory lending in Memphis [@bradley2019; @uhlmann2020]. Excessive foreclosures following the 2008 subprime mortgage crisis led Memphis and Shelby County to file suit against Wells Fargo for targeting Black neighborhoods for predatory lending practices, which the bank settled for \$425 million in 2012 [@rothacker2012].
 
 Following the Great Recession, banks became selective of whom they targeted and approved for mortgages, often at the expensive of non-white residents. In 2016, BancorpSouth and First Tennessee Bank settled separate suits for \$10.6 million and \$1.9 million, respectively, against accusations of disproportionately denying loan applications to non-white borrowers and failing to build branches in non-white neighborhoods [@lane2016a; @lane2016].
 
-## Health
+## COVID-19 & Evictions
 
-In 2015, Memphis was named the asthma capital of America by the Asthma and Allergy Foundation of America [@aafa2015], based on prevalence, risk factors, and medical factors. Recent efforts to reduce the prevalence and risk of asthma have been successful---Memphis's rank has since decreased to 41st in 2021 [@aafa2021].[^memhsg-3] However, Memphis still ranks high in asthma-related mortality, placing 7th of 100 cities.
+> Evictions in Memphis are "a preview of what's to come in the U.S."
+>
+> [@gowen2021]
 
-[^memhsg-3]: The ranking method changed between 2015 and 2021, with fewer factors involved in a city's overall ranking in 2021.
+The COVID-19 Delta variant, as contagious as the chickenpox [@anthes2021], has increased Shelby County's positivity rate from a low of 2.5% in mid-June to 14.6% a month later, the highest rate since January [@shelbycountyhealthdepartment]. While vaccines have proven effective against severe cases [@mandavilli2021], only 48% of all Shelby County adults are fully vaccinated [@thenewyorktimes2020].[^memhsg-4]
 
-A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis [@shin2018]. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems, leading authors to conclude that effective health interventions should consider involving housing policies and procedures.
+[^memhsg-4]: Age 12+: 45%; Ages 18+: 48%; Ages 65+: 69%.
+
+As the CDC moratorium ends, an estimated 22% of all renters in Shelby County are behind in rent [@sgaier2021]. However, eviction courts in Memphis have been open since June 15, after a U.S. District Judge sided with landlords who claimed the CDC moratorium overstepped the agency's powers [@bailey2021; @bailey2021a].
+
+According to Princeton's Eviction Lab, the rate of new filings has increased since the was lifted, though the number of filings remains below historical averages [@evictionlab2021]. Compared to 31 other cities nationwide, Memphis ranks 7th in the number of filings during COVID, with 18,166 filings from March 15, 2020 to July 25, 2021.[^memhsg-5]
+
+[^memhsg-5]: To be clear, there was already a housing crisis before Covid. More than 26,000 eviction cases were filed in Shelby County in 2019 alone [@ahmed2021 2].
+
+Compared to other places, Memphis was able to quickly assist renters and offer relief, though the program was not without faults.
+
+The **Eviction Settlement Program** (**ESP**) was established in fall of 2020 with \$2.25 million in funding.[^memhsg-6] To serve as many people as possible, **Memphis Area Legal Services** (**MALS**) offered large lump settlements to landlords who owned complexes where dozens of people have fallen behind on rent. Initially, some landlords refused the offer.
+
+[^memhsg-6]: The following information related to the Eviction Settlement Program was collected from multiple Zoom interviews and meetings with Cindy Ettingoff, chief executive officer of Memphis Area Legal Services, in February and March 2021.
+
+"I had a hard time wrapping my mind around this," said Cindy Ettingoff, chief executive officer of MALS, "but it is true, particularly initially (pre-COVID), that landlords built into the cost of doing business the cost of flipping tenants, going to court, and filing fees, so initially it wasn't as big of a deal to them because that was just part of doing business. They could get someone out and get someone else in."
+
+Ettingoff emphasized that she is not anti-landlord, and is particularly sympathetic to small landlords, such as those who purchased a duplex or quadplex with retirement money. The goal for the ESP has been to benefit both landlords and tenants.
+
+The bleek outlook of winter 2020 caused landlords to reconsider and accept the offer. By December, the fund was depleted after assisting 1,220 households, with another 1,000 cases which could have been settled with extra funding. The ESP received an additional \$28.2 million in funding in March 2021, and expanded their program to include utility assistance.
+
+The ESP has dispersed over \$10 million of the \$28 million in federal assistance. Yet as the moratorium ends and the economy recovers, landlords may opt to return to the tenant flipping model rather than settle with the existing tenant, as highlighted in a recent Washington Post feature on evictions in Memphis [@gowen2021]. The story centered around a family who had fallen behind on rent in September, was served an eviction notice, received \$1,500 in rental assistance in December and got caught up, only for the landlord to continue with eviction proceedings in June.
+
+As part of the ESP, landlords must agree to not evict a tenant for the months paid for through the program; yet they may evict once the period is over. Tennessee allows landlords large leeway in serving evictions notices; if a tenant's yearly lease has expired, a landlord does not need a cause, only 30-days notice that the tenant has to move out (see [Tenn. Code Ann. § 66-28-512](http://law.justia.com/codes/tennessee/2010/title-66/chapter-28/part-5/66-28-512)). Even if tenants are current on rent, a landlord can order a tenant out by the end of the month.
+
+![Source: [Legal Services Corporation](https://www.lsc.gov/press-release/new-nationwide-lsc-eviction-study-examines-variations-local-laws-and-highlights) (2021)](_img/LSC-shelby-evict.png)
+
+<br>
+
+If the tenant has not moved after 30 days, they can be served with a summons to appear in court for an eviction hearing. Legal Services Corporation conducted a yearlong study of eviction outcomes in Shelby County for FY 2020 and found 80% of cases resulted in a favorable landlord outcome, 18.7% in a neutral or negotiated outcome, and only **1.3%** **end in a favorable tenant outcome**, where the tenant is allowed to remain in the home [@ahmed2021].
+
+June 29, 2021, the day after the Washington Post article ran, a volunteer with Memphis Tenants Union called three tenants who had reached out to the group's rental assistance hotline.[^memhsg-7] Of the two tenents who answered, both had the same problem. Each had applied for the ESP and been approved, yet their landlord had denied the settlement and continued with eviction proceedings.
+
+[^memhsg-7]: The volunteer allowed me to silently listen in while the calls were taking place.
+
+Shelby County's Eviction Settlement Program thrived when the CDC moratorium kept tenants in place and massive layoffs caused high unemployment, giving landlords no immediate chance of income other than accepting the settlement. Now that the moratorium has been lifted and the economy is improving, more landlords may opt to deny funding and resume evictions. This is a problem as the ESP is only structured to distribute rental assistance to landlords, not tenants. This structure can create a scenario where there is a large need for rental assistance from tenants, and a large pool of public funds earmarked for rent relief, but the structure prevents the funds from ever reaching the tenants.
+
+The ESP is allowed to distribute assistance until funding expires in September 2022. Though landlords might deny the funds, relief can also be spent towards utility assistance. As Memphis has a public utility company, there is a slim-to-none chance this relief would be denied.
+
+Still, this outcome begs the question: what was the primary purpose of the rent relief? To keep renters in their home if they lost income due to COVID, or to guarantee landlords the lost income? Ultimately, the program only guaranteed landlords could get paid, not that tenants could keep their housing.
