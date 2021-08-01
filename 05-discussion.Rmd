@@ -1,25 +1,21 @@
 # Discussion
 
-Despite code enforcement being the only recourse for renters experiencing landlord neglect, code enforcement does not categorize or track this data. Instead, it is shuffled into a miscellaneous category with duplicates and errors. How can so much data say so little? How are we supposed to create a strategic code enforcement if it is difficult to understand the data we already have?
+Code enforcement is the only recourse for renters who want to report landlord neglect. However, Memphis code enforcement does not categorize or track this data. Instead, this information is shuffled into a miscellaneous category, with duplicates and errors. While the dataset may be updated daily, it is incredibly hard to organize, and the volume of cases added daily only made the job more difficult.
 
-I do not feel comfortable plotting this data because of the large number of errors, particularly with hard-to-sort duplicates, and incorrect addresses. It is too easy to misrepresent this data. I do not feel comfortable summarizing this data and drawing conclusions. A map can hide the problem; viewers cannot read all the error messages behind the data. [I'll try to clean this data as much as possible the next few days
+In conversations with other housing researchers, I found I was not alone in my frustrations with this dataset. I have yet to meet someone who established a way to sort through all the data. One researcher who did regularly use the data did so by limiting the scope/analysis to individual neighborhoods.
 
-Instead we should stop, process what we have, find common problems and patterns, and implement improvements. We should be conscious of specific problems faced in the private rental market.
+This leads me to believe that Memphis code enforcement does not regularly sort through existing data to find trends and patterns. This would not be surprising, except for the department having two lengthy reports over 20 years calling for a strategic, rather than a reactive, code enforcement. A strategic code enforcement requires regular analysis of existing data, to find trends and identify blind spots. Without a strategy, code enforcement will opt for the reactive system. This leads inspectors to spend a disproportionate amount of time on minor violations instead of ones that impact public health. As stated by @betts2001, "individual efforts, no matter how well intentioned, are by definition *not strategic*." [44]
 
-We should do this because our code enforcement's largest hurdle is [the **same problem** it faced twenty years ago]{.ul}. Memphis still lacks the ability to efficiently monitor properties and "analyze overall patterns, and hold inspectors accountable for outcomes. At the root of the problem is an outdated computer and data management system. Enforcement decisions remain at the level of individual inspectors: the effectiveness of individual decisions are largely invisible in the absence of systematic analysis and evaluation. Individual inspectors may have sufficient knowledge to understand what is going on with particular properties, and may have an experiential grasp of patterns of property ownership that enables them to know who among property owners is least responsible, for example. If they are hard working and retain a belief that their actions can make a difference, individual inspectors may achieve a reasonable rate of compliance with some violators. But individual efforts, no matter how well intentioned, are by definition *not strategic*." [@betts2001, 44]
+Attempting to organize this dataset reminded me of Matthew Desmond discussing the difficulty in finding accurate eviction data for any city just a decade ago. The data existed but it was unorganized and messy. He established the Eviction Lab to draw attention to the problem and help other people access the data. Making the data widely available allowed it to be studied and discussed. The extent of the eviction crisis became apparent, and soon evictions became one of the most important topics in housing.
 
-> At the root of the problem is an outdated computer and data management system.
+Public housing in America ended due to mismanagement and neglect of maintenance, and yet few people are calling for the end of private rental housing due to the same practices. Perhaps part of the reason public housing ended was the relative ease of monitoring and tracking the neglect. Information on public housing is publicly available; with relative ease I can find a list of what properties are managed by the city, view the agency plan and yearly financial audit which breaks down revenues and expenses. Meanwhile, trying to find such information about the private rental market is nearly impossible. How are we to hold the private rental market accountable if we don't know the extent of the problem?
 
 ## Recommendations
 
-Create a new `REQUEST_TYPE` for private rental/landlord neglect, replacing "Code Miscellaneous". This is fundamental to being able to track this data.
+While I recognize that asking an organization to alter its data entry methods is a big ask, I have a few specific recommendations which I believe could completely alter the nature of 311 data.
 
-Create a `RESOLUTION_CODE` for duplicates, replacing "JA" and similar. (Already used by other cities like [Cincinnati](https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6))
-
-Do not put all information for one case on one row, overwriting old data. Instead, allow each update its own row.
-
-Combine with assessor's database to simplify and repair location columns.
-
-Expand categories to include information on structures and tenure.
-
-Implement the **HHRS** into the data system. For occupied housing units, categorize hazards using the HHRS.
+1.  Create a new `REQUEST_TYPE` for requests related to private rental/landlord neglect. This would replace at least some of the "Code Miscellaneous" category with more substantive information. It might also encourage more tenant reporting, as tenants know they're placing their complaint with the right agency.
+2.  Create a `RESOLUTION_CODE` for duplicates, replacing "JA" and similar. (For instance "DUPE" is used by other cities like [Cincinnati](https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6))
+3.  Do not put all information for one case on one row, overwriting old data. Instead, allow each update its own row.
+4.  Close out old cases which are clearly no open anymore.
+5.  Implement the **HHRS** into the data system. For occupied housing units, categorize hazards using the HHRS.

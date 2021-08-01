@@ -1,0 +1,59 @@
+# Appendix: COVID & Evictions
+
+## CDC Eviction Moratorium
+
+When COVID-19 struck, health professionals around the world ordered everyone to stay at home. However, sudden, widespread illness and job loss threatened to displace of millions of Americans who fell behind on rent. The CDC recognized that large waves of evictions could increase the spread of COVID, as people lost a stable place to quarantine and were more likely to double up with family or overcrowd homeless shelters. [@cdc2020a] Not having shelter also increases a person's risk of severe illness from COVID-19. The risk to public health led the CDC to freeze all evictions due to nonpayment of rent, a power that many did not know they possessed.[^eviction-1]
+
+[^eviction-1]: *You're telling me we could've just told them to stop evicting people this whole time??*
+
+The federal eviction moratorium is set to expire on Saturday, July 31, 2021, the same day this paper will be submitted. Six million families are still behind on rent [@sgaier2021]. The COVID-19 Delta variant, more contagious than smallpox [@anthes2021], has caused a rapid uptick in cases across the U.S. Vaccines have proven effective against severe cases---unvaccinated people account for 97% of hospitalizations nationwide [@mandavilli2021]---but 40% of U.S. adults have yet to be fully vaccinated [@thenewyorktimes2020].
+
+The extent of eviction filings and renters in arrears is especially concerning, considering nearly \$50 billion in Emergency Rental Assistance funds has been made available by the federal government [@u.s.treasury2021]. Yet stringent requirements, complicated applications, and slow roll-out has meant only a small fraction of renters are getting the assistance they need [@deparle2021]. At the end of June 2021, two states including New York still had not sent out financial assistance to renters [@haag2021].
+
+## Memphis Eviction Settlement Program
+
+> Evictions in Memphis are "a preview of what's to come in the U.S."
+>
+> [@gowen2021]
+
+The COVID-19 Delta variant has increased Shelby County's positivity rate from a low of 2.5% in mid-June to 14.6% a month later, the highest rate since January [@shelbycountyhealthdepartment]. While vaccines have proven effective against severe cases [@mandavilli2021], only 48% of all Shelby County adults are fully vaccinated [@thenewyorktimes2020].[^eviction-2]
+
+[^eviction-2]: Age 12+: 45%; Ages 18+: 48%; Ages 65+: 69%.
+
+As the CDC moratorium ends, an estimated 22% of all renters in Shelby County are behind in rent [@sgaier2021]. However, eviction courts in Memphis have been open since June 15, after a U.S. District Judge sided with landlords who claimed the CDC moratorium overstepped the agency's powers [@bailey2021; @bailey2021a].
+
+According to Princeton's Eviction Lab, the rate of new filings has increased since the was lifted, though the number of filings remains below historical averages [@evictionlab2021]. Compared to 31 other cities nationwide, Memphis ranks 7th in the number of filings during COVID, with 18,166 filings from March 15, 2020 to July 25, 2021.[^eviction-3]
+
+[^eviction-3]: To be clear, there was already a housing crisis before Covid. More than 26,000 eviction cases were filed in Shelby County in 2019 alone [@ahmed2021 2].
+
+Compared to other places, Memphis was able to quickly assist renters and offer relief, though the program was not without faults.
+
+The **Eviction Settlement Program** (**ESP**) was established in fall of 2020 with \$2.25 million in funding.[^eviction-4] To serve as many people as possible, **Memphis Area Legal Services** (**MALS**) offered large lump settlements to landlords who owned complexes where dozens of people have fallen behind on rent. Initially, some landlords refused the offer.
+
+[^eviction-4]: The following information related to the Eviction Settlement Program was collected from multiple Zoom interviews and meetings with Cindy Ettingoff, chief executive officer of Memphis Area Legal Services, in February and March 2021.
+
+"I had a hard time wrapping my mind around this," said Cindy Ettingoff, chief executive officer of MALS, "but it is true, particularly initially (pre-COVID), that landlords built into the cost of doing business the cost of flipping tenants, going to court, and filing fees, so initially it wasn't as big of a deal to them because that was just part of doing business. They could get someone out and get someone else in."
+
+Ettingoff emphasized that she is not anti-landlord, and is particularly sympathetic to small landlords, such as those who purchased a duplex or quadplex with retirement money. The goal for the ESP has been to benefit both landlords and tenants.
+
+The bleek outlook of winter 2020 caused landlords to reconsider and accept the offer. By December, the fund was depleted after assisting 1,220 households, with another 1,000 cases which could have been settled with extra funding. The ESP received an additional \$28.2 million in funding in March 2021, and expanded their program to include utility assistance.
+
+The ESP has dispersed over \$10 million of the \$28 million in federal assistance. Yet as the moratorium ends and the economy recovers, landlords may opt to return to the tenant flipping model rather than settle with the existing tenant, as highlighted in a recent Washington Post feature on evictions in Memphis [@gowen2021]. The story centered around a family who had fallen behind on rent in September, was served an eviction notice, received \$1,500 in rental assistance in December and got caught up, only for the landlord to continue with eviction proceedings in June.
+
+As part of the ESP, landlords must agree to not evict a tenant for the months paid for through the program; yet they may evict once the period is over. Tennessee allows landlords large leeway in serving evictions notices; if a tenant's yearly lease has expired, a landlord does not need a cause, only 30-days notice that the tenant has to move out (see [Tenn. Code Ann. § 66-28-512](http://law.justia.com/codes/tennessee/2010/title-66/chapter-28/part-5/66-28-512)). Even if tenants are current on rent, a landlord can order a tenant out by the end of the month.
+
+![Source: [Legal Services Corporation](https://www.lsc.gov/press-release/new-nationwide-lsc-eviction-study-examines-variations-local-laws-and-highlights) (2021)](_img/LSC-shelby-evict.png)
+
+<br></br>
+
+If the tenant has not moved after 30 days, they can be served with a summons to appear in court for an eviction hearing. Legal Services Corporation conducted a yearlong study of eviction outcomes in Shelby County for FY 2020 and found 80% of cases resulted in a favorable landlord outcome, 18.7% in a neutral or negotiated outcome, and only **1.3%** **end in a favorable tenant outcome**, where the tenant is allowed to remain in the home [@ahmed2021].
+
+June 29, 2021, the day after the Washington Post article ran, a volunteer with Memphis Tenants Union called three tenants who had reached out to the group's rental assistance hotline.[^eviction-5] Of the two tenents who answered, both had the same problem. Each had applied for the ESP and been approved, yet their landlord had denied the settlement and continued with eviction proceedings.
+
+[^eviction-5]: The volunteer allowed me to silently listen in while the calls were taking place.
+
+Shelby County's Eviction Settlement Program thrived when the CDC moratorium kept tenants in place and massive layoffs caused high unemployment, giving landlords no immediate chance of income other than accepting the settlement. Now that the moratorium has been lifted and the economy is improving, more landlords may opt to deny funding and resume evictions. This is a problem as the ESP is only structured to distribute rental assistance to landlords, not tenants. This structure can create a scenario where there is a large need for rental assistance from tenants, and a large pool of public funds earmarked for rent relief, but the structure prevents the funds from ever reaching the tenants.
+
+The ESP is allowed to distribute assistance until funding expires in September 2022. Though landlords might deny the funds, relief can also be spent towards utility assistance. As Memphis has a public utility company, there is a slim-to-none chance this relief would be denied.
+
+Still, this outcome begs the question: what was the primary purpose of the rent relief? To keep renters in their home if they lost income due to COVID, or to guarantee landlords the lost income? Ultimately, the program only guaranteed landlords could get paid, not that tenants could keep their housing.

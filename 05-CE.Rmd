@@ -1,44 +1,12 @@
-# Code Enforcement
-
-<!--# According to Sharon Hyde, head of the Memphis branch of the Green and Healhty Homes Initiative, Code Enforcement has been trained to identify healthy home hazards, though it has been a few years. The system is currently being used by the Shelby County Department of Housing for their LEAD grant program, which is funded by HUD and requires a healthy home inspection for each project. -->
-
-## Reports
-
-Over the past twenty years, there have been at least two expansive reports offering critiques and criticisms of Memphis code enforcement. While each report aimed to improve code enforcement, the reasons differed---one sought to address crime and safety, the other public health.
-
-The first report, released in April 2001, was distributed by the Memphis Shelby Crime Commission and written by Phyllis Betts, then a professor of sociology at University of Memphis [@betts2001]. Input was provided by two other University of Memphis faculty: Betts's husband, the late Richard Janikowski, former chair of the Department of Criminology and Criminal Justice and 'father' of Memphis's Blue CRUSH policing [@poe2021]; and Susan Roakes, former professor of City and Regional Planning.
-
-The report was built on the "broken windows" criminology theory: in deteriorated or declining neighborhoods, physical neglect of "problem properties" attracts and aggravates criminal activity. Researchers interviewed inspectors and individuals involved with environmental court, used code enforcement data from 1992-1999, accessed the Shelby County Tax Assessor's database, and conducted visual surveys for selected properties as part of a case study of the Binghamton neighborhood.
-
-The second report, published in 2018, was produced by The Urban Institute [@stacy2018]. While the 2001 report focused on property neglect and safety, this report centered on the link between the physical condition of homes and neighborhoods and public health. Planning for the report began shortly after the election of Mayor Jim Strickland in 2016, whose campaign had emphasized blight control [@baker2018]. Researchers collaborated with and interviewed members of the newly formed [Blight Elimination Steering Team](http://memphisfightsblight.com/blight-elimination-steering-team/), a coordinated effort between public, private, and nonprofit agencies to address blight, and the [Green and Healthy Homes Initiative](https://www.greenandhealthyhomes.org/location/memphis-tn/), a partnership formed between local health care providers and housing and community development organizations to address public health issues related to housing quality.
-
-The report accessed and analyzed data through the [Memphis Property Hub](http://memphisfightsblight.com/programs/mph/), which offers parcel-level property information, particularly related to blighted, vacant, and foreclosed homes. Code enforcement data from 1999-2017 was used, effectively picking up where the last report ended. Additional data related to public health, safety, and courts were provided by the Shelby County Healthy Department, the Center for Applied Earth Science and Engineering Research department at the University of Memphis, and the Shelby County Environmental Court, respectively.
-
-### Findings
-
-In a visual survey of the Binghamton neighborhood, @betts2001 found that only about 1 in 5 code violations were reported.
-
-Both reports found the vast majority of code enforcement reports were related to nonstructural issues. @betts2001 reported three out of four properties were cited for non-structural problems such as weeds, junk, and inoperable or abandoned vehicles. It appears this percentage has actually increased overtime; @stacy2018 stated 81% of all requests concerned the yard or property, rather than the house.
-
-@stacy2018 found service requests were concentrated in areas with single-family homes, and though about half of all requests were for multifamily units, most of these (70 percent) were for duplexes rather than apartment complexes. @betts2001 also found that large multifamily units flew under the radar; at least half of multifamily properties in Binghamton had violations in multiple units, yet code enforcement recorded only eight violations out of 1200 apartment units.
-
-It appears the number of service requests has increased overtime. In 1998, code enforcement received about 10,000 complaints [@betts2001 93], while the Urban Institute reported 53,226 in 2016 [@stacy2018 51]. However, this number does not match open data (discussed later in this paper) which reported 30,361 requests in 2016, not excluding duplicates. Nevertheless, it does appear that more requests are being made.
-
-Cases also appear significantly more likely to be taken to court. In 1998, a mere 71 cases from code enforcement were heard by the environmental court [@betts2001 49]. In November 2017 alone, 1,095 cases went to environmental court, though the Urban report does not specifically state if all cases were from code enforcement [@stacy2018 51]. However, the majority of cases were for single-family homes (64%), and most were vacant.
-
-### Recommendations
-
-Both reports recommend fundamentally changing Memphis code enforcement from a reactive process (responding to citizen reports) to a proactive, strategic system.
-
-@stacy2018 suggests that code enforcement prioritize health-related violations and interior health and safety issues, cemented through the agency's policies and procedures manual. The authors recommend proactive inspections of problem multifamily properties and under-served neighborhoods, and identification of under-reported violations. Multiple technology improvements are recommended, including automatic prioritization of health-related violations and synchronizing of data systems with the Shelby County Department of Health and the environmental court, among others. Also acknowledged is the need to update current landlord/tenant laws to protect tenants from homelessness.
-
-<!--# add a lot more -->
-
-## 311 Data
+# 311 Data
 
 Memphians are able to report problems to code enforcement by calling 311 or submitting a request through an app called [SeeClickFix](https://seeclickfix.com/), used in hundreds of towns across the nation.
 
-Housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta). This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows. R/RStudio was used to view and analyze the dataset.
+Housing code enforcement data from 2016-present is available through [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta). This page uses a dataset downloaded July 19, 2021. At the time of download, there were 53 columns and 1,232,097 rows.
+
+Considering the large number of rows and columns, this dataset might intimidate or dissuade individuals interested in the data who do not have the time to learn how to sort the data. Considering the extent of problems I had in parsing this data, I wanted to outline some basic advice and guidance for others interested in using this dataset.
+
+R/RStudio was used to view and analyze the dataset, and all my code is available on the [Github repository](https://github.com/sj-io/MA-capstone) for this paper. I set out with a goal to not manually edit the data (such as retyping individual cells) instead opting to use r packages like [dplyr](https://dplyr.tidyverse.org/) to "wrangle" the data. This keeps the code reproducible, allowing anyone to download the newest 311 data and run it through the code to clean and organize it.
 
 ```{r getdata, include=FALSE, cache=TRUE}
 library(tidyverse)
@@ -61,13 +29,11 @@ Service_Requests_since_2016 <-
   )
 ```
 
-Each row of the dataset contains all information for a single request, meaning there are not multiple rows for individual cases (except for duplicates).
+Each row of the 311 dataset contains all information for a single request, meaning there are not multiple rows for individual cases (except for duplicates).
 
 Despite the large number of records, only a portion are relevant to this paper. This is because the dataset contains **all** requests to 311, not just those related to code enforcement. Additionally, many columns contain duplicate or unhelpful information. For instance, there are 23 columns related to location and under the column `LAST_UPDATED_BY`, every single entry is just the number "460101".
 
-The dataset can be simplified by filtering for code enforcement data and narrowing the number of columns. In the next section I more thoroughly explain why I chose these columns.
-
-**NOTE**: A list of all column names is available on the Data Hub site linked above, or in R/RStudio enter `colnames(Service_Requests_since_2016)`.
+The dataset can be simplified by filtering for code enforcement data and narrowing the number of columns. The output is 14 columns and 154,844 rows, significantly easier to work with.
 
 ```{r CE, cache=TRUE}
 CE <- Service_Requests_since_2016 %>%
@@ -88,11 +54,11 @@ CE <- Service_Requests_since_2016 %>%
   ) %>% mutate(RESOLUTION_SUMMARY = str_to_lower(RESOLUTION_SUMMARY))
 ```
 
-The output is 14 columns and 154,844 rows, significantly easier to work with.
+The above code chuck lists column names I kept which will be referenced below.
 
-### Problems with the dataset
+## Problems with the dataset
 
-We're ready to begin looking at the data, but before analyzing you should know that there are significant problems with this dataset, including inconsistent and vague data entry, hard-to-filter duplicates, an error causing the wrong address to appear, and more. As such, I was not able to quickly process and analyze this data.
+Prior to analyzing this dataset, know that there are significant problems that need correcting, including inconsistent and vague data entry, hard-to-filter duplicates, an error causing the wrong address to appear, and more.
 
 Throughout the dataset, there are **multiple values that mean the same thing**, like closed and resolved[^ce-1]. The `RESOLUTION_CODE` field in particular has a handful of codes used for an umbrella of meanings. For instance, 23% of rows are resolved as "NJ" for Not Justified. This may mean an inspector has visited the property and did not see a problem, or there was a wrong address[^ce-2], or there was a problem and it's been fixed, or there was a problem but it wasn't related to code enforcement; but in most cases there is no further explanation given. There are similar problems for codes tagged CVOM (COMP. V.O. - Miscellaneous, 9% of all cases), CVOID (Closed Void, 4% cases), CO (Closed Other, 3%), and Other (1%). Together, these codes make up [40%]{.ul} of all code enforcement cases.
 
@@ -118,8 +84,9 @@ Lastly, there are also obvious **privacy issues** included in the field, such as
 
 Searching for duplicates is made difficult by the large number of errors in the dataset. This is made clear when we begin searching for addresses with the most service requests.
 
-```{r}
-CE %>% count(ADDRESS1) %>% arrange(desc(n))
+```{r echo=FALSE}
+adr <- CE %>% count(ADDRESS1) %>% arrange(desc(n))
+head(adr)
 ```
 
 There are 194 entries listed under the address 746 Chapel St, an address that does not seem to exist in Memphis (there is a Chapel [Rd]{.ul}, but no 746). Reviewing the `RESOLUTION_SUMMARY` reveals the address to be a catch all of errors. Sometimes a different address or a business name is written in the `RESOLUTION_SUMMARY`, indicating the results we are seeing is not the same as what was originally entered, yet code inspectors may be able to view the correct address. It is likely best to remove this address from any analysis involving location.
@@ -132,33 +99,16 @@ When we look closer at *who* is making complaints to code enforcement, it at fir
 
 [^ce-4]: SCF stands for SeeClickFix, an app to create service requests.
 
-```{r}
-CE %>% count(CREATED_BY_USER) %>% arrange(desc(n))
+```{r echo=FALSE}
+usr <- CE %>% count(CREATED_BY_USER) %>% arrange(desc(n))
+head(usr)
 ```
 
 However, filtering by HELEN.ANDERSON then "tenant" under `RESOLUTION_SUMMARY` shows multiple instances where someone not named "Helen Anderson" is mentioned as the contact person across a wide variety of addresses. Further investigation found that some of the people listed as request creators are actually inspectors.
 
-### SeeClickFail?
+## Basic Analysis
 
-While browsing Memphis's [SeeClickFix](https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/map?lat=35.14896833842707&lng=-90.05163922905923&max_lat=35.15402992416014&max_lng=-90.04691720008852&min_lat=35.143906437842766&min_lng=-90.05635857582094&zoom=17) website, I came across a [service request](https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/10508076) from a tenant who has been without air conditioning since May.
-
-|                      |                                   |
-|----------------------|-----------------------------------|
-| ![](_img/ACreq1.png) | ![](_img/ACreq2.png){width="498"} |
-
-The tenant provided multiple photos (not all shown here) proving attempts to contact maintenance, which had been canceled or marked as completed though they were not resolved.
-
-|                      |                      |
-|----------------------|----------------------|
-| ![](_img/ACreq3.jpg) | ![](_img/ACreq5.jpg) |
-
-Almost immediately, the city closed the request, redirecting the tenant to call a phone number for the Mayor's Citizen Service Center. According to the [City of Memphis's website](https://www.memphistn.gov/government/mayor-jim-strickland/mayors-citizen-service-center-311/), **the Mayor's Citizen Service Center is 311**. So it appears 311 closed the request, telling the tenant to contact 311.
-
-![](_img/ACreq4.png)
-
-This was also a case where the incident address was filled in as the 746 Chapel Street, mentioned above as having the most service requests of any address. We can now see the default address is actually in Connecticut.
-
-### Analysis
+### Number of Requests
 
 Below is the number of requests for each year between 2016 and 2021, not excluding duplicates.
 
@@ -171,11 +121,11 @@ Below is the number of requests for each year between 2016 and 2021, not excludi
 | 2020                    | 26,194             |
 | 2021 (as of 07/19/2021) | 17,688             |
 
-The number of requests has not changed much over the years.
+The number of requests remained relatively constant over the years.
 
-#### Active Cases
+### Active Cases
 
-Below is the number of cases still active from each year.
+Below are cases that have not been marked "Closed."
 
 | Year          | Active Cases |
 |---------------|--------------|
@@ -187,13 +137,11 @@ Below is the number of cases still active from each year.
 | 2021          | 5,630        |
 | **All Years** | **8,463**    |
 
-There are still 779 active cases from 2018 or earlier.
+According to the dataset, there are still 779 active cases from 2018 or earlier. However, many cases seem to have been simply abandoned.
 
-#### Request Type
+### Request Type
 
-When a request is entered into 311, it must also be categorized. There are 14 categories for code enforcement data, including 3 categories related to COVID violations which were added in 2020.
-
-For each year, the vast majority of requests fell into one of five categories, listed below.
+When a request is entered into 311, it must also be categorized. There are 14 categories for code enforcement data, including 3 categories related to COVID violations which were added in 2020. However, the vast majority of requests fell into one of five categories, listed below.
 
 |                    Request Type | 2016    | 2017    | 2018    | 2019    | 2020    | 2021    |         All | Years   |
 |--------------------------------:|---------|---------|---------|---------|---------|---------|------------:|---------|
@@ -204,13 +152,14 @@ For each year, the vast majority of requests fell into one of five categories, l
 | Substandard, Derelict Structure | 9%      | 8%      | 10%     | 10%     | 7%      | 9%      |  **13,778** | **9%**  |
 |                         **Sum** | **97%** | **97%** | **98%** | **98%** | **88%** | **95%** | **148,499** | **96%** |
 
-From 2016 to 2019, more requests were sorted into "Miscellaneous" than any other category (surpassed by vehicle violations in 2020 and 2021).
+From 2016 to 2019, more requests were sorted into "Miscellaneous" than any other category (surpassed by vehicle violations in 2020 and 2021). Considering that many cases related to housing are in this category, our job is made significantly harder. Rather that filtering and searching for a certain code, we are left to find these cases through a process of elimination.
 
-### Tidying the Dataset
+## Tidying the Dataset
 
-Goal: Not manually alter dataset; instead create a sorting method that anyone can run using the latest dataset.
+After collecting basic information about the dataset, I began to sort the data into bins. I created bins for duplicates and errors, requests related to yards or cars, and other rows irrelevant to this research, like COVID mask violations.
 
 ```{r eval=FALSE, include=FALSE}
+#' sorry this section hasn't been organized/cleaned yet.
 dupes <- CE %>% 
   filter(
     str_detect(
@@ -243,6 +192,8 @@ COVID <- CE %>% filter(str_detect(RESOLUTION_CODE, "COVID"))
 tntmv <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "tenant"), str_detect(RESOLUTION_SUMMARY, "moved"))
 ```
 
+Next I separated out rows where the `RESOLUTION_SUMMARY` provided no new information (usually duplicating the `REQUEST_CODE_MEANING`.
+
 ```{r eval=FALSE, include=FALSE}
 noinfo <- CE %>% 
   filter(
@@ -262,6 +213,8 @@ tidy2 <- CE %>% filter(
 tt2 <- tidy2 %>% count(RESOLUTION_SUMMARY) %>% arrange(desc(n))
 tt3 <- tidy2 %>% count(RESOLUTION_CODE) %>% arrange(desc(n))
 ```
+
+I also separated rows related to the legal process into their own bin. As I separated out bins, I finally began to see rows related to housing. I created a "building" bin, and directed the code to include rows that mentioned words like "roof," "flooring," "windows," or "carpet," which can only refer to a structure.
 
 ```{r eval=FALSE, include=FALSE}
 admin <- CE %>% filter(str_detect(RESOLUTION_SUMMARY, "please contact|wrong department|thank you for") | RESOLUTION_CODE == "BACK TO MCSC")
@@ -288,7 +241,7 @@ t2 <- tidy %>% count(RESOLUTION_SUMMARY) %>% arrange(desc(n))
 t3 <- tidy %>% count(RESOLUTION_CODE) %>% arrange(desc(n))
 ```
 
-We can see certain trends using keywords. Here are rows containing the word "tenant" and "moved" or "evict".
+I then began searching for rows related to "tenant" which also included "moved" or "evict". Below is a table of such rows.
 
 ```{r echo=FALSE}
 tntmv <- CE %>% 
@@ -303,13 +256,13 @@ tntmv_tbl <- tntmv %>% select(sr, RESOLUTION_SUMMARY, ADDRESS1, REPORTED_DATE, e
 datatable(tntmv_tbl)
 ```
 
-In the above table, the vast majority of cases are filed under "Code Miscellaneous" (305 of 357 rows). Clearly there is opportunity for a new `REQUEST_TYPE` category to sort these cases.
+The vast majority of cases in the table are filed under "Code Miscellaneous" (305 of 357 rows). Clearly there is opportunity for a new `REQUEST_TYPE` category to sort these rental-related cases.
 
-I would like to draw your attention to sr \#4569338:
+In the above table, sr \#4569338 seems relevant to this paper
 
 > per: tenant jessica they moved due to respiratory problems from the mold/mildew like substance
 
-This led me to searching the word "mold", shown in the table below.
+From here I created a separate table to search for rows related to "mold".
 
 ```{r echo=FALSE}
 mold <- CE %>% 
@@ -322,4 +275,26 @@ mold_tbl <- mold %>% select(sr, RESOLUTION_SUMMARY, ADDRESS1, REPORTED_DATE, eve
 datatable(mold_tbl) 
 ```
 
-This search shows that many cases involving tenants do not even mention the word tenant. Sometimes "occupant" or "resident" is used. Other times they are never mentioned; the summary may state a notice was sent to the owner, or make no mention of people at all. This makes it very hard to find information specifically about rental units. How are we to know the extent of the problem?
+This search showed that many cases involving tenants do not mention the word tenant. Sometimes "occupant" or "resident" is used. Other times they are never mentioned; the summary may state a notice was sent to the owner, or make no mention of people at all. This makes it very hard to find information specifically about rental units.
+
+## SeeClickFix
+
+Another way to view service requests is through Memphis's [SeeClickFix](https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/map?lat=35.14896833842707&lng=-90.05163922905923&max_lat=35.15402992416014&max_lng=-90.04691720008852&min_lat=35.143906437842766&min_lng=-90.05635857582094&zoom=17) website. Below we can see how 311 handled a [service request](https://seeclickfix.com/web_portal/DaM5B2x33WeFNJ1zpUeDRvCB/issues/10508076) from a tenant who has been without air conditioning since May.
+
+|                      |                                   |
+|----------------------|-----------------------------------|
+| ![](_img/ACreq1.png) | ![](_img/ACreq2.png){width="498"} |
+
+The tenant provided multiple photos (not all shown here) proving attempts to contact maintenance, which had been canceled or marked as completed though they were not resolved.
+
+|                      |                      |
+|----------------------|----------------------|
+| ![](_img/ACreq3.jpg) | ![](_img/ACreq5.jpg) |
+
+Almost immediately, the city closed the request, redirecting the tenant to call a phone number for the Mayor's Citizen Service Center. According to the [City of Memphis's website](https://www.memphistn.gov/government/mayor-jim-strickland/mayors-citizen-service-center-311/), **the Mayor's Citizen Service Center is 311**. So it appears 311 closed the request, telling the tenant to contact 311.
+
+![](_img/ACreq4.png)
+
+This was also a case where the incident address was filled in as the 746 Chapel Street, mentioned above as having the most service requests of any address. We can now see the default address is actually in Connecticut.
+
+Unfortunately, this request only revealed additional hurdles in interacting with code enforcement data.

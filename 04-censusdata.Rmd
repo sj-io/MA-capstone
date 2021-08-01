@@ -10,6 +10,7 @@ library(kableExtra)
 
 ```{r censusbasics, include=FALSE}
 yrs <- lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
+yr <- lst(2009, 2019)
 v19 <- load_variables(2019, "acs5", cache = T)
 ```
 
@@ -322,14 +323,14 @@ AHSmold <- AHSqual_all %>%
 |                                                    |   Rent   |       |     |   Own    |       |
 |----------------------------------------------------|:--------:|:-----:|:---:|:--------:|:-----:|
 | **Problem**                                        | **est.** | **%** |     | **est.** | **%** |
-| No flush toilet working some time in last 3 months |   7.0    | 3.1%  |     |    S     |  \-   |
+| No flush toilet working some time in last 3 months |   7.0    | 3.1%  |     |    NA    |  NA   |
 | Uncomfortably cold for 24 hours or more            |   12.3   | 6.6%  |     |   10.8   | 3.9%  |
 | Fuses or breakers blown in last 3 months           |   14.1   | 6.3%  |     |   19.3   | 6.7%  |
 | Water stoppage in last 3 months                    |   6.4    | 2.9%  |     |   3.2    | 1.1%  |
 | Water leakage from inside structure                |   19.5   | 8.7%  |     |   20.7   | 7.1%  |
 | Water leakage from outside structure               |   18.9   | 8.4%  |     |   25.5   | 8.8%  |
 | Mold in last 12 months                             |   11.8   | 5.3%  |     |   5.8    | 2.0%  |
-| Public sewer breakdown in last 3 months            |   5.1    | 2.3%  |     |    S     |  \-   |
+| Public sewer breakdown in last 3 months            |   5.1    | 2.3%  |     |    NA    |  NA   |
 
 : Selected Housing Problems
 
@@ -430,7 +431,3 @@ kable(
 *Source: [American Housing Survey](https://www.census.gov/newsroom/press-releases/2020/2019-american-housing-survey.html) (2019). Estimates in thousands of housing units.*
 
 Renters in single-unit homes were significantly more likely to experience external building problems than owner-occupied units, except for missing wall material, which afflicted 3.3% of both renters and owners. Having bars on windows was especially more common in rental homes (by 9.0 percentage points), as well as having broken windows (by 3.8 percentage points). They were also slightly more likely to have roofing issues, such as missing roofing material or having a hole in the roof.
-
-## Summary
-
-Renter-occupied units in Memphis are more likely than owner-occupied units to experience housing issues, and by wider margins. Of the 19 housing quality issues discussed in the three tables above, only three problems were more likely to be experienced by owner-occupied units, and only by a margin of 0.4 percentage points for each problem. Meanwhile, there were 15 problems more common in renter-occupied units, 13 of which had a margin greater than 0.4 percentage points.

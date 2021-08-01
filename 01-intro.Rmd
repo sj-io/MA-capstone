@@ -1,9 +1,5 @@
 # Introduction {#intro}
 
-> *In memory of Safranski Durr, who the world lost on May 23, 2021 due to COVID-19. He was a long-time employee of the Shelby County Department of Housing, who I was lucky enough to meet while working there as a graduate assistant. "Ski" always wore a smile and made you feel welcome, and his presence is missed by everyone who knew him.*
-
 In recent years, housing discourse has been dominated by high rates of cost burdenship and the need for affordable rental housing. Less discussed is the need for improved housing quality, particularly in the private rental sector. Housing quality and health have been extensively linked by the public health field, yet tenants who wish to improve their housing quality risk possible retaliation, including increased rents and eviction. Current regulations assume that tenants will take action to report substandard housing, ignoring the risk to a tenant's housing stability. As such, substandard housing is heavily under-reported to code enforcement, often not on their radar till the housing structure is in major disrepair. At this point, the home may be condemned, deemed blighted and demolished, further decreasing the supply of low-rent housing.
 
 This paper seeks to understand the extent of this problem in Memphis. The city has a large percentage of low-income renters, an aging housing stock, a high eviction rate, and high rates of asthma. Particular attention is given to code enforcement policies and data, and how the program has and has not changed over the past twenty years. I conclude with specific recommendations for how to improve code enforcement practices to target the needs of renters.
-
-<!--# not yet mentioned: landlords and profit -->

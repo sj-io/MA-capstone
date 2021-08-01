@@ -12,12 +12,6 @@ Recent changes to Memphis's comprehensive plan also make the city an interesting
 
 Lastly, code enforcement data is easily accessed from [Memphis Data Hub](https://data.memphistn.gov/dataset/Service-Requests-since-2016/hmd4-ddta), where it is updated daily.
 
-## Health
-
-In 2015, Memphis was named the asthma capital of America by the Asthma and Allergy Foundation of America [@aafa2015], based on prevalence, risk factors, and medical factors. Recent efforts to reduce the prevalence and risk of asthma have been successful---Memphis's rank has since decreased to 41st in 2021 [@aafa2021].[^memhsg-1] However, Memphis still ranks high in asthma-related mortality, placing 7th of 100 cities. A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis [@shin2018]. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems.
-
-[^memhsg-1]: The ranking method changed between 2015 and 2021, with fewer factors involved in a city's overall ranking in 2021.
-
 ## Mortgage Discrimination
 
 ### Historical
@@ -28,9 +22,9 @@ Color-coded maps were created for cities across the U.S. to illustrate mortgage 
 
 ![A color-coded map of Memphis created in the 1930s used by the federal government to rate mortgage risk. Original source: National Archives and Records Administration, accessed via [@bradley2019].](_img/memphis_redliningmap.jpg "Memphis Redlining Map")
 
-A digitized version of the above map is available below.[^memhsg-2]
+A digitized version of the above map is available below.[^memhsg-1]
 
-[^memhsg-2]: I originally made this map using [geojson.io](https://geojson.io/) for a class in spring 2021. I have since discovered the University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58) website, which offers original scans and digitized versions (geoJSON or shapefiles) of redlining maps available for download for over 100 U.S. cities.
+[^memhsg-1]: I originally made this map using [geojson.io](https://geojson.io/) for a class in spring 2021. I have since discovered the University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58) website, which offers original scans and digitized versions (geoJSON or shapefiles) of redlining maps available for download for over 100 U.S. cities.
 
 ```{r redlineData, include=FALSE}
 library(rgdal)
@@ -53,9 +47,13 @@ leaflet(redPoly) %>%
 
 <br></br>
 
-Overall, 69% of the city was deemed "hazardous" (red) or "definitely declining" (yellow), notably including all of Downtown and the majority of North and South Memphis. Only 7% of the city received an A rating ("best", green), including the Central Gardens neighborhood, areas adjacent to Overton Park, Chickasaw Gardens, and East Memphis neighborhoods adjacent to golf courses. The remaining 24% of the city ("still desirable", blue) contains other Midtown neighborhoods and follows the Poplar Avenue corridor to the east.[^memhsg-3] Railroads and large streets were typically the dividing line between positive and negative ratings.
+Overall, 69%[^memhsg-2] of the city was deemed "hazardous" (red) or "definitely declining" (yellow), notably including all of Downtown and the majority of North and South Memphis. The federal government deemed these mortgages risky, and either denied the loan or charging higher rates to account for the "risk".
 
-[^memhsg-3]: Percentages sourced from [@nelson].
+[^memhsg-2]: Percentages sourced from [@nelson].
+
+Only 7% of the city received an A rating ("best", green), including the Central Gardens neighborhood, areas adjacent to Overton Park, Chickasaw Gardens, and East Memphis neighborhoods adjacent to golf courses. These neighborhoods have notably remained occupied and maintained over the decades.
+
+The remaining 24% of the city ("still desirable", blue) contains other Midtown neighborhoods and follows the Poplar Avenue corridor to the east, drawing residents toward the suburbs.
 
 ### Modern Discrimination
 
@@ -63,50 +61,36 @@ In recent years, at least three major lawsuits have been settled concerning disc
 
 Following the Great Recession, banks became selective of whom they targeted and approved for mortgages, often at the expensive of non-white residents. In 2016, BancorpSouth and First Tennessee Bank settled separate suits for \$10.6 million and \$1.9 million, respectively, against accusations of disproportionately denying loan applications to non-white borrowers and failing to build branches in non-white neighborhoods [@lane2016a; @lane2016].
 
-## COVID-19 & Evictions
+## Health & Healthy Homes
 
-> Evictions in Memphis are "a preview of what's to come in the U.S."
->
-> [@gowen2021]
+In 2015, Memphis was named the asthma capital of America by the Asthma and Allergy Foundation of America [@aafa2015], based on prevalence, risk factors, and medical factors. Recent efforts to reduce the prevalence and risk of asthma have been successful---Memphis's rank has since decreased to 41st in 2021 [@aafa2021].[^memhsg-3] However, Memphis still ranks high in asthma-related mortality, placing 7th of 100 cities. A recent study comparing pediatric asthma data with property quality information found that asthma prevalence is disproportionately distributed throughout Memphis [@shin2018]. Neighborhood blight and inequality were closely associated with childhood asthma and other health problems.
 
-The COVID-19 Delta variant, as contagious as the chickenpox [@anthes2021], has increased Shelby County's positivity rate from a low of 2.5% in mid-June to 14.6% a month later, the highest rate since January [@shelbycountyhealthdepartment]. While vaccines have proven effective against severe cases [@mandavilli2021], only 48% of all Shelby County adults are fully vaccinated [@thenewyorktimes2020].[^memhsg-4]
+[^memhsg-3]: The ranking method changed between 2015 and 2021, with fewer factors involved in a city's overall ranking in 2021.
 
-[^memhsg-4]: Age 12+: 45%; Ages 18+: 48%; Ages 65+: 69%.
+In the Memphis area, the Healthy Homes Rating System has been used by inspectors with the Shelby County Department of Housing. The agency's Lead Hazard Reduction Program remediates homes with elevated lead levels. Funding is provided by HUD, and prior to beginning repairs, HUD requires the home be inspected for health hazards. Any funds leftover from lead remediation can be used towards improving Healthy Home violations.
 
-As the CDC moratorium ends, an estimated 22% of all renters in Shelby County are behind in rent [@sgaier2021]. However, eviction courts in Memphis have been open since June 15, after a U.S. District Judge sided with landlords who claimed the CDC moratorium overstepped the agency's powers [@bailey2021; @bailey2021a].
+## Code Enforcement
 
-According to Princeton's Eviction Lab, the rate of new filings has increased since the was lifted, though the number of filings remains below historical averages [@evictionlab2021]. Compared to 31 other cities nationwide, Memphis ranks 7th in the number of filings during COVID, with 18,166 filings from March 15, 2020 to July 25, 2021.[^memhsg-5]
+Over the past twenty years, there have been at least two expansive reports offering critiques and criticisms of Memphis code enforcement.
 
-[^memhsg-5]: To be clear, there was already a housing crisis before Covid. More than 26,000 eviction cases were filed in Shelby County in 2019 alone [@ahmed2021 2].
+The first report, released in April 2001, was distributed by the Memphis Shelby Crime Commission and written by Phyllis Betts, then a professor of sociology at University of Memphis [@betts2001]. Input was provided by two other University of Memphis faculty: Betts's husband, the late Richard Janikowski, former chair of the Department of Criminology and Criminal Justice and 'father' of Memphis's Blue CRUSH policing [@poe2021]; and Susan Roakes, former professor of City and Regional Planning.
 
-Compared to other places, Memphis was able to quickly assist renters and offer relief, though the program was not without faults.
+The report was built on the "broken windows" criminology theory: in deteriorated or declining neighborhoods, physical neglect of "problem properties" attracts and aggravates criminal activity [@betts2001]. Researchers interviewed inspectors and individuals involved with environmental court, used code enforcement data from 1992-1999, accessed the Shelby County Tax Assessor's database, and conducted visual surveys for selected properties as part of a case study of the Binghamton neighborhood.
 
-The **Eviction Settlement Program** (**ESP**) was established in fall of 2020 with \$2.25 million in funding.[^memhsg-6] To serve as many people as possible, **Memphis Area Legal Services** (**MALS**) offered large lump settlements to landlords who owned complexes where dozens of people have fallen behind on rent. Initially, some landlords refused the offer.
+The second report, published in 2018, was produced by The Urban Institute [@stacy2018]. While the 2001 report focused on property neglect and *safety*, this report centered on the link between the physical condition of homes and neighborhoods and *public health*. Planning for the report began shortly after the election of Mayor Jim Strickland in 2016, whose campaign had emphasized blight control [@baker2018]. Researchers collaborated with and interviewed members of the newly formed [Blight Elimination Steering Team](http://memphisfightsblight.com/blight-elimination-steering-team/), a coordinated effort between public, private, and nonprofit agencies to address blight, and the [Green and Healthy Homes Initiative](https://www.greenandhealthyhomes.org/location/memphis-tn/), a partnership formed between local health care providers and housing and community development organizations to address public health issues related to housing quality.
 
-[^memhsg-6]: The following information related to the Eviction Settlement Program was collected from multiple Zoom interviews and meetings with Cindy Ettingoff, chief executive officer of Memphis Area Legal Services, in February and March 2021.
+The Urban report accessed and analyzed data through the [Memphis Property Hub](http://memphisfightsblight.com/programs/mph/), which offers parcel-level property information, particularly related to blighted, vacant, and foreclosed homes. Code enforcement data from 1999-2017 was used, effectively picking up where the last report ended. Additional data related to public health, safety, and courts were provided by the Shelby County Healthy Department, the Center for Applied Earth Science and Engineering Research department at the University of Memphis, and the Shelby County Environmental Court, respectively.
 
-"I had a hard time wrapping my mind around this," said Cindy Ettingoff, chief executive officer of MALS, "but it is true, particularly initially (pre-COVID), that landlords built into the cost of doing business the cost of flipping tenants, going to court, and filing fees, so initially it wasn't as big of a deal to them because that was just part of doing business. They could get someone out and get someone else in."
+### Findings and Recommendations
 
-Ettingoff emphasized that she is not anti-landlord, and is particularly sympathetic to small landlords, such as those who purchased a duplex or quadplex with retirement money. The goal for the ESP has been to benefit both landlords and tenants.
+Despite nearly twenty years difference, the reports contain similar finding and recommendations. Notably, each report recommended fundamentally changing Memphis code enforcement from a reactive process (responding to citizen reports) to a proactive, strategic system. This was largely due to the large volume of cases processed related to vehicle violations or weeds, rather than more serious violations.
 
-The bleek outlook of winter 2020 caused landlords to reconsider and accept the offer. By December, the fund was depleted after assisting 1,220 households, with another 1,000 cases which could have been settled with extra funding. The ESP received an additional \$28.2 million in funding in March 2021, and expanded their program to include utility assistance.
+Both reports found the vast majority of code enforcement reports were related to nonstructural issues. @betts2001 reported three out of four properties were cited for non-structural problems such as weeds, junk, and inoperable or abandoned vehicles. It appears this percentage has actually increased overtime; @stacy2018 stated 81% of all requests concerned the yard or property, rather than the house.
 
-The ESP has dispersed over \$10 million of the \$28 million in federal assistance. Yet as the moratorium ends and the economy recovers, landlords may opt to return to the tenant flipping model rather than settle with the existing tenant, as highlighted in a recent Washington Post feature on evictions in Memphis [@gowen2021]. The story centered around a family who had fallen behind on rent in September, was served an eviction notice, received \$1,500 in rental assistance in December and got caught up, only for the landlord to continue with eviction proceedings in June.
+@stacy2018 found service requests were concentrated in areas with single-family homes, and though about half of all requests were for multifamily units, most of these (70 percent) were for duplexes rather than apartment complexes. @betts2001 also found that large multifamily units flew under the radar; at least half of multifamily properties in Binghamton had violations in multiple units, yet code enforcement recorded only eight violations out of 1200 apartment units.
 
-As part of the ESP, landlords must agree to not evict a tenant for the months paid for through the program; yet they may evict once the period is over. Tennessee allows landlords large leeway in serving evictions notices; if a tenant's yearly lease has expired, a landlord does not need a cause, only 30-days notice that the tenant has to move out (see [Tenn. Code Ann. § 66-28-512](http://law.justia.com/codes/tennessee/2010/title-66/chapter-28/part-5/66-28-512)). Even if tenants are current on rent, a landlord can order a tenant out by the end of the month.
+When the report's findings differed, it was usually due to increased workload. The number of service requests has appeared to increase overtime. In 1998, code enforcement received about 10,000 complaints [@betts2001 93], while the Urban Institute reported 53,226 in 2016 [@stacy2018 51]. However, this number does not match a dataset from the City of Memphis (discussed later in this paper) which reported 30,361 requests in 2016, not excluding duplicates. Nevertheless, it does appear that more requests are being made.
 
-![Source: [Legal Services Corporation](https://www.lsc.gov/press-release/new-nationwide-lsc-eviction-study-examines-variations-local-laws-and-highlights) (2021)](_img/LSC-shelby-evict.png)
+Newer cases also appear significantly more likely to be taken to court. In 1998, a mere 71 cases from code enforcement were heard by the environmental court [@betts2001 49]. In November 2017 alone, 1,095 cases went to environmental court, though the Urban report does not specifically state if all cases were from code enforcement [@stacy2018 51]. The majority of new cases were for single-family homes (64%), and most were vacant.
 
-<br></br>
-
-If the tenant has not moved after 30 days, they can be served with a summons to appear in court for an eviction hearing. Legal Services Corporation conducted a yearlong study of eviction outcomes in Shelby County for FY 2020 and found 80% of cases resulted in a favorable landlord outcome, 18.7% in a neutral or negotiated outcome, and only **1.3%** **end in a favorable tenant outcome**, where the tenant is allowed to remain in the home [@ahmed2021].
-
-June 29, 2021, the day after the Washington Post article ran, a volunteer with Memphis Tenants Union called three tenants who had reached out to the group's rental assistance hotline.[^memhsg-7] Of the two tenents who answered, both had the same problem. Each had applied for the ESP and been approved, yet their landlord had denied the settlement and continued with eviction proceedings.
-
-[^memhsg-7]: The volunteer allowed me to silently listen in while the calls were taking place.
-
-Shelby County's Eviction Settlement Program thrived when the CDC moratorium kept tenants in place and massive layoffs caused high unemployment, giving landlords no immediate chance of income other than accepting the settlement. Now that the moratorium has been lifted and the economy is improving, more landlords may opt to deny funding and resume evictions. This is a problem as the ESP is only structured to distribute rental assistance to landlords, not tenants. This structure can create a scenario where there is a large need for rental assistance from tenants, and a large pool of public funds earmarked for rent relief, but the structure prevents the funds from ever reaching the tenants.
-
-The ESP is allowed to distribute assistance until funding expires in September 2022. Though landlords might deny the funds, relief can also be spent towards utility assistance. As Memphis has a public utility company, there is a slim-to-none chance this relief would be denied.
-
-Still, this outcome begs the question: what was the primary purpose of the rent relief? To keep renters in their home if they lost income due to COVID, or to guarantee landlords the lost income? Ultimately, the program only guaranteed landlords could get paid, not that tenants could keep their housing.
+@stacy2018 suggests that code enforcement prioritize health-related violations and interior health and safety issues, cemented through the agency's policies and procedures manual. The authors recommend proactive inspections of problem multifamily properties and under-served neighborhoods, and identification of under-reported violations. Multiple technology improvements are recommended, including automatic prioritization of health-related violations and synchronizing of data systems with the Shelby County Department of Health and the environmental court, among others. Also acknowledged is the need to update current landlord/tenant laws to protect tenants from homelessness.
