@@ -2,12 +2,14 @@
 
 Memphis is located on the bluffs of the Mississippi River in the southwest corner of Tennessee, adjacent to Mississippi and Arkansas. As such, the Memphis MSA includes counties in three states.
 
+<!--# boundaries map -->
+
 ```{r mappkgs, include=FALSE}
 library(rgdal)
 library(leaflet)
 ```
 
-```{r include=FALSE}
+```{r boundariesdata include=FALSE}
 MSA <- readOGR("_data/MSA.json")
 county <- readOGR("_data/shelbyco.geojson")
 memphis <- readOGR("_data/memphis.geojson")
@@ -41,23 +43,100 @@ leaflet() %>%
                    options = layersControlOptions(collapsed = FALSE))
 ```
 
-Boundaries for Memphis were downloaded from [Memphis Data Hub](https://data.memphistn.gov/dataset/Jurisdiction-Boundary-Memphis/b9uj-qyia));), and for Shelby County and Memphis MSA from [CAESAR Geoportal](https://geoportal.memphis.edu/))).
+Boundaries for Memphis were downloaded from [Memphis Data Hub](https://data.memphistn.gov/dataset/Jurisdiction-Boundary-Memphis/b9uj-qyia), and for Shelby County and Memphis MSA from [CAESAR Geoportal](https://geoportal.memphis.edu/).
+
+<!--# to do: add boundaries for suburbs/counties -->
 
 ## Housing Characteristics
 
-According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47%) are owner-occupied; 134,371 (53%) are renter-occupied.
-
-```{r tidycensus, include=FALSE}
+```{r datapkgs include=FALSE}
 library(tidyverse)
 library(tidycensus)
-library(kableExtra)
+```
+
+```{r eval=FALSE, include=FALSE}
+yr <- lst(2009, 2019)
+v09 <- load_variables(2009, "acs5", cache = T)
 ```
 
 ```{r censusbasics, include=FALSE}
 yrs <- lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
-yr <- lst(2009, 2019)
 v19 <- load_variables(2019, "acs5", cache = T)
 ```
+
+```{r HsgTenUnitPlace, include=FALSE}
+#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE
+hsgTenUnitP <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place",
+    table = "B25033",
+    year = .x,
+    state = 47,
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r hsgtenunitMem, include=FALSE}
+hsgtenunitMem <- hsgTenUnitP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "units"), sep = "!!") %>%
+  select(year, tenure, units, estimate) %>% 
+  filter(!is.na(units))
+```
+
+<!--# breakdown & analysis -->
+
+```{r tblpkgs, include=FALSE}
+library(kableExtra)
+```
+
+```{r Hsgtenunitmem, eval=FALSE, include=FALSE}
+#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS
+hsgtenunitmemYr <- hsgtenunitMem %>% 
+  group_by(year) %>% 
+  summarise(total = sum(estimate)) 
+hsgtenunitmemYr
+```
+
+```{r gghsgtenunitmemYr, eval=FALSE, include=FALSE}
+hsgtenunitmemYr %>%
+  ggplot(aes(x=year, y=total)) +
+  geom_line()
+```
+
+```{r tblhsgTenunitmem, eval=FALSE, include=FALSE}
+#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE
+hsgtenunitmemT <- hsgtenunitMem %>% 
+  group_by(year) %>% 
+  mutate(total = sum(estimate)) %>% 
+  group_by(year, tenure, total) %>% 
+  summarise(totten = sum(estimate)) %>% 
+  mutate(pct = round(100*totten/total,2))
+hsgtenunitmemT
+```
+
+```{r gghsgtenunitmemT, eval=FALSE, include=FALSE}
+hsgtenunitmemT %>%  ggplot(aes(x=year, y=total, fill=tenure)) +
+  geom_area(position = "stack")
+```
+
+```{r hsgtenUnitmem, eval=FALSE, include=FALSE}
+#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE
+hsgtenunitmemU <- hsgtenunitMem %>% 
+  group_by(year) %>% 
+  mutate(total = sum(estimate)) %>% 
+  group_by(year, tenure, total) %>%
+  mutate(totten = sum(estimate)) %>% 
+  mutate(pct = round(100*estimate/totten, 2))
+hsgtenunitmemU
+```
+
+According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47%) are owner-occupied; 134,371 (53%) are renter-occupied.
 
 ### Median Year Built
 
