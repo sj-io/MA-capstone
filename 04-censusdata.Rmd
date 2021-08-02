@@ -9,7 +9,7 @@ library(rgdal)
 library(leaflet)
 ```
 
-```{r boundariesdata include=FALSE}
+```{r boundariesdata, include=FALSE}
 MSA <- readOGR("_data/MSA.json")
 county <- readOGR("_data/shelbyco.geojson")
 memphis <- readOGR("_data/memphis.geojson")
@@ -43,18 +43,18 @@ leaflet() %>%
                    options = layersControlOptions(collapsed = FALSE))
 ```
 
-Boundaries for Memphis were downloaded from [Memphis Data Hub](https://data.memphistn.gov/dataset/Jurisdiction-Boundary-Memphis/b9uj-qyia), and for Shelby County and Memphis MSA from [CAESAR Geoportal](https://geoportal.memphis.edu/).
-
 <!--# to do: add boundaries for suburbs/counties -->
 
-## Housing Characteristics
+Boundaries for Memphis were downloaded from [Memphis Data Hub](https://data.memphistn.gov/dataset/Jurisdiction-Boundary-Memphis/b9uj-qyia), and for Shelby County and Memphis MSA from [CAESAR Geoportal](https://geoportal.memphis.edu/).
 
-```{r datapkgs include=FALSE}
+## Summary Data
+
+```{r datapkgs, include=FALSE}
 library(tidyverse)
 library(tidycensus)
 ```
 
-```{r eval=FALSE, include=FALSE}
+```{r censusbasics2, include=FALSE}
 yr <- lst(2009, 2019)
 v09 <- load_variables(2009, "acs5", cache = T)
 ```
@@ -64,7 +64,80 @@ yrs <- lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
 v19 <- load_variables(2019, "acs5", cache = T)
 ```
 
-```{r HsgTenUnitPlace, include=FALSE}
+### Total Population
+
+<!--# TOTAL POPULATION data -->
+
+```{r popP, include=FALSE, cache=TRUE}
+popP <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place",
+    table = "B01003", #' TOTAL POPULATION
+    year = .x,
+    state = 47,
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r popMem, include=FALSE}
+popMem <- popP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  select(year, estimate)
+```
+
+### Total Housing Units
+
+<!--# Housing Units -->
+
+```{r occstatP, include=FALSE, cache=TRUE}
+occStatP <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place",
+    table = "B25002", #' OCCUPANCY STATUS
+    year = .x,
+    state = 47,
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r tothsgMem, include=FALSE}
+#' total housing units
+tothsgMem <- occStatP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "occupancy"), sep = "!!") %>%
+  filter(is.na(occupancy)) %>% 
+  select(year, estimate)
+```
+
+### Occupancy Status
+
+```{r occstatMem, include=FALSE}
+#' occupancy status
+occstatMem <- occStatP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "occupancy"), sep = "!!") %>%
+  filter(!is.na(occupancy)) %>% 
+  select(year, occupancy, estimate)
+```
+
+According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis.
+
+### Total Population in Occupied Units
+
+<!--# TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE data -->
+
+```{r HsgTenUnitPlace, include=FALSE, cache=TRUE}
 #' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE
 hsgTenUnitP <- map_dfr(
   yrs,
@@ -89,19 +162,33 @@ hsgtenunitMem <- hsgTenUnitP %>%
   filter(!is.na(units))
 ```
 
-<!--# breakdown & analysis -->
-
-```{r tblpkgs, include=FALSE}
-library(kableExtra)
-```
-
-```{r Hsgtenunitmem, eval=FALSE, include=FALSE}
+```{r hsgtenunitmemYr, include=FALSE}
 #' TOTAL POPULATION IN OCCUPIED HOUSING UNITS
 hsgtenunitmemYr <- hsgtenunitMem %>% 
   group_by(year) %>% 
-  summarise(total = sum(estimate)) 
-hsgtenunitmemYr
+  summarise(estimate = sum(estimate)) 
 ```
+
+### Summary
+
+<!--# POPULATION data wrangle -->
+
+```{r totpop, include=FALSE}
+popMem <- popMem %>% 
+  mutate(variable = "Total Population")
+hsgMem <- tothsgMem %>% 
+  mutate(variable = "Total Housing Units")
+hsgoccMem <- occstatMem %>% 
+  filter(occupancy == "Occupied") %>% 
+  mutate(variable = "Total Occupied Housing Units") %>% 
+  select(-occupancy)
+hsgpopMem <- hsgtenunitmemYr %>% 
+  mutate(variable = "Total Population in Occupied Housing Units") 
+
+totMem <- rbind(popMem, hsgMem, occMem, hsgtenunitmemYr)
+```
+
+<!--# to do: gg stuff -->
 
 ```{r gghsgtenunitmemYr, eval=FALSE, include=FALSE}
 hsgtenunitmemYr %>%
@@ -136,7 +223,9 @@ hsgtenunitmemU <- hsgtenunitMem %>%
 hsgtenunitmemU
 ```
 
-According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis. 117,361 (47%) are owner-occupied; 134,371 (53%) are renter-occupied.
+## Housing Characteristics
+
+Of occupied homes in 2019, 117,361 (47%) were owner-occupied; 134,371 (53%) were renter-occupied.
 
 ### Median Year Built
 
@@ -144,8 +233,8 @@ The age of a housing unit can be an indicator that repairs are needed. The below
 
 <!--# get data for MEDIAN YEAR STRUCTURE BUILT BY TENURE -->
 
-```{r medyrblt_p, include=FALSE, cache=TRUE}
-medyrblt_p <- map_dfr(
+```{r medyrbltP, include=FALSE, cache=TRUE}
+medyrbltP <- map_dfr(
   yrs,
   ~ get_acs(
     geography = "place", #' Memphis city, Tennessee
@@ -160,7 +249,7 @@ medyrblt_p <- map_dfr(
 ```
 
 ```{r medyrblt_msa, include=FALSE, cache=TRUE}
-medyrblt_msa <- map_dfr(
+medyrbltMSA <- map_dfr(
   yrs,
   ~ get_acs(
     geography = "metropolitan statistical area/micropolitan statistical area",
@@ -175,18 +264,20 @@ medyrblt_msa <- map_dfr(
 
 <!--# filter & tidy -->
 
-```{r medyrblt_mem, include=FALSE}
-medyrblt_mem <- medyrblt_p %>% 
+```{r medyrbltMem, include=FALSE}
+medyrbltMem <- medyrbltP %>% 
   filter(NAME == "Memphis city, Tennessee") %>%
   left_join(v19, by = c("variable" = "name")) %>%
   separate(label, c("est", "tot", "tenure"), sep = "!!") %>%
   select(year, tenure, estimate) %>% 
-  filter(tenure != "Total:") %>% 
+  filter(tenure != "Total:") 
+
+%>% 
   pivot_wider(names_from = tenure, values_from = estimate)
 ```
 
 ```{r medyrblt_mmsa, include=FALSE}
-medyrblt_mmsa <- medyrblt_msa %>% 
+medyrbltMMSA <- medyrbltMSA %>% 
   filter(NAME == "Memphis, TN-MS-AR Metro Area") %>% 
   left_join(v19, by = c("variable" = "name")) %>% 
   separate(label, c("est", "tot", "tenure"), sep = "!!") %>% 
@@ -197,9 +288,13 @@ medyrblt_mmsa <- medyrblt_msa %>%
 
 <!--# make tables -->
 
+```{r tblpkgs, include=FALSE}
+library(kableExtra)
+```
+
 ```{r tbl-medyrbltmem, echo=FALSE}
 knitr::kable(
-  medyrblt_mem, 
+  medyrbltMem, 
   col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
   align = "lcc",
   caption = 'Median year built of occupied housing units in City of Memphis'
@@ -212,7 +307,7 @@ When we expand our scope from the city limits to the Memphis MSA, there is a not
 
 ```{r tbl-medyrbltmsa, echo=FALSE}
 knitr::kable(
-  medyrblt_mmsa, 
+  medyrbltMMSA, 
   col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
   align = "lcc",
   caption = 'Median year built of occupied housing units in Memphis MSA'
@@ -225,8 +320,8 @@ In the MSA, the median age of renter-occupied homes is 43; for owner-occupied un
 
 <!--# get 2019 data for TENURE BY YEAR STRUCTURE BUILT -->
 
-```{r yrblt-p, include=FALSE, cache=TRUE}
-yrblt_p <- get_acs(
+```{r yrbltP, include=FALSE, cache=TRUE}
+yrbltP <- get_acs(
   geography = "place", #' Memphis city, Tennessee
   table = "B25036", #' TENURE BY YEAR STRUCTURE BUILT
   state = 47, 
@@ -237,8 +332,8 @@ yrblt_p <- get_acs(
 
 <!--# filter & tidy -->
 
-```{r yrblt-mem, include=FALSE}
-yrblt_mem <- yrblt_p %>% 
+```{r yrbltMem, include=FALSE}
+yrbltMem <- yrbltP %>% 
   filter(GEOID == 4748000) %>% #' Memphis city, Tennessee
   left_join(v19, by = c("variable" = "name")) %>%
   separate(label, c("est", "tot", "tenure", "year"), sep = "!!") %>%
@@ -258,7 +353,7 @@ The following graph shows the number of homes built each year in Memphis, separa
 <!--# graph -->
 
 ```{r ggplotysb, echo=FALSE}
-yrblt_mem %>% 
+yrbltMem %>% 
   mutate(estimate = ifelse(tenure == "Owner", -estimate, estimate)) %>% 
   ggplot(aes(year, estimate, fill = tenure)) +
   geom_bar(stat = "identity", width = 1) +
@@ -283,8 +378,7 @@ Note that this dataset shows the year homes were built based on **current** tenu
 <!--# get 2009 data (and proper variable names!) -->
 
 ```{r include=FALSE, cache=TRUE}
-v09 <- load_variables(2009, "acs5", cache = T)
-yrblt09_p <- get_acs(
+yrblt09P <- get_acs(
    geography = "place",
    table = "B25036", #' TENURE BY YEAR STRUCTURE BUILT
    state = 47, 
@@ -297,7 +391,7 @@ yrblt09_p <- get_acs(
 <!--# tidy 2009 data & bind to 2019 data -->
 
 ```{r include=FALSE}
-yrblt09_mem <- yrblt09_p %>%
+yrblt09Mem <- yrblt09P %>%
   filter(GEOID == 4748000) %>%
   left_join(v09, by = c("variable" = "name")) %>%
   separate(label, c("est", "tot", "tenure", "year"), sep = "!!") %>%
@@ -311,9 +405,9 @@ yrblt09_mem <- yrblt09_p %>%
   summarise(estimate = sum(estimate)) %>% 
   mutate(datayr = 2009)
 
-yrblt_decade <- rbind(yrblt09_mem, yrblt_mem)
+yrblt10s <- rbind(yrblt09Mem, yrbltMem)
 
-yrblt_diff <- yrblt_decade %>% 
+yrbltDiff <- yrblt10s %>% 
   group_by(tenure, year) %>% 
   summarise(estimate = diff(estimate))
 ```
@@ -321,12 +415,12 @@ yrblt_diff <- yrblt_decade %>%
 <!--# table -->
 
 ```{r tbl-yrblt-diff, echo=FALSE}
-tblyrblt_diff <- yrblt_diff %>% 
+tblyrbltDiff <- yrbltDiff %>% 
   pivot_wider(names_from = tenure, values_from = estimate) %>% 
   mutate(change = Owner + Renter)
 
 knitr::kable(
-  tblyrblt_diff,
+  tblyrbltDiff,
   col.names = c("Year Structure Built", "Owner", "Renter", "All Occupied Units"),
   align = "lccc",
   caption = "Change in Occupied Units by Year Structure Built from 2009 to 2019 ACS")
@@ -345,7 +439,7 @@ Below is a graph visualizing the above table.
 <!--# graph -->
 
 ```{r ggplotdec, echo=FALSE}
-yrblt_diff %>% 
+yrbltDiff %>% 
      ggplot(aes(year, estimate, fill = tenure)) +
      geom_col() +
      scale_y_continuous(labels = function(y) paste0((y/1000), "K")) +
