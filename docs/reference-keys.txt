@@ -40,3 +40,12 @@ appendix-covid-evictions
 cdc-eviction-moratorium
 memphis-eviction-settlement-program
 tab:unnamed-chunk-7
+tab:tblmedyrbltmem
+tab:tblmedyrbltmsa
+summary-data
+total-population
+total-housing-units
+occupancy-status
+total-population-in-occupied-units
+summary-1
+tab:pophsgdifference

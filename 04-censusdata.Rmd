@@ -49,26 +49,26 @@ Boundaries for Memphis were downloaded from [Memphis Data Hub](https://data.memp
 
 ## Summary Data
 
+The following table uses data from the 5-year American Community Survey to measure changes in population and housing from 2010 to 2019.
+
 ```{r datapkgs, include=FALSE}
 library(tidyverse)
 library(tidycensus)
 ```
 
 ```{r censusbasics2, include=FALSE}
-yr <- lst(2009, 2019)
-v09 <- load_variables(2009, "acs5", cache = T)
+yr <- lst(2010, 2019)
+v10 <- load_variables(2010, "acs5", cache = T)
 ```
 
 ```{r censusbasics, include=FALSE}
-yrs <- lst (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
+yrs <- lst (2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
 v19 <- load_variables(2019, "acs5", cache = T)
 ```
 
-### Total Population
-
 <!--# TOTAL POPULATION data -->
 
-```{r popP, include=FALSE, cache=TRUE}
+```{r popP, include=FALSE}
 popP <- map_dfr(
   yrs,
   ~ get_acs(
@@ -86,14 +86,13 @@ popP <- map_dfr(
 popMem <- popP %>% 
   filter(NAME == "Memphis city, Tennessee") %>% 
   mutate(year = as.Date(year, "%Y")) %>% 
-  select(year, estimate)
+  select(year, estimate) %>% 
+  mutate(variable = "Total Population") 
 ```
 
-### Total Housing Units
+<!--# OCCUPANCY STATUS/Total Housing Units -->
 
-<!--# Housing Units -->
-
-```{r occstatP, include=FALSE, cache=TRUE}
+```{r occstatP, include=FALSE}
 occStatP <- map_dfr(
   yrs,
   ~ get_acs(
@@ -115,10 +114,9 @@ tothsgMem <- occStatP %>%
   left_join(v19, by = c("variable" = "name")) %>%
   separate(label, c("est", "tot", "occupancy"), sep = "!!") %>%
   filter(is.na(occupancy)) %>% 
-  select(year, estimate)
+  select(year, estimate) %>% 
+  mutate(variable = "Total Housing Units")
 ```
-
-### Occupancy Status
 
 ```{r occstatMem, include=FALSE}
 #' occupancy status
@@ -131,13 +129,9 @@ occstatMem <- occStatP %>%
   select(year, occupancy, estimate)
 ```
 
-According to the 2015-2019 American Community Survey, there are 251,732 occupied housing units in the city of Memphis.
+<!--# TOTAL POPULATION IN OCCUPIED HOUSING UNITS -->
 
-### Total Population in Occupied Units
-
-<!--# TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE data -->
-
-```{r HsgTenUnitPlace, include=FALSE, cache=TRUE}
+```{r HsgTenUnitPlace, include=FALSE}
 #' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE
 hsgTenUnitP <- map_dfr(
   yrs,
@@ -153,6 +147,7 @@ hsgTenUnitP <- map_dfr(
 ```
 
 ```{r hsgtenunitMem, include=FALSE}
+#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE, Memphis
 hsgtenunitMem <- hsgTenUnitP %>% 
   filter(NAME == "Memphis city, Tennessee") %>% 
   mutate(year = as.Date(year, "%Y")) %>% 
@@ -164,29 +159,88 @@ hsgtenunitMem <- hsgTenUnitP %>%
 
 ```{r hsgtenunitmemYr, include=FALSE}
 #' TOTAL POPULATION IN OCCUPIED HOUSING UNITS
-hsgtenunitmemYr <- hsgtenunitMem %>% 
+hsgpopMem <- hsgtenunitMem %>% 
   group_by(year) %>% 
-  summarise(estimate = sum(estimate)) 
+  summarise(estimate = sum(estimate)) %>% 
+  mutate(variable = "Total Population in Occupied Housing Units") 
 ```
 
-### Summary
+```{r gqP, include=FALSE}
+#' TOTAL POPULATION IN GROUP QUARTERS
+gqpopP <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place",
+    table = "B26001",
+    year = .x,
+    state = 47,
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
 
-<!--# POPULATION data wrangle -->
+```{r gqMem, include=FALSE}
+gqpopMem <- gqpopP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot"), sep = "!!") %>%
+  select(year, estimate) %>% 
+  mutate(variable = "Population Living in Group Quarters") %>% 
+  select(year, variable, everything())
+```
+
+<!--# TOTAL data wrangle -->
 
 ```{r totpop, include=FALSE}
-popMem <- popMem %>% 
-  mutate(variable = "Total Population")
-hsgMem <- tothsgMem %>% 
-  mutate(variable = "Total Housing Units")
 hsgoccMem <- occstatMem %>% 
   filter(occupancy == "Occupied") %>% 
   mutate(variable = "Total Occupied Housing Units") %>% 
   select(-occupancy)
-hsgpopMem <- hsgtenunitmemYr %>% 
-  mutate(variable = "Total Population in Occupied Housing Units") 
+hsgvacMem <- occstatMem %>% 
+  filter(occupancy == "Vacant") %>% 
+  mutate(variable = "Total Vacant Housing Units") %>% 
+  select(-occupancy)
 
-totMem <- rbind(popMem, hsgMem, occMem, hsgtenunitmemYr)
+totMem <- rbind(popMem, tothsgMem, hsgoccMem, hsgvacMem, hsgpopMem, gqpopMem) %>% 
+  select(year, variable, estimate)
 ```
+
+```{r pophsgchange, include=FALSE}
+totMemtbl <- totMem %>% 
+  group_by(variable) %>% 
+  mutate(change = estimate - lag(estimate)) 
+
+totmemtbl2 <- totMemtbl %>% 
+  pivot_wider(names_from = variable, 
+              values_from = c(estimate, change), 
+              names_glue = "{variable}_{.value}") 
+
+chg <- totMemtbl %>% 
+  summarise(differ = sum(change, na.rm = TRUE)) %>% 
+  arrange(desc(differ))
+```
+
+<!--# share data -->
+
+```{r tblpkgs, include=FALSE}
+library(kableExtra)
+```
+
+```{r pophsgdifference, echo=FALSE}
+kable(chg,
+      col.names = c("Variable", "Change from 2010-2019"),
+      caption = "Changes in population and housing data, Memphis")
+```
+
+From 2010 to 2019, Memphis's population decreased by about 2,944 people. Most of this was a decrease in the number of people living in group quarters[^censusdata-1] (2,589); the population living in occupied units only decreased by 355 individuals over this period. Overall, the population is stagnant.
+
+[^censusdata-1]: The census divides group quarters into institutionalized facilities (nursing, adult correctional, and juvenile) and non-institutionalized facilities (university student housing and military quarters).
+
+During this time, the total number of housing units increased by 3,895. Considering the population changes, we might expect this to be accompanied with an increase in vacancies and decrease in the number of occupied units, yet neither happened. The number of vacant units decreased by 1,342 and the number of occupied units increased by 5,237.
+
+This is an interesting phenomenon: an increase of 5,237 units that are occupied, and a decrease of 355 people living in occupied units. One possible explanation is a change in how many people tend to live in a home together, for instance, two people living together in 2010 who lived apart in 2019. Considering the trend at a city-wide level, this could be explained by a decrease in the number of families living in the city and an increase in the number of people living alone.
 
 <!--# to do: gg stuff -->
 
@@ -231,7 +285,7 @@ Of occupied homes in 2019, 117,361 (47%) were owner-occupied; 134,371 (53%) were
 
 The age of a housing unit can be an indicator that repairs are needed. The below table shows the median age of occupied housing units in the city of Memphis, separated by tenure.
 
-<!--# get data for MEDIAN YEAR STRUCTURE BUILT BY TENURE -->
+<!--# MEDIAN YEAR STRUCTURE BUILT BY TENURE -->
 
 ```{r medyrbltP, include=FALSE, cache=TRUE}
 medyrbltP <- map_dfr(
@@ -270,9 +324,7 @@ medyrbltMem <- medyrbltP %>%
   left_join(v19, by = c("variable" = "name")) %>%
   separate(label, c("est", "tot", "tenure"), sep = "!!") %>%
   select(year, tenure, estimate) %>% 
-  filter(tenure != "Total:") 
-
-%>% 
+  filter(tenure != "Total:") %>% 
   pivot_wider(names_from = tenure, values_from = estimate)
 ```
 
@@ -288,11 +340,7 @@ medyrbltMMSA <- medyrbltMSA %>%
 
 <!--# make tables -->
 
-```{r tblpkgs, include=FALSE}
-library(kableExtra)
-```
-
-```{r tbl-medyrbltmem, echo=FALSE}
+```{r tblmedyrbltmem, echo=FALSE}
 knitr::kable(
   medyrbltMem, 
   col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
@@ -305,7 +353,7 @@ The Memphis housing stock is aging. The median year built has not (or barely) bu
 
 When we expand our scope from the city limits to the Memphis MSA, there is a noticeable shift in the data, as seen in the table below.
 
-```{r tbl-medyrbltmsa, echo=FALSE}
+```{r tblmedyrbltmsa, echo=FALSE}
 knitr::kable(
   medyrbltMMSA, 
   col.names = c("Census Year", "Owner-Occupied", "Renter-Occupied"),
@@ -378,6 +426,7 @@ Note that this dataset shows the year homes were built based on **current** tenu
 <!--# get 2009 data (and proper variable names!) -->
 
 ```{r include=FALSE, cache=TRUE}
+v09 <- load_variables(2009, "acs5", cache = T)
 yrblt09P <- get_acs(
    geography = "place",
    table = "B25036", #' TENURE BY YEAR STRUCTURE BUILT
@@ -428,9 +477,9 @@ knitr::kable(
 
 There was an overall loss of 13,641 occupied housing units between 2009-2019 in the city of Memphis. Broken down by tenure, there was a loss of 25,467 owner-occupied units, and a gain of 11,826 renter occupied units. If we limit our scope to **"older" units (built before 1990)**, there was a **loss of 23,310 owner-occupied units**, and a **gain of 7,089 renter-occupied units**.
 
-We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.[^censusdata-1] This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.
+We would expect a loss in older housing units over time, as we cannot travel back in time and create more units.[^censusdata-2] This is true overall, but we can see that large losses in owner-occupied units are partially offset by gains in renter-occupied units. This tells us formerly owner-occupied homes have converted into rentals.
 
-[^censusdata-1]: The gain of units from 1990 to 1999 is likely due to data error. Another explanation is that previously vacant units built during this time are now occupied. But this is unlikely given the loss in occupied units and an increase in vacant units from 2009-2019.
+[^censusdata-2]: The gain of units from 1990 to 1999 is likely due to data error. Another explanation is that previously vacant units built during this time are now occupied. But this is unlikely given the loss in occupied units and an increase in vacant units from 2009-2019.
 
 Considering the Great Recession, this implies former homeowners are now renting. Households that formerly benefited from policies and programs geared toward homeowners now navigate a housing system that is decidedly anti-renter. They lost their opportunity to build generational wealth, and now their wealth is being extracted through rents. Additionally, homes being converted into rentals limits the availability of homes for purchase, and denies young people the opportunity to plant roots in the community.
 
@@ -460,9 +509,9 @@ Between the 2009 and 2019 ACS, there was a definite loss in occupied housing uni
 
 Data on housing quality in the Memphis MSA is available through the 2019 [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html). As the median age for rental homes is seven years older than for owner-occupied homes in the MSA, we can expect renter-occupied homes to have more deficiencies and problems than owner-occupied homes.
 
-When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.[^censusdata-2]
+When surveyed on the adequacy of their housing, 14.5% of renter-occupied units were thought of as inadequate, compared to 10% of owner-occupied units. This disparity in quality between renter- and owner-occupied households is significant when we compare specific housing problems, as shown in the tables below.[^censusdata-3]
 
-[^censusdata-2]: In the discussions below, "renters" refers to renter-occupied units, "owners" refers to owner-occupied units, and "Memphis" refers to the Memphis MSA.
+[^censusdata-3]: In the discussions below, "renters" refers to renter-occupied units, "owners" refers to owner-occupied units, and "Memphis" refers to the Memphis MSA.
 
 ### Selected Housing Deficiencies
 
