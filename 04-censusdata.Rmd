@@ -75,7 +75,7 @@ v19 <- load_variables(2019, "acs5", cache = T)
 
 ```{r popP, include=FALSE}
 popP <- map_dfr(
-  yrs,
+  yr,
   ~ get_acs(
     geography = "place",
     table = "B01003", #' TOTAL POPULATION
@@ -99,7 +99,7 @@ popMem <- popP %>%
 
 ```{r occstatP, include=FALSE}
 occStatP <- map_dfr(
-  yrs,
+  yr,
   ~ get_acs(
     geography = "place",
     table = "B25002", #' OCCUPANCY STATUS
@@ -139,7 +139,7 @@ occstatMem <- occStatP %>%
 ```{r HsgTenUnitPlace, include=FALSE}
 #' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE
 hsgTenUnitP <- map_dfr(
-  yrs,
+  yr,
   ~ get_acs(
     geography = "place",
     table = "B25033",
@@ -173,7 +173,7 @@ hsgpopMem <- hsgtenunitMem %>%
 ```{r gqP, include=FALSE}
 #' TOTAL POPULATION IN GROUP QUARTERS
 gqpopP <- map_dfr(
-  yrs,
+  yr,
   ~ get_acs(
     geography = "place",
     table = "B26001",
@@ -247,7 +247,64 @@ From 2010 to 2019, Memphis's population decreased by about 2,944 people. Most of
 
 During this time, the total number of housing units increased by 3,895. Considering the population changes, we might expect this to be accompanied with an increase in vacancies and decrease in the number of occupied units, yet neither happened. The number of vacant units decreased by 1,342 and the number of occupied units increased by 5,237.
 
-This is an interesting phenomenon: an increase of 5,237 units that are occupied, and a decrease of 355 people living in occupied units. One possible explanation is a change in how many people tend to live in a home together, for instance, two people living together in 2010 who lived apart in 2019. Considering the trend at a city-wide level, this could be explained by a decrease in the number of families living in the city and an increase in the number of people living alone.
+This is an interesting phenomenon: an increase of 5,237 units that are occupied, and a decrease of 355 people living in occupied units. One possible explanation is a change in how many people live together, such as two people living together in 2010 who lived apart in 2019. Considering the trend at a city-wide level, this could be explained by a decrease in the number of families living in the city and an increase in the number of people living alone. We can confirm/disprove this using ACS data on household size.
+
+```{r tenhhsizeP, include=FALSE}
+tenhhsizeP <- map_dfr(
+  yr,
+  ~ get_acs(
+    geography = "place",
+    table = "B25009", #' TENURE BY HOUSEHOLD SIZE
+    year = .x,
+    state = 47,
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r tenhhsizeMem, include=FALSE}
+tenhhsizeMem <- tenhhsizeP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "size"), sep = "!!") %>%
+  select(year, tenure, size, estimate) %>% 
+  filter(!is.na(size))
+```
+
+```{r hhsizemem, include=FALSE}
+hhsizemem <- tenhhsizeMem %>% 
+  group_by(year, size) %>% 
+  summarise(estimate = sum(estimate)) %>% 
+  ungroup() %>% 
+  group_by(size) %>% 
+  mutate(change = estimate - lag(estimate)) %>% 
+  filter(!is.na(change)) %>% 
+  select(size, change)
+```
+
+```{r tenhhsize, include=FALSE}
+tenhhsize <- tenhhsizeMem %>% 
+  group_by(tenure, size) %>% 
+  mutate(change = estimate - lag(estimate)) %>% 
+  filter(!is.na(change)) %>% 
+  select(-c(year, estimate)) %>% 
+  pivot_wider(names_from = tenure, values_from = change) %>% 
+  inner_join(hhsizemem, by = "size")
+```
+
+```{r tenhhsizetbl, echo=FALSE}
+kable(tenhhsize,
+      col.names = 
+        c("Household Size", "Owner", "Renter", "Total Change"),
+      format.args = list(big.mark = ","),
+      caption = "Change in household size by tenure, 2010-2019, Memphis")
+```
+
+The data appears to confirm this hypothesis. From 2010 to 2019, the number of 2+ person households dropped by 5,182, and the number of 1-person households increased by 10,419. These are significant changes for a stagnant population.
+
+The above table also shows that Memphis's change in household size has been significantly linked to tenure. During the 2010s, the city lost owner-occupied households at every household size, for a combined loss of 15,077 households. Over the same period, Memphis gained 20,314 renting households, who were mostly 1 or 2 people living together. The change in renters and owners totals an overall gain of 5,237 households.
 
 <!--# to do: gg stuff -->
 

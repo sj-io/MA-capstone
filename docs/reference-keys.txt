@@ -49,3 +49,7 @@ occupancy-status
 total-population-in-occupied-units
 summary-1
 tab:pophsgdifference
+tab:hhsizetbl
+tab:unnamed-chunk-2
+tab:unnamed-chunk-9
+tab:tenhhsizetbl
