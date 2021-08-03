@@ -1,6 +1,6 @@
 ## COVID-19 & Evictions
 
----
+------------------------------------------------------------------------
 
 Asthma
 
@@ -15,3 +15,38 @@ leading authors to conclude that effective health interventions should consider 
 Maintenance Pvt Mkt
 
 The authors propose a wide range of solutions to improve tenant reporting. Ending no-cause evictions and expanding legal aid can encourage tenants who may be scared to speak up. Increasing the supply of social or public housing can expand housing options to households most vulnerable to changes in rent. The authors also suggest authorities supervise a web-based reporting system for repair requests, establishing clear records, automated reminders to the landlords, and an opportunity for authorities to step in for unduly slow repairs.
+
+<!--# to do: gg stuff -->
+
+```{r gghsgtenunitmemYr, eval=FALSE, include=FALSE}
+hsgtenunitmemYr %>%
+  ggplot(aes(x=year, y=total)) +
+  geom_line()
+```
+
+```{r tblhsgTenunitmem, eval=FALSE, include=FALSE}
+#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE
+hsgtenunitmemT <- hsgtenunitMem %>% 
+  group_by(year) %>% 
+  mutate(total = sum(estimate)) %>% 
+  group_by(year, tenure, total) %>% 
+  summarise(totten = sum(estimate)) %>% 
+  mutate(pct = round(100*totten/total,2))
+hsgtenunitmemT
+```
+
+```{r gghsgtenunitmemT, eval=FALSE, include=FALSE}
+hsgtenunitmemT %>%  ggplot(aes(x=year, y=total, fill=tenure)) +
+  geom_area(position = "stack")
+```
+
+```{r hsgtenUnitmem, eval=FALSE, include=FALSE}
+#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE
+hsgtenunitmemU <- hsgtenunitMem %>% 
+  group_by(year) %>% 
+  mutate(total = sum(estimate)) %>% 
+  group_by(year, tenure, total) %>%
+  mutate(totten = sum(estimate)) %>% 
+  mutate(pct = round(100*estimate/totten, 2))
+hsgtenunitmemU
+```

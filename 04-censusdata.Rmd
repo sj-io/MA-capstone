@@ -49,7 +49,7 @@ Boundaries for Memphis were downloaded from [Memphis Data Hub](https://data.memp
 
 ## Summary Data
 
-The American Community Survey (ACS) collects year data on population and housing in large metro areas. In 2019, the ACS reported there were 651,932 people living in the city of Memphis. Of this population, 15,843 were living in group quarters[^censusdata-1]; the remaining 636,089 were occupying 251,732 housing units. The city also had 48,181 vacant units, for a total 299,913 housing units.
+The American Community Survey (ACS) collects yearly data on population and housing in large metro areas. In 2019, the ACS reported there were 651,932 people living in the city of Memphis. Of this population, 15,843 were living in group quarters[^censusdata-1]; the remaining 636,089 were occupying 251,732 housing units. The city also had 48,181 vacant units, for a total 299,913 housing units.
 
 [^censusdata-1]: The census divides group quarters into institutionalized facilities (nursing, adult correctional, and juvenile) and non-institutionalized facilities (university student housing and military quarters).
 
@@ -247,7 +247,7 @@ From 2010 to 2019, Memphis's population decreased by about 2,944 people. Most of
 
 During this time, the total number of housing units increased by 3,895. Considering the population changes, we might expect this to be accompanied with an increase in vacancies and decrease in the number of occupied units, yet neither happened. The number of vacant units decreased by 1,342 and the number of occupied units increased by 5,237.
 
-This is an interesting phenomenon: an increase of 5,237 units that are occupied, and a decrease of 355 people living in occupied units. One possible explanation is a change in how many people live together, such as two people living together in 2010 who lived apart in 2019. Considering the trend at a city-wide level, this could be explained by a decrease in the number of families living in the city and an increase in the number of people living alone. We can confirm/disprove this using ACS data on household size.
+This is an interesting phenomenon: an increase of 5,237 units that are occupied, and a decrease of 355 people living in occupied units. One possible explanation is a change in how many people live together, such as two people living together in 2010 who lived apart in 2019. Considering the trend at a city-wide level, this could be explained by a decrease in the number of families and an increase in the number of people living alone. We can confirm/disprove this using ACS data on household size.
 
 ```{r tenhhsizeP, include=FALSE}
 tenhhsizeP <- map_dfr(
@@ -306,39 +306,99 @@ The data appears to confirm this hypothesis. From 2010 to 2019, the number of 2+
 
 The above table also shows that Memphis's change in household size has been significantly linked to tenure. During the 2010s, the city lost owner-occupied households at every household size, for a combined loss of 15,077 households. Over the same period, Memphis gained 20,314 renting households, who were mostly 1 or 2 people living together. The change in renters and owners totals an overall gain of 5,237 households.
 
-<!--# to do: gg stuff -->
+When did this change happen? Are the renters former owners? From out of state? Kids moving out of their parents home? Let's delve deeper into changes in tenure over the past year.
 
-```{r gghsgtenunitmemYr, eval=FALSE, include=FALSE}
-hsgtenunitmemYr %>%
-  ggplot(aes(x=year, y=total)) +
-  geom_line()
+## Changes in Tenure
+
+<!--# B25007 TENURE BY AGE OF HOUSEHOLDER -->
+
+```{r tenageP, include=FALSE}
+tenageP <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place",
+    table = "B25007", 
+    year = .x,
+    state = 47,
+    cache_table = T
+  ),
+  .id = "year"
+)
 ```
 
-```{r tblhsgTenunitmem, eval=FALSE, include=FALSE}
-#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE
-hsgtenunitmemT <- hsgtenunitMem %>% 
-  group_by(year) %>% 
-  mutate(total = sum(estimate)) %>% 
-  group_by(year, tenure, total) %>% 
-  summarise(totten = sum(estimate)) %>% 
-  mutate(pct = round(100*totten/total,2))
-hsgtenunitmemT
+```{r tenmem, include=FALSE}
+#' TENURE
+tenmem <- tenageP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "age"), sep = "!!") %>%
+  select(year, tenure, age, estimate) %>% 
+  filter(is.na(age)) %>% 
+  filter(!is.na(tenure)) %>% 
+  select(-age)
 ```
 
-```{r gghsgtenunitmemT, eval=FALSE, include=FALSE}
-hsgtenunitmemT %>%  ggplot(aes(x=year, y=total, fill=tenure)) +
-  geom_area(position = "stack")
+```{r tenageMem, include=FALSE}
+#' TENURE BY AGE
+tenageMem <- tenageP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure", "age"), sep = "!!") %>%
+  select(year, tenure, age, estimate) %>% 
+  filter(!is.na(age)) 
 ```
 
-```{r hsgtenUnitmem, eval=FALSE, include=FALSE}
-#' TOTAL POPULATION IN OCCUPIED HOUSING UNITS BY TENURE BY UNITS IN STRUCTURE
-hsgtenunitmemU <- hsgtenunitMem %>% 
-  group_by(year) %>% 
-  mutate(total = sum(estimate)) %>% 
-  group_by(year, tenure, total) %>%
-  mutate(totten = sum(estimate)) %>% 
-  mutate(pct = round(100*estimate/totten, 2))
-hsgtenunitmemU
+```{r include=FALSE}
+tenchg <- tenmem %>%
+  group_by(tenure) %>% 
+  mutate(change = estimate - lag(estimate)) %>% 
+  filter(!is.na(change)) %>% 
+  select(-estimate) %>% 
+  pivot_wider(names_from = tenure, values_from = change)
+
+tenageMem
+```
+
+<!--# GEOGRAPHIC MOBILITY -->
+
+```{r geomobileP, include=FALSE}
+#' GEOGRAPHICAL MOBILITY IN THE PAST YEAR BY TENURE FOR CURRENT RESIDENCE
+geomobileP <- map_dfr(
+  yrs,
+  ~ get_acs(
+    geography = "place",
+    table = "B07013", 
+    year = .x,
+    state = 47,
+    cache_table = T
+  ),
+  .id = "year"
+)
+```
+
+```{r geomobileMem, include=FALSE}
+geomobileMem <- geomobileP %>% 
+  filter(NAME == "Memphis city, Tennessee") %>% 
+  mutate(year = as.Date(year, "%Y")) %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "geo", "tenure"), sep = "!!") %>%
+  select(year, geo, tenure, estimate) %>% 
+  filter(!is.na(geo)) 
+```
+
+```{r include=FALSE}
+geomobilesum <- geomobileMem %>% 
+  filter(is.na(tenure)) %>% 
+  select(-tenure) %>% 
+  group_by(geo) %>% 
+  mutate(change = estimate - lag(estimate)) %>% 
+  filter(!is.na(change)) %>% 
+  pivot_wider(names_from = geo, values_from = c(change, estimate))
+  
+geomobileten <- geomobileMem %>% 
+  filter(!is.na(tenure))
 ```
 
 ## Housing Characteristics
