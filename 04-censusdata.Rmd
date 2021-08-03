@@ -49,11 +49,16 @@ Boundaries for Memphis were downloaded from [Memphis Data Hub](https://data.memp
 
 ## Summary Data
 
-The following table uses data from the 5-year American Community Survey to measure changes in population and housing from 2010 to 2019.
+The American Community Survey (ACS) collects year data on population and housing in large metro areas. In 2019, the ACS reported there were 651,932 people living in the city of Memphis. Of this population, 15,843 were living in group quarters[^censusdata-1]; the remaining 636,089 were occupying 251,732 housing units. The city also had 48,181 vacant units, for a total 299,913 housing units.
+
+[^censusdata-1]: The census divides group quarters into institutionalized facilities (nursing, adult correctional, and juvenile) and non-institutionalized facilities (university student housing and military quarters).
+
+This information is shown in the following table, sorted by how these figures have changed since 2010.
 
 ```{r datapkgs, include=FALSE}
 library(tidyverse)
 library(tidycensus)
+library(lubridate)
 ```
 
 ```{r censusbasics2, include=FALSE}
@@ -162,7 +167,7 @@ hsgtenunitMem <- hsgTenUnitP %>%
 hsgpopMem <- hsgtenunitMem %>% 
   group_by(year) %>% 
   summarise(estimate = sum(estimate)) %>% 
-  mutate(variable = "Total Population in Occupied Housing Units") 
+  mutate(variable = "Population Living in Occupied Housing Units") 
 ```
 
 ```{r gqP, include=FALSE}
@@ -196,29 +201,31 @@ gqpopMem <- gqpopP %>%
 ```{r totpop, include=FALSE}
 hsgoccMem <- occstatMem %>% 
   filter(occupancy == "Occupied") %>% 
-  mutate(variable = "Total Occupied Housing Units") %>% 
+  mutate(variable = "Occupied Housing Units") %>% 
   select(-occupancy)
 hsgvacMem <- occstatMem %>% 
   filter(occupancy == "Vacant") %>% 
-  mutate(variable = "Total Vacant Housing Units") %>% 
+  mutate(variable = "Vacant Housing Units") %>% 
   select(-occupancy)
 
-totMem <- rbind(popMem, tothsgMem, hsgoccMem, hsgvacMem, hsgpopMem, gqpopMem) %>% 
+totMem <- 
+  rbind(popMem, tothsgMem, hsgoccMem, hsgvacMem, hsgpopMem, gqpopMem) %>% 
   select(year, variable, estimate)
 ```
 
 ```{r pophsgchange, include=FALSE}
-totMemtbl <- totMem %>% 
+summ19 <- totMem %>% 
+  filter(year >= ymd(20190101)) %>% 
+  rename(est19 = estimate) %>% 
+  select(-year)
+
+chg <- totMem %>% 
   group_by(variable) %>% 
-  mutate(change = estimate - lag(estimate)) 
+  mutate(change = estimate - lag(estimate)) %>% 
+  summarise(differ = sum(change, na.rm = TRUE)) 
 
-totmemtbl2 <- totMemtbl %>% 
-  pivot_wider(names_from = variable, 
-              values_from = c(estimate, change), 
-              names_glue = "{variable}_{.value}") 
-
-chg <- totMemtbl %>% 
-  summarise(differ = sum(change, na.rm = TRUE)) %>% 
+totmemtbl <- summ19 %>% 
+  inner_join(chg, by = "variable") %>% 
   arrange(desc(differ))
 ```
 
@@ -229,14 +236,14 @@ library(kableExtra)
 ```
 
 ```{r pophsgdifference, echo=FALSE}
-kable(chg,
-      col.names = c("Variable", "Change from 2010-2019"),
-      caption = "Changes in population and housing data, Memphis")
+kable(totmemtbl,
+      col.names = 
+        c("Variable", "2019 Estimate", "Change from 2010-2019"),
+      format.args = list(big.mark = ","),
+      caption = "Population and housing data, Memphis")
 ```
 
-From 2010 to 2019, Memphis's population decreased by about 2,944 people. Most of this was a decrease in the number of people living in group quarters[^censusdata-1] (2,589); the population living in occupied units only decreased by 355 individuals over this period. Overall, the population is stagnant.
-
-[^censusdata-1]: The census divides group quarters into institutionalized facilities (nursing, adult correctional, and juvenile) and non-institutionalized facilities (university student housing and military quarters).
+From 2010 to 2019, Memphis's population decreased by about 2,944 people. Most of this was a decrease in the number of people living in group quarters (2,589); the population living in occupied units only decreased by 355 individuals over this period. Overall, the population is stagnant.
 
 During this time, the total number of housing units increased by 3,895. Considering the population changes, we might expect this to be accompanied with an increase in vacancies and decrease in the number of occupied units, yet neither happened. The number of vacant units decreased by 1,342 and the number of occupied units increased by 5,237.
 
