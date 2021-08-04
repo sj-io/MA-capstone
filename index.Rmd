@@ -1,5 +1,5 @@
 ---
-title: "Memphis Code Enforcement"
+title: "Addressing Neglect in the Private Rental Market"
 author: "Sarah Johnson"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

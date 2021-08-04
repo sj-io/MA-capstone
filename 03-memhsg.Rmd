@@ -1,6 +1,16 @@
+# Methodology
+
+Housing maintenance is a universal need. This paper uses the Memphis area (including the City of Memphis, Shelby County, and the Memphis TN-AR-MS MSA) to understand housing maintenance in the private rental market. Information has been divided into three sections: a qualitative housing analysis, a quantitative analysis of available Census data, and an overview of Memphis code enforcement data.
+
+The qualitative section begins by outlining the history of mortgage discrimination in the city, which has denied some Memphians homeownership, leading to forced participation in the rental market. The next portion explores some existing studies and regulation between housing and health in the city. This leads into an overview of the findings of two extensive reports on Memphis code enforcement conducted over the past twenty years.
+
+A quatitative analysis of Census data uses information from 2010-2019 American Community Surveys (ACS) and the 2019 American Housing Survey (AHS) to understand certain dynamics in Memphis's housing market. Particular attention is given to tenure, as the city's households recently switched from being majority owner-occupied to majority renter-occupied. Data on building age adds credence to the argument that housing maintenance needs attention, particularly with analysis showing the conversion of old, formerly owner-occupied units to rentals. The section concludes with AHS data showing that renter-occupied homes experience a consistently higher rate of housing problems and deficiencies than owner-occupied homes.
+
+The final section centers around a dataset of service requests to the City of Memphis from 2016-present, including requests to code enforcement. The original intent of using this data was to study the extent of housing maintenance requests in the private rental market and how problems were addressed. However, a larger problem emerged of the dataset's general disorganization. With no known existing methodology for how to parse this data, this paper serves to introduce other housing researchers to specific problems with the dataset, with opportunity for analysis and collaboration moving forward.
+
 # About Memphis
 
-Earlier this year, Legal Services Corporation released a report following a year-long study of the eviction process in Memphis and Shelby County. The area was selected because it is not an outlier---"rather because it is typical of many U.S. counties," with a population concentrated in a major urban center and a "not exorbitant" cost of housing [@ahmed2021].
+Memphis and Shelby County were the recent focus of a year-long study of evictions by Legal Services Corporation, a publicly-funded provider of civil legal aid to low-income Americans [@ahmed2021]. The area was selected not because it is an outlier---"rather because it is typical of many U.S. counties," with a population concentrated in a major urban center and a "not exorbitant" cost of housing.
 
 Multiple factors make Memphis ideal for monitoring maintenance in the private rental market. The housing stock in the central city is old; the median year built for owner and renter-occupied homes is before 1978. Not only will these homes require additional maintenance, but homes built before this time likely used lead-based paint. Unless the property has been remediated, the paint can create lead dust in the home, a particular hazard for young children [@cdc2020].
 
