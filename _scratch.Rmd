@@ -50,3 +50,7 @@ hsgtenunitmemU <- hsgtenunitMem %>%
   mutate(pct = round(100*estimate/totten, 2))
 hsgtenunitmemU
 ```
+
+Following the Great Depression, shelter problems were not confined to low-income families.
+
+The federal government had just taken its first major step into housing, creating the Home Owners' Loan Corporation (HOLC) in 1933 to refinance mortgages of homeowners faced with foreclosure and protect banks from insolvency [@coan1969; @rothstein2017 63]. The Federal Housing Administration (FHA) followed in 1934, and made first-time homeownership more accessible to middle-class renters by instituting the idea of 20-year mortgages, rather than the prohibitively expensive 5- to 7-year ones common at the time. If borrowers defaulted, the FHA insured lenders for full repayment [@mccarty2019; @rothstein2017 63-64].
