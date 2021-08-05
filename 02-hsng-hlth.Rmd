@@ -18,17 +18,21 @@ Over the next half century, large population influx into urban areas led to wide
 
 Housing reformers continued to demand better living conditions into the 20th century. Catherine Bauer's landmark 1934 book *Modern Housing* declared that for a home to be "modern", it must allow for cross-ventilation and sunlight; adequate privacy, space, and sanitary facilities; adjacent play space for children; and "finally it will be available at a price which citizens of average income or less can afford." [@wurster2020 xv] Modern housing was constructed for "efficient use" rather than "quick profit", and planned to retain quality for the long term, in "complete neighborhoods" with parks, schools, and other community facilities.
 
-Her thesis was based on studies of post-war European housing programs, whom Bauer declared had created an entirely new framework for producing shelter [@radford1996 76]. Bauer advocated for housing to be treated as a public utility, with a goal of comprehensively planned, decent, stable housing for the working class [@goetz2013 25]. Modern homes and neighborhoods were a means to an end, and could "never deteriorate into a slum, or a 'blighted area'" [@wurster2020 xv].
+Her thesis was based on studies of post-war European housing programs, whom Bauer declared had created an entirely new framework for producing shelter [@radford1996 76]. Bauer advocated for housing to be treated as a public utility, with a goal of comprehensively planned, decent, stable housing for the working class [@goetz2013 23; @radford1996 183]. Modern homes and neighborhoods were a means to an end, and could "never deteriorate into a slum, or a 'blighted area'" [@wurster2020 xv].
 
 This countered the limited federal housing legislation at the time, such as a post-Depression policy enacted under Hoover that provided loans to corporations wholly focused on low income housing and slum reconstruction [@emergenc1932]. A lack of private investment led FDR to alter the program a year later to a public works initiative which directly funded construction of low cost housing and slum clearance projects [@national1933; @goetz2013 26].
 
-Bauer was later a primary author on the National Housing Act of 1937, which officially established public housing in America and called for "the elimination of unsafe and insanitary housing conditions" and remedy "the acute shortage of decent, safe, and sanitary dwellings for families of low-income, in rural or urban communities" [@national1937; @mccarty2019]. However, the Act was a compromise. Limits were placed on construction costs and tenant incomes, and an "equivalent elimination" clause required one unit of substandard housing be taken down for every unit of public housing built. This ensured the bulk of public housing projects would be in previous slum areas, and was meant to prevent public housing from competing with the private market [@goetz2013 27-28].[^hsng-hlth-1]
+Bauer was later a primary author on the National Housing Act of 1937, which officially established public housing in America and called for "the elimination of unsafe and insanitary housing conditions" and remedy "the acute shortage of decent, safe, and sanitary dwellings for families of low-income, in rural or urban communities" [@national1937; @mccarty2019].
 
-[^hsng-hlth-1]: According to the bill's co-sponsor, Senator Wagner, "the most important consideration is, that public housing projects should not be brought into competition with private industry... To reach those who are really entitled to public assistance, and to get into the field where private enterprise cannot operate, is the objective of this bill." [@goetz2013 28]
+However, the Act was a compromise. Limits were placed on construction costs and tenant incomes, and an "equivalent elimination" clause required one unit of substandard housing be taken down for every unit of public housing built. This ensured the bulk of public housing projects would be in previous slum areas, and was meant to prevent public housing from competing with the private market [@goetz2013 27-28; @radford1996 188-189].[^hsng-hlth-1]
 
-In 1938, the *Basic Principles of Healthful Housing* was published in the American Journal of Public Health, outlining 30 principles "believed to be fundamental minima required for the promotion of physical, mental, and social health," whether the housing be high or low cost, urban or rural [@apha1938]. The fundamental needs were originally divided into four categories: physiological needs (e.g. protection from elements), psychological needs (e.g. adequate privacy), protection against contagion (e.g. safe water supply), and protection against accidents (e.g. fire prevention).
+[^hsng-hlth-1]: According to the bill's co-sponsor, Senator Wagner, "the most important consideration is, that public housing projects should not be brought into competition with private industry... To reach those who are really entitled to public assistance, and to get into the field where private enterprise cannot operate, is the objective of this bill." [@goetz2013 28, citing excerpts from legislative hearings in @federal1985].
+
+    The organizations that mobilized against the bill were the U.S. Chamber of Commerce, National Association of Real Estate Boards, the U.S. League of Building and Loans, and the National Retail Lumber Dealers Association [@radford1996 188].
 
 ## Healthy Homes
+
+The 1937 Act led to the creation of the *Basic Principles of Healthful Housing*, published in the American Journal of Public Health. The manual outlined 30 principles "believed to be fundamental minima required for the promotion of physical, mental, and social health," whether the housing be high or low cost, urban or rural [@apha1938]. The fundamental needs were originally divided into four categories: physiological needs (e.g. protection from elements), psychological needs (e.g. adequate privacy), protection against contagion (e.g. safe water supply), and protection against accidents (e.g. fire prevention).
 
 Six decades after *Healthful Housing* was published, the manual found renewed relevance in 1999. Recognizing that "health, home construction, and home maintenance are inseparable because of their overlapping goals," HUD and CDC joined together to launch the Healthy Homes Initiative [@cdc2006 31, 34]. Many of the basic principles originally laid out in the 1938 manual were used to create the Healthy Home Rating System (HHRS)
 
@@ -50,7 +54,7 @@ datatable(HHRS,
           ))
 ```
 
-<br>
+<br></br>
 
 The HHRS provides a standardized way to identify and rate the risk of home health hazards. Once a hazard is identified, it is further rated according to severity and the effect it is having, or could have, on the occupants. The greater the risk or more serious the outcome, the higher the overall score. The system provides a way to compare risks associated with different types of hazards.
 
