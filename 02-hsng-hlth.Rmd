@@ -30,9 +30,11 @@ However, the Act was a compromise. Limits were placed on construction costs and 
 
     The organizations that mobilized against the bill were the U.S. Chamber of Commerce, National Association of Real Estate Boards, the U.S. League of Building and Loans, and the National Retail Lumber Dealers Association [@radford1996 188].
 
+<!--# Bauer's thoughts in dreary deadlock -->
+
 ## Healthy Homes
 
-The 1937 Act led to the creation of the *Basic Principles of Healthful Housing*, published in the American Journal of Public Health. The manual outlined 30 principles "believed to be fundamental minima required for the promotion of physical, mental, and social health," whether the housing be high or low cost, urban or rural [@apha1938]. The fundamental needs were originally divided into four categories: physiological needs (e.g. protection from elements), psychological needs (e.g. adequate privacy), protection against contagion (e.g. safe water supply), and protection against accidents (e.g. fire prevention).
+The 1937 Act led to the creation of the *Basic Principles of Healthful Housing*, published the following year in the American Journal of Public Health. The manual outlined 30 principles "believed to be fundamental minima required for the promotion of physical, mental, and social health," whether the housing be high or low cost, urban or rural [@apha1938]. The fundamental needs were originally divided into four categories: physiological needs (e.g. protection from elements), psychological needs (e.g. adequate privacy), protection against contagion (e.g. safe water supply), and protection against accidents (e.g. fire prevention).
 
 Six decades after *Healthful Housing* was published, the manual found renewed relevance in 1999. Recognizing that "health, home construction, and home maintenance are inseparable because of their overlapping goals," HUD and CDC joined together to launch the Healthy Homes Initiative [@cdc2006 31, 34]. Many of the basic principles originally laid out in the 1938 manual were used to create the Healthy Home Rating System (HHRS)
 
