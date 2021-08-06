@@ -24,7 +24,7 @@
 <meta name="author" content="Sarah Johnson" />
 
 
-<meta name="date" content="2021-08-05" />
+<meta name="date" content="2021-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,10 +230,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.3" data-path="data.html"><a href="data.html#tidying-the-dataset"><i class="fa fa-check"></i><b>6.3</b> Tidying the Dataset</a></li>
 <li class="chapter" data-level="6.4" data-path="data.html"><a href="data.html#seeclickfix"><i class="fa fa-check"></i><b>6.4</b> SeeClickFix</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7</b> Discussion</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="discussion.html"><a href="discussion.html#recommendations"><i class="fa fa-check"></i><b>7.1</b> Recommendations</a></li>
-</ul></li>
+<li class="chapter" data-level="7" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7</b> Discussion</a></li>
 <li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary</a></li>
 <li class="chapter" data-level="9" data-path="appendix-covid-evictions.html"><a href="appendix-covid-evictions.html"><i class="fa fa-check"></i><b>9</b> Appendix: COVID &amp; Evictions</a>
 <ul>
@@ -263,14 +260,10 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="discussion" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Discussion</h1>
-<p>Code enforcement is the only recourse for renters who want to report landlord neglect. However, Memphis code enforcement does not categorize or track this data. Instead, this information is shuffled into a miscellaneous category, with duplicates and errors. While the dataset may be updated daily, it is incredibly hard to organize, and the volume of cases added daily only made the job more difficult.</p>
-<p>In conversations with other housing researchers, I found I was not alone in my frustrations with this dataset. I have yet to meet someone who established a way to sort through all the data. One researcher who did regularly use the data did so by limiting the scope/analysis to individual neighborhoods.</p>
-<p>This leads me to believe that Memphis code enforcement does not regularly sort through existing data to find trends and patterns. This would not be surprising, except for the department having two lengthy reports over 20 years calling for a strategic, rather than a reactive, code enforcement. A strategic code enforcement requires regular analysis of existing data, to find trends and identify blind spots. Without a strategy, code enforcement will opt for the reactive system. This leads inspectors to spend a disproportionate amount of time on minor violations instead of ones that impact public health. As stated by <span class="citation"><a href="#ref-betts2001" role="doc-biblioref">Betts</a>,<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a></span> “individual efforts, no matter how well intentioned, are by definition <em>not strategic</em>.” [44]</p>
-<p>Attempting to organize this dataset reminded me of Matthew Desmond discussing the difficulty in finding accurate eviction data for any city just a decade ago. The data existed but it was unorganized and messy. He established the Eviction Lab to draw attention to the problem and help other people access the data. Making the data widely available allowed it to be studied and discussed. The extent of the eviction crisis became apparent, and soon evictions became one of the most important topics in housing.</p>
-<p>Public housing in America ended due to mismanagement and neglect of maintenance, and yet few people are calling for the end of private rental housing due to the same practices. Perhaps part of the reason public housing ended was the relative ease of monitoring and tracking the neglect. Information on public housing is publicly available; with relative ease I can find a list of what properties are managed by the city, view the agency plan and yearly financial audit which breaks down revenues and expenses. Meanwhile, trying to find such information about the private rental market is nearly impossible. How are we to hold the private rental market accountable if we don’t know the extent of the problem?</p>
-<div id="recommendations" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Recommendations</h2>
-<p>While I recognize that asking an organization to alter its data entry methods is a big ask, I have a few specific recommendations which I believe could completely alter the nature of 311 data.</p>
+<p>Code enforcement is the <em>only</em> recourse for renters who want to report landlord neglect. However, Memphis code enforcement does not currently categorize or track this data. Instead, this information is shuffled into a miscellaneous category, with duplicates and errors. While the dataset may be updated daily, it is incredibly hard to organize, and the frequency of new cases only makes the job more difficult.</p>
+<p>In conversations with other housing researchers, I found I was not alone in my frustrations with this dataset. I have yet to meet someone who established a way to sort through all the data. One researcher who did regularly use the data limits the scope/analysis to individual neighborhoods. There is no currently known way to monitor trends.</p>
+<p>As discussed earlier, two comprehensive reports on Memphis code enforcement have called for a strategic system, rather than the reactive one in place. A strategic code enforcement requires regular analysis of existing data, to find trends and identify blind spots. Without a strategy, code enforcement will opt for the reactive system. This leads inspectors to spend a disproportionate amount of time on minor violations instead of ones that impact public health. As stated by <span class="citation"><a href="#ref-betts2001" role="doc-biblioref">Betts</a>,<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a></span> “individual efforts, no matter how well intentioned, are by definition <em>not strategic</em>.” [44]</p>
+<p>While I recognize that asking an organization to alter its data entry methods is a big ask, I have a few specific, basic recommendations which would improve 311 data.</p>
 <ol style="list-style-type: decimal">
 <li>Create a new <code>REQUEST_TYPE</code> for requests related to private rental/landlord neglect. This would replace at least some of the “Code Miscellaneous” category with more substantive information. It might also encourage more tenant reporting, as tenants know they’re placing their complaint with the right agency.</li>
 <li>Create a <code>RESOLUTION_CODE</code> for duplicates, replacing “JA” and similar. (For instance “DUPE” is used by other cities like <a href="https://data.cincinnati-oh.gov/Thriving-Neighborhoods/Code-Enforcement/cncm-znd6">Cincinnati</a>)</li>
@@ -278,19 +271,31 @@ div.csl-indent {
 <li>Close out old cases which are clearly no open anymore.</li>
 <li>Implement the <strong>HHRS</strong> into the data system. For occupied housing units, categorize hazards using the HHRS.</li>
 </ol>
+<p>This small changes can greatly help with future research into housing maintenance problems.</p>
+<p>Ultimately, this paper did not end with code enforcement data based on any belief that the agency is the best way to solve maintenance problems. Since the first municipal code enforcement campaign, the policy tool has often been used at the expense of poor people.<span class="citation"><a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a></span> A recent study of code enforcement data found disparities from self-reporting reinforce inequality and biases.<span class="citation"><a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a></span> Code enforcement data will be heavily under-reported as long as tenants who report maintenance problems are not guaranteed stable, affordable, healthy housing.</p>
+<p>There are real concerns that strict housing code enforcement would worsen housing affordability. I have deliberately avoided discussions around affordability (and thus most of the little planning literature related to code enforcement) from a belief that the health of the tenant should be prioritized over the price of rent. Ultimately, a rent will be divided between a home’s maintenance and a landlord’s profit. A city that prioritizes healthy housing for tenants is a city where landlords are not allowed to profit from maintenance neglect.</p>
+<p>Planner’s specialties allow them to regulate the public health, safety, morals, and general welfare. This police power was previously used in the name of slum clearance, and in some ways that mission continues today with crusades on blight. But why is this regulation on public health not extended to current renters, and before homes become blighted? For instance, consider current code enforcement policy that condemns and boards a house if the cost of repairs is more than half the market value of the house. There is no concern given to a tenant’s housing stability. Rather than looking to the market value, which will be marked by historical inequities like redlining, why not consider the value to the city for having all of its citizens stably housed? Suddenly, the cost of condemning the home becomes more expensive.</p>
+<p>Public housing in America ended due to mismanagement and neglect of maintenance, and yet few people are calling for the end of private rental housing due to the same practices. Perhaps part of the reason public housing ended was the relative ease of monitoring and tracking the neglect. Information on public housing is publicly available; with relative ease I can find a list of what properties are managed by the city, view the agency plan and yearly financial audit which breaks down revenues and expenses. Meanwhile, trying to find such information about the private rental market is nearly impossible. How are we to hold the private rental market accountable if we don’t know the extent of the problem?</p>
 
-</div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-betts2001" class="csl-entry">
 Betts, Phyllis. <span>“Best Practice Number Ten: Fixing Broken Windows <span><span></span></span> Strategies to Strengthen Housing Code Enforcement and Related Approaches to Community-Based Crime Prevention in Memphis,”</span> April 2001. <a href="https://www.pdffiller.com/20879259-BestPracticeNumber10Fixing_Broken_Windowspdf-Best-Practice-Number-Ten-Center-For-Community-Building-and-cbana-memphis-">https://www.pdffiller.com/20879259-BestPracticeNumber10Fixing_Broken_Windowspdf-Best-Practice-Number-Ten-Center-For-Community-Building-and-cbana-memphis-</a>.
 </div>
+<div id="ref-kontokosta2021" class="csl-entry">
+Kontokosta, Constantine E., and Boyeong Hong. <span>“Bias in Smart City Governance: How Socio-Spatial Disparities in 311 Complaint Behavior Impact the Fairness of Data-Driven Decisions.”</span> <em>Sustainable Cities and Society</em> 64 (January 1, 2021): 102503. doi:<a href="https://doi.org/10.1016/j.scs.2020.102503">10.1016/j.scs.2020.102503</a>.
+</div>
+<div id="ref-lieb2018" class="csl-entry">
+Lieb, Emily. <span>“<span>‘</span>Baltimore Does Not Condone Profiteering in Squalor<span>’</span>: The Baltimore Plan and the Problem of Housing-Code Enforcement in an American City.”</span> <em>Planning Perspectives</em> 33, no. 1 (January 2, 2018): 75–95. doi:<a href="https://doi.org/10.1080/02665433.2017.1325774">10.1080/02665433.2017.1325774</a>.
+</div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="66">
 <li id="fn66"><p><a href="#ref-betts2001" role="doc-biblioref"><span>“Best Practice Number Ten”</span></a>.<a href="discussion.html#fnref66" class="footnote-back">↩︎</a></p></li>
+<li id="fn67"><p><a href="#ref-lieb2018" role="doc-biblioref">Emily Lieb, <span>“<span>‘</span>Baltimore Does Not Condone Profiteering in Squalor<span>’</span>: The Baltimore Plan and the Problem of Housing-Code Enforcement in an American City,”</span> <em>Planning Perspectives</em> 33, no. 1 (January 2, 2018): 75–95, doi:<a href="https://doi.org/10.1080/02665433.2017.1325774" role="doc-biblioref">10.1080/02665433.2017.1325774</a></a>.<a href="discussion.html#fnref67" class="footnote-back">↩︎</a></p></li>
+<li id="fn68"><p><a href="#ref-kontokosta2021" role="doc-biblioref">Constantine E. Kontokosta and Boyeong Hong, <span>“Bias in Smart City Governance: How Socio-Spatial Disparities in 311 Complaint Behavior Impact the Fairness of Data-Driven Decisions,”</span> <em>Sustainable Cities and Society</em> 64 (January 1, 2021): 102503, doi:<a href="https://doi.org/10.1016/j.scs.2020.102503" role="doc-biblioref">10.1016/j.scs.2020.102503</a></a>.<a href="discussion.html#fnref68" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
