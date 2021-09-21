@@ -40,6 +40,3 @@ tidying-the-dataset
 seeclickfix
 discussion
 summary
-appendix-covid-evictions
-cdc-eviction-moratorium
-memphis-eviction-settlement-program

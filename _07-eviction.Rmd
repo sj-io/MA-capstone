@@ -1,5 +1,7 @@
 # Appendix: COVID & Evictions
 
+*Note: This section is hidden as of 9/21/21 until it is updated for accuracy.*
+
 ## CDC Eviction Moratorium
 
 When COVID-19 struck, health professionals around the world ordered everyone to stay at home. However, sudden, widespread illness and job loss threatened to displace of millions of Americans who fell behind on rent. The CDC recognized that large waves of evictions could increase the spread of COVID, as people lost a stable place to quarantine and were more likely to double up with family or overcrowd homeless shelters. [@cdc2020a] Not having shelter also increases a person's risk of severe illness from COVID-19. The risk to public health led the CDC to freeze all evictions due to nonpayment of rent, a power that many did not know they possessed.[^eviction-1]
