@@ -8,9 +8,19 @@ classoption: openany
 bibliography: [book.bib, packages.bib]
 csl: chicago-fullnote-bibliography-16th-edition.csl
 link-citations: yes
-description: "This is the capstone for my master's degree."
+description: "This is the capstone for my master's degree in urban planning."
 ---
 
-# About the Author {.unnumbered}
+# About {.unnumbered}
 
-Sarah Johnson is completing her master's in City and Regional Planning from the University of Memphis (expected graduation August 2021).
+## Author --- Sarah Johnson {.unnumbered}
+
+I completed my master's degree in City and Regional Planning from the University of Memphis in August 2021. My research interests are centered around housing quality.
+
+I live in Memphis, Tennessee with my dog, Pepper 🐕.
+
+## Website {.unnumbered}
+
+This website contains the final capstone that was required to complete my master's degree. It was created in RStudio using [bookdown](https://bookdown.org/yihui/bookdown/), an R package that turns text, code, table, and pictures into a fast, simple online book. The code used to create this website is publicly available on [Github](https://github.com/sj-io/MA-capstone), along with all updates and changes.
+
+As of September 20th, 2021 this capstone will be undergoing revisions and updates.
