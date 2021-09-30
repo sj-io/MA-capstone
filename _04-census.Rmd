@@ -1,0 +1,38 @@
+# Census
+
+Goal: Make a map of Shelby County divided by tract. How are population and households distributed?
+
+First, load the packages. Cache geometry.
+
+```{r lib, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidycensus)
+options(tigris_use_cache = TRUE)
+```
+
+```{r}
+v19 <- load_variables(2019, "acs5", cache = T)
+```
+
+```{r tenure19, message=FALSE, warning=FALSE}
+ten19 <- get_acs(
+  geography = "tract",
+  table = "B25003",
+  state = "TN",
+  county = "Shelby",
+  geometry = TRUE,
+  cache_table = TRUE
+)
+```
+
+```{r message=FALSE, warning=FALSE}
+ten19 %>% 
+  left_join(v19, by = c("variable" = "name")) %>%
+  separate(label, c("est", "tot", "tenure"), sep = "!!") %>%
+  filter(!is.na(tenure)) %>% 
+  ggplot(aes(fill = estimate)) +
+  geom_sf(color = NA) +
+  facet_wrap(~tenure) +
+  theme_void() +
+  scale_fill_viridis_c()
+```
